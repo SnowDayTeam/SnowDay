@@ -78,15 +78,23 @@ public class CarDriving : MonoBehaviour {
     //whatever object in the trigger gets launched to the left or right so they don't get stuck underneath
     private void OnTriggerStay(Collider other)
     {
+        Rigidbody rb = other.GetComponent<Rigidbody>();
         if (driveTowards == false)
         {
-            
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(LaunchX, LaunchY, 0));
+            if(rb!= null)
+            {
+                rb.AddForce(new Vector3(LaunchX, LaunchY, 0));
+
+            }
         }
 
         else
         {
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(LaunchX*-1, LaunchY, 0));
+            if (rb != null)
+            {
+                rb.AddForce(new Vector3(LaunchX * -1, LaunchY, 0));
+
+            }
         }
       
     }
