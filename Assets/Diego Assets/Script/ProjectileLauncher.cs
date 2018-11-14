@@ -5,6 +5,8 @@ public struct ProjectileAttribs
 {
 
     public float speed;
+
+    [Range (1, 180)]
     public float angle;
 }
 
@@ -18,10 +20,13 @@ public class ProjectileLauncher : MonoBehaviour
     [Header("Projectile Prefab")]
     public GameObject projectilePrefab;
 
-    [Header("Gizmo Settings")]
+    [Header("Gizmos Settings")]
     private Vector3 gismoStartPos;
     private int arcGizmosResolution = 60;
     private Vector3[] gizmosArcPositions;
+    private float renderLineOffset = 0.2f;
+
+    Vector3 Midpoint;
 
     /// <summary>
     /// Launch Projectile
@@ -47,17 +52,41 @@ public class ProjectileLauncher : MonoBehaviour
         float ProjectileVelocityZ = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
         float ProjectileVelocityY = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
 
+        Vector3 velocity = new Vector3(0, ProjectileVelocityY, ProjectileVelocityZ);
+
+        float totalTime = 2 * (ProjectileVelocityY / Physics.gravity.magnitude);
+
+        Vector3 destinationVector = velocity * totalTime;
+      
+        Vector3 landingPosition = transform.position + destinationVector;
+
+        Vector3 movementDir = landingPosition - transform.position;
+
+        Midpoint = (transform.position + landingPosition) / 2;
+
+
+
+        Debug.Log("Projectile Launcher - Distance Magnitude: " + destinationVector.magnitude);
+        Debug.Log("Projectile Launcher - Distance DistanceBetween: " + Vector3.Distance(Vector3.zero, destinationVector));
+ 
+
+
+
+
+
         gizmosArcPositions = new Vector3[arcGizmosResolution + 1];
 
-        float time = 2 * (ProjectileVelocityY / Physics.gravity.magnitude);
+
+        float time = 2 * (ProjectileVelocityY / Physics.gravity.magnitude) + renderLineOffset;
 
         for (int i = 0; i < arcGizmosResolution + 1; i++)
         {
             float t = ((float)time / (float)arcGizmosResolution) * i;
             float z = gismoStartPos.z + ProjectileVelocityZ * t;
-            double y = gismoStartPos.y + ProjectileVelocityY * t + 0.5 * Physics.gravity.y * Mathf.Pow(t, 2);
+            float TimebasedonZ = z / ProjectileVelocityZ;
+            double y = gismoStartPos.y + ProjectileVelocityY * TimebasedonZ + 0.5 * Physics.gravity.y * Mathf.Pow(TimebasedonZ , 2);
 
-            gizmosArcPositions[i] = new Vector3(gismoStartPos.x, (float)y, z);
+            gizmosArcPositions[i] =  new Vector3(gismoStartPos.x, (float)y, z);
         }
 
         return gizmosArcPositions;
@@ -68,6 +97,7 @@ public class ProjectileLauncher : MonoBehaviour
         Gizmos.color = Color.red;
         gismoStartPos = transform.position;
         gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
+        Gizmos.DrawWireSphere(Midpoint, 1);
         for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
         {
             Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
