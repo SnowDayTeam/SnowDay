@@ -2,23 +2,23 @@
 using UnityStandardAssets.CrossPlatformInput;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : PlayerActor
 {
-
     [Header("Player Attributes")]
-    [SerializeField] float m_PlayerSpeed = 10;
+    [SerializeField] private float m_PlayerSpeed = 10;
+
     [SerializeField] private float m_MovingTurnSpeed = 360;
     [SerializeField] private float m_StationaryTurnSpeed = 180;
 
-    [Header ("Bullet Modes")]
+    [Header("Bullet Modes")]
     public ProjectileAttribs bulletModeA;
+
     public ProjectileAttribs bulletModeB;
 
-    [Header ("Components")]
+    [Header("Components")]
     public ProjectileLauncher launcher;
+
     private Rigidbody m_Rigidbody;
-
-
 
     // Use this for initialization
     private void Start()
@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
 
         Move(h, v);
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButtonDown("FireP1"))
         {
             launcher.LaunchProjectile(bulletModeA);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Cancel"))
         {
             launcher.LaunchProjectile(bulletModeB);
         }

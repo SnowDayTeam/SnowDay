@@ -1,32 +1,41 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
+/// <summary>
+/// Projectile Attributes
+/// float Speed - Bullet Speed
+/// float Angle - Angle of Trajectory
+/// </summary>
 [System.Serializable]
 public struct ProjectileAttribs
 {
-
     public float speed;
 
-    [Range (1, 180)]
+    [Range(1, 180)]
     public float angle;
 }
 
 public class ProjectileLauncher : MonoBehaviour
 {
-    [Header("Projectile Values")]
-    public float projectileSpeedValue;
-
-    public float projectileAngleValue;
-
     [Header("Projectile Prefab")]
     public GameObject projectilePrefab;
 
-    [Header("Gizmos Settings")]
-    private Vector3 gismoStartPos;
-    private int arcGizmosResolution = 60;
-    private Vector3[] gizmosArcPositions;
-    private float renderLineOffset = 0.2f;
+    [Header("Projectile Values")]
+    private float projectileSpeedValue;
 
-    Vector3 Midpoint;
+    private float projectileAngleValue;
+
+    //Gizmo Variables
+    private Vector3 gismoStartPos;
+
+    private Vector3[] gizmosArcPositions;
+
+    //Gizmo Constants
+    private const int arcGizmosResolution = 60;
+
+    private const float renderLineOffset = 0.2f;
+
+    private Vector3 Midpoint;
 
     /// <summary>
     /// Launch Projectile
@@ -34,7 +43,7 @@ public class ProjectileLauncher : MonoBehaviour
     /// <param name="attribs">Projectile Attributes</param>
     public void LaunchProjectile(ProjectileAttribs attribs)
     {
-        ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation,null).GetComponent<ProjectileComponent>();
+        ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
         proj.LaunchProjectile(attribs.speed, attribs.angle);
         projectileSpeedValue = attribs.speed;
         projectileAngleValue = attribs.angle;
@@ -57,51 +66,43 @@ public class ProjectileLauncher : MonoBehaviour
         float totalTime = 2 * (ProjectileVelocityY / Physics.gravity.magnitude);
 
         Vector3 destinationVector = velocity * totalTime;
-      
-        Vector3 landingPosition = transform.position + destinationVector;
-
-        Vector3 movementDir = landingPosition - transform.position;
-
-        Midpoint = (transform.position + landingPosition) / 2;
-
-
-
-        Debug.Log("Projectile Launcher - Distance Magnitude: " + destinationVector.magnitude);
-        Debug.Log("Projectile Launcher - Distance DistanceBetween: " + Vector3.Distance(Vector3.zero, destinationVector));
- 
-
-
-
-
 
         gizmosArcPositions = new Vector3[arcGizmosResolution + 1];
-
 
         float time = 2 * (ProjectileVelocityY / Physics.gravity.magnitude) + renderLineOffset;
 
         for (int i = 0; i < arcGizmosResolution + 1; i++)
         {
             float t = ((float)time / (float)arcGizmosResolution) * i;
-            float z = gismoStartPos.z + ProjectileVelocityZ * t;
-            float TimebasedonZ = z / ProjectileVelocityZ;
-            double y = gismoStartPos.y + ProjectileVelocityY * TimebasedonZ + 0.5 * Physics.gravity.y * Mathf.Pow(TimebasedonZ , 2);
 
-            gizmosArcPositions[i] =  new Vector3(gismoStartPos.x, (float)y, z);
+            float curDistance = ProjectileVelocityZ * t;
+            float TimebasedonZ = curDistance / ProjectileVelocityZ;
+            double y = gismoStartPos.y + ProjectileVelocityY * TimebasedonZ + 0.5 * Physics.gravity.y * Mathf.Pow(TimebasedonZ, 2);
+
+            Vector3 ArcPoint = gismoStartPos + transform.forward * curDistance;
+            ArcPoint.y = (float)y;
+
+            gizmosArcPositions[i] = ArcPoint;
         }
 
         return gizmosArcPositions;
     }
 
+    /// <summary>
+    /// Draws Projectile Arc in Editor
+    /// Only During Play Mode
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        gismoStartPos = transform.position;
-        gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
-        Gizmos.DrawWireSphere(Midpoint, 1);
-        for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
+        if (EditorApplication.isPlaying)
         {
-            Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
-
+            gismoStartPos = transform.position;
+            gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
+            for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
+            {
+                Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
+            }
         }
     }
 }
