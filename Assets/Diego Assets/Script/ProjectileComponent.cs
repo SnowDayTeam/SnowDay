@@ -3,6 +3,17 @@
 [RequireComponent(typeof(Rigidbody))]
 public class ProjectileComponent : MonoBehaviour
 {
+    [Header("Destroy Projectile")]
+    public float timeUntilDestroy = 2;
+
+    [Header("Damage area radius")]
+    public bool increaseOverTime;
+    public float MaxRadius = 1;
+    public float RadiusIncreaseStep = 1;
+
+    private float currentRadius = 0;
+    private bool increaseRadius = true;
+
     /// <summary>
     /// Launch Projectile
     /// </summary>
@@ -17,28 +28,43 @@ public class ProjectileComponent : MonoBehaviour
 
         Rigidbody m_rb = GetComponent<Rigidbody>();
 
-        InstantiateDamageZone(velocity);
-
         m_rb.AddRelativeForce(velocity, ForceMode.Impulse);
     }
 
-    /// <summary>
-    /// Instanstates Damage Zone for Projectile
-    /// </summary>
-    /// <param name="velocity">Projectile Velocity</param>
-    /// TODO: Player Damage | Should the Damage Zone be Instantiated when the Projectile Spawns or when it hits the ground.
-    private void InstantiateDamageZone(Vector3 velocity)
+    private void Start()
     {
-        float totalTime = 2 * (velocity.y / Physics.gravity.magnitude);
+        if (!increaseOverTime)
+        {
+            currentRadius = MaxRadius;
+            increaseRadius = false;
+        }
+    }
 
-        Vector3 flatVelocity = velocity;
+    private void Update()
+    {
+        if (increaseRadius)
+        {
+            currentRadius += RadiusIncreaseStep * Time.deltaTime;
+        }
+        Collider[] sphereHits;
+        sphereHits = Physics.OverlapSphere(transform.position, currentRadius);
+        foreach (var item in sphereHits)
+        {
+            if (item.tag == "Player")
+            {
+                item.SendMessage("TakeDamage", 1);
+            }
+        }
+    }
 
-        flatVelocity.y = 0;
+    private void OnCollisionEnter(Collision collision)
+    {
+        increaseRadius = false;
+        Destroy(gameObject, timeUntilDestroy);
+    }
 
-        Vector3 DestVector = flatVelocity * totalTime;
-
-        Vector3 LandingPosition = transform.position + transform.forward * DestVector.magnitude;
-
-        Instantiate(Resources.Load("DamageArea"), LandingPosition, Quaternion.identity);
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, currentRadius);
     }
 }

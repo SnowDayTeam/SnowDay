@@ -11,7 +11,7 @@ public struct ProjectileAttribs
 {
     public float speed;
 
-    [Range(1, 180)]
+    [Range(1, 90)]
     public float angle;
 }
 
@@ -25,6 +25,14 @@ public class ProjectileLauncher : MonoBehaviour
 
     private float projectileAngleValue;
 
+    //Charge Shot Variables
+    private bool charging = false;
+
+    private float fireAngle = 0f;
+
+    public int chargeSpeed = 10;
+    public int maxChargeAngle = 90;
+
     //Gizmo Variables
     private Vector3 gismoStartPos;
 
@@ -34,8 +42,6 @@ public class ProjectileLauncher : MonoBehaviour
     private const int arcGizmosResolution = 60;
 
     private const float renderLineOffset = 0.2f;
-
-    private Vector3 Midpoint;
 
     /// <summary>
     /// Launch Projectile
@@ -47,6 +53,47 @@ public class ProjectileLauncher : MonoBehaviour
         proj.LaunchProjectile(attribs.speed, attribs.angle);
         projectileSpeedValue = attribs.speed;
         projectileAngleValue = attribs.angle;
+    }
+
+    /// <summary>
+    /// Launch Charge projectile
+    /// Will increase angle while player is holding key down until it reaches the max angle.
+    /// <!Note> Will Ignore Projectile Attribs Angle<!Note>
+    /// </summary>
+    /// <param name="attribs"></param>
+    /// <param name="pressed"></param>
+    public void LaunchChargeProjectile(ProjectileAttribs attribs, bool pressed)
+    {
+        projectileAngleValue = fireAngle;
+        if (pressed && !charging)
+        {
+            charging = true;
+            projectileSpeedValue = attribs.speed;
+        }
+        else
+        {
+            if (pressed)
+            {
+                return;
+            }
+            if (!pressed && charging)
+            {
+                charging = false;
+                ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
+                proj.LaunchProjectile(attribs.speed, fireAngle);
+                fireAngle = 0;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (charging)
+        {
+            fireAngle += chargeSpeed * Time.deltaTime;
+            fireAngle = Mathf.Clamp(fireAngle, 0, maxChargeAngle);
+            //Debug.Log(fireAngle);
+        }
     }
 
     /// <summary>

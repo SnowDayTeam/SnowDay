@@ -34,10 +34,10 @@ public class PlayerController : PlayerActor
 
         Move(h, v);
 
-        if (Input.GetButtonDown("FireP1"))
-        {
-            launcher.LaunchProjectile(bulletModeA);
-        }
+   
+       
+        launcher.LaunchChargeProjectile(bulletModeA, Input.GetButton("FireP1"));
+        
         if (Input.GetButtonDown("Cancel"))
         {
             launcher.LaunchProjectile(bulletModeB);
