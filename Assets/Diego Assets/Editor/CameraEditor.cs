@@ -1,49 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor (typeof(SnowDayCamera))]
-public class CameraEditor : Editor {
+[CustomEditor(typeof(SnowDayCamera))]
+public class CameraEditor : Editor
+{
+    private SnowDayCamera cameraScript;
+    private SerializedObject Target;
 
-    SerializedProperty PlayerList;
+    private SerializedProperty PlayerList;
+    private SerializedProperty CameraRotResolution;
+    private SerializedProperty CameraRotStep;
+    private SerializedProperty SmoothTime;
+    private SerializedProperty XZMultiplier;
+    private SerializedProperty YMultiplier;
+    private SerializedProperty EdgeBorderBuffer;
 
     private void OnEnable()
     {
-        PlayerList = serializedObject.FindProperty("Players");
+        cameraScript = (SnowDayCamera)target;
+        Target = new SerializedObject(cameraScript);
+
+        PlayerList = Target.FindProperty("Players");
+        CameraRotResolution = Target.FindProperty("Resolution");
+        CameraRotStep = Target.FindProperty("CurrentStep");
+        SmoothTime = Target.FindProperty("SmoothTime");
+        XZMultiplier = Target.FindProperty("XZMultiplier");
+        YMultiplier = Target.FindProperty("YMultiplier");
+        EdgeBorderBuffer = Target.FindProperty("EdgeBorderBuffer");
     }
 
     public override void OnInspectorGUI()
     {
+        Target.Update();
+
         EditorGUILayout.PropertyField(PlayerList, true);
 
-        SnowDayCamera camera = (SnowDayCamera)target;
+        EditorGUILayout.LabelField(new GUIContent("Camera Rotation Resolution", "Steps the camera will be allowed to travel"));
+        EditorGUILayout.IntSlider(CameraRotResolution, 1, 45 , new GUIContent("", ""));
+        EditorGUILayout.IntSlider(CameraRotStep, 1, CameraRotResolution.intValue, new GUIContent("Step", "Camera Rotation Step"));
+        EditorGUILayout.PropertyField(SmoothTime);
+        EditorGUILayout.PropertyField(XZMultiplier);
+        EditorGUILayout.PropertyField(YMultiplier);
+        EditorGUILayout.PropertyField(EdgeBorderBuffer);
 
-        EditorGUILayout.LabelField("Rotation Resolution");
-        camera.Resolution = EditorGUILayout.IntSlider(camera.Resolution, 0, 45);
-
-        EditorGUILayout.LabelField("Rotation Step");
-        camera.CurrentStep = EditorGUILayout.IntSlider(camera.CurrentStep, 0, camera.Resolution);
-
-        camera.SmoothTime = EditorGUILayout.FloatField("Smooth Time", camera.SmoothTime);
-
-        camera.XZLimister = EditorGUILayout.FloatField("XZ Limiter", camera.XZLimister);
-
-        camera.YLimiter = EditorGUILayout.FloatField("Y Limiter", camera.YLimiter);
-
-        camera.EdgeBorderBuffer = EditorGUILayout.FloatField("Edge Border Buffer", camera.EdgeBorderBuffer);
-
-
-
-
-        
-
-
-
-
-
-
-        
-
+        Target.ApplyModifiedProperties();
     }
 }

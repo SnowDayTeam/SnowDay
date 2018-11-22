@@ -6,7 +6,7 @@
 /// </summary>
 public class PlayerActor : MonoBehaviour
 {
-    private int Health = 1;
+    public int Health = 1;
 
     public int TeamID;
 

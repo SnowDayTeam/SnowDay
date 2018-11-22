@@ -10,11 +10,6 @@ public class PlayerController : PlayerActor
     [SerializeField] private float m_MovingTurnSpeed = 360;
     [SerializeField] private float m_StationaryTurnSpeed = 180;
 
-    [Header("Bullet Modes")]
-    public ProjectileAttribs bulletModeA;
-
-    public ProjectileAttribs bulletModeB;
-
     [Header("Components")]
     public ProjectileLauncher launcher;
 
@@ -34,13 +29,23 @@ public class PlayerController : PlayerActor
 
         Move(h, v);
 
-   
-       
-        launcher.LaunchChargeProjectile(bulletModeA, Input.GetButton("FireP1"));
+
+        if (Input.GetButtonDown("FireP1"))
+        {
+            launcher.LaunchChargeProjectile(true);
+        }
+        else
+        {
+            if (Input.GetButtonUp("FireP1"))
+            {
+              launcher.LaunchChargeProjectile(false);
+            }
+        }
+
         
         if (Input.GetButtonDown("Cancel"))
         {
-            launcher.LaunchProjectile(bulletModeB);
+            launcher.LaunchProjectile();
         }
     }
 

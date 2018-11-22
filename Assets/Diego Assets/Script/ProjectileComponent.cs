@@ -19,7 +19,7 @@ public class ProjectileComponent : MonoBehaviour
     /// </summary>
     /// <param name="speed">Projectile Speed</param>
     /// <param name="angle">Trajectory Angle</param>
-    public void LaunchProjectile(float speed, float angle)
+    public void LaunchProjectile(float speed, float angle, Vector3 dir)
     {
         float ProjectileVelocityZ = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
         float ProjectileVelocityY = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
@@ -28,8 +28,11 @@ public class ProjectileComponent : MonoBehaviour
 
         Rigidbody m_rb = GetComponent<Rigidbody>();
 
-        m_rb.AddRelativeForce(velocity, ForceMode.Impulse);
+
+        m_rb.velocity = velocity;
     }
+
+
 
     private void Start()
     {

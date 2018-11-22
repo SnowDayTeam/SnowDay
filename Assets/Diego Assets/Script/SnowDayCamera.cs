@@ -6,42 +6,51 @@ public class SnowDayCamera : MonoBehaviour
     [Header("Players")]
     public List<Transform> Players;
 
-    private Camera cam;
-
     [Header("Camera Horizontal Rotation")]
-    [Range(0, 10)]
+    public int Resolution = 20;
     public int CurrentStep = 1;
 
-    public float SmoothTime = .5f;
 
     public float CameraYOffset = 10;
     public float Radius = 10;
-    public int Resolution = 10;
 
-    public float EdgeBorderBuffer = 5;
+    //Time to Destination
+    public float SmoothTime = .5f;
 
-    public float XZLimister;
-    public float YLimiter;
+    //Camera Movement Multipliers
+    public float XZMultiplier = 1f;
+    public float YMultiplier = 0.5f;
+
+    //Border Buffer
+    public float EdgeBorderBuffer = 8;
+
+    private Camera cam;
 
     private float thetaStep;
     private Vector3 camVelocity;
 
     private Vector3 nextCameraPos;
 
-    // Use this for initialization
     private void Start()
     {
         cam = Camera.main;
         thetaStep = (2f * Mathf.PI) / Resolution;
+
+        CameraDistance();
+        PopCamera();
     }
 
     // Update is called once per frame
     private void LateUpdate()
     {
-        MoveCamera();
         CameraDistance();
+        MoveCamera();
     }
 
+    /// <summary>
+    /// Sets the Radius and the Y Offset of the Camera,
+    /// based on the Greatest distance from the center of of the camera Gimbel.
+    /// </summary>
     private void CameraDistance()
     {
         float greatestDistance = 0;
@@ -57,11 +66,24 @@ public class SnowDayCamera : MonoBehaviour
             }
         }
 
-        Radius = greatestDistance  + EdgeBorderBuffer / XZLimister;
-        CameraYOffset = greatestDistance  + EdgeBorderBuffer / YLimiter;
-        
+        Radius = greatestDistance + EdgeBorderBuffer * XZMultiplier;
+        CameraYOffset = greatestDistance + EdgeBorderBuffer * YMultiplier;
     }
 
+    /// <summary>
+    /// Instantly Moves Camera to Current Rotation Step
+    /// </summary>
+    void PopCamera()
+    {
+        transform.position = FindAveragePosition();
+        nextCameraPos = transform.position + new Vector3(Radius * Mathf.Cos(thetaStep * CurrentStep), CameraYOffset, Radius * Mathf.Sin(thetaStep * CurrentStep));//Radius * Mathf.Sin(thetaStep * CurrentStep));
+        cam.transform.position = nextCameraPos;
+        cam.transform.LookAt(transform.position, Vector3.up);
+    }
+
+    /// <summary>
+    /// Smoothly moves the camera between rotation steps.
+    /// </summary>
     private void MoveCamera()
     {
         transform.position = FindAveragePosition();
@@ -70,8 +92,15 @@ public class SnowDayCamera : MonoBehaviour
         cam.transform.LookAt(transform.position, Vector3.up);
     }
 
+    /// <summary>
+    /// Finds the Average Position between all the players
+    /// </summary>
+    /// <returns>Center Position between the players</returns>
     private Vector3 FindAveragePosition()
     {
+        if (Players == null)
+            return Vector3.zero;
+
         Vector3 averagePosition = new Vector3();
         int numofPlayers = 0;
         for (int i = 0; i < Players.Count; i++)

@@ -9,66 +9,85 @@ using UnityEngine;
 [System.Serializable]
 public struct ProjectileAttribs
 {
+    [Range(1, 40)]
     public float speed;
 
     [Range(1, 90)]
     public float angle;
+
+    public ProjectileAttribs(float Speed, float Angle)
+    {
+        speed = Speed;
+        angle = Angle;
+    }
 }
 
 public class ProjectileLauncher : MonoBehaviour
 {
     [Header("Projectile Prefab")]
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab = null;
 
-    [Header("Projectile Values")]
-    private float projectileSpeedValue;
+    [Header("Bullet Modes")]
+    public ProjectileAttribs DefaultShot = new ProjectileAttribs(20f, 30f);
 
-    private float projectileAngleValue;
+    public ProjectileAttribs ChargeShot = new ProjectileAttribs(10f, 45f);
+
+    [Header("Charge Shoot")]
+    [Tooltip("Projectile charging Speed")]
+    public int chargeSpeed = 5;
+
+    [Tooltip("Max projectile charging Speed")]
+    public int maxChargeSpeed = 10;
+
+    [Header("Aim Assists Radius")]
+    private Vector3 AimAssistLandingPos = Vector3.zero;
+    public float AimAssistRadius = 0.5f;
 
     //Charge Shot Variables
     private bool charging = false;
 
-    private float fireAngle = 0f;
+    private float fireVelocity = 0f;
 
-    public int chargeSpeed = 10;
-    public int maxChargeAngle = 90;
+    [Header("Projectile Values")]
+    private float projectileSpeedValue = 0;
 
-    //Gizmo Variables
-    private Vector3 gismoStartPos;
+    private float projectileAngleValue = 0;
 
-    private Vector3[] gizmosArcPositions;
+    //Gizmo's Variables
+    private Vector3 gismoStartPos = Vector3.zero;
 
-    //Gizmo Constants
+    private Vector3[] gizmosArcPositions = null;
+
+    //Gizmo's Constants
     private const int arcGizmosResolution = 60;
 
     private const float renderLineOffset = 0.2f;
+
 
     /// <summary>
     /// Launch Projectile
     /// </summary>
     /// <param name="attribs">Projectile Attributes</param>
-    public void LaunchProjectile(ProjectileAttribs attribs)
+    public void LaunchProjectile()
     {
         ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
-        proj.LaunchProjectile(attribs.speed, attribs.angle);
-        projectileSpeedValue = attribs.speed;
-        projectileAngleValue = attribs.angle;
+        proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
+        projectileSpeedValue = DefaultShot.speed;
+        projectileAngleValue = DefaultShot.angle;
     }
 
     /// <summary>
     /// Launch Charge projectile
     /// Will increase angle while player is holding key down until it reaches the max angle.
-    /// <!Note> Will Ignore Projectile Attribs Angle<!Note>
     /// </summary>
     /// <param name="attribs"></param>
     /// <param name="pressed"></param>
-    public void LaunchChargeProjectile(ProjectileAttribs attribs, bool pressed)
+    public void LaunchChargeProjectile(bool pressed)
     {
-        projectileAngleValue = fireAngle;
         if (pressed && !charging)
         {
             charging = true;
-            projectileSpeedValue = attribs.speed;
+            projectileAngleValue = ChargeShot.angle;
         }
         else
         {
@@ -80,8 +99,9 @@ public class ProjectileLauncher : MonoBehaviour
             {
                 charging = false;
                 ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
-                proj.LaunchProjectile(attribs.speed, fireAngle);
-                fireAngle = 0;
+                projectileSpeedValue = ChargeShot.speed + fireVelocity;
+                proj.LaunchProjectile(projectileSpeedValue, projectileAngleValue, CalculateLandingPos());
+                fireVelocity = 0;
             }
         }
     }
@@ -90,10 +110,48 @@ public class ProjectileLauncher : MonoBehaviour
     {
         if (charging)
         {
-            fireAngle += chargeSpeed * Time.deltaTime;
-            fireAngle = Mathf.Clamp(fireAngle, 0, maxChargeAngle);
+            Debug.Log("Charge Shoot");
+            fireVelocity += chargeSpeed * Time.deltaTime;
+            fireVelocity = Mathf.Clamp(fireVelocity, 0, maxChargeSpeed);
             //Debug.Log(fireAngle);
         }
+    }
+
+    public Vector3 CalculateLandingPos()
+    {
+        Vector3 destinationTarget = new Vector3();
+
+        float ProjectileVelocityZ = projectileSpeedValue * Mathf.Cos(projectileAngleValue * Mathf.Deg2Rad);
+        float ProjectileVelocityY = projectileSpeedValue * Mathf.Sin(projectileAngleValue * Mathf.Deg2Rad);
+
+        Vector3 velocity = new Vector3(0, ProjectileVelocityY, ProjectileVelocityZ);
+
+        float totalTime = 2 * (ProjectileVelocityY / Physics.gravity.magnitude);
+
+        Vector3 distanceTraveled = velocity * totalTime;
+
+        distanceTraveled.y = 0;
+  
+        AimAssistLandingPos = transform.position + transform.forward * distanceTraveled.magnitude;
+
+        Collider[] sphereHits = Physics.OverlapSphere(AimAssistLandingPos, AimAssistRadius );
+        for (int i = 0; i < sphereHits.Length; i++)
+        {
+            if (sphereHits[i].tag == "Player")
+            {
+                Debug.Log(sphereHits[i].name);
+                destinationTarget = sphereHits[i].transform.position - transform.position;
+                //sphereHits[i].SendMessage("TakeDamage", 1);
+                break;
+            }
+        }
+
+        return destinationTarget;
+
+
+
+
+
     }
 
     /// <summary>
@@ -150,6 +208,8 @@ public class ProjectileLauncher : MonoBehaviour
             {
                 Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
             }
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(AimAssistLandingPos, AimAssistRadius);
         }
     }
 }
