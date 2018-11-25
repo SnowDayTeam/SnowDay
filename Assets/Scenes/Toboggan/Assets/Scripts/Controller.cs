@@ -1,62 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Controller : MonoBehaviour {
+public class Controller : MonoBehaviour
+{
+    //forwards force on sled, multiplied by 50 in add force
+    public float thrust = 1;
+    //sideways force (steering) multiplied by 100 in keyDown
+    public float steerThrust = 4;
 
-    public float thrust;
-    public float turningSpeed;
-    public float maxTurnAngle;
     public Rigidbody rb;
+    public Text speedText;
+    public float maxSpeed = 25;
 
-    private float targetSteerAngle = 0;
-    private float steerAngle = 0;
+    float distFromGround = 0.75f;
 
-    float eulerAngX;
-    float eulerAngY;
-    float eulerAngZ;
 
     // Use this for initialization
-    void Start () {
-        //rb = GetComponent<Rigidbody>();
+    void Start()
+    {
+
     }
 
-    void Update () {
-        rb.AddRelativeForce(0, 0, thrust, ForceMode.Impulse); 
+    void Update()
+    {
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        speedText.text = rb.velocity.z.ToString(); 
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+
+        //increase speed if under max
+        if (rb.velocity.z < maxSpeed) 
+            rb.AddRelativeForce(0, 0, thrust*50, ForceMode.Force);
+        else if (rb.velocity.z > maxSpeed + 1) 
+            rb.AddRelativeForce(0, 0, -thrust*25, ForceMode.Force);
+        //decrease speed if more than 1 above max
+
+        //only add steering input if grounded
+        if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded()) 
         {
-            //if vehicle is able to turn farther left
-            if (targetSteerAngle > 0-maxTurnAngle /* && targetSteerAngle < maxTurnAngle*/) 
-            {
-                //turn target angle left
-                targetSteerAngle--;
-                //make actual angle of vehicle progress towards targeted angle
-                steerAngle = Mathf.Lerp(steerAngle, targetSteerAngle, Time.deltaTime * turningSpeed);
-                transform.localRotation = Quaternion.Euler(0, steerAngle, 0); 
-            }
-            else
-            {
-                //increase target steering angle to be within range
-                targetSteerAngle++;
-            }
+            rb.AddRelativeForce(-steerThrust*100, 0, 0, ForceMode.Force);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && IsGrounded())
         {
-            //if vehicle is able to turn farther left
-            if (targetSteerAngle < maxTurnAngle)
-            {
-                //turn target angle right
-                targetSteerAngle++;
-                //make actual angle of vehicle progress towards targeted angle
-                steerAngle = Mathf.Lerp(steerAngle, targetSteerAngle, Time.deltaTime * turningSpeed);
-                transform.localRotation = Quaternion.Euler(0, steerAngle, 0); 
-            }
-            else
-            {
-                //reduce target steering angle to be within range
-                targetSteerAngle--;
-            }
+            rb.AddRelativeForce(steerThrust*100, 0, 0, ForceMode.Force);
         }
+        if(!IsGrounded())
+            Debug.Log("Off Ground"); 
+        }
+
+    bool IsGrounded()
+    {
+        //cast ray to below player object, detecting if ground is within distance (distFromGround variable)
+        return Physics.Raycast(transform.position, -Vector3.up, distFromGround); 
     }
+
 }

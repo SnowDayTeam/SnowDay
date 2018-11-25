@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour {
 
+    //bool to check if game is paused
     public bool Pause;
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        //start off game as running (not-paused)
         Pause = false;
-
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+        //pause game if pause bool is set to true
         if (Pause)
             Time.timeScale = 0; 
         else 
@@ -23,9 +27,9 @@ public class FinishLine : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player") 
+        if (col.gameObject.name.Contains("Player") || col.gameObject.name.Contains("Sled")) 
         {
-            Pause = true;
+            Pause = true; 
             print(col.gameObject.name); 
         }
     }
