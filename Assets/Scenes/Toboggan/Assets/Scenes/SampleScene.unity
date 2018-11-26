@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 534669903}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,13 +369,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.23633537, y: -0, z: -0, w: 0.9716716}
+  m_LocalRotation: {x: 0.23344536, y: 0, z: 0, w: 0.97236997}
   m_LocalPosition: {x: 0, y: 3.84, z: -1.967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 936179029}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 27.341002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27, y: 0, z: 0}
 --- !u!1 &556953489
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,11 +849,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a95efa19fc25f44baa7313c82cd4f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 10
+  thrust: 5
   steerThrust: 2
   rb: {fileID: 936179025}
   speedText: {fileID: 1819623613}
   maxSpeed: 25
+  playerCam: {fileID: 534669904}
 --- !u!138 &936179031
 FixedJoint:
   m_ObjectHideFlags: 0
