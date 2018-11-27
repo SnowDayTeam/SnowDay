@@ -29,7 +29,7 @@ public class ProjectileComponent : MonoBehaviour
         Rigidbody m_rb = GetComponent<Rigidbody>();
 
 
-        m_rb.velocity = velocity;
+        m_rb.AddRelativeForce(velocity, ForceMode.Impulse);
     }
 
 

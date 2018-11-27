@@ -4,9 +4,10 @@ using UnityEngine;
 using RootMotion.FinalIK;
 
 public class BallSpawnerModifiedDC : MonoBehaviour {
-    private Vector3 offset = new Vector3(1, 0, 1);
-    public GameObject prefab;
-    public GameObject spawnPoint;
+    //private Vector3 offset = new Vector3(1, 0, 1);
+    //public GameObject prefab;
+    //public GameObject spawnPoint;
+    public ProjectileLauncher projectileLauncher;
     public float LaunchVelocity;
     public float throwDelay;
     private float timeFired;
@@ -126,10 +127,9 @@ public class BallSpawnerModifiedDC : MonoBehaviour {
 
 	private void ThrowBall()
 	{
-		GameObject throwBall = Instantiate(prefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        throwBall.GetComponent<Rigidbody>().velocity = transform.forward * LaunchVelocity;
-		BallPickedUp = false;
-	}
+        projectileLauncher.LaunchProjectile();
+        BallPickedUp = false;
+    }
 
 
 

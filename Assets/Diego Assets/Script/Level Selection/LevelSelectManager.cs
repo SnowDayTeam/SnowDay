@@ -4,9 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Level Selection Manager
+/// </summary>
+/// <remarks>
+/// <para>Counts down from <c>LevelSelectCountDownTime</c> and changes to scene selected by players</para>
+/// </remarks>
+/// 
 public class LevelSelectManager : MonoBehaviour
 {
-    [Header("Timer")]
+    [Header("Countdown Timer")]
     public float LevelSelectCountDownTime;
 
     private float timeElapsed;
@@ -15,7 +22,7 @@ public class LevelSelectManager : MonoBehaviour
     public Text CountDownText;
 
     [Header("Portal Spawn Locations")]
-    public List<LevelPortal> PortalSpawnPoints;
+    public List<LevelGate> PortalSpawnPoints;
 
     [Header("Game Levels")]
     public List<LevelData> Levels;
@@ -27,6 +34,11 @@ public class LevelSelectManager : MonoBehaviour
         timeElapsed = LevelSelectCountDownTime;
         for (var x = 0; x < PortalSpawnPoints.Capacity; x++)
         {
+            if (!Levels[x])
+            {
+                Debug.LogError("Missing Level Data");
+                continue;
+            }
             PortalSpawnPoints[x].Initialize(Levels[x]);
         }
     }
@@ -35,7 +47,6 @@ public class LevelSelectManager : MonoBehaviour
     private void Update()
     {
         timeElapsed -= Time.deltaTime;
-        CountDownText.text = timeElapsed.ToString(CultureInfo.InvariantCulture);
         if (timeElapsed <= 0)
         {
             LevelData selectedLevel = NextLevelSelect();
@@ -43,17 +54,22 @@ public class LevelSelectManager : MonoBehaviour
             {
                 SceneManager.LoadScene(selectedLevel.SceneName);
             }
+            return;
         }
+        CountDownText.text = timeElapsed.ToString("0.##");
     }
 
+    /// <summary>
+    /// Checks what Gate has the most amount of players and returns the LevelData" linked to that portal.
+    /// </summary>
+    /// <returns></returns>
     private LevelData NextLevelSelect()
     {
-        LevelPortal currentHighestLevel = null;
+        LevelGate currentHighestLevel = null;
         var highestPlayerCount = 0;
 
         for (int x = 0; x < PortalSpawnPoints.Count; x++)
         {
-            Debug.Log(PortalSpawnPoints[x].name);
             var playerCount = PortalSpawnPoints[x].PlayersInBox;
             if (highestPlayerCount < playerCount)
             {
