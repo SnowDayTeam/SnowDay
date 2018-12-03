@@ -93,12 +93,18 @@ public class Controller : MonoBehaviour
     }
     void RotateToGroundNormal()
     {
+        Vector3 average = new Vector3();
+
         RaycastHit rayHit;
         Vector3 downwardCastVector = transform.TransformDirection(Vector3.down);
         if (Physics.Raycast(transform.position, downwardCastVector, out rayHit, Mathf.Infinity))
         {
+            normalIndex = (normalIndex + 1) % 3;
+            normal[normalIndex] = rayHit.normal;
+            average = ((normal[0] + normal[1] + normal[2])/3); 
+
             if (transform.up.y - rayHit.normal.y < 0.005f) { return; }
-            transform.rotation = Quaternion.FromToRotation(transform.up, rayHit.normal) * transform.rotation; 
+            transform.rotation = Quaternion.FromToRotation(transform.up, average) * transform.rotation; 
         }
 
     }
