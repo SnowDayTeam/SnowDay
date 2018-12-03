@@ -1,19 +1,22 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+namespace SnowDay.Diego.CharacterController
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
-    public class ThirdPersonCharacter : MonoBehaviour
+    public class SnowDayCharacter : MonoBehaviour
     {
+
         public LayerMask groundLayers;
         [SerializeField] float m_MovingTurnSpeed = 360;
         [SerializeField] float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
         [Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
         [SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
-		[SerializeField] public float m_MoveSpeedMultiplier = 1f;
+        [SerializeField] public float m_MoveSpeedMultiplier = 1f;
         [SerializeField] public float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
 
@@ -31,7 +34,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         bool m_Crouching;
         public string color;
 
-        public void Start()
+        public void Initialize()
         {
             m_Animator = GetComponent<Animator>();
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -222,5 +225,5 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Animator.applyRootMotion = false;
             }
         }
-    }
+    } 
 }
