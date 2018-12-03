@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Level Data
@@ -12,7 +13,7 @@ public class LevelData : ScriptableObject
     /// <summary>
     /// The scene that this level is linked to
     /// </summary>
-    public string SceneName;
+    public string sceneName;
 
     /// <summary>
     /// the asset that should be instantiated to  represent the Gate

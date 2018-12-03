@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+
 using SnowDay.Diego.CharacterController;
 
 public class SnowDayCamera : MonoBehaviour
@@ -32,20 +33,40 @@ public class SnowDayCamera : MonoBehaviour
 
     private Vector3 nextCameraPos;
 
-    private void Start()
+    private bool cameraActive = false;
+
+    public void Initialize()
     {
         cam = Camera.main;
         thetaStep = (2f * Mathf.PI) / Resolution;
 
         CameraDistance();
         PopCamera();
+
+        cameraActive = true;
     }
 
     // Update is called once per frame
     private void LateUpdate()
     {
-        CameraDistance();
-        MoveCamera();
+        if (cameraActive)
+        {
+            CameraDistance();
+            MoveCamera(); 
+        }
+    }
+
+    public void SetTargetPlayers(List<PlayerController> players)
+    {
+        if (players != null)
+        {
+            Players = players;
+        }
+    }
+
+    public List<PlayerController> GetTargetPlayers()
+    {
+        return Players;
     }
 
     /// <summary>

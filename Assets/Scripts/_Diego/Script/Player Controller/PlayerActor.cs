@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SnowDay.Diego.GameMode;
 
 /// <summary>
 /// Base Class for all player

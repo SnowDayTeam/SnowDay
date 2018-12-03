@@ -1,21 +1,20 @@
 ﻿using RootMotion.Dynamics;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
+using SnowDay.Input;
 
 namespace SnowDay.Diego.CharacterController
 {
-    [RequireComponent(typeof(PierInputManager))]
+    [RequireComponent(typeof(PlayerInputController))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Third Person Character")]
-        public GameObject ThirdPersonCharacter;
+        public GameObject SnowDayCharacter;
 
         [Header("Puppet Master")]
         public PuppetMaster PuppetMaster;
 
         [Header("Key Bindings")]
         public PierInputManager.ButtonName HorizontalAxis = PierInputManager.ButtonName.Left_Horizontal;
-
         public PierInputManager.ButtonName VerticalAxis = PierInputManager.ButtonName.Left_Vertical;
         public PierInputManager.ButtonName CrouchKey = PierInputManager.ButtonName.Left_Bumper;
         public PierInputManager.ButtonName JumpKey = PierInputManager.ButtonName.A;
@@ -38,6 +37,20 @@ namespace SnowDay.Diego.CharacterController
         private float horizontalAxis;
         private float verticalAxis;
 
+        private bool activeSelf = false;
+        public bool CharacterEnabled
+        {
+            get
+            {
+                return activeSelf;
+            }
+            set
+            {
+                activeSelf = value;
+                playerCharacter.Active = value;
+            }
+        }
+
         // Use this for initialization
         private void Start()
         {
@@ -51,7 +64,17 @@ namespace SnowDay.Diego.CharacterController
             {
                 Debug.Log("Missing Puppet Master Component!");
             }
-            SetSnowDayCharacter(PlayerPrefab[currentPrefab]);
+            SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
+        
+        }
+
+        /// <summary>
+        /// Get Active Player ID
+        /// </summary>
+        /// <returns></returns>
+        public int GetControllerID()
+        {
+            return (int)playerInputController.playerNumber;
         }
 
         /// <summary>
@@ -60,49 +83,72 @@ namespace SnowDay.Diego.CharacterController
         /// <returns></returns>
         public Vector3 GetCharacterPosition()
         {
-            if (!ThirdPersonCharacter)
+            if (!SnowDayCharacter)
             {
                 return transform.position;
             }
-            return ThirdPersonCharacter.transform.position;
+            return SnowDayCharacter.transform.position;
         }
 
         /// <summary>
-        /// Gets the third person character script attached to the player characters
+        /// Gets the Snow person character script attached to the player characters
         /// </summary>
         /// <returns></returns>
         public SnowDayCharacter GetPlayerCharacter()
         {
-            if (!ThirdPersonCharacter)
+            if (!SnowDayCharacter)
             {
-                ThirdPersonCharacter = Instantiate(PlayerPrefab[currentPrefab], transform);
+                SnowDayCharacter = Instantiate(PlayerPrefab[currentPrefab], transform);
             }
-            playerCharacter = ThirdPersonCharacter.GetComponent<SnowDayCharacter>();
+            playerCharacter = SnowDayCharacter.GetComponent<SnowDayCharacter>();
             return playerCharacter;
         }
 
-        public SnowDayCharacter SetSnowDayCharacter(GameObject character)
+        /// <summary>
+        /// Sets the snow day character
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
+        private SnowDayCharacter SetSnowDayCharacter(GameObject character)
         {
             Vector3 characterPosition;
             Quaternion characterRotation;
-            if (ThirdPersonCharacter)
+
+            if (SnowDayCharacter)
             {
-              characterPosition = ThirdPersonCharacter.transform.position;
-              characterRotation = ThirdPersonCharacter.transform.rotation;
-              ThirdPersonCharacter = Instantiate(character, characterPosition, characterRotation, transform);
-              Destroy(ThirdPersonCharacter);
+                characterPosition = SnowDayCharacter.transform.position;
+                characterRotation = SnowDayCharacter.transform.rotation;
+                Destroy(SnowDayCharacter);
+                SnowDayCharacter = Instantiate(character, characterPosition, characterRotation, transform);
             }
             else
             {
-                ThirdPersonCharacter = Instantiate(character, transform);
+                SnowDayCharacter = Instantiate(character, transform);
             }
 
-            playerCharacter = ThirdPersonCharacter.GetComponent<SnowDayCharacter>();
+            playerCharacter = SnowDayCharacter.GetComponent<SnowDayCharacter>();
             playerCharacter.Initialize();
             return playerCharacter;
         }
 
-        private void ChangeCharacterModel(int step)
+        /// <summary>
+        /// Set Snow day character and whether its currently active in the scene
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="enabled"></param>
+        /// <returns></returns>
+        private SnowDayCharacter SetSnowDayCharacter(GameObject character, bool enabled)
+        {
+            SetSnowDayCharacter(character);
+            playerCharacter.Active = enabled;
+            return playerCharacter;
+        }
+
+        /// <summary>
+        /// Change Character Model
+        /// </summary>
+        /// <param name="step"></param>
+        public void ChangeCharacterModel(int step)
         {
             currentPrefab += step;
 
@@ -133,7 +179,7 @@ namespace SnowDay.Diego.CharacterController
                 ChangeCharacterModel(-1);
             }
 
-            if (ThirdPersonCharacter)
+            if (SnowDayCharacter)
             {
                 if (!m_Jump)
                 {
