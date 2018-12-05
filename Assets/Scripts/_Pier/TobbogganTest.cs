@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TobbogganTest : MonoBehaviour
 {
-
+    public UnityEvent unityEvent;
    public PierInputManager manager;
     [SerializeField] private float m_MovePower = 5; // The force added to the ball to move it.
     [SerializeField] private bool m_UseTorque = true; // Whether or not to use torque to move the ball.
@@ -96,6 +97,7 @@ public class TobbogganTest : MonoBehaviour
         if (Physics.Raycast(transform.position, -Vector3.up, k_GroundRayLength) && jump)
         {
             // ... add force in upwards.
+            unityEvent.Invoke();
             m_Rigidbody.AddForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
         }
     }
