@@ -46,12 +46,10 @@ public class FreezeTriggerScript : MonoBehaviour {
         //currently needed to set up on an individual player basis while using unity standard assets player controller.
         gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
         Destroy(iceBallClone.gameObject);
-        Debug.Log("Thaw");
     }
     private void OnTriggerExit(Collider other)
     {
         canFreeze = false;
-        Debug.Log("CanFreeze: " + canFreeze);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +61,6 @@ public class FreezeTriggerScript : MonoBehaviour {
                 freezeTimer = maxFreezeTime;
                 canFreeze = true;
                 FreezePlayer();
-                Debug.Log("CanFreeze: " + canFreeze);
             }
         }
     }
