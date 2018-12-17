@@ -17,6 +17,8 @@ public class Controller : MonoBehaviour
     public float maxSpeed = 25;
 
     float distFromGround = 0.75f;
+    private Vector3[] normal = new Vector3[2];
+    private int normalIndex = 0;
 
     public Camera playerCam;
 
@@ -53,7 +55,7 @@ public class Controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            playerCam.transform.rotation = Quaternion.Euler(27, 180, 0); 
+            playerCam.transform.rotation = Quaternion.Euler(27, 180, 0);
             playerCam.transform.localPosition = new Vector3(0, 3.8f, 1.9f);
             steerDir = -1;
         }
@@ -61,17 +63,49 @@ public class Controller : MonoBehaviour
         {
             playerCam.transform.rotation = Quaternion.Euler(30, 0, 0);
             playerCam.transform.localPosition = new Vector3(0, 3.8f, -1.9f);
-            steerDir = 1; 
+            steerDir = 1;
         }
 
         if (!IsGrounded())
             Debug.Log("Off Ground");
+        RotateToGroundNormal();
     }
 
     bool IsGrounded()
     {
-        //cast ray to below player object, detecting if ground is within distance (distFromGround variable)
-        return Physics.Raycast(transform.position, -Vector3.up, distFromGround); 
-    }
+        return Physics.Raycast(transform.position, -Vector3.up, distFromGround);
 
+        /*
+        //cast ray to below player object, detecting if ground is within distance (distFromGround variable)
+        RaycastHit hit;
+        
+        if(Physics.Raycast(transform.position, -Vector3.up, distFromGround))
+        {
+            Physics.Raycast(transform.position, -transform.up, hit, distFromGround);
+
+            normalIndex = (normalIndex + 1) % 3;
+            normal[normalIndex] = hit.normal; 
+            return true;
+        }
+        return false;*/
+
+
+    }
+    void RotateToGroundNormal()
+    {
+        Vector3 average = new Vector3();
+
+        RaycastHit rayHit;
+        Vector3 downwardCastVector = transform.TransformDirection(Vector3.down);
+        if (Physics.Raycast(transform.position, downwardCastVector, out rayHit, Mathf.Infinity))
+        {
+            normalIndex = (normalIndex + 1) % 3;
+            normal[normalIndex] = rayHit.normal;
+            average = ((normal[0] + normal[1] + normal[2])/3); 
+
+            if (transform.up.y - rayHit.normal.y < 0.005f) { return; }
+            transform.rotation = Quaternion.FromToRotation(transform.up, average) * transform.rotation; 
+        }
+
+    }
 }

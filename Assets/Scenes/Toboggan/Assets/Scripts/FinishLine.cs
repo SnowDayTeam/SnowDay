@@ -30,7 +30,10 @@ public class FinishLine : MonoBehaviour {
         if (col.gameObject.name.Contains("Player") || col.gameObject.name.Contains("Sled")) 
         {
             Pause = true; 
-            print(col.gameObject.name); 
+            print(col.gameObject.name);
+
+            //game restart
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
