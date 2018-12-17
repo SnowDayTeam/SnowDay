@@ -6,6 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class ShovelController : MonoBehaviour
 {
+    public SnowTackScript tackScript;
     public Rigidbody PlayerRB;
     public bool isInSnowArea = false;
     public float currentsSnowVolume = 0;
@@ -33,7 +34,7 @@ public class ShovelController : MonoBehaviour
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody>();
-       
+
     }
 
     // Update is called once per frame
@@ -53,6 +54,15 @@ public class ShovelController : MonoBehaviour
        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         */
 
+        if (CrossPlatformInputManager.GetButtonDown("FireP1") && isInSnowArea)
+        {
+            tackScript.toggleSnowTrack(2, true);
+        }
+
+        if (CrossPlatformInputManager.GetButtonUp("FireP1"))
+        {
+            tackScript.toggleSnowTrack(2, false);
+        }
 
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea && PlayerRB.velocity.magnitude > 3 && currentsSnowVolume != maxSnowVolume)
         {
@@ -62,8 +72,15 @@ public class ShovelController : MonoBehaviour
                 VolumeText.text = "Snow Amount " + currentsSnowVolume.ToString("F1");
                 GameObject snow = GameObject.FindGameObjectWithTag("Snow");
                 SnowSize snowScript = snow.GetComponent<SnowSize>();
-                snowScript.snowSize += (currentsSnowVolume/550000) ;
+                snowScript.snowSize += (currentsSnowVolume / 550000);
+
             }
+        }
+
+        if (currentsSnowVolume >= maxSnowVolume || isInSnowArea == false)
+        {
+            tackScript.toggleSnowTrack(2, false);
+
         }
 
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea)
@@ -79,7 +96,7 @@ public class ShovelController : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButton("JumpP1"))
         {
-
+            //tackScript.toggleSnowTrack(2, false);
             Dropsnow();
         }
 
