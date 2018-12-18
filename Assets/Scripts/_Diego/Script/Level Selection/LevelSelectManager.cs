@@ -18,14 +18,14 @@ namespace SnowDay.Diego.LevelSelect
     [RequireComponent(typeof(LevelSelectPlayerActivator))]
     public class LevelSelectManager : Singleton<LevelSelectManager>
     {
-        public bool EnableTimer = true;
+        private bool EnableTimer = true;
 
         public SnowDayCamera cam;
 
         [Header("Countdown Timer")]
         public float LevelSelectCountDownTime;
 
-        private float timeElapsed;
+        private float TimeLeft;
 
         [Header("UI Text")]
         public Text CountDownText;
@@ -37,7 +37,7 @@ namespace SnowDay.Diego.LevelSelect
         public List<LevelData> Levels;
 
         private LevelSelectPlayerActivator playerActivator;
-
+      
         // Use this for initialization
         //TODO: Make Random level select
         private void Start()
@@ -46,7 +46,7 @@ namespace SnowDay.Diego.LevelSelect
             playerActivator = GetComponent<LevelSelectPlayerActivator>();
             cam.Initialize();
 
-            timeElapsed = LevelSelectCountDownTime;
+            TimeLeft = LevelSelectCountDownTime;
             if (!EnableTimer)
             {
                 CountDownText.enabled = false;
@@ -65,10 +65,22 @@ namespace SnowDay.Diego.LevelSelect
         // Update is called once per frame
         private void Update()
         {
-            if (EnableTimer)
+            if(voteCount() > 0)
             {
-                timeElapsed -= Time.deltaTime;
-                if (timeElapsed <= 0)
+                EnableTimer = true;
+                CountDownText.enabled = true;
+            }
+            else
+            {
+                TimeLeft = LevelSelectCountDownTime;
+                EnableTimer = false;
+                CountDownText.enabled = false;
+            }
+
+            if (EnableTimer )
+            {
+                TimeLeft -= Time.deltaTime;
+                if (TimeLeft <= 0)
                 {
                     LevelData selectedLevel = NextLevelSelect();
                     if (selectedLevel)
@@ -79,7 +91,7 @@ namespace SnowDay.Diego.LevelSelect
                     }
                     return;
                 }
-                CountDownText.text = timeElapsed.ToString("0.##");
+                CountDownText.text = TimeLeft.ToString("0");
             }
         }
 
@@ -90,7 +102,22 @@ namespace SnowDay.Diego.LevelSelect
             List<PlayerController> players = playerActivator.GetActivePlayers();
             GameModeController.GetInstance().SetActivePlayers(players);
         }
+        /// <summary>
+        /// returns how many players have voted 
+        /// </summary>
+        /// <returns></returns>
+        private int voteCount()
+        {
+            int playerVoted = 0;
 
+            for (int x = 0; x < PortalSpawnPoints.Count; x++)
+            {
+                playerVoted += PortalSpawnPoints[x].PlayersInBox;
+           
+            }
+
+            return playerVoted;
+        }
         /// <summary>
         /// Checks what Gate has the most amount of players and returns the LevelData" linked to that portal.
         /// </summary>

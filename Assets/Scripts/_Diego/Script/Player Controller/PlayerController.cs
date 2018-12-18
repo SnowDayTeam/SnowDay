@@ -8,10 +8,10 @@ namespace SnowDay.Diego.CharacterController
     public class PlayerController : MonoBehaviour
     {
         [Header("Third Person Character")]
-        public GameObject SnowDayCharacter;
+        private GameObject SnowDayCharacterGameObject;
 
-        [Header("Puppet Master")]
-        public PuppetMaster PuppetMaster;
+       // [Header("Puppet Master")]
+       // public PuppetMaster PuppetMaster;
 
         [Header("Key Bindings")]
         public PierInputManager.ButtonName HorizontalAxis = PierInputManager.ButtonName.Left_Horizontal;
@@ -38,7 +38,7 @@ namespace SnowDay.Diego.CharacterController
         private float verticalAxis;
 
         private bool activeSelf = false;
-        public bool CharacterEnabled
+        public bool CharacterEnabled//bad design hides intent 
         {
             get
             {
@@ -60,10 +60,10 @@ namespace SnowDay.Diego.CharacterController
             {
                 m_Cam = Camera.main.transform;
             }
-            if (!PuppetMaster)
-            {
-                Debug.Log("Missing Puppet Master Component!");
-            }
+            //if (!PuppetMaster)
+            //{
+            //    Debug.Log("Missing Puppet Master Component!");
+            //}
             SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
         
         }
@@ -83,11 +83,11 @@ namespace SnowDay.Diego.CharacterController
         /// <returns></returns>
         public Vector3 GetCharacterPosition()
         {
-            if (!SnowDayCharacter)
+            if (!SnowDayCharacterGameObject)
             {
                 return transform.position;
             }
-            return SnowDayCharacter.transform.position;
+            return playerCharacter.transform.position;
         }
 
         /// <summary>
@@ -96,11 +96,11 @@ namespace SnowDay.Diego.CharacterController
         /// <returns></returns>
         public SnowDayCharacter GetPlayerCharacter()
         {
-            if (!SnowDayCharacter)
+            if (!SnowDayCharacterGameObject)
             {
-                SnowDayCharacter = Instantiate(PlayerPrefab[currentPrefab], transform);
+                SnowDayCharacterGameObject = Instantiate(PlayerPrefab[currentPrefab], transform);
             }
-            playerCharacter = SnowDayCharacter.GetComponent<SnowDayCharacter>();
+            playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
             return playerCharacter;
         }
 
@@ -114,19 +114,19 @@ namespace SnowDay.Diego.CharacterController
             Vector3 characterPosition;
             Quaternion characterRotation;
 
-            if (SnowDayCharacter)
+            if (SnowDayCharacterGameObject != null && playerCharacter != null)// explicitly check for null 
             {
-                characterPosition = SnowDayCharacter.transform.position;
-                characterRotation = SnowDayCharacter.transform.rotation;
-                Destroy(SnowDayCharacter);
-                SnowDayCharacter = Instantiate(character, characterPosition, characterRotation, transform);
+                characterPosition = playerCharacter.transform.position;
+                characterRotation = playerCharacter.transform.rotation;
+                Destroy(SnowDayCharacterGameObject);
+                SnowDayCharacterGameObject = Instantiate(character, characterPosition, characterRotation, transform);
             }
             else
             {
-                SnowDayCharacter = Instantiate(character, transform);
+                SnowDayCharacterGameObject = Instantiate(character, transform);
             }
 
-            playerCharacter = SnowDayCharacter.GetComponent<SnowDayCharacter>();
+            playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
             playerCharacter.Initialize();
             return playerCharacter;
         }
@@ -179,18 +179,18 @@ namespace SnowDay.Diego.CharacterController
                 ChangeCharacterModel(-1);
             }
 
-            if (SnowDayCharacter)
+            if (SnowDayCharacterGameObject)
             {
                 if (!m_Jump)
                 {
                     m_Jump = playerInputController.GetButtonDown(JumpKey);
                 }
 
-                if (m_Cam != null)
+                if (Camera.main != null)
                 {
                     // calculate camera relative direction to move:
-                    Vector3 m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                    m_Move = verticalAxis * m_CamForward + horizontalAxis * m_Cam.right;
+                    Vector3 m_CamForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+                    m_Move = verticalAxis * m_CamForward + horizontalAxis * Camera.main.transform.right;
                 }
                 else
                 {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 
 /// <summary>
@@ -28,6 +29,8 @@ public class LevelGate : MonoBehaviour {
             playersInBox = value;
         }
     }
+    public UnityEvent OnPlayerEnterEvent;
+    public UnityEvent OnPlayerleaveEvent;
 
     /// <summary>
     /// Portal Instance Data

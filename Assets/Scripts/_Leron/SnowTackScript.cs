@@ -53,6 +53,8 @@ public class SnowTackScript : MonoBehaviour {
             
             if (snowTracks[i].active && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
             {
+              //  Debug.Log(_groundHit.textureCoord.x.ToString() + "," + _groundHit.textureCoord.y.ToString());
+
                 drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
                 drawMaterial.SetFloat("_Strength", snowTracks[i]._brushStrength);
                 drawMaterial.SetFloat("_Size", snowTracks[i]._brushSize);
