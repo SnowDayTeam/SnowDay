@@ -512,6 +512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivationButton: 10
   RemoveButton: 15
+  MeshChangeUp: 17
+  MeshChangeDown: 16
   players:
   - {fileID: 1847735409}
   - {fileID: 648849426}
@@ -529,6 +531,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  prefabs: {fileID: 11400000, guid: 594806d3d8708254898fe0ca30ba0f7f, type: 2}
 --- !u!114 &369591255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,18 +799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1e1b01dc87d142a7a70a76abb9034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SnowDayCharacterGameObject: {fileID: 0}
   HorizontalAxis: 0
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
   RunKey: 11
-  MeshChangeUp: 17
-  MeshChangeDown: 16
-  PlayerPrefab:
-  - {fileID: 1939161909436674, guid: a5c2168cdf1367c43908e9d5a86cbc63, type: 2}
-  - {fileID: 1285544805320770, guid: cd6473a762d23df428914db585b7b4c3, type: 2}
-  - {fileID: 1694188337760996, guid: 6a37cbcab9e84e14591e2ce33d3e92a8, type: 2}
-  - {fileID: 1995511008305608, guid: 27c2503f12f85aa47bd32b00a2c4e643, type: 2}
+  currentPrefab: 0
 --- !u!114 &648849427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,8 +2265,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 789214245}
-    ActiveGameObject: {fileID: 789214245}
+    - {fileID: 1847735407}
+    ActiveGameObject: {fileID: 1847735407}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -2291,8 +2289,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1847735407}
-    ActiveGameObject: {fileID: 1847735407}
+    - {fileID: 789214245}
+    ActiveGameObject: {fileID: 789214245}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -3018,18 +3016,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee1e1b01dc87d142a7a70a76abb9034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SnowDayCharacterGameObject: {fileID: 0}
   HorizontalAxis: 0
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
   RunKey: 11
-  MeshChangeUp: 17
-  MeshChangeDown: 16
-  PlayerPrefab:
-  - {fileID: 1939161909436674, guid: a5c2168cdf1367c43908e9d5a86cbc63, type: 2}
-  - {fileID: 1285544805320770, guid: cd6473a762d23df428914db585b7b4c3, type: 2}
-  - {fileID: 1694188337760996, guid: 6a37cbcab9e84e14591e2ce33d3e92a8, type: 2}
-  - {fileID: 1995511008305608, guid: 27c2503f12f85aa47bd32b00a2c4e643, type: 2}
+  currentPrefab: 0
 --- !u!114 &1847735410
 MonoBehaviour:
   m_ObjectHideFlags: 0

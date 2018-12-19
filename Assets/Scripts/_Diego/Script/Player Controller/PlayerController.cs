@@ -8,7 +8,7 @@ namespace SnowDay.Diego.CharacterController
     public class PlayerController : MonoBehaviour
     {
         [Header("Third Person Character")]
-        private GameObject SnowDayCharacterGameObject;
+        public GameObject SnowDayCharacterGameObject;
 
        // [Header("Puppet Master")]
        // public PuppetMaster PuppetMaster;
@@ -19,16 +19,15 @@ namespace SnowDay.Diego.CharacterController
         public PierInputManager.ButtonName CrouchKey = PierInputManager.ButtonName.Left_Bumper;
         public PierInputManager.ButtonName JumpKey = PierInputManager.ButtonName.A;
         public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.B;
-        public PierInputManager.ButtonName MeshChangeUp = PierInputManager.ButtonName.DPad_Up;
-        public PierInputManager.ButtonName MeshChangeDown = PierInputManager.ButtonName.DPad_Down;
+
 
         private PierInputManager playerInputController;
         private SnowDayCharacter playerCharacter;
 
         [Header("Debug")]
-        private int currentPrefab = 0;
+        public int currentPrefab = 0;
 
-        public GameObject[] PlayerPrefab;
+      //  public GameObject[] PlayerPrefab;
 
         private Transform m_Cam;
         private Vector3 m_Move;
@@ -47,7 +46,7 @@ namespace SnowDay.Diego.CharacterController
             set
             {
                 activeSelf = value;
-                playerCharacter.Active = value;
+              //  playerCharacter.Active = value;
             }
         }
 
@@ -64,7 +63,7 @@ namespace SnowDay.Diego.CharacterController
             //{
             //    Debug.Log("Missing Puppet Master Component!");
             //}
-            SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
+          //  SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
         
         }
 
@@ -96,12 +95,17 @@ namespace SnowDay.Diego.CharacterController
         /// <returns></returns>
         public SnowDayCharacter GetPlayerCharacter()
         {
-            if (!SnowDayCharacterGameObject)
+            //if (!SnowDayCharacterGameObject)
+            //{
+            //    SnowDayCharacterGameObject = Instantiate(PlayerPrefab[currentPrefab], transform);
+            //}
+
+            if(SnowDayCharacterGameObject != null)
             {
-                SnowDayCharacterGameObject = Instantiate(PlayerPrefab[currentPrefab], transform);
+                playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
+                return playerCharacter;
             }
-            playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
-            return playerCharacter;
+            return null;
         }
 
         /// <summary>
@@ -109,7 +113,7 @@ namespace SnowDay.Diego.CharacterController
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        private SnowDayCharacter SetSnowDayCharacter(GameObject character)
+        public SnowDayCharacter SetSnowDayCharacter(GameObject character)
         {
             Vector3 characterPosition;
             Quaternion characterRotation;
@@ -144,22 +148,7 @@ namespace SnowDay.Diego.CharacterController
             return playerCharacter;
         }
 
-        /// <summary>
-        /// Change Character Model
-        /// </summary>
-        /// <param name="step"></param>
-        public void ChangeCharacterModel(int step)
-        {
-            currentPrefab += step;
-
-            currentPrefab = currentPrefab < 0 ? PlayerPrefab.Length - 1 : currentPrefab;
-
-            currentPrefab = currentPrefab > PlayerPrefab.Length - 1 ? 0 : currentPrefab;
-
-            SetSnowDayCharacter(PlayerPrefab[currentPrefab]);
-
-            Debug.Log(currentPrefab);
-        }
+      
 
         // Update is called once per frame
         private void Update()
@@ -169,15 +158,7 @@ namespace SnowDay.Diego.CharacterController
 
             crouch = playerInputController.GetButton(CrouchKey);
 
-            if (playerInputController.GetButtonDown(MeshChangeUp))
-            {
-                ChangeCharacterModel(1);
-            }
-
-            if (playerInputController.GetButtonDown(MeshChangeDown))
-            {
-                ChangeCharacterModel(-1);
-            }
+          
 
             if (SnowDayCharacterGameObject)
             {

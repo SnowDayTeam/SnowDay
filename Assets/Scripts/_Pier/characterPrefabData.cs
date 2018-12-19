@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class characterPrefabData : ScriptableObject
 {
-   public Transform[] prefabs;
+   public GameObject[] PrefabList;
 }

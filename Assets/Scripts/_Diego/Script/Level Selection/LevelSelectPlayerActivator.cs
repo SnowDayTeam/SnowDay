@@ -13,11 +13,12 @@ namespace SnowDay.Diego.LevelSelect
     {
         public PierInputManager.ButtonName ActivationButton = PierInputManager.ButtonName.A;
         public PierInputManager.ButtonName RemoveButton = PierInputManager.ButtonName.Start;
-
+        public PierInputManager.ButtonName MeshChangeUp = PierInputManager.ButtonName.DPad_Up;
+        public PierInputManager.ButtonName MeshChangeDown = PierInputManager.ButtonName.DPad_Down;
         public List<PlayerController> players = new List<PlayerController>(INPUT_CONSTANTS.Max_Players);
 
         private LevelInputManager inputController;
-
+        public characterPrefabData prefabs;
 
         // Use this for initialization
         void Start()
@@ -36,7 +37,8 @@ namespace SnowDay.Diego.LevelSelect
                     Debug.Log("Controller Activated" + i);
                    if (players[i] != null)
                    {
-                       players[i].CharacterEnabled = true;
+                        players[i].CharacterEnabled = true;
+                        ChangeCharacterModel(players[i], 1);
                    }
                 }
 
@@ -49,10 +51,37 @@ namespace SnowDay.Diego.LevelSelect
                         players[i].CharacterEnabled = false;
                     }
                 }
+                keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)MeshChangeUp);
+                if (keyPressed)
+                {
+                    ChangeCharacterModel(players[i],1);
+                }
+
+                keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)MeshChangeDown);
+                if (keyPressed)
+                {
+                    ChangeCharacterModel(players[i] ,- 1);
+                }
+               
             }
 
         }
+        /// <summary>
+        /// Change Character Model
+        /// </summary>
+        /// <param name="step"></param>
+        public void ChangeCharacterModel(PlayerController player, int step)
+        {
+            player.currentPrefab += step;
 
+            player.currentPrefab = player.currentPrefab < 0 ? prefabs.PrefabList .Length - 1 : player.currentPrefab;
+
+            player.currentPrefab = player.currentPrefab > prefabs.PrefabList.Length - 1 ? 0 : player.currentPrefab;
+
+            player.SetSnowDayCharacter(prefabs.PrefabList[player.currentPrefab]);
+
+            //Debug.Log(currentPrefab);
+        }
         /// <summary>
         /// Gets a list of the active players in the scene
         /// </summary>
