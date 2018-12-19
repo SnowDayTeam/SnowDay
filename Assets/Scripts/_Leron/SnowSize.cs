@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class SnowSize : MonoBehaviour {
 
-    public float snowSize = 0.0f;
-
+    private float snowSizePercent = 0.0f;
+    public Vector3 maxSnowSize = new Vector3(.5f, .5f, .5f);
 	
 	// Update is called once per frame
-	void Update () {
 
-        gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * snowSize;
+
+    public void setSnowPercent(float val)
+    {
+        snowSizePercent = val;
+        gameObject.transform.localScale = Vector3.Lerp(Vector3.zero, maxSnowSize, snowSizePercent);
 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using RootMotion.FinalIK;
 
 public class ShovelController : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class ShovelController : MonoBehaviour
     public float currentsSnowVolume = 0;
     public float maxSnowVolume = 100.0f;
     public float snowWeight = 3.0f;
+    public float snowAcumulationRate = 0.5f;
+    public FullBodyBipedIK IK;
 
     public Text VolumeText;
     public Text WeightText;
-
+    SnowSize snowScript;
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "SnowArea")
@@ -34,7 +37,8 @@ public class ShovelController : MonoBehaviour
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody>();
-
+        snowScript = GetComponentInChildren<SnowSize>();
+        //IK.solver.leftHandEffector.positionWeight = 1;
     }
 
     // Update is called once per frame
@@ -67,14 +71,11 @@ public class ShovelController : MonoBehaviour
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea && PlayerRB.velocity.magnitude > 3 && currentsSnowVolume != maxSnowVolume)
         {
 
-            {
-                currentsSnowVolume += 0.5f;
-                VolumeText.text = "Snow Amount " + currentsSnowVolume.ToString("F1");
-                GameObject snow = GameObject.FindGameObjectWithTag("Snow");
-                SnowSize snowScript = snow.GetComponent<SnowSize>();
-                snowScript.snowSize += (currentsSnowVolume / 550000);
-
-            }
+            currentsSnowVolume += snowAcumulationRate;
+            VolumeText.text = "Snow Amount " + currentsSnowVolume.ToString("F1");
+            // GameObject snow = GameObject.FindGameObjectWithTag("Snow");
+              
+            snowScript.setSnowPercent(currentsSnowVolume / maxSnowVolume);            
         }
 
         if (currentsSnowVolume >= maxSnowVolume || isInSnowArea == false)
@@ -85,13 +86,8 @@ public class ShovelController : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea)
         {
-
-            {
-
                 PlayerRB.drag = (currentsSnowVolume / snowWeight);
                 WeightText.text = "Snow Weight " + PlayerRB.drag.ToString("F1") + " lbs";
-
-            }
         }
 
         if (CrossPlatformInputManager.GetButton("JumpP1"))
@@ -112,9 +108,9 @@ public class ShovelController : MonoBehaviour
         WeightText.text = "Snow Weight " + PlayerRB.drag.ToString("F1") + " lbs";
         VolumeText.text = "Snow Amount " + currentsSnowVolume.ToString("F1");
 
-        GameObject snow = GameObject.FindGameObjectWithTag("Snow");
-        SnowSize snowScript = snow.GetComponent<SnowSize>();
-        snowScript.snowSize = 0.0f;
+        //GameObject snow = GameObject.FindGameObjectWithTag("Snow");
+      
+        snowScript.setSnowPercent( 0.0f);
 
     }
 
