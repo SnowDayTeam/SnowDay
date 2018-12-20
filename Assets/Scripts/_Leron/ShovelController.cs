@@ -19,6 +19,11 @@ public class ShovelController : MonoBehaviour
     public Text VolumeText;
     public Text WeightText;
     SnowSize snowScript;
+
+    //Hunters Stuff
+    public Transform SpawnPoint;
+    public float LaunchVelocity=5;
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "SnowArea")
@@ -38,6 +43,7 @@ public class ShovelController : MonoBehaviour
     {
         PlayerRB = GetComponent<Rigidbody>();
         snowScript = GetComponentInChildren<SnowSize>();
+        
         //IK.solver.leftHandEffector.positionWeight = 1;
     }
 
@@ -86,15 +92,33 @@ public class ShovelController : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea)
         {
-                PlayerRB.drag = (currentsSnowVolume / snowWeight);
+            //PlayerRB.drag = (currentsSnowVolume / snowWeight);
+            if (currentsSnowVolume >= maxSnowVolume)
+            {
+                GetComponent<MoveModifier>().ModifyMovement(MoveModifier.MoveModes.Stop , currentsSnowVolume / maxSnowVolume);
+            }
+            else
+            {
+                GetComponent<MoveModifier>().ModifyMovement(MoveModifier.MoveModes.Slow, currentsSnowVolume / maxSnowVolume);
+            }
+               
+
                 WeightText.text = "Snow Weight " + PlayerRB.drag.ToString("F1") + " lbs";
         }
 
-        if (CrossPlatformInputManager.GetButton("JumpP1"))
+        if (CrossPlatformInputManager.GetButtonUp("FireP1"))
         {
-            //tackScript.toggleSnowTrack(2, false);
-            Dropsnow();
+
+            GetComponent<MoveModifier>().ModifyMovement(MoveModifier.MoveModes.Reset,currentsSnowVolume/maxSnowVolume);
         }
+
+        //if (CrossPlatformInputManager.GetButton("JumpP1"))
+        //{
+        //    //tackScript.toggleSnowTrack(2, false);
+        //    Dropsnow();
+        //}
+        ThrowShovelSnow();
+            
 
 
     }
@@ -111,6 +135,27 @@ public class ShovelController : MonoBehaviour
         //GameObject snow = GameObject.FindGameObjectWithTag("Snow");
       
         snowScript.setSnowPercent( 0.0f);
+
+    }
+
+    void ThrowShovelSnow()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("JumpP1")&& currentsSnowVolume>10.0)
+        {
+            GameObject ShovelPro = Instantiate(Resources.Load("PRE_ShovelProjectile")) as GameObject;
+            ShovelPro.GetComponent<SnowSize>().setSnowPercent(currentsSnowVolume / maxSnowVolume);
+            ShovelPro.GetComponent<ShovelProjectile>().SetBrushSize(currentsSnowVolume / maxSnowVolume);
+            ShovelPro.transform.position = SpawnPoint.position;
+            ShovelPro.GetComponent<Rigidbody>().velocity = transform.forward * LaunchVelocity;
+            
+
+          //Set object variables to snow weight as well as it's scale here
+
+
+            Dropsnow();
+           
+            
+        }
 
     }
 

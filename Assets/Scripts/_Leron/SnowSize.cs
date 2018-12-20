@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SnowSize : MonoBehaviour {
 
     private float snowSizePercent = 0.0f;
@@ -14,6 +15,7 @@ public class SnowSize : MonoBehaviour {
     {
         snowSizePercent = val;
         gameObject.transform.localScale = Vector3.Lerp(Vector3.zero, maxSnowSize, snowSizePercent);
+        
 
     }
 }

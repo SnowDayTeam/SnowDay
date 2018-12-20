@@ -34,9 +34,11 @@
 			float4 tessDistance(appdata v0, appdata v1, appdata v2) {
 				float minDist = 10.0;
 				float maxDist = 25.0;
-				return UnityDistanceBasedTess(v0.vertex, v1.vertex, v2.vertex, minDist, maxDist, _Tess);
+				
+				//return UnityDistanceBasedTess(v0.vertex, v1.vertex, v2.vertex, minDist, maxDist, _Tess);
+				return _Tess;
 			}
-
+			
 			sampler2D _Splat;
 			float _Displacement;
 

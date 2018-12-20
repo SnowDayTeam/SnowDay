@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnowTackScript : MonoBehaviour {
 
-    private static RenderTexture splatmap;// made this static so refference is shared between all instances 
+    public static RenderTexture splatmap;// made this static so refference is shared between all instances  // used by ShovelProjectile keep it public 
     public Shader drawShader;
     static  private Material drawMaterial;
     static private Material myMaterial;

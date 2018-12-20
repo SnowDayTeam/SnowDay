@@ -33,7 +33,7 @@ public class BallSpawner : MonoBehaviour {
 	void Update () {
 
 		if(IsReaching==true){
-			print("LerpingIN");
+			//print("LerpingIN");
 			currentLerpTime += Time.deltaTime;
 			if (currentLerpTime > lerpTime)
             {
@@ -50,7 +50,7 @@ public class BallSpawner : MonoBehaviour {
 				DoneReaching = true;
 				IsReaching = false;
 
-				print("Reached Ground");
+				
 
 			}
 
@@ -59,7 +59,7 @@ public class BallSpawner : MonoBehaviour {
 
 		if(DoneReaching==true)
 		{
-			print("Lerp Out");
+		
 			currentLerpTime = 0f;
 			currentLerpTime += Time.deltaTime;
             if (currentLerpTime > lerpTime)
@@ -76,7 +76,7 @@ public class BallSpawner : MonoBehaviour {
 
             if (IK.solver.rightHandEffector.positionWeight <= 0.1)
 			{
-				print("PICKED UP");
+				
 				IK.solver.rightHandEffector.target = null;
 				BallPickedUp = true;
 				DoneReaching = false;
@@ -91,13 +91,13 @@ public class BallSpawner : MonoBehaviour {
 			
 			if(!BallPickedUp)
 			{
-				print("Hit A Picking Up");
+				
 				PickUpBall();
 			}
 			//spawns in ball at spawn point and launches ball in faced direction
 			else
 			{
-				print("Hit A Throwing");
+				
 				ThrowBall();
 			}
 
