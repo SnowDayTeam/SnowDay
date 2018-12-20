@@ -111,12 +111,12 @@ public class Car : MonoBehaviour {
 
         if (driveTowards == false)
         {
-            rb.AddForce(new Vector3(carSpeed, 0, 0));
+            rb.velocity = new Vector3(carSpeed, 0, 0);
         }
 
         else
         {
-            rb.AddForce(new Vector3((carSpeed) * -1, 0, 0));
+            rb.velocity = new Vector3(carSpeed * -1, 0, 0);
         }
     }
 
