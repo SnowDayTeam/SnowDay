@@ -48,6 +48,8 @@ public class SnowTackScript : MonoBehaviour {
         //              RenderTexture.ReleaseTemporary(temp);
         //          }
         //      }
+
+        
         for (int i = 0; i < snowTracks.Length; i++)
         {
             
