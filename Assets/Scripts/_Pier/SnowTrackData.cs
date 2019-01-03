@@ -5,9 +5,9 @@ using UnityEngine;
 public class SnowTrackData 
 {
     public Transform transform;
-    [Range(0, 2)]
+    [Range(0, 20)]
     public float _brushSize;
-    [Range(0, 1)]
+    [Range(0, 20)]
     public float _brushStrength;
 
     public bool active;

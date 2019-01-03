@@ -26,11 +26,11 @@ public class SnowTackScript : MonoBehaviour {
         }
     }
     // Use this for initialization
-    void Start () {
+    void Awake () {
     //    _layerMask = LayerMask.GetMask("Ground");
         drawMaterial = new Material(drawShader);
         myMaterial = _terrain.GetComponent<MeshRenderer>().material;
-        myMaterial.SetTexture("_Splat", splatmap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+        myMaterial.SetTexture("_Splat", splatmap = new RenderTexture(256, 256, 0, RenderTextureFormat.ARGBFloat));
 	}
 	
 	// Update is called once per frame

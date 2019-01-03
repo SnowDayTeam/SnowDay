@@ -33,9 +33,10 @@ public class ShovelController : MonoBehaviour
     public LayerMask Mask;
     public Shader drawShader;
     static private Material drawMaterial;
-    
-
-
+    public bool verydirtyBool = false;
+    private float dirtyTimer = 0;
+    public float dirtyFrameSkip = 0.1f;
+    static Texture2D Checker;
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "SnowArea")
@@ -56,14 +57,26 @@ public class ShovelController : MonoBehaviour
         PlayerRB = GetComponent<Rigidbody>();
         snowScript = GetComponentInChildren<SnowSize>();
         drawMaterial = new Material(drawShader);
-        
-        
+        Checker = new Texture2D(1024, 1024, TextureFormat.RGBAFloat, false);
+
         //IK.solver.leftHandEffector.positionWeight = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (verydirtyBool)
+        {
+            dirtyTimer +=Time.deltaTime;
+            if( dirtyTimer >= dirtyFrameSkip)
+            {
+                RenderTexture.active = SnowTackScript.splatmap;
+                Checker.ReadPixels(new Rect(0, 0, SnowTackScript.splatmap.width, SnowTackScript.splatmap.height), 0, 0);
+                Checker.Apply();
+                dirtyTimer = 0;
+            }
+      
+        }
 
         /* 
          
@@ -82,6 +95,7 @@ public class ShovelController : MonoBehaviour
         {
             tackScript.toggleSnowTrack(2, true);
             LastPosition = ShovelPoint.transform.position;
+          
         }
 
         if (CrossPlatformInputManager.GetButtonUp("FireP1"))
@@ -92,8 +106,10 @@ public class ShovelController : MonoBehaviour
 
         if (CrossPlatformInputManager.GetButton("FireP1") && isInSnowArea && currentsSnowVolume != maxSnowVolume)
         {
-            TEMPSnowAccumulation();
+            //TEMPSnowAccumulation();
             //currentsSnowVolume += snowAcumulationRate;
+            CheckIfSnowShoveled();
+
             VolumeText.text = "Snow Amount " + currentsSnowVolume.ToString("F1");
             // GameObject snow = GameObject.FindGameObjectWithTag("Snow");
 
@@ -139,28 +155,42 @@ public class ShovelController : MonoBehaviour
 
     void CheckIfSnowShoveled()
     {
-        //RaycastHit hit = new RaycastHit();
+        RaycastHit hit;
 
-        //Ray ray = new Ray(ShovelPoint.position, -Vector3.up);
-        //Debug.DrawRay(ShovelPoint.position, -Vector3.up, Color.cyan, 10);
-        //if (Physics.Raycast(ray, out hit, 500, Mask))
-        //{
-        //    //Debug.Log(hit.collider.gameObject.name);
-        //    Material hitMat = hit.transform.GetComponent<Material>();
-        //    int textY= hit.textureCoord.y ;
-        //    int textX =hit.textureCoord.x;
-        //    Texture2D Checker = new Texture2D(1024,1024,TextureFormat.RGBAFloat,false);
+        Ray ray = new Ray(ShovelPoint.position, -Vector3.up);
+       
+        if (Physics.Raycast(ray, out hit, 500, Mask))
+        {
+           // Debug.DrawRay(ShovelPoint.position, -Vector3.up, Color.red, 10);
+            //Debug.Log(hit.collider.gameObject.name);
+            Material hitMat = hit.transform.GetComponent<Material>();
+            int textX = (int)(SnowTackScript.splatmap.width * hit.textureCoord.x);
+            int textY = (int) (SnowTackScript.splatmap.height *  hit.textureCoord.y);
 
-            
-            
+            // Checker.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
+         
+           
+            //  SnowTackScript.splatmap.
+
+            Color temp = Checker.GetPixel(textX, textY);
+            //Debug.Log(textX + " :  " + textY);
+            //Debug.Log(temp);
 
            
 
-        //    Debug.Log(hit.textureCoord.y);
+
             //hit.textureCoord
+            if (temp.r < 1)
+            {
+                
+                currentsSnowVolume += snowAcumulationRate;
+            }
 
 
 
+        }
+
+        
             //Material myMaterial;
             //myMaterial = hit.collider.gameObject.GetComponent<MeshRenderer>().material;
 
@@ -169,10 +199,10 @@ public class ShovelController : MonoBehaviour
             //Graphics.Blit(SnowTackScript.splatmap, temp);
             //Graphics.Blit(temp, SnowTackScript.splatmap, drawMaterial);
             //RenderTexture.ReleaseTemporary(temp);
-        
 
 
-    }
+
+        }
 
     void Dropsnow()
     {
