@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PixelTest : MonoBehaviour {
+public class PixelTest : MonoBehaviour
+{
     Material myMaterial;
     Texture2D test;
-
+    public TeamManager teamManager;
     // Use this for initialization
     void Start() {
         myMaterial = GetComponent<MeshRenderer>().material;
-        myMaterial.mainTexture = SnowTackScript.splatmap; //("_Albedo", SnowTackScript.splatmap);
+        myMaterial.mainTexture = teamManager.splatmap; //("_Albedo", SnowTackScript.splatmap);
 
     }
 

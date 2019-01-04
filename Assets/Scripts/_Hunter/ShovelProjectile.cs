@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShovelProjectile : MonoBehaviour {
+public class ShovelProjectile : MonoBehaviour
+{
 
     public LayerMask Mask;
     public Shader drawShader;
@@ -43,17 +44,22 @@ public class ShovelProjectile : MonoBehaviour {
             Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 10);
             if (Physics.Raycast(ray, out hit, 500, Mask))
             {
-                //Debug.Log(hit.collider.gameObject.name);
-                Material myMaterial;
-                myMaterial = hit.collider.gameObject.GetComponent<MeshRenderer>().material;
+                TeamManager manager = hit.collider.gameObject.GetComponent<TeamManager>();
+                if(manager != null)
+                {
+                    //Debug.Log(hit.collider.gameObject.name);
+                    Material myMaterial;
+                    myMaterial = hit.collider.gameObject.GetComponent<MeshRenderer>().material;
 
-                drawMaterial.SetVector("_Coordinate", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
-                drawMaterial.SetFloat("_Strength", _brushStrength);
-                drawMaterial.SetFloat("_Size", _brushSize);
-                RenderTexture temp = RenderTexture.GetTemporary(SnowTackScript.splatmap.width, SnowTackScript.splatmap.height, 0, RenderTextureFormat.ARGBFloat);   //TO CHANGE LATER 
-                Graphics.Blit(SnowTackScript.splatmap, temp);
-                Graphics.Blit(temp, SnowTackScript.splatmap, drawMaterial);
-                RenderTexture.ReleaseTemporary(temp);
+                    drawMaterial.SetVector("_Coordinate", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+                    drawMaterial.SetFloat("_Strength", _brushStrength);
+                    drawMaterial.SetFloat("_Size", _brushSize);
+                    RenderTexture temp = RenderTexture.GetTemporary(manager.splatmap.width, manager.splatmap.height, 0, RenderTextureFormat.ARGBFloat);   //TO CHANGE LATER 
+                    Graphics.Blit(manager.splatmap, temp);
+                    Graphics.Blit(temp, manager.splatmap, drawMaterial);
+                    RenderTexture.ReleaseTemporary(temp);
+                }
+               
                 if (i >= 3)
                 {
                     Destroy(gameObject);
@@ -69,7 +75,7 @@ public class ShovelProjectile : MonoBehaviour {
 
     public void SetBrushSize(float percentage)
     {
-        _brushSize = percentage * brushSizeMaximum;
+        _brushSize = percentage * brushSizeMaximum*4;
     }
 
 }
