@@ -16,7 +16,6 @@ public class ReachR : MonoBehaviour {
     {
         IK.solver.rightHandEffector.target = ball;
         
-
         if (isIn == false)
         {
             //increment timer once per frame
@@ -77,10 +76,9 @@ public class ReachR : MonoBehaviour {
         if (other.gameObject.tag == "SnowBall")
         {
             //ball = null;
-            print("Butts");
+            print("Out");
             isIn = false;
             currentLerpTime = 0f;
-
         }
     }
 
