@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public class ProjectileComponent : MonoBehaviour
 {
+    public PlayerActor playerActor;
     [Header("Destroy Projectile")]
     public float timeUntilDestroy = 2;
 
@@ -53,10 +54,19 @@ public class ProjectileComponent : MonoBehaviour
         sphereHits = Physics.OverlapSphere(transform.position, currentRadius);
         foreach (var item in sphereHits)
         {
-            if (item.tag == "Player")
+            PlayerActor act = item.GetComponentInChildren<PlayerActor>();
+            if(act != null)
             {
-                item.SendMessage("TakeDamage", 1);
+                if(act != playerActor)
+                {
+                    print("got hit");
+
+                }
             }
+            //if (item.tag == "Player")
+            //{
+            //    item.SendMessage("TakeDamage", 1);
+            //}
         }
     }
 

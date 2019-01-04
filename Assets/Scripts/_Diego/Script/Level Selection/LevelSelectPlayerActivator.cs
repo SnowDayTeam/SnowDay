@@ -34,10 +34,12 @@ namespace SnowDay.Diego.LevelSelect
                 bool keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)ActivationButton);
                 if (keyPressed)
                 {
-                    Debug.Log("Controller Activated" + i);
-                   if (players[i] != null)
-                   {
+                   
+                   if (players[i] != null && players[i].CharacterEnabled == false)
+                    {
+                        Debug.Log("Controller Activated" + i);
                         players[i].CharacterEnabled = true;
+
                         ChangeCharacterModel(players[i], 1);
                    }
                 }

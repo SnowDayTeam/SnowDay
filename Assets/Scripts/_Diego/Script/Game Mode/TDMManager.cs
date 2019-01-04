@@ -12,11 +12,11 @@ namespace SnowDay.Diego.GameMode
     /// <remarks>
     /// <para>Currently Only Handles 2 Teams</para>
     /// </remarks>
-    public class TDMManager : Singleton<TDMManager>
+    public class TDMManager : MonoBehaviour
     {
         public SnowDayCamera cam;
         int[] teamScore;
-
+        public Transform ScriptsPrefab;
         public int GetTeamScore(int teamID)
         {
             return teamScore[teamID];
@@ -37,6 +37,12 @@ namespace SnowDay.Diego.GameMode
             List<PlayerController> players  = GameModeController.GetInstance().GetActivePlayers();
             cam.SetTargetPlayers(players);
             cam.Initialize();
+
+            for(int i = 0; i < players.Count; i++)
+            {
+                Debug.Log(players[i].gameObject.name);
+                Instantiate(ScriptsPrefab, players[i].gameObject.transform.GetChild(0).GetChild(2),false);
+            }
         }
 
         private void Update()

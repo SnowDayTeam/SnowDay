@@ -7,7 +7,7 @@ using SnowDay.Diego.GameMode;
 /// </summary>
 public class PlayerActor : MonoBehaviour
 {
-    public int Health = 1;
+    public int Health = 3;
 
     public int TeamID;
 
@@ -21,7 +21,7 @@ public class PlayerActor : MonoBehaviour
         if (Health <= 0)
         {
             int oppTeamID = TeamID == 1 ? 0 : 1;
-            TDMManager.GetInstance().IncreaseTeamScore(1, oppTeamID);
+            //TDMManager.GetInstance().IncreaseTeamScore(1, oppTeamID);
             Destroy(gameObject);
         }
     }
