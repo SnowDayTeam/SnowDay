@@ -102,7 +102,7 @@ public class BallSpawner : MonoBehaviour {
 			}
 
             timeFired = Time.time;
-            print(inputName);
+          //  print(inputName);
             
             
         }
