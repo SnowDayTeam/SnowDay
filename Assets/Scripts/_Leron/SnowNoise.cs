@@ -23,11 +23,16 @@ public class SnowNoise : MonoBehaviour {
         _snowFallMat.SetFloat("_FlakeAmount", _flakeAmount);
         _snowFallMat.SetFloat("_FlakeOpacity", _flakeOpacity);
         RenderTexture snow = (RenderTexture)_meshRenderer.material.GetTexture("_Splat");
-        RenderTexture temp = RenderTexture.GetTemporary(snow.width, snow.height, 0, RenderTextureFormat.ARGBFloat);
-        Graphics.Blit(snow, temp, _snowFallMat);
-        Graphics.Blit(temp, snow);
-        _meshRenderer.material.SetTexture("_Splat", snow);
-        RenderTexture.ReleaseTemporary(temp);
+        if(snow != null)
+        {
+
+            RenderTexture temp = RenderTexture.GetTemporary(snow.width, snow.height, 0, RenderTextureFormat.ARGBFloat);
+            Graphics.Blit(snow, temp, _snowFallMat);
+            Graphics.Blit(temp, snow);
+            _meshRenderer.material.SetTexture("_Splat", snow);
+            RenderTexture.ReleaseTemporary(temp);
+        }
+        
 
 
     }
