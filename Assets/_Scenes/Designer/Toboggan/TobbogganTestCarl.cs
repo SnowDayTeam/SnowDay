@@ -10,6 +10,8 @@ public class TobbogganTestCarl : MonoBehaviour
     public PierInputManager manager;
     public Transform sled;
     public float velTurnLimiter = 500;
+    Animator animaton;
+
     float userForceInput;
     [SerializeField] private float m_MovePower = 5; // The force added to the ball to move it.
     [SerializeField] private bool m_UseTorque = true; // Whether or not to use torque to move the ball.
@@ -122,6 +124,7 @@ public class TobbogganTestCarl : MonoBehaviour
             {
                 m_Rigidbody.AddForce(sled.right * (m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude/velTurnLimiter)));
                 Debug.DrawRay(transform.position, sled.right * (m_MovePower * userForceInput) * 10, Color.yellow);
+
 
             }
             else
