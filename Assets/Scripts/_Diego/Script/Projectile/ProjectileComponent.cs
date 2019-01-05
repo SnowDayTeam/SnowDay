@@ -44,35 +44,45 @@ public class ProjectileComponent : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (increaseRadius)
-        {
-            currentRadius += RadiusIncreaseStep * Time.deltaTime;
-        }
-        Collider[] sphereHits;
-        sphereHits = Physics.OverlapSphere(transform.position, currentRadius);
-        foreach (var item in sphereHits)
-        {
-            PlayerActor act = item.GetComponentInChildren<PlayerActor>();
-            if(act != null)
-            {
-                if(act != playerActor)
-                {
-                    print("got hit");
-
-                }
-            }
-            //if (item.tag == "Player")
-            //{
-            //    item.SendMessage("TakeDamage", 1);
-            //}
-        }
-    }
+    //private void Update()
+    //{
+    //    if (increaseRadius)
+    //    {
+    //        currentRadius += RadiusIncreaseStep * Time.deltaTime;
+    //    }
+    //    Collider[] sphereHits;
+    //    sphereHits = Physics.OverlapSphere(transform.position, currentRadius);
+    //    foreach (var item in sphereHits)
+    //    {
+    //        PlayerActor act = item.GetComponentInChildren<PlayerActor>();
+    //        if(act != null)
+    //        {
+    //            if(act != playerActor)
+    //            {
+    //               // print("got hit");
+    //             //   Debug.Log(item.gameObject.name);
+    //            }
+    //        }
+    //        //if (item.tag == "Player")
+    //        //{
+    //        //    item.SendMessage("TakeDamage", 1);
+    //        //}
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
         increaseRadius = false;
+        PlayerActor act = collision.collider.GetComponentInChildren<PlayerActor>();
+        if (act != null)
+        {
+            if (act != playerActor)
+            {
+                print("got hit");
+                Debug.Log(collision.gameObject.name);
+                act.DecreaseHealth(1, playerActor.TeamID);
+            }
+        }
         Destroy(gameObject, timeUntilDestroy);
     }
 
