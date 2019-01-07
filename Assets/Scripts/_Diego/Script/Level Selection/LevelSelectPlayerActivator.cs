@@ -25,7 +25,16 @@ namespace SnowDay.Diego.LevelSelect
         {
             inputController = GetComponent<LevelInputManager>();
         }
+        public void ActivatePlayer(int playerNumber)
+        {
+            if (players[playerNumber] != null && players[playerNumber].CharacterEnabled == false)
+            {
+                Debug.Log("Controller Activated" + playerNumber);
+                players[playerNumber].CharacterEnabled = true;
 
+                ChangeCharacterModel(players[playerNumber], 1);
+            }
+        }
         // Update is called once per frame
         void Update()
         {
@@ -34,14 +43,8 @@ namespace SnowDay.Diego.LevelSelect
                 bool keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)ActivationButton);
                 if (keyPressed)
                 {
+                    ActivatePlayer(i);
                    
-                   if (players[i] != null && players[i].CharacterEnabled == false)
-                    {
-                        Debug.Log("Controller Activated" + i);
-                        players[i].CharacterEnabled = true;
-
-                        ChangeCharacterModel(players[i], 1);
-                   }
                 }
 
                 keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)RemoveButton);

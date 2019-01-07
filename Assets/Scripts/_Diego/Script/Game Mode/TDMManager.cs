@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SnowDay.Diego.Singleton;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 using SnowDay.Diego.CharacterController;
 
 namespace SnowDay.Diego.GameMode
@@ -14,8 +16,10 @@ namespace SnowDay.Diego.GameMode
     /// </remarks>
     public class TDMManager : MonoBehaviour
     {
-       // public int numplayers = 4;
-        
+        private bool startCountDown;
+        public float GameOverCountDown = 4;
+        [Header("UI Text")]
+        public Text CountDownText;
         List<PlayerController> AllPlayers;
         public struct team
         {
@@ -45,6 +49,12 @@ namespace SnowDay.Diego.GameMode
         public void playerDeadReport(int teamID)
         {
             Teams[teamID].playersAlive --;
+            if (Teams[teamID].playersAlive <= 0)
+            {
+                Debug.Log("team # " + teamID + " dead");
+                startCountDown = true;
+                CountDownText.enabled = true;
+            }
 
         }
         [ContextMenu("split")]
@@ -90,6 +100,15 @@ namespace SnowDay.Diego.GameMode
 
         private void Update()
         {
+            if (startCountDown)
+            {
+                GameOverCountDown -= Time.deltaTime;
+                CountDownText.text = GameOverCountDown.ToString("0");
+                if(GameOverCountDown <= 0)
+                {
+                    SceneManager.LoadScene("LevelSelect");
+                }
+            }
             //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
         }
     }
