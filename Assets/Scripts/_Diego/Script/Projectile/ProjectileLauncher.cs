@@ -68,9 +68,10 @@ public class ProjectileLauncher : MonoBehaviour
     /// Launch Projectile
     /// </summary>
     /// <param name="attribs">Projectile Attributes</param>
-    public void LaunchProjectile()
+    public void LaunchProjectile(PlayerActor actor)
     {
         ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
+        proj.playerActor = actor;
         proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
         projectileSpeedValue = DefaultShot.speed;
         projectileAngleValue = DefaultShot.angle;

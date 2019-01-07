@@ -11,7 +11,7 @@ public class LevelGate : MonoBehaviour {
 
     [Header("Player Tag")]
     public string ObjectTag = "Player";
-
+    [SerializeField]
     private int playersInBox;
 
     /// <summary>
@@ -64,6 +64,7 @@ public class LevelGate : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.CompareTag(ObjectTag))
         {
             PlayersInBox++;

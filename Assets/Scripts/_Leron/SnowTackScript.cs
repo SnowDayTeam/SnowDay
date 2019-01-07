@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowTackScript : MonoBehaviour {
+public class SnowTackScript : MonoBehaviour
+{
+    public TeamManager myTeam;
+    //public static RenderTexture splatmap;// made this static so refference is shared between all instances  // used by ShovelProjectile keep it public 
+    //public Shader drawShader;
 
-    public static RenderTexture splatmap;// made this static so refference is shared between all instances  // used by ShovelProjectile keep it public 
-    public Shader drawShader;
-    static  private Material drawMaterial;
-    static private Material myMaterial;
-    public GameObject _terrain;
     //public Transform[] _feet;
     public SnowTrackData[] snowTracks;
     RaycastHit _groundHit;
@@ -26,11 +25,9 @@ public class SnowTackScript : MonoBehaviour {
         }
     }
     // Use this for initialization
-    void Start () {
+    void Awake () {
     //    _layerMask = LayerMask.GetMask("Ground");
-        drawMaterial = new Material(drawShader);
-        myMaterial = _terrain.GetComponent<MeshRenderer>().material;
-        myMaterial.SetTexture("_Splat", splatmap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat));
+       
 	}
 	
 	// Update is called once per frame
@@ -55,14 +52,14 @@ public class SnowTackScript : MonoBehaviour {
             
             if (snowTracks[i].active && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
             {
-              //  Debug.Log(_groundHit.textureCoord.x.ToString() + "," + _groundHit.textureCoord.y.ToString());
+                //  Debug.Log(_groundHit.textureCoord.x.ToString() + "," + _groundHit.textureCoord.y.ToString());
 
-                drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
-                drawMaterial.SetFloat("_Strength", snowTracks[i]._brushStrength);
-                drawMaterial.SetFloat("_Size", snowTracks[i]._brushSize);
-                RenderTexture temp = RenderTexture.GetTemporary(splatmap.width, splatmap.height, 0, RenderTextureFormat.ARGBFloat);
-                Graphics.Blit(splatmap, temp);
-                Graphics.Blit(temp, splatmap, drawMaterial);
+                myTeam.drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
+                myTeam.drawMaterial.SetFloat("_Strength", snowTracks[i]._brushStrength);
+                myTeam.drawMaterial.SetFloat("_Size", snowTracks[i]._brushSize);
+                RenderTexture temp = RenderTexture.GetTemporary(myTeam.splatmap.width, myTeam.splatmap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(myTeam.splatmap, temp);
+                Graphics.Blit(temp, myTeam.splatmap, myTeam.drawMaterial);
                 RenderTexture.ReleaseTemporary(temp);
             }
         }
