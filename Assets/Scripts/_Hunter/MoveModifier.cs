@@ -20,7 +20,7 @@ public class MoveModifier : MonoBehaviour {
     // Use this for initialization
     void Start () {
     
-        Player = GetComponent<ThirdPersonCharacter>();
+        Player = GetComponentInParent<ThirdPersonCharacter>();
         
         //get charecter original move stats on start
         OriginalMoveSpeed = Player.m_MoveSpeedMultiplier;

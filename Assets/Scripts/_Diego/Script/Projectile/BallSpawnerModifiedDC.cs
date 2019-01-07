@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using RootMotion.FinalIK;
 
-public class BallSpawnerModifiedDC : MonoBehaviour {
+public class BallSpawnerModifiedDC : MonoBehaviour
+{
     //private Vector3 offset = new Vector3(1, 0, 1);
     //public GameObject prefab;
     //public GameObject spawnPoint;
     public ProjectileLauncher projectileLauncher;
-    public float LaunchVelocity;
-    public float throwDelay;
+    public PlayerActor mySelf;
+   // public float LaunchVelocity;
+    //public float throwDelay;
     private float timeFired;
-    public string inputName;
-	//SnowPick Up
-	public bool BallPickedUp;
-	public FullBodyBipedIK IK;
-	public bool IsReaching;
-	public float lerpTime = 1f;
-    float currentLerpTime;
-	public Transform ReachPoint;
-	public bool DoneReaching;
+    public PierInputManager.ButtonName ShootButton = PierInputManager.ButtonName.X;
+    private PierInputManager playerInputController;
+
+    //SnowPick Up
+ //   private bool BallPickedUp;
+	//public FullBodyBipedIK IK;
+	//private bool IsReaching;
+	//public float lerpTime = 1f;
+ //   float currentLerpTime;
+	//public Transform ReachPoint;
+ //   private bool DoneReaching;
 
 
     
@@ -27,108 +31,98 @@ public class BallSpawnerModifiedDC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        playerInputController = gameObject.GetComponentInParent<PierInputManager>();
+       // IK = gameObject.GetComponentInParent<FullBodyBipedIK>();
+    }
 
-		if(IsReaching==true){
-			print("LerpingIN");
-			currentLerpTime += Time.deltaTime;
-			if (currentLerpTime > lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
-
-            float t = currentLerpTime / lerpTime;
-            IK.solver.rightHandEffector.target = ReachPoint;
-            IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 1.0f, t);
-
-			if(IK.solver.rightHandEffector.positionWeight==1)
-
-			{
-				DoneReaching = true;
-				IsReaching = false;
-
-				print("Reached Ground");
-
-			}
-
-		}
-
-
-		if(DoneReaching==true)
-		{
-			print("Lerp Out");
-			currentLerpTime = 0f;
-			currentLerpTime += Time.deltaTime;
-            if (currentLerpTime > lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
-
-            float t = currentLerpTime / lerpTime;
-            
-            IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 0f, t);
-
-
-
-
-            if (IK.solver.rightHandEffector.positionWeight <= 0.1)
-			{
-				print("PICKED UP");
-				IK.solver.rightHandEffector.target = null;
-				BallPickedUp = true;
-				DoneReaching = false;
-
-				
-			}
-		}
-
-        
-		if (Input.GetButtonDown(inputName))
+    // Update is called once per frame
+    void Update () {
+        if (playerInputController.GetButtonDown(ShootButton))
         {
-			
-			if(!BallPickedUp)
-			{
-				print("Hit A Picking Up");
-				PickUpBall();
-			}
-			//spawns in ball at spawn point and launches ball in faced direction
-			else
-			{
-				print("Hit A Throwing");
-				ThrowBall();
-			}
+            ThrowBall();
 
-            timeFired = Time.time;
-            print(inputName);
-            
-            
+            //if (!BallPickedUp)
+            //{
+            //   // print("Hit A Picking Up");
+            //    PickUpBall();
+            //}
+            ////spawns in ball at spawn point and launches ball in faced direction
+            //else
+            //{
+            //    print("Hit A Throwing");
+               
+            //}
+
+            //timeFired = Time.time;
+          
         }
 
+  //      if (IsReaching==true)
+  //      {
+		//	print("LerpingIN");
+		//	currentLerpTime += Time.deltaTime;
+		//	if (currentLerpTime > lerpTime)
+  //          {
+  //              currentLerpTime = lerpTime;
+  //          }
+
+  //          float t = currentLerpTime / lerpTime;
+  //          IK.solver.rightHandEffector.target = ReachPoint;
+  //          IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 1.0f, t);
+
+		//	if(IK.solver.rightHandEffector.positionWeight==1)
+
+		//	{
+		//		DoneReaching = true;
+		//		IsReaching = false;
+
+		//		print("Reached Ground");
+
+		//	}
+
+		//}
+
+
+		//if(DoneReaching==true)
+		//{
+		//	print("Lerp Out");
+		//	currentLerpTime = 0f;
+		//	currentLerpTime += Time.deltaTime;
+  //          if (currentLerpTime > lerpTime)
+  //          {
+  //              currentLerpTime = lerpTime;
+  //          }
+
+  //          float t = currentLerpTime / lerpTime;
+            
+  //          IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 0f, t);
 
 
 
-        
+
+  //          if (IK.solver.rightHandEffector.positionWeight <= 0.1)
+		//	{
+		//		print("PICKED UP");
+		//		IK.solver.rightHandEffector.target = null;
+		//		BallPickedUp = true;
+		//		DoneReaching = false;
+
+				
+		//	}
+		//}	   
     }
-    
-
-
-	private void PickUpBall()
-	{
-
-		IsReaching = true;
 
 
 
-	}
+    //private void PickUpBall()
+    //{
+    //	IsReaching = true;
+    //}
 
-	private void ThrowBall()
-	{
-        projectileLauncher.LaunchProjectile();
-        BallPickedUp = false;
+    private void ThrowBall()
+    {
+        projectileLauncher.LaunchProjectile(mySelf);
+       // BallPickedUp = false;
     }
 
 

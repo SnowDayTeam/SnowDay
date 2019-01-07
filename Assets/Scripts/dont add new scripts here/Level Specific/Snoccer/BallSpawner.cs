@@ -6,7 +6,7 @@ using RootMotion.FinalIK;
 public class BallSpawner : MonoBehaviour {
     private Vector3 offset = new Vector3(1, 0, 1);
     public GameObject prefab;
-    public GameObject spawnPoint;
+    GameObject spawnPoint;
     public float LaunchVelocity;
     public float throwDelay;
     private float timeFired;
@@ -26,7 +26,7 @@ public class BallSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        spawnPoint = transform.gameObject;
 	}
 	
 	// Update is called once per frame
@@ -102,7 +102,7 @@ public class BallSpawner : MonoBehaviour {
 			}
 
             timeFired = Time.time;
-            print(inputName);
+          //  print(inputName);
             
             
         }
