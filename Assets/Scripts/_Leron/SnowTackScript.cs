@@ -49,8 +49,8 @@ public class SnowTackScript : MonoBehaviour
         
         for (int i = 0; i < snowTracks.Length; i++)
         {
-            
-            if (snowTracks[i].active && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
+
+            if (snowTracks[i].active && snowTracks[i].transform != null && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
             {
                 //  Debug.Log(_groundHit.textureCoord.x.ToString() + "," + _groundHit.textureCoord.y.ToString());
 

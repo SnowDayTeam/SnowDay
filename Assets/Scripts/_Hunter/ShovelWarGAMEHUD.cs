@@ -23,9 +23,8 @@ public class ShovelWarGAMEHUD : MonoBehaviour
     int MatchLength = 5;
     int TimeRemaining;
     float LastSecond=0;
-   
 
-   
+
 
 
 
@@ -85,7 +84,7 @@ public class ShovelWarGAMEHUD : MonoBehaviour
  
 
     }
-
+    //move to manager 
     void MatchTimer()
     {
         TimeRemaining--;
@@ -98,6 +97,8 @@ public class ShovelWarGAMEHUD : MonoBehaviour
 
 
     }
+
+    //move to manager 
     void CheckForWinner()
     {
         if (Team1DriveWay.RedPixelCounter> Team2DriveWay.RedPixelCounter)

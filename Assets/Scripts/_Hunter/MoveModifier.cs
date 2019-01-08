@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson;
+//using UnityStandardAssets.Characters.ThirdPerson;
 
+using SnowDay.Diego.CharacterController;
 
 
 
@@ -14,13 +15,13 @@ public class MoveModifier : MonoBehaviour {
     private float OriginalStationTurn;
 
     //refrences
-    private ThirdPersonCharacter Player;
+    private SnowDayCharacter Player;
     
 
     // Use this for initialization
     void Start () {
     
-        Player = GetComponentInParent<ThirdPersonCharacter>();
+        Player = GetComponentInParent<SnowDayCharacter>();
         
         //get charecter original move stats on start
         OriginalMoveSpeed = Player.m_MoveSpeedMultiplier;
