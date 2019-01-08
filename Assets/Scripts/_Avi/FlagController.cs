@@ -18,7 +18,8 @@ public class FlagController : MonoBehaviour {
 
 
     public float currentRadius = 2f;
-    public Vector3 center = Vector3.zero;
+    public Vector3 center = new Vector3(.04f, 1.26f, .03f);
+        //Vector3.zero;
     // Use this for initialization
     void Start ()
     {
@@ -35,6 +36,7 @@ public class FlagController : MonoBehaviour {
 
         if (CrossPlatformInputManager.GetButtonDown("FireP1") )
         {
+           
             if (IsHolding)
             {
                 //Drop Flag
@@ -52,8 +54,9 @@ public class FlagController : MonoBehaviour {
                     FlagPickup p = col.GetComponent<FlagPickup>();
                     if(p!= null)
                     {
-                        Debug.Log("yo");
-
+                        FlagBeingHeld = p.gameObject;
+                        p.PickUpFlag(gameObject.transform);
+                        IsHolding = true;
                     }
 
                   
@@ -61,10 +64,7 @@ public class FlagController : MonoBehaviour {
             }
         }
 
-        if (CrossPlatformInputManager.GetButtonUp("FireP1"))
-        {
-            TryingToPickUp = false;
-        }
+        
 		
 	}
 }

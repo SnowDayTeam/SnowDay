@@ -35,28 +35,28 @@ public class FlagPickup : MonoBehaviour
         //        canBeRetrieved = false;
         //    }
 
-        //}
-        Debug.Log(other.GetComponentInChildren<FlagController>());
+        ////}
+        //Debug.Log(other.GetComponentInChildren<FlagController>());
       
-        // SWITCH TAG TO ENUM WHEN AVAILABLE
-        if (other.GetComponentInChildren<FlagController>())
-        {
+        //// SWITCH TAG TO ENUM WHEN AVAILABLE
+        //if (other.GetComponentInChildren<FlagController>())
+        //{
             
-            if (other.GetComponentInChildren<FlagController>().TryingToPickUp)
-            {
-                other.GetComponentInChildren<FlagController>().FlagBeingHeld = gameObject;
+        //    if (other.GetComponentInChildren<FlagController>().TryingToPickUp)
+        //    {
+        //        other.GetComponentInChildren<FlagController>().FlagBeingHeld = gameObject;
 
-                foreach (MeshRenderer material in meshRenderer)
-                    material.material.color = Color.red;
+        //        foreach (MeshRenderer material in meshRenderer)
+        //            material.material.color = Color.red;
 
-                gameObject.transform.parent = other.transform;
-                other.GetComponentInChildren<FlagController>().IsHolding = true;
-                IsBeingHeld = true;
+        //        gameObject.transform.parent = other.transform;
+        //        other.GetComponentInChildren<FlagController>().IsHolding = true;
+        //        IsBeingHeld = true;
 
 
-            }
+        //    }
 
-        }
+        //}
 
 
         //    if (other.tag == "BlueTeam")
@@ -93,6 +93,19 @@ public class FlagPickup : MonoBehaviour
     //            timeLeft = 2.0f;
     //        }
     //    }
+
+
+
+
+    public void PickUpFlag(Transform PlayerT)
+    {
+        foreach (MeshRenderer material in meshRenderer)
+            material.material.color = Color.red;
+
+        gameObject.transform.parent = PlayerT;
+        
+    }
+
 
     public void DropFlag()
     {
