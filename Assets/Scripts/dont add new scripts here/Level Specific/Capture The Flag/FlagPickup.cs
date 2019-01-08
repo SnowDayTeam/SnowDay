@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlagPickup : MonoBehaviour {
+public class FlagPickup : MonoBehaviour
+{
 
     public Component[] meshRenderer;
-    public bool canBeRetrieved = true;
+    public bool IsBeingHeld = true;
     public bool isAtBase = false;
     public float timeLeft = 2.0f;
     public int nameChangeCount = 0;
+    float DropOffset = .05f;
 
     void Start()
     {
@@ -18,55 +20,87 @@ public class FlagPickup : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "RedTeam")
-        {
-            if (canBeRetrieved && !isAtBase && !other.GetComponent<PlayerScript>().didGetFlag == true)
-            {
-                
-                foreach (MeshRenderer material in meshRenderer)
-                        material.material.color = Color.red;
+        //if (other.tag == "RedTeam")
+        //{
+        //    if (canBeRetrieved && !isAtBase && !other.GetComponent<FlagController>().TryingToPickUp == true)
+        //    {
 
-                gameObject.transform.parent = other.transform;
-                other.GetComponent<PlayerScript>().didGetFlag = true;
-                gameObject.tag = "RedFlag";
-                nameChangeCount += 1;
-                canBeRetrieved = false;
-                }
+        //        foreach (MeshRenderer material in meshRenderer)
+        //            material.material.color = Color.red;
+
+        //        gameObject.transform.parent = other.transform;
+        //        other.GetComponent<FlagController>().IsHolding = true;
+        //        gameObject.tag = "RedFlag";
+        //        nameChangeCount += 1;
+        //        canBeRetrieved = false;
+        //    }
+
+        //}
+        Debug.Log(other.GetComponentInChildren<FlagController>());
+      
+        // SWITCH TAG TO ENUM WHEN AVAILABLE
+        if (other.GetComponentInChildren<FlagController>())
+        {
             
-        }
-    
-
-        if (other.tag == "BlueTeam")
-        {
-            if (canBeRetrieved && !isAtBase && !other.GetComponent<PlayerScript>().didGetFlag == true)
+            if (other.GetComponentInChildren<FlagController>().TryingToPickUp)
             {
+                other.GetComponentInChildren<FlagController>().FlagBeingHeld = gameObject;
+
                 foreach (MeshRenderer material in meshRenderer)
-                        material.material.color = Color.blue;
+                    material.material.color = Color.red;
 
                 gameObject.transform.parent = other.transform;
-                other.GetComponent<PlayerScript>().didGetFlag = true;
+                other.GetComponentInChildren<FlagController>().IsHolding = true;
+                IsBeingHeld = true;
 
-                gameObject.tag = "BlueFlag";
-                nameChangeCount += 1;
-                canBeRetrieved = false;
+
             }
+
         }
+
+
+        //    if (other.tag == "BlueTeam")
+        //    {
+        //        if (canBeRetrieved && !isAtBase && !other.GetComponent<FlagController>().TryingToPickUp == true)
+        //        {
+        //            foreach (MeshRenderer material in meshRenderer)
+        //                    material.material.color = Color.blue;
+
+        //            gameObject.transform.parent = other.transform;
+        //            other.GetComponent <FlagController> ().IsHolding = true;
+
+        //            gameObject.tag = "BlueFlag";
+        //            nameChangeCount += 1;
+        //            canBeRetrieved = false;
+        //        }
+        //    }
+        //}
     }
 
-  
 
-    void Update()
+
+
+    //void Update()
+    //    {
+    //        if (!canBeRetrieved && !isAtBase)
+    //        {
+    //            timeLeft -= Time.deltaTime;
+    //        }
+
+    //        if (timeLeft < 0)
+    //        {
+    //            canBeRetrieved = true;
+    //            timeLeft = 2.0f;
+    //        }
+    //    }
+
+    public void DropFlag()
     {
-        if (!canBeRetrieved && !isAtBase)
-        {
-            timeLeft -= Time.deltaTime;
-        }
+        foreach (MeshRenderer material in meshRenderer)
+            material.material.color = Color.green;
+        transform.parent = null;
 
-        if (timeLeft < 0)
-        {
-            canBeRetrieved = true;
-            timeLeft = 2.0f;
-        }
+        transform.position = new Vector3(transform.position.x, transform.position.y - DropOffset, transform.position.z);
     }
 
 }
