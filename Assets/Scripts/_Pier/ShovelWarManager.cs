@@ -13,6 +13,7 @@ public class ShovelWarManager : MonoBehaviour
     {
         public TeamManager snowPlane;
         public List<PlayerController> players;
+        public SpawnLocation[] spawnLocations;
         public int score;
     }
     public team[] Teams;
@@ -29,7 +30,7 @@ public class ShovelWarManager : MonoBehaviour
             Debug.Log("team 1");
             Teams[0].players.Add(AllPlayers[i]);
             AllPlayers[i].GetComponentInChildren<SnowTackScript>().myTeam = Teams[0].snowPlane;
-
+            AllPlayers[i].MoveCharacter(Teams[0].spawnLocations[0].transform.position);
 
         }
         for (int i = midPt; i < numplayers; i++)
@@ -37,6 +38,8 @@ public class ShovelWarManager : MonoBehaviour
             Debug.Log("team 2");
             Teams[1].players.Add(AllPlayers[i]);
             AllPlayers[i].GetComponentInChildren<SnowTackScript>().myTeam = Teams[1].snowPlane;
+            AllPlayers[i].MoveCharacter(Teams[1].spawnLocations[0].transform.position);
+
         }
         // Teams[0].playersAlive = Teams[0].players.Count;
         //  Teams[1].playersAlive = Teams[1].players.Count;

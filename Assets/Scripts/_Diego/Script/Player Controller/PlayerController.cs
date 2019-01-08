@@ -66,7 +66,10 @@ namespace SnowDay.Diego.CharacterController
           //  SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
         
         }
-
+        public void MoveCharacter(Vector3 position)
+        {
+            playerCharacter.transform.position = position;
+        }
         /// <summary>
         /// Get Active Player ID
         /// </summary>
