@@ -8,17 +8,32 @@ public class LevelLoader : MonoBehaviour {
 
     public GameObject loadingScreen;
     public Slider slider;
-    float currentDelay = 5;
-    bool countDown = false;
+    float currentDelay;
+    [SerializeField]
 
+    float maxDelay = 5;
+    bool countDown = false;
+    private void Start()
+    {
+        currentDelay = 0;
+    }
     void Update()
     {
-        if(countDown)
-        currentDelay -= Time.deltaTime;
+        if (countDown)
+        {
+            currentDelay += Time.deltaTime;
 
+            float progress = Mathf.Clamp01(currentDelay / maxDelay);
 
-        if (currentDelay <= 0)
+            slider.value = progress;
+        }
+        
+
+        if (currentDelay >= maxDelay)
+        {
             StartCoroutine(LoadAsynchronously(5));
+
+        }
     }
 
 	public void LoadLevel(int sceneIndex)
@@ -37,9 +52,7 @@ public class LevelLoader : MonoBehaviour {
 
         while(!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
-
-            slider.value = progress;
+          
           
             yield return null;
         }
