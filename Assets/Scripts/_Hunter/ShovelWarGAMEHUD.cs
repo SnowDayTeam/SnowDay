@@ -19,7 +19,7 @@ public class ShovelWarGAMEHUD : MonoBehaviour
     bool SnowClearCondition = false;
     [SerializeField]
     GameObject WinScreen;
-
+    [SerializeField]
     int MatchLength = 5;
     int TimeRemaining;
     float LastSecond=0;
