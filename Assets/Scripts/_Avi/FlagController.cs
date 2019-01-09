@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class FlagController : MonoBehaviour {
 
     [SerializeField]
-    float RequiredHold = 1.5f;
+    float RequiredHold = .5f;
 
     float HoldStarted;
     [HideInInspector]
@@ -21,12 +21,19 @@ public class FlagController : MonoBehaviour {
 
     public float currentRadius = 1.25f;
     public Vector3 center = new Vector3(.04f, 1.26f, .03f);
-        //Vector3.zero;
+
+    //InputVariables
+    public PierInputManager.ButtonName PickUpFlag = PierInputManager.ButtonName.B;
+    public PierInputManager.ButtonName ThrowButton = PierInputManager.ButtonName.Y;
+
+    private PierInputManager playerInputController;
+
+    //Vector3.zero;
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        playerInputController = gameObject.GetComponentInParent<PierInputManager>();
+    }
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
@@ -36,10 +43,10 @@ public class FlagController : MonoBehaviour {
     void Update ()
     {
 
-        if (CrossPlatformInputManager.GetButtonDown("FireP1") )
+        if (playerInputController.GetButtonDown(PickUpFlag) )
         {
            //if not already holding
-            if (!IsHolding)
+            if (IsHolding==false)
             {
                
                 Debug.Log("GRAAB");
@@ -65,6 +72,7 @@ public class FlagController : MonoBehaviour {
                             //try to take flag from other team
                             else
                             {
+                                Debug.Log("TAKE FLAG");
                                 TryingToTake = true;
                                 Flag = p;
                                 HoldStarted = Time.time;
@@ -82,31 +90,33 @@ public class FlagController : MonoBehaviour {
                             p.PickUpFlag(gameObject.transform, team);
                             IsHolding = true;
                         }
+
                     }
 
-                    //if already holding
-                        else
-                        {
-                            //Drop Flag
-                            Flag.DropFlag();
-                            IsHolding = false;
-
-
-                        }
-
-                  
                 }
+            }
+
+            else
+            {
+
+                Flag.DropFlag();
+                IsHolding = false;
             }
         }
 
-        if (CrossPlatformInputManager.GetButton("FireP1"))
+        if (playerInputController.GetButton(PickUpFlag))
         {
             if (TryingToTake)
             {
                 CheckForFlag();
+                
             }
         }
 
+        if (playerInputController.GetButtonUp(PickUpFlag))
+        {
+            TryingToTake = false;
+        }
         
 		
 	}
@@ -118,7 +128,7 @@ public class FlagController : MonoBehaviour {
         sphereHits = Physics.OverlapSphere(transform.position + center, currentRadius);
         foreach (Collider col in sphereHits)
         {
-
+            
             FlagPickup p = col.GetComponent<FlagPickup>();
             if (p == Flag)
             {
@@ -127,8 +137,15 @@ public class FlagController : MonoBehaviour {
                     p.PickUpFlag(gameObject.transform, team);
                     IsHolding = true;
                     
+                    
                 }
             }
         }
+    }
+
+
+    void BeingHeld()
+    {
+        //effect the player when there flags being taken
     }
 }

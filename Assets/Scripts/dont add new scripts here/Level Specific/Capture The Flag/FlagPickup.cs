@@ -14,6 +14,9 @@ public class FlagPickup : MonoBehaviour
     float TakeTime = 2;
     float CurrentTakeTime;
 
+    [SerializeField]
+    Transform TracePoint;
+
     void Start()
     {
         meshRenderer = GetComponentsInChildren<MeshRenderer>();
@@ -104,6 +107,7 @@ public class FlagPickup : MonoBehaviour
         //if player is carrying this Tell 
         if(transform.parent != null)
         {
+            Debug.Log("setholding to null");
             transform.parent.GetComponent<FlagController>().IsHolding = false;
         }
 
@@ -143,7 +147,30 @@ public class FlagPickup : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y - DropOffset, transform.position.z);
         IsBeingHeld = false;
 
-        
+        //Check if being put in goal Zone
+        RaycastHit hit;
+
+        Ray ray = new Ray(TracePoint.position, -Vector3.up);
+        Debug.DrawRay(TracePoint.position, -Vector3.up, Color.red, 10);
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (hit.collider.gameObject.GetComponent<GoalZone>())
+            {
+                if (hit.collider.gameObject.GetComponent<GoalZone>().Team == 1)
+                {
+                    Debug.Log("RED GETS A POINT");
+                }
+
+                else
+                {
+                    Debug.Log("BLUE GETS A POINT");
+                }
+            }
+        }
+
+
+
+
     }
 
     public void TakeAway()
