@@ -10,8 +10,8 @@ namespace SnowDay.Diego.CharacterController
         [Header("Third Person Character")]
         public GameObject SnowDayCharacterGameObject;
 
-       // [Header("Puppet Master")]
-       // public PuppetMaster PuppetMaster;
+        // [Header("Puppet Master")]
+        public PuppetMaster puppetMaster;
 
         [Header("Key Bindings")]
         public PierInputManager.ButtonName HorizontalAxis = PierInputManager.ButtonName.Left_Horizontal;
@@ -68,7 +68,17 @@ namespace SnowDay.Diego.CharacterController
         }
         public void MoveCharacter(Vector3 position)
         {
+            puppetMaster.mode = PuppetMaster.Mode.Disabled ;
             playerCharacter.transform.position = position;
+            Debug.Log("puppet disabled");
+            Invoke("ActivatePuppet", 5);
+        }
+
+        public void ActivatePuppet()
+        {
+            Debug.Log(puppetMaster.mode);
+         //   puppetMaster.mode = PuppetMaster.Mode.Active;
+
         }
         /// <summary>
         /// Get Active Player ID
@@ -134,6 +144,7 @@ namespace SnowDay.Diego.CharacterController
             }
 
             playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
+            puppetMaster  = GetComponentInChildren<PuppetMaster>();
             playerCharacter.Initialize();
             return playerCharacter;
         }
