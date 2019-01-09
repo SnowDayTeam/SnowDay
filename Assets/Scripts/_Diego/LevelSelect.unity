@@ -555,9 +555,11 @@ MonoBehaviour:
   PortalSpawnPoints:
   - {fileID: 1203723337}
   - {fileID: 2095840295}
+  - {fileID: 2067321782}
   Levels:
   - {fileID: 11400000, guid: 27dcfa365f516e34eaef8b49b0ecf4d7, type: 2}
   - {fileID: 11400000, guid: ab7e7f6afbd033143b061a1117499e2f, type: 2}
+  - {fileID: 11400000, guid: ac386b415cae8324d92697b32ffe2548, type: 2}
 --- !u!1 &401440517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2602,18 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 369591252}
+    ActiveGameObject: {fileID: 369591252}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 929643838}
     ActiveGameObject: {fileID: 929643838}
     GUIDsList: []
@@ -2650,18 +2664,6 @@ MonoBehaviour:
     list:
     - {fileID: 789214245}
     ActiveGameObject: {fileID: 789214245}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 369591252}
-    ActiveGameObject: {fileID: 369591252}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -3706,6 +3708,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970732123}
   m_CullTransparentMesh: 0
+--- !u!114 &2067321782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114859331043683164, guid: ca00ec4b1d7b68e40bc98ace0eede303,
+    type: 2}
+  m_PrefabInternal: {fileID: 1738006700}
+  m_Script: {fileID: 11500000, guid: 0962af804e8945845b40c68d7f769c40, type: 3}
 --- !u!114 &2095840295 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114859331043683164, guid: ca00ec4b1d7b68e40bc98ace0eede303,

@@ -6,16 +6,18 @@ public class FlagPickup : MonoBehaviour
 {
 
     public Component[] meshRenderer;
-    public bool IsBeingHeld = true;
+    public bool IsBeingHeld = false;
+    public int whoIsHolding;
     public bool isAtBase = false;
-    public float timeLeft = 2.0f;
-    public int nameChangeCount = 0;
     float DropOffset = .05f;
+
+    float TakeTime = 2;
+    float CurrentTakeTime;
 
     void Start()
     {
         meshRenderer = GetComponentsInChildren<MeshRenderer>();
-        gameObject.tag = "Untagged";
+      
     }
 
     void OnTriggerEnter(Collider other)
@@ -97,23 +99,56 @@ public class FlagPickup : MonoBehaviour
 
 
 
-    public void PickUpFlag(Transform PlayerT)
+    public void PickUpFlag(Transform PlayerT, int TeamNum)
     {
-        foreach (MeshRenderer material in meshRenderer)
-            material.material.color = Color.red;
+        //if player is carrying this Tell 
+        if(transform.parent != null)
+        {
+            transform.parent.GetComponent<FlagController>().IsHolding = false;
+        }
 
+        if (TeamNum == 1)
+        {
+            foreach (MeshRenderer material in meshRenderer)
+                material.material.color = Color.red;
+ 
+        }
+
+        else
+        {
+            foreach (MeshRenderer material in meshRenderer)
+                material.material.color = Color.blue;
+
+           
+        }
+
+        whoIsHolding = TeamNum;
         gameObject.transform.parent = PlayerT;
-        
+        IsBeingHeld = true;
+
     }
 
 
     public void DropFlag()
     {
+        Debug.Log("DROOOP");
         foreach (MeshRenderer material in meshRenderer)
+        {
             material.material.color = Color.green;
+        }
+          
+
         transform.parent = null;
 
         transform.position = new Vector3(transform.position.x, transform.position.y - DropOffset, transform.position.z);
+        IsBeingHeld = false;
+
+        
+    }
+
+    public void TakeAway()
+    {
+        
     }
 
 }
