@@ -17,6 +17,8 @@ public class FlagController : MonoBehaviour {
     public int team;
     bool TryingToTake;
     FlagPickup Flag;
+    //For when trying to take from other team
+    GameObject FlagHolder;
 
 
     public float currentRadius = 1.25f;
@@ -76,6 +78,9 @@ public class FlagController : MonoBehaviour {
                                 TryingToTake = true;
                                 Flag = p;
                                 HoldStarted = Time.time;
+                                FlagHolder =Flag.transform.parent.gameObject;
+                                BeingHeld();
+
 
 
 
@@ -115,7 +120,13 @@ public class FlagController : MonoBehaviour {
 
         if (playerInputController.GetButtonUp(PickUpFlag))
         {
-            TryingToTake = false;
+            if (TryingToTake)
+            {
+                TryingToTake = false;
+                FlagHolder.GetComponentInParent<Rigidbody>().drag = 0;
+            }
+           
+
         }
         
 		
@@ -139,6 +150,12 @@ public class FlagController : MonoBehaviour {
                     
                     
                 }
+
+                else
+                {
+                    TryingToTake = false;
+                    FlagHolder.GetComponentInParent<Rigidbody>().drag = 0;
+                }
             }
         }
     }
@@ -146,6 +163,9 @@ public class FlagController : MonoBehaviour {
 
     void BeingHeld()
     {
+
         //effect the player when there flags being taken
+        Debug.Log(FlagHolder);
+        FlagHolder.GetComponentInParent<Rigidbody>().drag = 100;
     }
 }
