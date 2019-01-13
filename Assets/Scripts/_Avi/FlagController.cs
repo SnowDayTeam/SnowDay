@@ -18,7 +18,7 @@ public class FlagController : MonoBehaviour {
     bool TryingToTake;
     FlagPickup Flag;
     //For when trying to take from other team
-    GameObject FlagHolder;
+    Rigidbody FlagHolder;
 
 
     public float currentRadius = 1.25f;
@@ -44,14 +44,13 @@ public class FlagController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-
+        //on flag take button press
         if (playerInputController.GetButtonDown(PickUpFlag) )
         {
            //if not already holding
             if (IsHolding==false)
             {
                
-                Debug.Log("GRAAB");
                 Collider[] sphereHits;
                 sphereHits = Physics.OverlapSphere(transform.position + center, currentRadius);
                 foreach (Collider col in sphereHits)
@@ -61,7 +60,7 @@ public class FlagController : MonoBehaviour {
                     {
                         if (p.transform.parent != null)
                         {
-                            Debug.Log("beingheld");
+                            
                             //take flag from team mate
                             if (p.whoIsHolding == team)
 
@@ -74,14 +73,12 @@ public class FlagController : MonoBehaviour {
                             //try to take flag from other team
                             else
                             {
-                                Debug.Log("TAKE FLAG");
+                         
                                 TryingToTake = true;
                                 Flag = p;
                                 HoldStarted = Time.time;
-                                FlagHolder =Flag.transform.parent.gameObject;
-                                BeingHeld();
-
-
+                               
+                               
 
 
                             }
@@ -100,7 +97,7 @@ public class FlagController : MonoBehaviour {
 
                 }
             }
-
+            //Drop Flag if already holding
             else
             {
 
@@ -109,6 +106,8 @@ public class FlagController : MonoBehaviour {
             }
         }
 
+
+        //When flag pickup is held down
         if (playerInputController.GetButton(PickUpFlag))
         {
             if (TryingToTake)
@@ -117,13 +116,15 @@ public class FlagController : MonoBehaviour {
                 
             }
         }
-
+        //on button release
         if (playerInputController.GetButtonUp(PickUpFlag))
         {
             if (TryingToTake)
             {
                 TryingToTake = false;
-                FlagHolder.GetComponentInParent<Rigidbody>().drag = 0;
+                Flag.GetComponentInParent<FlagController>().ModifyMovement(false);
+                //set drag to normal
+
             }
            
 
@@ -134,38 +135,72 @@ public class FlagController : MonoBehaviour {
 
     void CheckForFlag()
     {
+        //bool FoundFlag = false;
 
         Collider[] sphereHits;
         sphereHits = Physics.OverlapSphere(transform.position + center, currentRadius);
         foreach (Collider col in sphereHits)
         {
             
-            FlagPickup p = col.GetComponent<FlagPickup>();
-            if (p == Flag)
+            FlagPickup F = col.GetComponent<FlagPickup>();
+            if (F == Flag)
             {
+                //If the amount of time to steal flag has been met
                 if (Time.time - HoldStarted > RequiredHold)
                 {
-                    p.PickUpFlag(gameObject.transform, team);
+                    //Set the person your taking from movment to normal and break
+                    Flag.GetComponentInParent<FlagController>().ModifyMovement(false);
+                    Flag.PickUpFlag(transform, team);
+                    TryingToTake = false;
                     IsHolding = true;
-                    
+                    break;
+                
                     
                 }
-
+                // modify the other players movment
                 else
                 {
-                    TryingToTake = false;
-                    FlagHolder.GetComponentInParent<Rigidbody>().drag = 0;
+                    Flag.GetComponentInParent<FlagController>().ModifyMovement(true);
+                    break;
                 }
+               
+
+               
+
             }
         }
+        //flagfound
+        //if (FoundFlag == true)
+        //{
+        //    TryingToTake = true;
+            
+            
+        //}
+        ////flag not found
+        //else
+        //{
+        //    TryingToTake = false;
+           
+        //}
     }
 
 
-    void BeingHeld()
+
+    public void ModifyMovement(bool Slowdown)
     {
+        if (Slowdown)
+        {
+            GetComponentInParent<Rigidbody>().drag = 200;
+            Debug.Log("slow down "+gameObject);
 
-        //effect the player when there flags being taken
-        Debug.Log(FlagHolder);
-        FlagHolder.GetComponentInParent<Rigidbody>().drag = 100;
+        }
+
+        else
+        {
+            GetComponentInParent<Rigidbody>().drag = 0;
+            Debug.Log("Set " +gameObject+ "back to normal");
+        }
+
     }
+ 
 }
