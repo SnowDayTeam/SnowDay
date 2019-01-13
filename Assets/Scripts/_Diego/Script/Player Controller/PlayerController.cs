@@ -144,8 +144,12 @@ namespace SnowDay.Diego.CharacterController
             }
 
             playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
-            puppetMaster  = GetComponentInChildren<PuppetMaster>();
             playerCharacter.Initialize();
+            puppetMaster = null;// gameObject.GetComponentInChildren<PuppetMaster>();
+            puppetMaster =  gameObject.GetComponentInChildren<PuppetMaster>();
+
+            Debug.Log(puppetMaster.gameObject);
+            puppetMaster.mode = PuppetMaster.Mode.Kinematic;
             return playerCharacter;
         }
 
@@ -159,10 +163,11 @@ namespace SnowDay.Diego.CharacterController
         {
             SetSnowDayCharacter(character);
             playerCharacter.Active = enabled;
+            Debug.Log("other setCharacter");
             return playerCharacter;
         }
 
-      
+       
 
         // Update is called once per frame
         private void Update()
