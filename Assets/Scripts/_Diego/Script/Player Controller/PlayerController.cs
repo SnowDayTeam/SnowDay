@@ -146,7 +146,7 @@ namespace SnowDay.Diego.CharacterController
             playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
             playerCharacter.Initialize();
             puppetMaster = null;// gameObject.GetComponentInChildren<PuppetMaster>();
-            puppetMaster =  gameObject.GetComponentInChildren<PuppetMaster>();
+            puppetMaster = SnowDayCharacterGameObject.GetComponentInChildren<PuppetMaster>();
 
             Debug.Log(puppetMaster.gameObject);
             puppetMaster.mode = PuppetMaster.Mode.Kinematic;

@@ -180,8 +180,8 @@ public class ShovelController : MonoBehaviour
            // Debug.DrawRay(ShovelPoint.position, -Vector3.up, Color.red, 10);
             //Debug.Log(hit.collider.gameObject.name);
             Material hitMat = hit.transform.GetComponent<Material>();
-            int textX = (int)(tackScript.myTeam.splatmap.width * hit.textureCoord.x);
-            int textY = (int) (tackScript.myTeam.splatmap.height *  hit.textureCoord.y);
+            int textX = (int)(tackScript.mySnowPlane.splatmap.width * hit.textureCoord.x);
+            int textY = (int) (tackScript.mySnowPlane.splatmap.height *  hit.textureCoord.y);
 
             // Checker.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
          
@@ -189,7 +189,7 @@ public class ShovelController : MonoBehaviour
             //  SnowTackScript.splatmap.
 
             //Color temp = Checker.GetPixel(textX, textY);
-            Color temp = tackScript.myTeam.MapChecker.GetPixel(textX, textY);
+            Color temp = tackScript.mySnowPlane.MapChecker.GetPixel(textX, textY);
             //Debug.Log(textX + " :  " + textY);
             //Debug.Log(temp);
 

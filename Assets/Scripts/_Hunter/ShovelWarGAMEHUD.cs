@@ -10,9 +10,9 @@ public class ShovelWarGAMEHUD : MonoBehaviour
     [SerializeField]
     Text Team2;
     [SerializeField]
-    TeamManager Team1DriveWay;
+    SnowPlane Team1DriveWay;
     [SerializeField]
-    TeamManager Team2DriveWay;
+    SnowPlane Team2DriveWay;
     [SerializeField]
     Text Timer;
     [SerializeField]

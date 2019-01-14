@@ -3,49 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using SnowDay.Diego.CharacterController;
 using SnowDay.Diego.GameMode;
-public class ShovelWarManager : MonoBehaviour
+public class ShovelWarManager : ModeManager
 {
-    List<PlayerController> AllPlayers;
-    public Transform ScriptsPrefab;
+   
     ShovelWarGAMEHUD GAMEHUD;
     [System.Serializable]
-    public struct team
+    public class team : BaseTeam
     {
-        public TeamManager snowPlane;
-        public List<PlayerController> players;
-        public SpawnLocation[] spawnLocations;
-        public int score;
+        public SnowPlane snowPlane;
+      
     }
     public team[] Teams;
 
-    private void teamSplit()
-    {
-        int numTeam = 2;
-        int numplayers = AllPlayers.Count;
-        int midPt = numplayers / numTeam;
-        Teams[0].players = new List<PlayerController>();
-        Teams[1].players = new List<PlayerController>();
-        for (int i = 0; i < midPt; i++)
-        {
-            Debug.Log("team 1");
-            Teams[0].players.Add(AllPlayers[i]);
-            AllPlayers[i].GetComponentInChildren<SnowTackScript>().myTeam = Teams[0].snowPlane;
-            AllPlayers[i].MoveCharacter(Teams[0].spawnLocations[0].transform.position);
-
-        }
-        for (int i = midPt; i < numplayers; i++)
-        {
-            Debug.Log("team 2");
-            Teams[1].players.Add(AllPlayers[i]);
-            AllPlayers[i].GetComponentInChildren<SnowTackScript>().myTeam = Teams[1].snowPlane;
-            AllPlayers[i].MoveCharacter(Teams[1].spawnLocations[0].transform.position);
-
-        }
-        // Teams[0].playersAlive = Teams[0].players.Count;
-        //  Teams[1].playersAlive = Teams[1].players.Count;
-
-
-    }
     // Use this for initialization
     void Start ()
     {
@@ -55,16 +24,20 @@ public class ShovelWarManager : MonoBehaviour
             Debug.Log(AllPlayers[i].gameObject.name);
             Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2), false);
         }
-        teamSplit();
-        //link snowteam manager
+        teamSplit(Teams);
+
+        for (int i = 0; i < Teams.Length; i++)
+        {
+            for (int j = 0; j < Teams[i].players.Count; j++)
+            {
+                Teams[i].players[j].GetComponentInChildren<SnowTackScript>().mySnowPlane = Teams[i].snowPlane;
+            }
+        }
+
+      
         //2 foot transforms 
 
 
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+
 }
