@@ -23,6 +23,11 @@ public class CTFGameManager : MonoBehaviour {
 
     }
     public team[] Teams;
+    //for flag spawning
+    public int MaxFlags=2;
+    public int currentFlags=1;
+    
+
 
 
 
@@ -77,6 +82,24 @@ public class CTFGameManager : MonoBehaviour {
         //  Teams[1].playersAlive = Teams[1].players.Count;
 
         
+    }
+
+    public void CheckWinner()
+    {
+       
+        if (RedTeamScore > BlueTeamScore)
+        {
+            Debug.Log("red wins");
+            
+        }
+        else
+        {
+            Debug.Log("blue wins");
+           
+
+        }
+
+       
     }
 
 

@@ -20,18 +20,20 @@ public class FlagController : MonoBehaviour {
     //For when trying to take from other team
     Rigidbody FlagHolder;
 
-
+    //Spheretrace variables
     public float currentRadius = 1.25f;
     public Vector3 center = new Vector3(.04f, 1.26f, .03f);
 
     //InputVariables
     public PierInputManager.ButtonName PickUpFlag = PierInputManager.ButtonName.B;
     public PierInputManager.ButtonName ThrowButton = PierInputManager.ButtonName.Y;
-
     private PierInputManager playerInputController;
 
-    //Vector3.zero;
-    // Use this for initialization
+    //postion the flag will go when picked up
+    [SerializeField]
+    Transform FlagHoldPostion;
+
+
     void Start ()
     {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
@@ -67,7 +69,7 @@ public class FlagController : MonoBehaviour {
 
                             {
                                 Flag = p;
-                                p.PickUpFlag(gameObject.transform, team);
+                                p.PickUpFlag(gameObject.transform, team,FlagHoldPostion);
                                 IsHolding = true;
                             }
                             //try to take flag from other team
@@ -88,9 +90,14 @@ public class FlagController : MonoBehaviour {
                         //flag is in ground pick up
                         else
                         {
-                            Flag = p;
-                            p.PickUpFlag(gameObject.transform, team);
-                            IsHolding = true;
+                            //checks if flag was already planted in a goal
+                            if (p.GetComponent<FlagPickup>().CantBeInteractedWith == false)
+                            {
+                                Flag = p;
+                                p.PickUpFlag(gameObject.transform, team, FlagHoldPostion);
+                                IsHolding = true;
+                            }
+                           
                         }
 
                     }
@@ -150,7 +157,7 @@ public class FlagController : MonoBehaviour {
                 {
                     //Set the person your taking from movment to normal and break
                     Flag.GetComponentInParent<FlagController>().ModifyMovement(false);
-                    Flag.PickUpFlag(transform, team);
+                    Flag.PickUpFlag(transform, team, FlagHoldPostion);
                     TryingToTake = false;
                     IsHolding = true;
                     break;
@@ -191,14 +198,14 @@ public class FlagController : MonoBehaviour {
         if (Slowdown)
         {
             GetComponentInParent<Rigidbody>().drag = 200;
-            Debug.Log("slow down "+gameObject);
+            //Debug.Log("slow down "+gameObject);
 
         }
 
         else
         {
             GetComponentInParent<Rigidbody>().drag = 0;
-            Debug.Log("Set " +gameObject+ "back to normal");
+            //Debug.Log("Set " +gameObject+ "back to normal");
         }
 
     }
