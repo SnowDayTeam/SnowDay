@@ -29,18 +29,14 @@ public class LevelLoader : MonoBehaviour {
         }
         
 
-        if (currentDelay >= maxDelay)
-        {
-            StartCoroutine(LoadAsynchronously(5));
-
-        }
+       
     }
 
 	public void LoadLevel(int sceneIndex)
     {
         countDown = true;
         loadingScreen.SetActive(true);
-        
+        StartCoroutine(LoadAsynchronously(5));
 
     }
 
@@ -49,14 +45,22 @@ public class LevelLoader : MonoBehaviour {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
 
         loadingScreen.SetActive(true);
-
+        operation.allowSceneActivation = false;
         while(!operation.isDone)
         {
-          
-          
+
+            Debug.Log(operation.progress);
+            if (currentDelay >= maxDelay)
+            {
+                Debug.Log(currentDelay);
+                operation.allowSceneActivation = true;
+
+
+            }
             yield return null;
         }
 
+        
 
     }
 
