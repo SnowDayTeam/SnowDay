@@ -44,7 +44,7 @@ public class ShovelProjectile : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 10);
             if (Physics.Raycast(ray, out hit, 500, Mask))
             {
-                TeamManager manager = hit.collider.gameObject.GetComponent<TeamManager>();
+                SnowPlane manager = hit.collider.gameObject.GetComponent<SnowPlane>();
                 if(manager != null)
                 {
                     //Debug.Log(hit.collider.gameObject.name);

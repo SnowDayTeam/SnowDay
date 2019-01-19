@@ -6,7 +6,7 @@ public class PixelTest : MonoBehaviour
 {
     Material myMaterial;
     Texture2D test;
-    public TeamManager teamManager;
+    public SnowPlane teamManager;
     // Use this for initialization
     void Start() {
         myMaterial = GetComponent<MeshRenderer>().material;

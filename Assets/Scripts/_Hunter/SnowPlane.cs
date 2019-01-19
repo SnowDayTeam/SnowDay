@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class TeamManager : MonoBehaviour
+//rename to snow manager
+public class SnowPlane : MonoBehaviour
 {
     [HideInInspector]
     public Texture2D MapChecker;

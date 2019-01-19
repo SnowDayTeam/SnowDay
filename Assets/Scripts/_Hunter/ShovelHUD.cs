@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
+using SnowDay.Diego.CharacterController;
 
-public class ShovelHUD : MonoBehaviour {
+public class ShovelHUD : MonoBehaviour
+{
     [SerializeField]
     //NEED to find a better way to get player position this is only temporary
-     GameObject Player;
+    SnowDayCharacter Player;
     [SerializeField]
     float Height=1.35f;
     [SerializeField]
@@ -26,8 +29,9 @@ public class ShovelHUD : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        Player = gameObject.GetComponentInParent<SnowDayCharacter>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,7 +41,8 @@ public class ShovelHUD : MonoBehaviour {
 
     void FollowPlayer()
     {
-        transform.position = new Vector3(Player.transform.position.x+HorizontalOffset, Height, Player.transform.position.z);
+        if(Player!= null)
+            transform.position = new Vector3(Player.transform.position.x+HorizontalOffset, Height, Player.transform.position.z);
     }
     
     void GetSnowAmount()
