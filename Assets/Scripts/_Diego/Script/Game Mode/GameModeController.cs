@@ -8,11 +8,18 @@ namespace SnowDay.Diego.GameMode
 {
     class GameModeController : Singleton<GameModeController>
     {
+        //why is this a struct
         GameModeSettings gameMode;
 
         private void Awake()
         {
             DestroyOnLoad = false;
+            SetActivePlayers(new List<PlayerController>());
+            if (GameModeController.GetInstance() != this)
+            {
+                Debug.Log("destroyed");
+                Destroy(this.gameObject);
+            }
         }
 
         public void SetActivePlayers(List<PlayerController> activePlayers)

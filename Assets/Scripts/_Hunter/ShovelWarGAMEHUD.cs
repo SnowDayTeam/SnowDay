@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShovelWarGAMEHUD : MonoBehaviour {
+public class ShovelWarGAMEHUD : MonoBehaviour
+{
     [SerializeField]
     Text Team1;
     [SerializeField]
     Text Team2;
     [SerializeField]
-    GameObject Team1DriveWay;
+    SnowPlane Team1DriveWay;
     [SerializeField]
-    GameObject Team2DriveWay;
+    SnowPlane Team2DriveWay;
     [SerializeField]
     Text Timer;
     [SerializeField]
     bool SnowClearCondition = false;
     [SerializeField]
     GameObject WinScreen;
-
+    [SerializeField]
     int MatchLength = 5;
     int TimeRemaining;
     float LastSecond=0;
-   
 
-   
+
 
 
 
@@ -35,7 +35,8 @@ public class ShovelWarGAMEHUD : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (TimeRemaining > 0)
         {
             if (Time.time - LastSecond > 1)
@@ -47,7 +48,6 @@ public class ShovelWarGAMEHUD : MonoBehaviour {
 
         
         }
-
         else
         {
             CheckForWinner();
@@ -61,21 +61,21 @@ public class ShovelWarGAMEHUD : MonoBehaviour {
 
     void SetTeamScores()
     {
-        Team1.text = "Red :" + Mathf.RoundToInt( Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter / 65536 * 100)+ "%";
+        Team1.text = "Red :" + Mathf.RoundToInt( Team1DriveWay.RedPixelCounter / 65536 * 100)+ "%";
         //Debug.Log(Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter / 65536 * 100);
-        Team2.text = "Blue :" + Mathf.RoundToInt (Team2DriveWay.GetComponent<TeamManager>().RedPixelCounter / 65536 * 100) + "%";
+        Team2.text = "Blue :" + Mathf.RoundToInt (Team2DriveWay.RedPixelCounter / 65536 * 100) + "%";
 
         //Note sure if i want this to be a win condition
         if (SnowClearCondition)
         {
             
-            if (Mathf.RoundToInt(Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter / 65536 * 100) > 99)
+            if (Mathf.RoundToInt(Team1DriveWay.RedPixelCounter / 65536 * 100) > 99)
             {
                 //redWins
                 Winner(true);
             }
 
-            if (Mathf.RoundToInt(Team2DriveWay.GetComponent<TeamManager>().RedPixelCounter / 65536 * 100) > 99)
+            if (Mathf.RoundToInt(Team2DriveWay.RedPixelCounter / 65536 * 100) > 99)
             {
                 //BlueWins
                 Winner(false);
@@ -84,7 +84,7 @@ public class ShovelWarGAMEHUD : MonoBehaviour {
  
 
     }
-
+    //move to manager 
     void MatchTimer()
     {
         TimeRemaining--;
@@ -97,21 +97,23 @@ public class ShovelWarGAMEHUD : MonoBehaviour {
 
 
     }
+
+    //move to manager 
     void CheckForWinner()
     {
-        if (Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter> Team2DriveWay.GetComponent<TeamManager>().RedPixelCounter)
+        if (Team1DriveWay.RedPixelCounter> Team2DriveWay.RedPixelCounter)
         {
             //Red Team Wins
             Winner(true);
         }
 
-        else if(Team2DriveWay.GetComponent<TeamManager>().RedPixelCounter> Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter)
+        else if(Team2DriveWay.RedPixelCounter> Team1DriveWay.RedPixelCounter)
         {
             //blue team wins
             Winner(false);
         }
 
-        else if(Team2DriveWay.GetComponent<TeamManager>().RedPixelCounter == Team1DriveWay.GetComponent<TeamManager>().RedPixelCounter)
+        else if(Team2DriveWay.RedPixelCounter == Team1DriveWay.RedPixelCounter)
         {
             TimeRemaining = 30;
         }

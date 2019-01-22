@@ -1,97 +1,97 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SnowDay.Diego.Singleton;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 using SnowDay.Diego.CharacterController;
+using SnowDay.Diego.GameMode;
 
-namespace SnowDay.Diego.GameMode
+
+/// <summary>
+/// Keeps track of what team has the most points
+/// </summary>
+/// <remarks>
+/// <para>Currently Only Handles 2 Teams</para>
+/// </remarks>
+public class TDMManager : ModeManager
 {
-    /// <summary>
-    /// Keeps track of what team has the most points
-    /// </summary>
-    /// <remarks>
-    /// <para>Currently Only Handles 2 Teams</para>
-    /// </remarks>
-    public class TDMManager : MonoBehaviour
+    private bool startCountDown;
+    public float GameOverCountDown = 4;
+    [Header("UI Text")]
+    public Text CountDownText;
+    public class team : BaseTeam
     {
-       // public int numplayers = 4;
-        
-        List<PlayerController> AllPlayers;
-        public struct team
+        public int playersAlive;
+        // public List<PlayerController> players;
+        // public int score;
+    }
+    public team[] Teams;
+      
+    //int[] teamScore;
+
+    public int GetTeamScore(int teamID)
+    {
+        return Teams[teamID].score;
+    }
+
+    /// <summary>
+    /// Increase teams score based on the given ID and points amount
+    /// </summary>
+    /// <param name="score">Score to increase current team score by</param>
+    /// <param name="teamID">ID of the team to add the score to.</param>
+    public void IncreaseTeamScore(int score, int teamID)
+    {
+        Teams[teamID].score += score;
+    }
+
+    public void playerDeadReport(int teamID)
+    {
+        Teams[teamID].playersAlive --;
+        if (Teams[teamID].playersAlive <= 0)
         {
-            public int playersAlive;
-            public List<PlayerController> players;
-            public int score;
-        }
-        public team[] Teams;
-        public SnowDayCamera cam;
-        //int[] teamScore;
-        public Transform ScriptsPrefab;
-        public int GetTeamScore(int teamID)
-        {
-            return Teams[teamID].score;
+            Debug.Log("team # " + teamID + " dead");
+            startCountDown = true;
+            CountDownText.enabled = true;
         }
 
-        /// <summary>
-        /// Increase teams score based on the given ID and points amount
-        /// </summary>
-        /// <param name="score">Score to increase current team score by</param>
-        /// <param name="teamID">ID of the team to add the score to.</param>
-        public void IncreaseTeamScore(int score, int teamID)
+    }
+       
+    private void Start()
+    {
+        AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+        cam.SetTargetPlayers(AllPlayers);
+        cam.Initialize();
+        for (int i = 0; i < AllPlayers.Count; i++)
         {
-            Teams[teamID].score += score;
+            Debug.Log(AllPlayers[i].gameObject.name);
+            Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2),false);
         }
+        teamSplit(Teams);
 
-        public void playerDeadReport(int teamID)
+        for (int i = 0; i < Teams.Length; i++)
         {
-            Teams[teamID].playersAlive --;
-
-        }
-        [ContextMenu("split")]
-        private void teamSplit(int numTeam = 2)
-        {
-            Teams = new team[numTeam];
-            if (numTeam == 2)
+            for (int j = 0; j < Teams[i].players.Count; j++)
             {
-                int numplayers = AllPlayers.Count;
-                int midPt = numplayers / numTeam;
-                Teams[0].players = new List<PlayerController>();
-                Teams[1].players = new List<PlayerController>();
-                for (int i = 0; i < midPt; i++)
-                {
-                    Debug.Log("team 1");
-                    Teams[0].players.Add(AllPlayers[i]);
-                    AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID = 0;
-                }
-                for (int i = midPt; i < numplayers; i++)
-                {
-                    Debug.Log("team 2");
-                    Teams[1].players.Add(AllPlayers[i]);
-                    AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID = 1;
-                }
-                Teams[0].playersAlive = Teams[0].players.Count;
-                Teams[1].playersAlive = Teams[1].players.Count;
+                Teams[i].players[j].GetComponentInChildren<PlayerActor>().TeamID = i;
             }
-
         }
-        private void Start()
+
+    }
+
+    private void Update()
         {
-            AllPlayers = GameModeController.GetInstance().GetActivePlayers();
-            cam.SetTargetPlayers(AllPlayers);
-            cam.Initialize();
-            for (int i = 0; i < AllPlayers.Count; i++)
+            if (startCountDown)
             {
-                Debug.Log(AllPlayers[i].gameObject.name);
-                Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2),false);
+                GameOverCountDown -= Time.deltaTime;
+                CountDownText.text = GameOverCountDown.ToString("0");
+                if(GameOverCountDown <= 0)
+                {
+                    SceneManager.LoadScene("LevelSelect");
+                }
             }
-            teamSplit();
-
-        }
-
-        private void Update()
-        {
             //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
         }
     }
     
-}
+
