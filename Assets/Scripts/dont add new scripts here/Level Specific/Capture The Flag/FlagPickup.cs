@@ -120,9 +120,11 @@ public class FlagPickup : MonoBehaviour
         {
             Debug.Log("setholding to null");
             transform.parent.GetComponent<FlagController>().IsHolding = false;
+            transform.parent.GetComponent<FlagController>().numberOfFlagsHeld = 0;
             //must add offset due to balance out flags height when transfering from one player to another
             transform.position = new Vector3(transform.position.x, transform.position.y - DropOffset, transform.position.z);
-            
+
+
         }
 
         if (TeamNum == 1)
