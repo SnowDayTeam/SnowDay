@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowBall : MonoBehaviour {
+public class SnowBall : MonoBehaviour
+{
 
     Rigidbody rigid;
     private bool Grow;
     public float moveTime;
     Vector3 localSize;
     Vector3 angleRot;
-	public float test = 5;
-	public float test2 = 9;
-	public float test3 = 13;
+
 
 	//public com.ootii.Actors.AnimationControllers.MotionController mController;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         rigid = GetComponent<Rigidbody>();
         //moveTime = 0.0002f;
         localSize = gameObject.transform.localScale;
@@ -55,8 +55,14 @@ public class SnowBall : MonoBehaviour {
     private void OnCollisionStay(Collision col)
     {
         if (col.gameObject.tag == "Snow")
+        {
             Grow = true;
+
+        }
         else
+        {
             Grow = false;
+
+        }
     }
 }

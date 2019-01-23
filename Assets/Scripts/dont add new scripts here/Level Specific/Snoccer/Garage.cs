@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using RootMotion.FinalIK;
 
-public class Garage : MonoBehaviour {
-    public bool IsTeam2;
+public class Garage : MonoBehaviour
+{
+    public int TeamID; 
+   // public bool IsTeam2;
     public Snoccer snoccer;
     public GameObject prefab;
     public GameObject ballDrop;
@@ -27,7 +29,7 @@ public class Garage : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Jump"))
         {
-            ResetIK();
+            ResetIK();///PIER
         }
     }
 
@@ -49,14 +51,18 @@ public class Garage : MonoBehaviour {
             //Debug.Log(snoccer.pos);
 
             //gives a point to team 2 if team 2 is true, gives a point to team one if false3
-            if (IsTeam2)
-            {
-                snoccer.Team2_Points++;
-            }
-            else
-            {
-                snoccer.Team1_Points++;
-            }
+            SoccerManager manager = FindObjectOfType<SoccerManager>();
+
+            manager.increaseScore(TeamID);
+
+            //if (IsTeam2)
+            //{
+            //    snoccer.Team2_Points++;
+            //}
+            //else
+            //{
+            //    snoccer.Team1_Points++;
+            //}
         }
     }
 

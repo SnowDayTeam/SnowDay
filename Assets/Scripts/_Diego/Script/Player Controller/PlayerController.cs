@@ -70,14 +70,14 @@ namespace SnowDay.Diego.CharacterController
         {
             puppetMaster.mode = PuppetMaster.Mode.Disabled ;
             playerCharacter.transform.position = position;
-            Debug.Log("puppet disabled");
+         //   Debug.Log("puppet disabled");
             Invoke("ActivatePuppet", 5);
         }
 
         public void ActivatePuppet()
         {
-            Debug.Log(puppetMaster.mode);
-         //   puppetMaster.mode = PuppetMaster.Mode.Active;
+           // Debug.Log(puppetMaster.mode);
+            puppetMaster.mode = PuppetMaster.Mode.Active;
 
         }
         /// <summary>

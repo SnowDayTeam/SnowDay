@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class killBall : MonoBehaviour {
+public class killBall : MonoBehaviour
+{
 
 	private void OnTriggerEnter(Collider other)
 	{

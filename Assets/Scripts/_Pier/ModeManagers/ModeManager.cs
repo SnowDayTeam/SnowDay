@@ -17,6 +17,25 @@ public class ModeManager : MonoBehaviour
         public int score;
 
     }
+    public virtual BaseTeam[] getTeam() {
+        return null;
+    }
+    public virtual void Start()
+    {
+        AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+        if(cam!= null)
+        {
+            cam.SetTargetPlayers(AllPlayers);
+            cam.Initialize();
+        }
+
+        for (int i = 0; i < AllPlayers.Count; i++)
+        {
+            Debug.Log(AllPlayers[i].gameObject.name);
+            Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2), false);
+        }
+        teamSplit(getTeam());
+    }
    // public BaseTeam[] Teams;
     protected void teamSplit(BaseTeam[] Teams)
     {
@@ -41,9 +60,11 @@ public class ModeManager : MonoBehaviour
             AllPlayers[i].MoveCharacter(Teams[1].spawnLocations[i - midPt].transform.position);
 
         }
-        // Teams[0].playersAlive = Teams[0].players.Count;
-        //  Teams[1].playersAlive = Teams[1].players.Count;
+
+      
+            // Teams[0].playersAlive = Teams[0].players.Count;
+            //  Teams[1].playersAlive = Teams[1].players.Count;
 
 
-    }
+        }
 }
