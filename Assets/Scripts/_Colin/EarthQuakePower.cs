@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using RootMotion;
 
 public class EarthQuakePower : MonoBehaviour {
 
