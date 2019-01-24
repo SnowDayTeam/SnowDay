@@ -64,7 +64,6 @@ public class TDMManager : ModeManager
     {
         base.Start();
 
-
         for (int i = 0; i < Teams.Length; i++)
         {
             for (int j = 0; j < Teams[i].players.Count; j++)
@@ -76,18 +75,18 @@ public class TDMManager : ModeManager
     }
 
     private void Update()
+    {
+        if (startCountDown)
         {
-            if (startCountDown)
+            GameOverCountDown -= Time.deltaTime;
+            CountDownText.text = GameOverCountDown.ToString("0");
+            if(GameOverCountDown <= 0)
             {
-                GameOverCountDown -= Time.deltaTime;
-                CountDownText.text = GameOverCountDown.ToString("0");
-                if(GameOverCountDown <= 0)
-                {
-                    SceneManager.LoadScene("LevelSelect");
-                }
+                SceneManager.LoadScene("LevelSelect");
             }
-            //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
         }
+            //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
     }
+}
     
 

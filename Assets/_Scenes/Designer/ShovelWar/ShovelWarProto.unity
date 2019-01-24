@@ -15464,6 +15464,54 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 1996223284}
+    ActiveGameObject: {fileID: 1996223284}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1914983320}
+    ActiveGameObject: {fileID: 1914983320}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1215794305}
+    ActiveGameObject: {fileID: 1215794305}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1535465743}
+    ActiveGameObject: {fileID: 1535465743}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 2068075034}
     ActiveGameObject: {fileID: 2068075034}
     GUIDsList: []
@@ -15500,18 +15548,6 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1215794305}
-    ActiveGameObject: {fileID: 1215794305}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
     - {fileID: 1443600131}
     ActiveGameObject: {fileID: 1443600131}
     GUIDsList: []
@@ -15526,18 +15562,6 @@ MonoBehaviour:
     list:
     - {fileID: 1735952219}
     ActiveGameObject: {fileID: 1735952219}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1996223284}
-    ActiveGameObject: {fileID: 1996223284}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -15568,18 +15592,6 @@ MonoBehaviour:
     - {fileID: 663096670}
     - {fileID: 919828553}
     ActiveGameObject: {fileID: 663096670}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1914983320}
-    ActiveGameObject: {fileID: 1914983320}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -15736,18 +15748,6 @@ MonoBehaviour:
     list:
     - {fileID: 383620759}
     ActiveGameObject: {fileID: 383620759}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1788893329}
-    ActiveGameObject: {fileID: 1788893329}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -19378,7 +19378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141e96df7bc1cb4884880e1ceb3ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeam: {fileID: 0}
+  mySnowPlane: {fileID: 0}
   snowTracks: []
   _layerMask:
     serializedVersion: 2
@@ -20059,7 +20059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141e96df7bc1cb4884880e1ceb3ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeam: {fileID: 0}
+  mySnowPlane: {fileID: 0}
   snowTracks: []
   _layerMask:
     serializedVersion: 2
@@ -20708,7 +20708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141e96df7bc1cb4884880e1ceb3ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeam: {fileID: 0}
+  mySnowPlane: {fileID: 0}
   snowTracks: []
   _layerMask:
     serializedVersion: 2
@@ -31469,11 +31469,6 @@ Transform:
   m_Father: {fileID: 1201776626}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1788893329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1865025666495956, guid: 3ce0cb5b5257fae419c591fbc810766e,
-    type: 2}
-  m_PrefabInternal: {fileID: 795005153}
 --- !u!1 &1791196746
 GameObject:
   m_ObjectHideFlags: 0
@@ -34196,23 +34191,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScriptsPrefab: {fileID: 4156894757607124, guid: 3ce0cb5b5257fae419c591fbc810766e,
     type: 2}
+  cam: {fileID: 0}
   Teams:
-  - snowPlane: {fileID: 1215794311}
-    players: []
+  - players: []
     spawnLocations:
     - {fileID: 663096672}
     - {fileID: 1460657772}
     - {fileID: 919828555}
     - {fileID: 1670870130}
     score: 0
-  - snowPlane: {fileID: 1443600132}
-    players: []
+    teamColor: {r: 1, g: 0, b: 0, a: 0}
+    snowPlane: {fileID: 1215794311}
+  - players: []
     spawnLocations:
     - {fileID: 616208487}
     - {fileID: 1959964150}
     - {fileID: 261837132}
     - {fileID: 939393666}
     score: 0
+    teamColor: {r: 0, g: 0, b: 1, a: 0}
+    snowPlane: {fileID: 1443600132}
 --- !u!4 &1996223286
 Transform:
   m_ObjectHideFlags: 0

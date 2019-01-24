@@ -42,7 +42,6 @@ public class SoccerManager : ModeManager
             }
         }
 
-
     }
 
     // Update is called once per frame
@@ -55,8 +54,6 @@ public class SoccerManager : ModeManager
             {
                 Debug.Log("team " + i + " won ");
             }
-
-
 
         }
 
