@@ -29,6 +29,10 @@ public class FlagController : MonoBehaviour {
     public PierInputManager.ButtonName ThrowButton = PierInputManager.ButtonName.Y;
     private PierInputManager playerInputController;
 
+    [HideInInspector]
+    public int numberOfFlagsHeld = 0;
+
+
     //postion the flag will go when picked up
     [SerializeField]
     Transform FlagHoldPostion;
@@ -57,35 +61,50 @@ public class FlagController : MonoBehaviour {
                 sphereHits = Physics.OverlapSphere(transform.position + center, currentRadius);
                 foreach (Collider col in sphereHits)
                 {
+                    numberOfFlagsHeld++;
+
                     FlagPickup p = col.GetComponent<FlagPickup>();
+
                     if (p != null)
                     {
-                        if (p.transform.parent != null)
+                        Debug.Log("Check 1");
+
+                    
+                        if (numberOfFlagsHeld == 1)
                         {
-                            
-                            //take flag from team mate
-                            if (p.whoIsHolding == team)
-
-
+                            if (p.transform.parent != null)
                             {
-                                Flag = p;
-                                p.PickUpFlag(gameObject.transform, team,FlagHoldPostion);
-                                IsHolding = true;
+                                Debug.Log("Check 2");
+
+                                //take flag from team mate
+                                if (p.whoIsHolding == team)
+                                {
+                                    Debug.Log("Check 3");
+
+                                    Flag = p;
+                                    p.PickUpFlag(gameObject.transform, team, FlagHoldPostion);
+                                    IsHolding = true;
+
+                                }
+                                //try to take flag from other team
+                                else
+                                {
+
+                                    if (numberOfFlagsHeld == 2)
+                                    {
+                                        Debug.Log("Check 4");
+
+                                        TryingToTake = true;
+                                        Flag = p;
+                                        HoldStarted = Time.time;
+                                        //If the amount of time to steal flag has been met
+
+                                        Flag.PickUpFlag(transform, team, FlagHoldPostion);
+                                        IsHolding = true;
+
+                                    }
+                                }
                             }
-                            //try to take flag from other team
-                            else
-                            {
-                         
-                                TryingToTake = true;
-                                Flag = p;
-                                HoldStarted = Time.time;
-                               
-                               
-
-
-                            }
-
-
                         }
                         //flag is in ground pick up
                         else
@@ -93,15 +112,18 @@ public class FlagController : MonoBehaviour {
                             //checks if flag was already planted in a goal
                             if (p.GetComponent<FlagPickup>().CantBeInteractedWith == false)
                             {
+                                Debug.Log("Check 5");
+
                                 Flag = p;
                                 p.PickUpFlag(gameObject.transform, team, FlagHoldPostion);
                                 IsHolding = true;
+
                             }
-                           
+
+                            //    }
+
                         }
-
                     }
-
                 }
             }
             //Drop Flag if already holding
@@ -109,6 +131,7 @@ public class FlagController : MonoBehaviour {
             {
 
                 Flag.DropFlag();
+                numberOfFlagsHeld = 0;
                 IsHolding = false;
             }
         }
@@ -119,7 +142,7 @@ public class FlagController : MonoBehaviour {
         {
             if (TryingToTake)
             {
-                CheckForFlag();
+           //     CheckForFlag();
                 
             }
         }
@@ -131,24 +154,18 @@ public class FlagController : MonoBehaviour {
                 TryingToTake = false;
                 Flag.GetComponentInParent<FlagController>().ModifyMovement(false);
                 //set drag to normal
-
-            }
-           
-
-        }
-        
-		
+            }        
+        }	
 	}
 
-    void CheckForFlag()
+  /*  void CheckForFlag()
     {
         //bool FoundFlag = false;
-
+        Debug.Log("Check For Flag");
         Collider[] sphereHits;
         sphereHits = Physics.OverlapSphere(transform.position + center, currentRadius);
         foreach (Collider col in sphereHits)
         {
-            
             FlagPickup F = col.GetComponent<FlagPickup>();
             if (F == Flag)
             {
@@ -161,8 +178,6 @@ public class FlagController : MonoBehaviour {
                     TryingToTake = false;
                     IsHolding = true;
                     break;
-                
-                    
                 }
                 // modify the other players movment
                 else
@@ -170,10 +185,6 @@ public class FlagController : MonoBehaviour {
                     Flag.GetComponentInParent<FlagController>().ModifyMovement(true);
                     break;
                 }
-               
-
-               
-
             }
         }
         //flagfound
@@ -190,8 +201,7 @@ public class FlagController : MonoBehaviour {
            
         //}
     }
-
-
+    */
 
     public void ModifyMovement(bool Slowdown)
     {
