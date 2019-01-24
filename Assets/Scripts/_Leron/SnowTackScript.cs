@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnowTackScript : MonoBehaviour
 {
-    public TeamManager myTeam;
+    public SnowPlane mySnowPlane;
     //public static RenderTexture splatmap;// made this static so refference is shared between all instances  // used by ShovelProjectile keep it public 
     //public Shader drawShader;
 
@@ -49,17 +49,17 @@ public class SnowTackScript : MonoBehaviour
         
         for (int i = 0; i < snowTracks.Length; i++)
         {
-            
-            if (snowTracks[i].active && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
+
+            if (snowTracks[i].active && snowTracks[i].transform != null && Physics.Raycast(snowTracks[i].transform.position, -Vector3.up, out _groundHit, 1f, _layerMask))
             {
                 //  Debug.Log(_groundHit.textureCoord.x.ToString() + "," + _groundHit.textureCoord.y.ToString());
 
-                myTeam.drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
-                myTeam.drawMaterial.SetFloat("_Strength", snowTracks[i]._brushStrength);
-                myTeam.drawMaterial.SetFloat("_Size", snowTracks[i]._brushSize);
-                RenderTexture temp = RenderTexture.GetTemporary(myTeam.splatmap.width, myTeam.splatmap.height, 0, RenderTextureFormat.ARGBFloat);
-                Graphics.Blit(myTeam.splatmap, temp);
-                Graphics.Blit(temp, myTeam.splatmap, myTeam.drawMaterial);
+                mySnowPlane.drawMaterial.SetVector("_Coordinate", new Vector4(_groundHit.textureCoord.x, _groundHit.textureCoord.y, 0, 0));
+                mySnowPlane.drawMaterial.SetFloat("_Strength", snowTracks[i]._brushStrength);
+                mySnowPlane.drawMaterial.SetFloat("_Size", snowTracks[i]._brushSize);
+                RenderTexture temp = RenderTexture.GetTemporary(mySnowPlane.splatmap.width, mySnowPlane.splatmap.height, 0, RenderTextureFormat.ARGBFloat);
+                Graphics.Blit(mySnowPlane.splatmap, temp);
+                Graphics.Blit(temp, mySnowPlane.splatmap, mySnowPlane.drawMaterial);
                 RenderTexture.ReleaseTemporary(temp);
             }
         }

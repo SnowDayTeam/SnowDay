@@ -10,7 +10,10 @@ public class TobbogganTestCarl : MonoBehaviour
     public PierInputManager manager;
     public Transform sled;
     public float velTurnLimiter = 500;
-    Animator animaton;
+    Animator animator;
+    public Transform character;
+    float h;
+    float v;
 
     float userForceInput;
     [SerializeField] private float m_MovePower = 5; // The force added to the ball to move it.
@@ -26,7 +29,9 @@ public class TobbogganTestCarl : MonoBehaviour
     private Transform cam; // A reference to the main camera in the scenes transform
     private Vector3 camForward; // The current forward direction of the camera
     private bool jump; // whether the jump button is currently pressed
+    private IEnumerator coroutine;
 
+    float duration = 0.5f; // 3 seconds you can change this 
 
     private void Awake()
     {
@@ -52,15 +57,17 @@ public class TobbogganTestCarl : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         // Set the maximum angular velocity.
         GetComponent<Rigidbody>().maxAngularVelocity = m_MaxAngularVelocity;
+        animator = character.GetComponent<Animator>();
     }
 
     private void Update()
     {
+        print("H " + h + "V " + v);
         // Get the axis and jump input.
        
 
-        float h = manager.GetAxis(PierInputManager.ButtonName.Left_Horizontal);
-        float v = manager.GetAxis(PierInputManager.ButtonName.Left_Vertical);
+         h = manager.GetAxis(PierInputManager.ButtonName.Left_Horizontal);
+         v = manager.GetAxis(PierInputManager.ButtonName.Left_Vertical);
         jump = manager.GetButton(PierInputManager.ButtonName.A);
 
         if (h > v) {
@@ -78,7 +85,7 @@ public class TobbogganTestCarl : MonoBehaviour
             Debug.DrawRay(transform.position, move * 5, Color.blue);
             Debug.DrawRay(transform.position, sled.right * 5, Color.red);
             //print(Vector3.Angle(sled.right, move));
-            print(m_Rigidbody.velocity.magnitude);
+         //   print(m_Rigidbody.velocity.magnitude);
 
         }
         else
@@ -98,50 +105,71 @@ public class TobbogganTestCarl : MonoBehaviour
     public void Move(Vector3 moveDirection, bool jump)
     {
         // If using torque to rotate the ball...
-        if (m_UseTorque)
+        if (Mathf.Abs(h) < 0.2 && Mathf.Abs(v) < 0.2)
         {
-
-            if(Vector3.Angle(sled.right, move) < 90){
-                m_Rigidbody.AddTorque(sled.right * (m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude/velTurnLimiter)));
-                Debug.DrawRay(transform.position, sled.right * (m_MovePower * userForceInput) * 10, Color.yellow);
-            } else {
-                m_Rigidbody.AddTorque(sled.right * (-m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude/velTurnLimiter)));
-                Debug.DrawRay(transform.position, sled.right * (-m_MovePower * userForceInput) * 10, Color.yellow);
-
-
-            }
-
-            // ... add torque around the axis defined by the move direction.
-            // m_Rigidbody.AddTorque(new Vector3(moveDirection.z, 0, -moveDirection.x) * m_MovePower);
-
-
-
+            animator.SetBool("Forward", true);
         }
-        else
-        {
-            // Otherwise add force in the move direction.
-            if (Vector3.Angle(sled.right, move) < 90)
+        else {
+            animator.SetBool("Forward", false);
+            if (m_UseTorque)
             {
-                m_Rigidbody.AddForce(sled.right * (m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude/velTurnLimiter)));
-                Debug.DrawRay(transform.position, sled.right * (m_MovePower * userForceInput) * 10, Color.yellow);
 
-
+                if (Vector3.Angle(sled.right, move) < 90) {
+                    m_Rigidbody.AddTorque(sled.right * (m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude / velTurnLimiter)));
+                    Debug.DrawRay(transform.position, sled.right * (m_MovePower * userForceInput) * 10, Color.yellow);
+                } else {
+                    m_Rigidbody.AddTorque(sled.right * (-m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude / velTurnLimiter)));
+                    Debug.DrawRay(transform.position, sled.right * (-m_MovePower * userForceInput) * 10, Color.yellow);
+                }
+                // ... add torque around the axis defined by the move direction.
+                // m_Rigidbody.AddTorque(new Vector3(moveDirection.z, 0, -moveDirection.x) * m_MovePower);
             }
             else
             {
-                m_Rigidbody.AddForce(sled.right * (-m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude/velTurnLimiter)));
-                Debug.DrawRay(transform.position, sled.right * (-m_MovePower * userForceInput) * 10, Color.yellow);
+                // Otherwise add force in the move direction.
+                if (Vector3.Angle(sled.right, move) < 90)
+                {
+                    m_Rigidbody.AddForce(sled.right * (m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude / velTurnLimiter)));
+                    Debug.DrawRay(transform.position, sled.right * (m_MovePower * userForceInput) * 10, Color.yellow);
+                    animator.SetBool("Left", true);
+                }
+                // coroutine = Delay(0.5f);
+                // StartCoroutine(coroutine);            }
+                else
+                {
+                    m_Rigidbody.AddForce(sled.right * (-m_MovePower * userForceInput * (m_Rigidbody.velocity.magnitude / velTurnLimiter)));
+                    Debug.DrawRay(transform.position, sled.right * (-m_MovePower * userForceInput) * 10, Color.yellow);
+                    animator.SetBool("Left", false);
 
+                    // coroutine = Delay(0.5f);
+                    // StartCoroutine(coroutine);
+                }
+            }
 
+            // If on the ground and jump is pressed...
+            if (Physics.Raycast(transform.position, -Vector3.up, k_GroundRayLength) && jump)
+            {
+                // ... add force in upwards.
+                unityEvent.Invoke();
+                m_Rigidbody.AddForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
             }
         }
+    }
 
-        // If on the ground and jump is pressed...
-        if (Physics.Raycast(transform.position, -Vector3.up, k_GroundRayLength) && jump)
+    private IEnumerator Delay(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        print("Test");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Left") || animator.GetCurrentAnimatorStateInfo(0).IsName("Forward"))
         {
-            // ... add force in upwards.
-            unityEvent.Invoke();
-            m_Rigidbody.AddForce(Vector3.up * m_JumpPower, ForceMode.Impulse);
+            animator.SetTrigger("Right");
+            print("Right");
+        }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Right") || animator.GetCurrentAnimatorStateInfo(0).IsName("Forward"))
+        {
+            animator.SetTrigger("Left");
+            print("Left");
         }
     }
 }

@@ -10,8 +10,8 @@ namespace SnowDay.Diego.CharacterController
         [Header("Third Person Character")]
         public GameObject SnowDayCharacterGameObject;
 
-       // [Header("Puppet Master")]
-       // public PuppetMaster PuppetMaster;
+        // [Header("Puppet Master")]
+        public PuppetMaster puppetMaster;
 
         [Header("Key Bindings")]
         public PierInputManager.ButtonName HorizontalAxis = PierInputManager.ButtonName.Left_Horizontal;
@@ -66,7 +66,20 @@ namespace SnowDay.Diego.CharacterController
           //  SetSnowDayCharacter(PlayerPrefab[currentPrefab], false);
         
         }
+        public void MoveCharacter(Vector3 position)
+        {
+            puppetMaster.mode = PuppetMaster.Mode.Disabled ;
+            playerCharacter.transform.position = position;
+         //   Debug.Log("puppet disabled");
+            Invoke("ActivatePuppet", 5);
+        }
 
+        public void ActivatePuppet()
+        {
+           // Debug.Log(puppetMaster.mode);
+            puppetMaster.mode = PuppetMaster.Mode.Active;
+
+        }
         /// <summary>
         /// Get Active Player ID
         /// </summary>
@@ -132,6 +145,11 @@ namespace SnowDay.Diego.CharacterController
 
             playerCharacter = SnowDayCharacterGameObject.GetComponentInChildren<SnowDayCharacter>();
             playerCharacter.Initialize();
+            puppetMaster = null;// gameObject.GetComponentInChildren<PuppetMaster>();
+            puppetMaster = SnowDayCharacterGameObject.GetComponentInChildren<PuppetMaster>();
+
+            Debug.Log(puppetMaster.gameObject);
+            puppetMaster.mode = PuppetMaster.Mode.Kinematic;
             return playerCharacter;
         }
 
@@ -145,10 +163,11 @@ namespace SnowDay.Diego.CharacterController
         {
             SetSnowDayCharacter(character);
             playerCharacter.Active = enabled;
+            Debug.Log("other setCharacter");
             return playerCharacter;
         }
 
-      
+       
 
         // Update is called once per frame
         private void Update()

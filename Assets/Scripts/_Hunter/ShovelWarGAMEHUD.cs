@@ -10,22 +10,21 @@ public class ShovelWarGAMEHUD : MonoBehaviour
     [SerializeField]
     Text Team2;
     [SerializeField]
-    TeamManager Team1DriveWay;
+    SnowPlane Team1DriveWay;
     [SerializeField]
-    TeamManager Team2DriveWay;
+    SnowPlane Team2DriveWay;
     [SerializeField]
     Text Timer;
     [SerializeField]
     bool SnowClearCondition = false;
     [SerializeField]
     GameObject WinScreen;
-
+    [SerializeField]
     int MatchLength = 5;
     int TimeRemaining;
     float LastSecond=0;
-   
 
-   
+
 
 
 
@@ -85,7 +84,7 @@ public class ShovelWarGAMEHUD : MonoBehaviour
  
 
     }
-
+    //move to manager 
     void MatchTimer()
     {
         TimeRemaining--;
@@ -98,6 +97,8 @@ public class ShovelWarGAMEHUD : MonoBehaviour
 
 
     }
+
+    //move to manager 
     void CheckForWinner()
     {
         if (Team1DriveWay.RedPixelCounter> Team2DriveWay.RedPixelCounter)

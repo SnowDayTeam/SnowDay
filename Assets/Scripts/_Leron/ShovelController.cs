@@ -8,16 +8,16 @@ using RootMotion.FinalIK;
 public class ShovelController : MonoBehaviour
 {
     public SnowTackScript tackScript;
-    public Rigidbody PlayerRB;
+    Rigidbody PlayerRB;
     public bool isInSnowArea = false;
     public float currentsSnowVolume = 0;
     public float maxSnowVolume = 100.0f;
     public float snowWeight = 3.0f;
     public float snowAcumulationRate = 0.5f;
-    public FullBodyBipedIK IK;
+  //  public FullBodyBipedIK IK;
 
-    public Text VolumeText;
-    public Text WeightText;
+  //  public Text VolumeText;
+   // public Text WeightText;
     SnowSize snowScript;
 
     //Hunters Stuff
@@ -39,7 +39,10 @@ public class ShovelController : MonoBehaviour
 
     //temporary
     //public GameObject TM;
+    public PierInputManager.ButtonName ShovelButton = PierInputManager.ButtonName.B;
+    public PierInputManager.ButtonName ThrowButton = PierInputManager.ButtonName.Y;
 
+    private PierInputManager playerInputController;
 
 
     void OnTriggerStay(Collider other)
@@ -59,6 +62,8 @@ public class ShovelController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerInputController = gameObject.GetComponentInParent<PierInputManager>();
+
         PlayerRB = GetComponent<Rigidbody>();
         snowScript = GetComponentInChildren<SnowSize>();
         drawMaterial = new Material(drawShader);
@@ -83,7 +88,7 @@ public class ShovelController : MonoBehaviour
         //        Checker.Apply();
         //        dirtyTimer = 0;
         //    }
-      
+
         //}
 
         /* 
@@ -98,8 +103,8 @@ public class ShovelController : MonoBehaviour
           }
        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         */
-
-        if (CrossPlatformInputManager.GetButtonDown("FireP1") )
+        
+        if (playerInputController.GetButtonDown(ShovelButton))
         {
             tackScript.toggleSnowTrack(2, true);
             LastPosition = ShovelPoint.transform.position;
@@ -107,13 +112,13 @@ public class ShovelController : MonoBehaviour
           
         }
 
-        if (CrossPlatformInputManager.GetButtonUp("FireP1"))
+        if (playerInputController.GetButtonUp(ShovelButton))
         {
             tackScript.toggleSnowTrack(2, false);
             GetComponent<MoveModifier>().ModifyMovement(MoveModifier.MoveModes.Reset, currentsSnowVolume / maxSnowVolume);
         }
 
-        if (CrossPlatformInputManager.GetButton("FireP1")  && currentsSnowVolume != maxSnowVolume)
+        if (playerInputController.GetButton(ShovelButton) && currentsSnowVolume != maxSnowVolume)
         {
             //TEMPSnowAccumulation();
             //currentsSnowVolume += snowAcumulationRate;
@@ -133,7 +138,7 @@ public class ShovelController : MonoBehaviour
 
         }
 
-        if (CrossPlatformInputManager.GetButton("FireP1") )
+        if (playerInputController.GetButton(ShovelButton))
         {
             //PlayerRB.drag = (currentsSnowVolume / snowWeight);
             if (currentsSnowVolume >= maxSnowVolume)
@@ -175,8 +180,8 @@ public class ShovelController : MonoBehaviour
            // Debug.DrawRay(ShovelPoint.position, -Vector3.up, Color.red, 10);
             //Debug.Log(hit.collider.gameObject.name);
             Material hitMat = hit.transform.GetComponent<Material>();
-            int textX = (int)(tackScript.myTeam.splatmap.width * hit.textureCoord.x);
-            int textY = (int) (tackScript.myTeam.splatmap.height *  hit.textureCoord.y);
+            int textX = (int)(tackScript.mySnowPlane.splatmap.width * hit.textureCoord.x);
+            int textY = (int) (tackScript.mySnowPlane.splatmap.height *  hit.textureCoord.y);
 
             // Checker.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
          
@@ -184,7 +189,7 @@ public class ShovelController : MonoBehaviour
             //  SnowTackScript.splatmap.
 
             //Color temp = Checker.GetPixel(textX, textY);
-            Color temp = tackScript.myTeam.MapChecker.GetPixel(textX, textY);
+            Color temp = tackScript.mySnowPlane.MapChecker.GetPixel(textX, textY);
             //Debug.Log(textX + " :  " + textY);
             //Debug.Log(temp);
 
@@ -228,7 +233,7 @@ public class ShovelController : MonoBehaviour
 
     void ThrowShovelSnow()
     {
-        if (CrossPlatformInputManager.GetButtonDown("JumpP1")&& currentsSnowVolume>10.0)
+        if (playerInputController.GetButtonDown(ThrowButton) && currentsSnowVolume>10.0)
         {
             GameObject ShovelPro = Instantiate(Resources.Load("PRE_ShovelProjectile")) as GameObject;
             ShovelPro.GetComponent<SnowSize>().setSnowPercent(currentsSnowVolume / maxSnowVolume);

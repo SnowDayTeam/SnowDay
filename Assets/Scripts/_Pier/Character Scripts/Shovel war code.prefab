@@ -400,15 +400,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tackScript: {fileID: 114221401035482204}
-  PlayerRB: {fileID: 0}
   isInSnowArea: 0
   currentsSnowVolume: 0
   maxSnowVolume: 100
   snowWeight: 3
   snowAcumulationRate: 0.5
-  IK: {fileID: 0}
-  VolumeText: {fileID: 0}
-  WeightText: {fileID: 0}
   SpawnPoint: {fileID: 4030567727591102}
   LaunchVelocity: 15
   ShovelPoint: {fileID: 4960475909774586}
@@ -418,6 +414,8 @@ MonoBehaviour:
     m_Bits: 16
   drawShader: {fileID: 4800000, guid: 9cda8c7025a35154c909dbd52f8c0d61, type: 3}
   dirtyFrameSkip: 0.1
+  ShovelButton: 11
+  ThrowButton: 13
 --- !u!114 &114187795271467480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -479,7 +477,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157195230149884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d52488028109b4f3d95c0bff5fd755af, type: 3}
   m_Name: 
