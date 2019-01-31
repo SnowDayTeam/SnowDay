@@ -27,7 +27,10 @@ public class TDMManager : ModeManager
         // public int score;
     }
     public team[] Teams;
-      
+    public override BaseTeam[] getTeam()
+    {
+        return Teams;
+    }
     //int[] teamScore;
 
     public int GetTeamScore(int teamID)
@@ -56,18 +59,10 @@ public class TDMManager : ModeManager
         }
 
     }
-       
-    private void Start()
+
+    public override void Start()
     {
-        AllPlayers = GameModeController.GetInstance().GetActivePlayers();
-        cam.SetTargetPlayers(AllPlayers);
-        cam.Initialize();
-        for (int i = 0; i < AllPlayers.Count; i++)
-        {
-            Debug.Log(AllPlayers[i].gameObject.name);
-            Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2),false);
-        }
-        teamSplit(Teams);
+        base.Start();
 
         for (int i = 0; i < Teams.Length; i++)
         {
@@ -80,18 +75,18 @@ public class TDMManager : ModeManager
     }
 
     private void Update()
+    {
+        if (startCountDown)
         {
-            if (startCountDown)
+            GameOverCountDown -= Time.deltaTime;
+            CountDownText.text = GameOverCountDown.ToString("0");
+            if(GameOverCountDown <= 0)
             {
-                GameOverCountDown -= Time.deltaTime;
-                CountDownText.text = GameOverCountDown.ToString("0");
-                if(GameOverCountDown <= 0)
-                {
-                    SceneManager.LoadScene("LevelSelect");
-                }
+                SceneManager.LoadScene("LevelSelect");
             }
-            //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
         }
+            //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
     }
+}
     
 

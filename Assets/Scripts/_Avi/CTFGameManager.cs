@@ -16,32 +16,24 @@ public class CTFGameManager : ModeManager
     [System.Serializable]
     public class team : BaseTeam
     {
-        Color teamColor;
         GoalZone zone;
         //public List<PlayerController> players;
         // public SpawnLocation[] spawnLocations;
         // public int score;
-
     }
     public team[] Teams;
+    public override BaseTeam[] getTeam()
+    {
+        return Teams;
+    }
     //for flag spawning
     public int MaxFlags=2;
     public int currentFlags=1;
-    
+
     // Use this for initialization
-    void Start ()
-    {
-        AllPlayers = GameModeController.GetInstance().GetActivePlayers();
-        cam.SetTargetPlayers(AllPlayers);
-        cam.Initialize();
-
-        for (int i = 0; i < AllPlayers.Count; i++)
-        {
-            Debug.Log(AllPlayers[i].gameObject.name);
-            Instantiate(ScriptsPrefab, AllPlayers[i].gameObject.transform.GetChild(0).GetChild(2), false);
-        }
-        teamSplit(Teams);
-
+    public override void Start()
+    {       
+        base.Start();
         for (int i = 0; i < Teams.Length; i++)
         {
             for (int j = 0; j < Teams[i].players.Count; j++)
@@ -53,22 +45,14 @@ public class CTFGameManager : ModeManager
 	
 
     public void CheckWinner()
-    {
-       
+    {       
         if (RedTeamScore > BlueTeamScore)
         {
-            Debug.Log("red wins");
-            
+            Debug.Log("red wins");   
         }
         else
         {
-            Debug.Log("blue wins");
-           
-
-        }
-
-       
+            Debug.Log("blue wins"); 
+        }       
     }
-
-
 }

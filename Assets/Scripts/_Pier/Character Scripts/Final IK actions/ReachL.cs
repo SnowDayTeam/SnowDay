@@ -11,7 +11,10 @@ public class ReachL : MonoBehaviour {
     bool lerpOut;
     public bool isIn = false;
     public Transform ball;
-
+    public void Start()
+    {
+        IK = gameObject.GetComponentInParent<FullBodyBipedIK>();
+    }
     void Update()
     {
         IK.solver.leftHandEffector.target = ball;
