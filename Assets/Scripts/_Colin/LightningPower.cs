@@ -39,11 +39,14 @@ public class LightningPower : MonoBehaviour {
             Collider[] colliders = Physics.OverlapSphere(centerPos, radius);
             foreach (Collider hit in colliders)
             {
-                rb = hit.GetComponent<Rigidbody>();
-
-                if (rb != null && pushTimer <= 100 && rb!= triggerPlayer.GetComponent<Rigidbody>())
+                if (hit != triggerPlayer.GetComponent<CapsuleCollider>())
                 {
-                    rb.AddExplosionForce(power, centerPos, radius, 0.1f,ForceMode.Force);
+                    rb = hit.GetComponent<Rigidbody>();
+
+                    if (rb != null && pushTimer <= 100 && rb != triggerPlayer.GetComponent<Rigidbody>())
+                    {
+                        rb.AddExplosionForce(power, centerPos, radius, 0.1f, ForceMode.Force);
+                    }
                 }
             }
             if (pushTimer >= 100) {

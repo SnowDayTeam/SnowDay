@@ -36,21 +36,26 @@ public class CarPathingFinding : MonoBehaviour {
     private Quaternion destRot;     // The rotation angle of destVect 
 
     private int waypointIndex = 0;
-    public GameObject[] waypoints;
+    public GameObject[] waypoints;          //pathing to parking space waypoints
+    public GameObject[] reverseWaypoints;   //reverse pathing waypoints
+    public GameObject[] waypointsToExit;    //exit pathing waypoints
     private int pathToFollow;
     [SerializeField] float randomParkTime;
     private float currentMaxVelocity;
+    [Range(1, 10)] public float minParkedTime;
+    [Range(1, 10)] public float maxParkedTime;
 
     void Start () {
         moveTarget = waypoints[waypointIndex].transform.position;
         isParking = true;
-        randomParkTime = UnityEngine.Random.Range(3, 5);
+        randomParkTime = UnityEngine.Random.Range(minParkedTime, maxParkedTime);
         StartMoving();
         currentMaxVelocity = velocityMax;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //enter parking state when car is first spawned
         if (isParking)
         {
             // "Set the destination vector and rotation"
@@ -78,18 +83,19 @@ public class CarPathingFinding : MonoBehaviour {
             if (distTo < stopDist && waypointIndex == waypoints.Length - 1)
             {              
                 // All waypoints met
-                // All waypoints are met to park car, reverse path to send car to spawn and destory it
+                // All waypoints are met to park car, set new waypoint pathing target for reverse waypoints, reset pathing index to 0
                 velocity = 0.0F;
-                print("Parked");
-                Array.Reverse(waypoints);
-                print(waypoints[0]);
+                print("Parked");          
+                waypointIndex = 0;
+                moveTarget = reverseWaypoints[waypointIndex].transform.position;
+                print(moveTarget);
                 isParking = false;
                 isParked = true;
-                //create delay here for random amount of parked time, then reverse waypoints array and reverse car out, then drive car forward to exit
 
             }
             else if (distTo < stopDist && waypointIndex != waypoints.Length - 1 && waypointIndex != waypoints.Length)
-            {       // There is still waypoint to meet and it goes to the next waypoint
+            {       
+                // There is still waypoints to meet and it goes to the next waypoint
                 waypointIndex++;
                 if (waypointIndex == waypoints.Length)
                     waypointIndex = 0;
@@ -98,29 +104,32 @@ public class CarPathingFinding : MonoBehaviour {
             }
         }
 
+        //after random amount of time spend parked, exit parked state to reversing state
         if (isParked) {
             randomParkTime -= Time.deltaTime;
             if (randomParkTime <= 0)
             {
                 isParked = false;
-                //need to reset waypoint index after parking to allow cars to repath out the way they came in
                 waypointIndex = 0;
-                isReversing = true;
-                
+                isReversing = true;         
             }
         }
         
-        // not working as intended, cars currently either back up forever, or this state is skipped
+        // currerntly only able to reverse straight, reverse rotation causing bug where cars will not path to waypoint and drive off into the sunset
         if (isReversing) {
-          
             destVect = moveTarget - transform.position;
 
             distTo = destVect.magnitude;
             destRot = Quaternion.LookRotation(destVect);
+            Quaternion revRot = Quaternion.Inverse(destRot);
+          
+          
+
 
             //*** Main Movement ***
             transform.Translate(Vector3.back * GetMoveSpeed() * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, destRot, GetRotSpeed() * Time.deltaTime);
+            //rotation causing bug that paths in the opposite direction of the waypoint and never reaches it, should be fixable
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, revRot, GetRotSpeed() * Time.deltaTime);
 
             velocity = Mathf.Clamp(velocity + accelLinear, 0.0F, currentMaxVelocity);
             accelLinear = Mathf.Clamp(accelLinear + accelLinearInc, 0.0F, accelLinearMax);
@@ -128,20 +137,23 @@ public class CarPathingFinding : MonoBehaviour {
             rotation = Mathf.Clamp((rotation + accelAngular), 0.0F, rotationMax);
             accelAngular = Mathf.Clamp((accelAngular + accelAngularInc), 0.0F, accelAngularMax);
 
-             if (distTo < stopDist && waypointIndex != waypoints.Length)
-             {
-                 // reverse from space slowly
-                 print("reversing");
-                 waypointIndex++;
-                 print(waypointIndex);
-                 moveTarget = waypoints[waypointIndex].transform.position;
-                 //StartMoving();
-             }
-            if (distTo < stopDist && waypointIndex == 1) {
+          
+            if (distTo < stopDist && waypointIndex == reverseWaypoints.Length - 1) {
                 isReversing = false;
+                waypointIndex = 0;
+                moveTarget = waypointsToExit[waypointIndex].transform.position;
                 isExiting = true;
                 print("stop reversing");
             }
+            //not needed if only 1 waypoint to path straight backwards, will be needed if curved backed up re-enabled with multiple waypoints
+         /*  else if (distTo < stopDist && waypointIndex != reverseWaypoints.Length)
+            {
+                // reverse from space 
+                print("reversing");
+                waypointIndex++;
+                print(waypointIndex);
+                moveTarget = reverseWaypoints[waypointIndex].transform.position;
+            }*/
         }
         
         if (isExiting) {
@@ -162,18 +174,18 @@ public class CarPathingFinding : MonoBehaviour {
             accelAngular = Mathf.Clamp((accelAngular + accelAngularInc), 0.0F, accelAngularMax);
 
 
-            if (distTo < stopDist && waypointIndex == waypoints.Length - 1)
+            if (distTo < stopDist && waypointIndex == waypointsToExit.Length - 1)
             {
                 // All waypoints met, remove car from scene, reduce the number of active cars 
                 CarSpawnerScript.activeCarCount--;
                 Destroy(gameObject);
 
             }
-            else if (distTo < stopDist && waypointIndex != waypoints.Length - 1 && waypointIndex != waypoints.Length)
+            else if (distTo < stopDist && waypointIndex != waypointsToExit.Length - 1 && waypointIndex != waypointsToExit.Length)
             {      
                 // There is still waypoint to meet and it goes to the next waypoint
                 waypointIndex++;
-                moveTarget = waypoints[waypointIndex].transform.position;
+                moveTarget = waypointsToExit[waypointIndex].transform.position;
                 StartMoving();
             }
 
