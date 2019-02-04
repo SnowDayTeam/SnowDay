@@ -12,18 +12,25 @@ public class GlobalCharacterSettings : MonoBehaviour {
 	public ThirdPersonCharacter P2;
 	public ThirdPersonCharacter P3;
 	public ThirdPersonCharacter P4;
+    [SerializeField]
+	private ReachL reachLP1;
+    [SerializeField]
+    private ReachR reachRP1;
 
-	public ReachL reachLP1;
-	public ReachR reachRP1;
+    [SerializeField]
+    private ReachL reachLP2;
+    [SerializeField]
+    private ReachR reachRP2;
 
-	public ReachL reachLP2;
-    public ReachR reachRP2;
+    [SerializeField]
+    private ReachL reachLP3;
+    [SerializeField]
+    private ReachR reachRP3;
 
-	public ReachL reachLP3;
-    public ReachR reachRP3;
-    
-	public ReachL reachLP4;
-    public ReachR reachRP4;
+    [SerializeField]
+    private ReachL reachLP4;
+    [SerializeField]
+    private ReachR reachRP4;
 
 	public float globalSpeedOffset;
 	public bool carsOn = true;
@@ -91,10 +98,13 @@ public class GlobalCharacterSettings : MonoBehaviour {
 		P4.m_AnimSpeedMultiplier = globalCharacterSpeed - p4SpeedOffset;
 
         //Cars
-		if (carsOn == false){
+		if (carsOn == false)
+        {
 			car1.SetActive(false);
 			car2.SetActive(false);
-		} else {
+		}
+        else
+        {
 			car1.SetActive(true);
             car2.SetActive(true);
 		}

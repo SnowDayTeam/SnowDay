@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 using SnowDay.Diego.CharacterController;
@@ -35,6 +36,8 @@ public class SnowDayCamera : MonoBehaviour
 
     private bool cameraActive = false;
 
+    public bool CameraShaking = false;
+
     public void Initialize()
     {
         cam = Camera.main;
@@ -46,14 +49,39 @@ public class SnowDayCamera : MonoBehaviour
         cameraActive = true;
     }
 
-    // Update is called once per frame
     private void LateUpdate()
     {
-        if (cameraActive)
+        CameraDistance();
+        FindNextCameraPosition();
+
+        if (Vector3.Distance(cam.transform.position , nextCameraPos) > 0.1f && !CameraShaking)
         {
-            CameraDistance();
-            MoveCamera(); 
+            Debug.Log("Moved Camera");
+            MoveCamera();
         }
+    }
+
+    public IEnumerator CameraShake(float duration, float magnitude)
+    {
+        Vector3 startPos = transform.localPosition;
+
+        CameraShaking = true;
+        float timeElapsed = 0.0f;
+
+        Debug.Log("Shake");
+        while (timeElapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            cam.transform.localPosition = new Vector3(cam.transform.localPosition.x + x, cam.transform.localPosition.y + y, cam.transform.localPosition.z);
+
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        CameraShaking = false;
     }
 
     public void SetTargetPlayers(List<PlayerController> players)
@@ -93,12 +121,18 @@ public class SnowDayCamera : MonoBehaviour
     }
 
     /// <summary>
+    /// Finds the Next Position for the Camera;
+    /// </summary>
+    void FindNextCameraPosition() {
+        transform.position = FindAveragePosition();
+        nextCameraPos = transform.position + new Vector3(Radius * Mathf.Cos(thetaStep * CurrentStep), CameraYOffset, Radius * Mathf.Sin(thetaStep * CurrentStep));//Radius * Mathf.Sin(thetaStep * CurrentStep));
+    }
+
+    /// <summary>
     /// Instantly Moves Camera to Current Rotation Step
     /// </summary>
     void PopCamera()
     {
-        transform.position = FindAveragePosition();
-        nextCameraPos = transform.position + new Vector3(Radius * Mathf.Cos(thetaStep * CurrentStep), CameraYOffset, Radius * Mathf.Sin(thetaStep * CurrentStep));//Radius * Mathf.Sin(thetaStep * CurrentStep));
         cam.transform.position = nextCameraPos;
         cam.transform.LookAt(transform.position, Vector3.up);
     }
@@ -108,8 +142,6 @@ public class SnowDayCamera : MonoBehaviour
     /// </summary>
     private void MoveCamera()
     {
-        transform.position = FindAveragePosition();
-        nextCameraPos = transform.position + new Vector3(Radius * Mathf.Cos(thetaStep * CurrentStep), CameraYOffset, Radius * Mathf.Sin(thetaStep * CurrentStep));//Radius * Mathf.Sin(thetaStep * CurrentStep));
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, nextCameraPos, ref camVelocity, SmoothTime);
         cam.transform.LookAt(transform.position, Vector3.up);
     }
@@ -140,18 +172,23 @@ public class SnowDayCamera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector3? AveragePosition = null;
+        float? theta = 0;
+
         Gizmos.color = Color.green;
-        Vector3 AveragePosition = FindAveragePosition();
-        Gizmos.DrawWireSphere(AveragePosition, 1);
+        AveragePosition = FindAveragePosition();
         Gizmos.color = Color.red;
-        float theta = 0;
+        theta = 0;
         float thetaStep = (2f * Mathf.PI) / Resolution;
 
+    
+        Gizmos.DrawWireSphere(AveragePosition.GetValueOrDefault(), 1);
         for (int i = 0; i < Resolution; i++)
         {
-            Vector3 pos = transform.position + new Vector3(Radius * Mathf.Cos(theta), CameraYOffset, Radius * Mathf.Sin(theta));
+            Vector3 pos = transform.position + new Vector3(Radius * Mathf.Cos(theta.GetValueOrDefault()), CameraYOffset, Radius * Mathf.Sin(theta.GetValueOrDefault()));
             Gizmos.DrawWireSphere(pos, 1);
             theta += thetaStep;
         }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace SnowDay.Diego.LevelSelect
     /// </remarks>
     ///
     [RequireComponent(typeof(LevelSelectPlayerActivator))]
-    public class LevelSelectManager : Singleton<LevelSelectManager>
+    public class LevelSelectManager : MonoBehaviour
     {
         private bool EnableTimer = true;
 
