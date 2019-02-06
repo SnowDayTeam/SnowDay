@@ -52,6 +52,7 @@ public class EarthQuakePower : MonoBehaviour {
     }
 
     void Kill() {
+        PowerUpSpawn.activePowerUpCount--;
         Destroy(gameObject);
     }
   
