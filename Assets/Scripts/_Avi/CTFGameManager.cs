@@ -16,12 +16,10 @@ public class CTFGameManager : ModeManager
     [System.Serializable]
     public class team : BaseTeam
     {
-        Color teamColor;
         GoalZone zone;
         //public List<PlayerController> players;
         // public SpawnLocation[] spawnLocations;
         // public int score;
-
     }
     public team[] Teams;
     public override BaseTeam[] getTeam()
@@ -34,38 +32,29 @@ public class CTFGameManager : ModeManager
 
     // Use this for initialization
     public override void Start()
-    {
-       
+    {       
         base.Start();
-
-
         for (int i = 0; i < Teams.Length; i++)
         {
             for (int j = 0; j < Teams[i].players.Count; j++)
             {
                 Teams[i].players[j].GetComponentInChildren<FlagController>().team = i;
+                Teams[i].players[j].GetComponentInChildren<SkinnedMeshRenderer>().materials[0].color = Teams[i].teamColor;
+
             }
         }
     }
 	
 
     public void CheckWinner()
-    {
-       
+    {       
         if (RedTeamScore > BlueTeamScore)
         {
-            Debug.Log("red wins");
-            
+            Debug.Log("red wins");   
         }
         else
         {
-            Debug.Log("blue wins");
-           
-
-        }
-
-       
+            Debug.Log("blue wins"); 
+        }       
     }
-
-
 }

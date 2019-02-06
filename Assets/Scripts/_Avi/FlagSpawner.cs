@@ -42,13 +42,13 @@ public class FlagSpawner : MonoBehaviour {
 	void Update () {
         if (TimeSet == false && alreadySpawned==false)
         {
-            Debug.Log("Set Timer");
+            //Debug.Log("Set Timer");
             SetSpawnTimer();
         }
      
         if (alreadySpawned==false && GM.currentFlags < GM.MaxFlags)
         {
-            Debug.Log("CheckingTime");
+           // Debug.Log("CheckingTime");
             if (Time.time - Timestarted > currentspawnTimer)
             {
                 Debug.Log("SpawnFlag");

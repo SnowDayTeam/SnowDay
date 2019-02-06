@@ -15,9 +15,11 @@ public class ModeManager : MonoBehaviour
         public List<PlayerController> players;
         public SpawnLocation[] spawnLocations;
         public int score;
+        public Color teamColor;
 
     }
-    public virtual BaseTeam[] getTeam() {
+    public virtual BaseTeam[] getTeam()
+    {
         return null;
     }
     public virtual void Start()
@@ -61,10 +63,6 @@ public class ModeManager : MonoBehaviour
 
         }
 
-      
-            // Teams[0].playersAlive = Teams[0].players.Count;
-            //  Teams[1].playersAlive = Teams[1].players.Count;
 
-
-        }
+    }
 }
