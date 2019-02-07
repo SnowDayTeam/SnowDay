@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 114157565259449544}
   m_Layer: 16
   m_Name: Rigged_Character-001
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,7 +912,7 @@ GameObject:
   - component: {fileID: 4522644706568684}
   m_Layer: 0
   m_Name: Rigged_Character-001 Root
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1451,7 +1451,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832770056956660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0594163, y: -0.08, z: 4.762875}
+  m_LocalPosition: {x: 0, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4943668483404426}
@@ -2478,9 +2478,9 @@ MonoBehaviour:
     eyes: []
   solver:
     IKPosition: {x: 0, y: 0, z: 0}
-    IKPositionWeight: 1
+    IKPositionWeight: 0.7
     root: {fileID: 4326410781241216}
-    iterations: 4
+    iterations: 1
     chain:
     - pin: 0
       pull: 1
