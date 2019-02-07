@@ -62,7 +62,7 @@ public class TobbogganTestCarl : MonoBehaviour
 
     private void Update()
     {
-        print("H " + h + "V " + v);
+       // print("H " + h + "V " + v);
         // Get the axis and jump input.
        
 
