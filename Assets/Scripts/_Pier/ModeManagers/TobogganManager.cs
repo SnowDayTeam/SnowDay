@@ -38,6 +38,7 @@ public class TobogganManager : ModeManager
             s.transform.SetParent(board);
             TobbogganTestCarl carl = boardVisual.GetComponentInChildren<TobbogganTestCarl>();
             carl.animator = s.GetComponent<Animator>();
+            carl.manager = AllPlayers[i].GetInputController();
             s.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Tobogganning") as RuntimeAnimatorController;
             s.GetComponent<Animator>().applyRootMotion = false;
             Rigidbody r = s.GetComponent<Rigidbody>();

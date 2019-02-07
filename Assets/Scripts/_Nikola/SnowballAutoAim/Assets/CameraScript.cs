@@ -48,9 +48,9 @@ public class CameraScript : MonoBehaviour {
 
             //get reference to all other objects in the scene - place into array
             var cube = GameObject.Find("TestCube");
-            Debug.Log(cube); 
+//Debug.Log(cube); 
              var pos = cube.transform.position;
-            Debug.Log(pos);
+          //  Debug.Log(pos);
 
             //get angle between objects
             float angle = Vector3.Angle(transform.forward, cube.transform.forward); 
@@ -69,11 +69,11 @@ public class CameraScript : MonoBehaviour {
             //if (relativePoint.x > -1 && relativePoint.x < 1 && relativePoint.y > -1 && relativePoint.y < 1)
             if (angle < autoAimAngle)
             {
-                bullet.GetComponent<Rigidbody>().AddForce(directionToTarget * 100); 
+                bullet.GetComponent<Rigidbody>().AddForce(directionToTarget.normalized * 900); 
             }
             else
             {
-                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 500); 
+                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 900); 
             }
             Destroy(bullet, 3); 
         }
