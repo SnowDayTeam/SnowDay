@@ -57,7 +57,7 @@ public class SnowDayCamera : MonoBehaviour
 
         if (Vector3.Distance(cam.transform.position , nextCameraPos) > 0.1f && !CameraShaking)
         {
-            Debug.Log("Moved Camera");
+         //   Debug.Log("Moved Camera");
             MoveCamera();
         }
     }
