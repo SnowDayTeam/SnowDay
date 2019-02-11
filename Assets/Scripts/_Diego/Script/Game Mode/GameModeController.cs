@@ -8,6 +8,7 @@ namespace SnowDay.Diego.GameMode
 {
     class GameModeController : Singleton<GameModeController>
     {
+        //why does this even exist?
         //why is this a struct
         GameModeSettings gameMode;
 
@@ -50,7 +51,6 @@ namespace SnowDay.Diego.GameMode
             MoveActivePlayerToScene(selectedLevel);
 
             UnloadScene(LevelSelectScene);
-
         }
 
         private void UnloadScene(Scene scene)
