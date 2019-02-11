@@ -67,6 +67,7 @@ public class TDMManager : ModeManager
 
         for (int i = 0; i < Teams.Length; i++)
         {
+            Teams[i].playersAlive = Teams[i].players.Count;
             for (int j = 0; j < Teams[i].players.Count; j++)
             {
                 Teams[i].players[j].GetComponentInChildren<PlayerActor>().TeamID = i;

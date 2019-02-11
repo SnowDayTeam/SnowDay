@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SnowDay.Diego.CharacterController
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(CapsuleCollider))]
+   // [RequireComponent(typeof(Rigidbody))]
+   // [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Animator))]
     public class SnowDayCharacter : MonoBehaviour
     {

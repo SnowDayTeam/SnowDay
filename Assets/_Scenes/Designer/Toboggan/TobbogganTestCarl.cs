@@ -10,8 +10,7 @@ public class TobbogganTestCarl : MonoBehaviour
     public PierInputManager manager;
     public Transform sled;
     public float velTurnLimiter = 500;
-    Animator animator;
-    public Transform character;
+    public Animator animator;
     float h;
     float v;
 
@@ -57,12 +56,12 @@ public class TobbogganTestCarl : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         // Set the maximum angular velocity.
         GetComponent<Rigidbody>().maxAngularVelocity = m_MaxAngularVelocity;
-        animator = character.GetComponent<Animator>();
+       // animator = character.GetComponent<Animator>();
     }
 
     private void Update()
     {
-        print("H " + h + "V " + v);
+       // print("H " + h + "V " + v);
         // Get the axis and jump input.
        
 
