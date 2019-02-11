@@ -49,7 +49,10 @@ namespace SnowDay.Diego.CharacterController
               //  playerCharacter.Active = value;
             }
         }
-
+        public PierInputManager GetInputController()
+        {
+            return playerInputController;
+        }
         // Use this for initialization
         private void Start()
         {
