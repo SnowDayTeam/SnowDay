@@ -8,7 +8,8 @@ public class SnowDayCamera : MonoBehaviour
 {
     [Header("Players")]
     public List<PlayerController> Players;
-
+    [Header("Non-Player Objects")]
+    public List<GameObject> NPOtoTrack;
     [Header("Camera Horizontal Rotation")]
     public int Resolution = 20;
     public int CurrentStep = 1;
@@ -56,7 +57,7 @@ public class SnowDayCamera : MonoBehaviour
 
         if (Vector3.Distance(cam.transform.position , nextCameraPos) > 0.1f && !CameraShaking)
         {
-            Debug.Log("Moved Camera");
+         //   Debug.Log("Moved Camera");
             MoveCamera();
         }
     }
@@ -163,6 +164,14 @@ public class SnowDayCamera : MonoBehaviour
                 continue;
 
             averagePosition += Players[i].GetCharacterPosition();
+            numofPlayers++;
+        }
+        for (int i = 0; i < NPOtoTrack.Count; i++)
+        {
+            if (!NPOtoTrack[i].activeSelf)
+                continue;
+
+            averagePosition += NPOtoTrack[i].transform.position;
             numofPlayers++;
         }
         averagePosition = averagePosition / numofPlayers;

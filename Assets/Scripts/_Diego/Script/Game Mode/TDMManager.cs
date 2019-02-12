@@ -20,6 +20,7 @@ public class TDMManager : ModeManager
     public float GameOverCountDown = 4;
     [Header("UI Text")]
     public Text CountDownText;
+    [System.Serializable]
     public class team : BaseTeam
     {
         public int playersAlive;
@@ -66,9 +67,12 @@ public class TDMManager : ModeManager
 
         for (int i = 0; i < Teams.Length; i++)
         {
+            Teams[i].playersAlive = Teams[i].players.Count;
             for (int j = 0; j < Teams[i].players.Count; j++)
             {
                 Teams[i].players[j].GetComponentInChildren<PlayerActor>().TeamID = i;
+                Teams[i].players[j].GetComponentInChildren<SkinnedMeshRenderer>().materials[0].color = Teams[i].teamColor;
+
             }
         }
 
