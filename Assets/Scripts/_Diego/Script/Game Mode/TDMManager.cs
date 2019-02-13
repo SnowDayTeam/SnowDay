@@ -58,7 +58,6 @@ public class TDMManager : ModeManager
             startCountDown = true;
             CountDownText.enabled = true;
         }
-
     }
 
     public override void Start()
@@ -72,10 +71,8 @@ public class TDMManager : ModeManager
             {
                 Teams[i].players[j].GetComponentInChildren<PlayerActor>().TeamID = i;
                 Teams[i].players[j].GetComponentInChildren<SkinnedMeshRenderer>().materials[0].color = Teams[i].teamColor;
-
             }
         }
-
     }
 
     private void Update()
@@ -89,7 +86,7 @@ public class TDMManager : ModeManager
                 SceneManager.LoadScene("LevelSelect");
             }
         }
-            //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
+        //Debug.Log("TDM Manager - Team Scores: " + teamScore[0] + " , "+ teamScore[1]);
     }
 }
     

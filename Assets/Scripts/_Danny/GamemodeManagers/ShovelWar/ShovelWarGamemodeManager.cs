@@ -19,7 +19,6 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
     [SerializeField] ShovelWarTeam[] Teams = null;
 
     const float MaxSnowPlanePixels =  65536;
-    bool DidGameEnd = false;
 
     [System.Serializable]
     public class ShovelWarTeam : Team
@@ -42,7 +41,7 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
 
     void Update() 
     {
-        if(this.DidGameEnd)
+        if(base.DidGameEnd)
             return;
 
         this.ShovelWarGuiManager.UpdateClearPercentTexts(
@@ -64,15 +63,15 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
         this.ShovelWarGuiManager.UpdateGameTimeText(this.GameDuration);
     }
 
-    void CheckGameEndConditions() 
+    protected override void CheckGameEndConditions() 
     {
         if(this.GameDuration <= 0) 
         {
-            this.CheckGameWinnerAndEndGame();
+            base.EndGame();
         }
     }
     
-    void CheckGameWinnerAndEndGame() 
+    protected override void CheckGameWinnerAndDisplayResults()
     {
         if(this.TeamOneSnowPlane.RedPixelCounter > this.TeamTwoSnowPlane.RedPixelCounter)
             this.ShovelWarGuiManager.ShowEndGameWindow("Red Team Wins!");

@@ -6,12 +6,16 @@ using System.Collections;
 
 abstract public class GamemodeManagerBase : MonoBehaviour 
 {
-    [Tooltip("The scripts attached to this prefab that create the gameplay for this gamemode")]
+    [Tooltip("The scripts that create the gameplay for this gamemode")]
     [SerializeField] GameObject LevelSpecificScriptsPrefab;
+    [Tooltip("The gamemode camera that follows players around.")]
+    [SerializeField] SnowDayCamera SnowDayCam;
     [Tooltip("The time in seconds before the level select is loaded again.")]
     [SerializeField] float PostGameDuration = 1.0f;
 
     List<PlayerController> Players = null;
+
+    protected bool DidGameEnd = false;
 
     [System.Serializable]
     abstract public class Team 
@@ -27,10 +31,20 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     }
 
     abstract protected Team[] GetTeams();
+    /// <summary>
+    /// Display results / win screen.
+    /// </summary>
+    abstract protected void CheckGameWinnerAndDisplayResults();
+    /// <summary>
+    /// This is abstract simply to streamline derrived classes.
+    /// </summary>
+    abstract protected void CheckGameEndConditions();
 
     protected virtual void Start() 
     {
         this.Players = GameModeController.GetInstance().GetActivePlayers();
+
+        this.SetupSnowDayCamera();
 
         this.CreateLevelScriptsPrefabs();
 
@@ -38,18 +52,6 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         this.AssignPlayersToTeams(teams);
         this.MovePlayersToSpawnLocations(teams);
         this.SetPlayerColors(teams);
-    }
-
-    /// <summary>
-    /// Instantiate the level scripts gameobject for all players
-    /// </summary>
-    private void CreateLevelScriptsPrefabs() 
-    {
-        foreach(PlayerController player in this.Players)
-        {
-            Debug.Log(player.gameObject.name);
-            Instantiate(this.LevelSpecificScriptsPrefab, player.transform.GetChild(0).GetChild(2));
-        }
     }
 
     /// <summary>
@@ -84,10 +86,42 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         }
     }
 
-    protected IEnumerator LoadLevelSelect() {
-        yield return new WaitForSeconds(this.PostGameDuration);
-
-        GameModeController.GetInstance().load
-
+    /// <summary>
+    /// Start corountine to load level select, display results.
+    /// </summary>
+    protected void EndGame() {
+        this.DidGameEnd = true;
+        this.CheckGameWinnerAndDisplayResults();
+        this.StartCoroutine(this.LoadLevelSelect());
     }
+
+    private void SetupSnowDayCamera() 
+    {
+        if(!this.SnowDayCam)
+            return;
+
+        this.SnowDayCam.SetTargetPlayers(GameModeController.GetInstance().GetActivePlayers());
+        this.SnowDayCam.Initialize();
+    }
+
+    /// <summary>
+    /// Instantiate the level scripts gameobject for all players
+    /// </summary>
+    private void CreateLevelScriptsPrefabs() 
+    {
+        foreach(PlayerController player in this.Players)
+        {
+            Debug.Log(player.gameObject.name);
+            Instantiate(this.LevelSpecificScriptsPrefab, player.transform.GetChild(0).GetChild(2));
+        }
+    }
+
+    private IEnumerator LoadLevelSelect() 
+    {
+        yield return new WaitForSeconds(this.PostGameDuration);
+        //we need to change this after rewriting the GameModeController class, loading levels
+        //should be done in one place only and this has many disadvantages
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
+    }
+
 }

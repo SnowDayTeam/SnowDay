@@ -32,7 +32,7 @@ namespace SnowDay.Diego.GameMode
         {
             return gameMode.GetActivePlayers();
         }
-
+        
         private void MoveActivePlayerToScene(LevelData selectedLevel)
         {
             Scene scene = SceneManager.GetSceneByName(selectedLevel.sceneName);
@@ -55,6 +55,7 @@ namespace SnowDay.Diego.GameMode
 
         private void UnloadScene(Scene scene)
         {
+            //this is pointless as unloading a scene does this anyways
             GameObject[] gameObjects = scene.GetRootGameObjects();
             foreach (var item in gameObjects)
             {
