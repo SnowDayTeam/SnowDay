@@ -20,17 +20,18 @@ public class FlagPickup : MonoBehaviour
     Transform TracePoint;
     [HideInInspector]
     public FlagSpawner spawner;
-    CTFGameManager GM;
 
-   
+    //CTFGameManager GM;
+    CaptureTheFlagGamemodeManager FlagGamemodeManager = null;
 
     void Start()
     {
         meshRenderer = GetComponentsInChildren<MeshRenderer>();
-        GM=FindObjectOfType<CTFGameManager>();
+        this.FlagGamemodeManager = FindObjectOfType<CaptureTheFlagGamemodeManager> ();
+        //GM=FindObjectOfType<CTFGameManager>();
         //to check if object refernce will actually work
-        Debug.Log("The GM is " + GM);
-      
+        Debug.Log("The GM is " + this.FlagGamemodeManager);
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -180,8 +181,8 @@ public class FlagPickup : MonoBehaviour
                     Debug.Log("RED GETS A POINT");
                     CantBeInteractedWith = true;
                     spawner.alreadySpawned = false;
-                    GM.currentFlags--;
-                    GM.RedTeamScore++;
+                    this.FlagGamemodeManager.CurrentFlags--;
+                    this.FlagGamemodeManager.RedTeamScore++;
                     foreach (MeshRenderer material in meshRenderer)
                     {
                         material.material.color = Color.red;
@@ -194,8 +195,8 @@ public class FlagPickup : MonoBehaviour
                     Debug.Log("BLUE GETS A POINT");
                     CantBeInteractedWith = true;
                     spawner.alreadySpawned = false;
-                    GM.currentFlags--;
-                    GM.BlueTeamScore++;
+                    this.FlagGamemodeManager.CurrentFlags--;
+                    this.FlagGamemodeManager.BlueTeamScore++;
                     foreach (MeshRenderer material in meshRenderer)
                     {
                         material.material.color = Color.blue;

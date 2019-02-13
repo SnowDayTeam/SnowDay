@@ -4,8 +4,15 @@ using SnowDay.Diego.CharacterController;
 using System.Collections.Generic;
 using System.Collections;
 
+// Note: if all gamemodes have a timer move time to this class
 abstract public class GamemodeManagerBase : MonoBehaviour 
 {
+
+    [Header("GUI")]
+    [Tooltip("The GUI manager for this gamemode, controls text only. Attached to canvas")]
+	[SerializeField] protected GamemodeGUIManagerBase GuiManager = null;
+
+    [Header("Level Variables")]
     [Tooltip("The scripts that create the gameplay for this gamemode")]
     [SerializeField] GameObject LevelSpecificScriptsPrefab;
     [Tooltip("The gamemode camera that follows players around.")]
@@ -18,7 +25,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     protected bool DidGameEnd = false;
 
     [System.Serializable]
-    abstract public class Team 
+    public class TeamBase 
     {
         /// The players on this team
         public List<PlayerController> Players = null;
@@ -30,7 +37,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         public Color TeamColor = Color.black;
     }
 
-    abstract protected Team[] GetTeams();
+    abstract protected TeamBase[] GetTeams();
     /// <summary>
     /// Display results / win screen.
     /// </summary>
@@ -48,36 +55,39 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
         this.CreateLevelScriptsPrefabs();
 
-        Team[] teams = this.GetTeams();
+        TeamBase[] teams = this.GetTeams();
         this.AssignPlayersToTeams(teams);
         this.MovePlayersToSpawnLocations(teams);
         this.SetPlayerColors(teams);
     }
 
+    protected virtual void Update() {
+        this.UpdateGUIScores();
+    }
+
     /// <summary>
     /// Assign players to teams lineraly and as evenly as possible.
     /// </summary>
-    protected void AssignPlayersToTeams(Team[] Teams) 
+    protected void AssignPlayersToTeams(TeamBase[] Teams) 
     {
         for(int i = 0; i < this.Players.Count; i++) {
             Teams[i % Teams.Length].Players.Add(this.Players[i]);
         }
     }
 
-    protected void MovePlayersToSpawnLocations(Team[] Teams) 
+    protected void MovePlayersToSpawnLocations(TeamBase[] Teams) 
     {
-        foreach(Team team in Teams) {
+        foreach(TeamBase team in Teams) {
             for(int i = 0 ; i < team.Players.Count; i++) 
             {
-                //if you get an error here its becasue you dont have enough spawn locations for your team
-                team.Players[i].MoveCharacter(team.SpawnLocations[i].transform.position);
+                team.Players[i].MoveCharacter(team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
             }
         }
     }
 
-    protected void SetPlayerColors(Team[] Teams) 
+    protected void SetPlayerColors(TeamBase[] Teams) 
     {
-        foreach(Team team in Teams) 
+        foreach(TeamBase team in Teams) 
         {
             foreach(PlayerController player in team.Players) 
             {
@@ -124,4 +134,16 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
     }
 
+    private void UpdateGUIScores() 
+    {
+        if(!this.GuiManager)
+            return;
+
+        TeamBase[] Teams = this.GetTeams();
+
+        for(int i = 0; i < Teams.Length; i++) 
+        {
+            this.GuiManager.UpdateScoreTextAtIndex(i, Teams[i].Score);
+        }
+    }
 }

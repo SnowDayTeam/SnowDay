@@ -7,7 +7,7 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
     [SerializeField] DeathMatchTeam[] Teams = null;
 
     [System.Serializable]
-	public class DeathMatchTeam : Team
+	public class DeathMatchTeam : TeamBase
     {
         public int PlayersAlive;
     }
@@ -37,7 +37,7 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
         this.SetPlayerTeamIDs();
     }
 
-    protected override Team[] GetTeams() 
+    protected override TeamBase[] GetTeams() 
     {
         return this.Teams;
     }

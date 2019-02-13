@@ -3,25 +3,20 @@ using SnowDay.Diego.CharacterController;
 
 public class ShovelWarGamemodeManager : GamemodeManagerBase 
 {
-    [Header("GUI")]
-    [Tooltip("The GUI manager for shovel war, controls text only. Attached to canvas")]
-	[SerializeField] ShovelWarGUIManager ShovelWarGuiManager = null;
-
-    [Header("Game Time")]
-    [Tooltip("The time in seconds until the game is over.")]
-    [Range(10.0f, 60.0f*5.0f)] [SerializeField] float GameDuration = 10.0f;
-
-    [Header("Level Variables")]
     //The gameobjects that actualy gets shoveled
     [SerializeField] SnowPlane TeamOneSnowPlane = null;
     [SerializeField] SnowPlane TeamTwoSnowPlane = null;
 
     [SerializeField] ShovelWarTeam[] Teams = null;
 
+    [Header("Game Time")]
+    [Tooltip("The time in seconds until the game is over.")]
+    [Range(10.0f, 60.0f*5.0f)] [SerializeField] float GameDuration = 10.0f;
+
     const float MaxSnowPlanePixels =  65536;
 
     [System.Serializable]
-    public class ShovelWarTeam : Team
+    public class ShovelWarTeam : TeamBase
     {
         public SnowPlane snowPlane = null;
     }
@@ -39,28 +34,20 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
         }
     }
 
-    void Update() 
+    protected override void Update() 
     {
         if(base.DidGameEnd)
             return;
 
-        this.ShovelWarGuiManager.UpdateClearPercentTexts(
-            this.TeamOneSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100, 
-            this.TeamTwoSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100);
-
+        this.UpdateTeamScores();
         this.CheckGameEndConditions();
         this.UpdateGameDuration();
+        base.Update();
     }
 
-    protected override Team[] GetTeams() 
+    protected override TeamBase[] GetTeams() 
     {
         return this.Teams;
-    }
-
-    void UpdateGameDuration() 
-    {
-        this.GameDuration -= Time.deltaTime;
-        this.ShovelWarGuiManager.UpdateGameTimeText(this.GameDuration);
     }
 
     protected override void CheckGameEndConditions() 
@@ -74,10 +61,23 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
     protected override void CheckGameWinnerAndDisplayResults()
     {
         if(this.TeamOneSnowPlane.RedPixelCounter > this.TeamTwoSnowPlane.RedPixelCounter)
-            this.ShovelWarGuiManager.ShowEndGameWindow("Red Team Wins!");
+            base.GuiManager.ShowEndGameWindow("Red Team Wins!");
         else if(this.TeamOneSnowPlane.RedPixelCounter < this.TeamTwoSnowPlane.RedPixelCounter) 
-            this.ShovelWarGuiManager.ShowEndGameWindow("Blue Team Wins!");
+            base.GuiManager.ShowEndGameWindow("Blue Team Wins!");
         else 
-            this.ShovelWarGuiManager.ShowEndGameWindow("Tie Game!");
+            base.GuiManager.ShowEndGameWindow("Tie Game!");
+    }
+
+    void UpdateGameDuration() 
+    {
+        this.GameDuration -= Time.deltaTime;
+        base.GuiManager.UpdateGameTimeText(this.GameDuration);
+    }
+
+    void UpdateTeamScores() {
+
+        //this game mode will only ever have two teams in this order
+        this.Teams[0].Score = Mathf.RoundToInt(this.TeamOneSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100);
+        this.Teams[1].Score = Mathf.RoundToInt(this.TeamTwoSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100);
     }
 }

@@ -7691,11 +7691,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bf516a297551049ac4529fedb20ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GuiManager: {fileID: 2068075041}
   LevelSpecificScriptsPrefab: {fileID: 1224298575184364, guid: 3ce0cb5b5257fae419c591fbc810766e,
     type: 2}
+  SnowDayCam: {fileID: 0}
   PostGameDuration: 3
-  ShovelWarGuiManager: {fileID: 2068075040}
-  GameDuration: 60
   TeamOneSnowPlane: {fileID: 1215794311}
   TeamTwoSnowPlane: {fileID: 1443600132}
   Teams:
@@ -7717,6 +7717,7 @@ MonoBehaviour:
     Score: 0
     TeamColor: {r: 0, g: 0, b: 1, a: 0}
     snowPlane: {fileID: 1443600132}
+  GameDuration: 60
 --- !u!1 &2068075034
 GameObject:
   m_ObjectHideFlags: 0
@@ -7729,7 +7730,7 @@ GameObject:
   - component: {fileID: 2068075036}
   - component: {fileID: 2068075035}
   - component: {fileID: 2068075039}
-  - component: {fileID: 2068075040}
+  - component: {fileID: 2068075041}
   m_Layer: 5
   m_Name: ShovelGameHUD
   m_TagString: Untagged
@@ -7835,7 +7836,7 @@ MonoBehaviour:
   SnowClearCondition: 0
   WinScreen: {fileID: 896964819}
   MatchLength: 60
---- !u!114 &2068075040
+--- !u!114 &2068075041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7843,11 +7844,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2068075034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e4cb8e0e84c844b8d73558265f367a, type: 3}
+  m_Script: {fileID: 11500000, guid: 93f24ff682879204fbbc8a748c47f48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamOneClearPercentText: {fileID: 1496443152}
-  TeamTwoClearPercentText: {fileID: 1592411139}
+  TeamsScore:
+  - {fileID: 1496443152}
+  - {fileID: 1592411139}
   GameTimeText: {fileID: 1911000114}
   EndGameWindow: {fileID: 896964819}
   EndGameWindowText: {fileID: 658651719}
