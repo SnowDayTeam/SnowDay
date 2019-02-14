@@ -29,13 +29,7 @@ public class CheckPointProgress : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            currentGate++;
-        }
-
-
-        if (currentGate != 0)
+          if (currentGate != 0)
         {
             float distToNextGate = Vector3.Distance(transform.position, display.points[currentGate-1].gate.position);
 
