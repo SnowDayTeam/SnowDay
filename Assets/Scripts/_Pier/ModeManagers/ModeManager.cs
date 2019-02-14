@@ -16,7 +16,6 @@ public class ModeManager : MonoBehaviour
         public SpawnLocation[] spawnLocations;
         public int score;
         public Color teamColor;
-
     }
     public virtual BaseTeam[] getTeam()
     {

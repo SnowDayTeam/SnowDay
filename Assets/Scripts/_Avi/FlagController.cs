@@ -21,7 +21,7 @@ public class FlagController : MonoBehaviour {
     Rigidbody FlagHolder;
 
     //Spheretrace variables
-    public float currentRadius = 1.25f;
+    public float currentRadius;
     public Vector3 center = new Vector3(.04f, 1.26f, .03f);
 
     //InputVariables
@@ -41,6 +41,7 @@ public class FlagController : MonoBehaviour {
     void Start ()
     {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
+        currentRadius = 0.5f;
     }
     public void OnDrawGizmosSelected()
     {
@@ -65,11 +66,21 @@ public class FlagController : MonoBehaviour {
 
                     FlagPickup p = col.GetComponent<FlagPickup>();
 
-                    if (p != null)
+                    if (p != null && !IsHolding)
                     {
-                        Debug.Log("Check 1");
+                        //checks if flag was already planted in a goal
+                        if (p.GetComponent<FlagPickup>().CantBeInteractedWith == false)
+                        {
+                            Debug.Log("Picking Up");
 
-                    
+                            Flag = p;
+                            p.PickUpFlag(gameObject.transform, team, FlagHoldPostion);
+                            IsHolding = true;
+
+                        }
+
+                        /*
+
                         if (numberOfFlagsHeld == 1)
                         {
                             if (p.transform.parent != null)
@@ -105,25 +116,17 @@ public class FlagController : MonoBehaviour {
                                     }
                                 }
                             }
-                        }
+                            */
+                    }
                         //flag is in ground pick up
                         else
                         {
-                            //checks if flag was already planted in a goal
-                            if (p.GetComponent<FlagPickup>().CantBeInteractedWith == false)
-                            {
-                                Debug.Log("Check 5");
-
-                                Flag = p;
-                                p.PickUpFlag(gameObject.transform, team, FlagHoldPostion);
-                                IsHolding = true;
-
-                            }
+                            
 
                             //    }
 
+                       // }
                         }
-                    }
                 }
             }
             //Drop Flag if already holding

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CTFUI : MonoBehaviour {
+
     //Object References
     [SerializeField]
     CTFGameManager GM;
@@ -29,11 +30,6 @@ public class CTFUI : MonoBehaviour {
     float startTime;
     bool Winnerdecided = false;
 
-
-
-
-
-
     // Use this for initialization
     void Start () {
         startTime = Time.time;
@@ -46,16 +42,12 @@ public class CTFUI : MonoBehaviour {
             TimeTXT.text = (Mathf.RoundToInt( MatchLength - (Time.time- startTime))).ToString();
             BlueScoreTXT.text = "B " + GM.BlueTeamScore;
             RedScoreTXT.text = GM.RedTeamScore + " R";
-
         }
 
         else if(Winnerdecided==false)
         {
             CheckWinner();
         }
-         
-   
-		
 	}
 
     void CheckWinner()
@@ -66,7 +58,6 @@ public class CTFUI : MonoBehaviour {
             winscreen.SetActive(true);
             WinTXT.text = "RED WINS!";
             WinTXT.color = Red;
-
         }
 
         else
@@ -74,9 +65,6 @@ public class CTFUI : MonoBehaviour {
             winscreen.SetActive(true);
             WinTXT.text = "BLUE WINS!";
             WinTXT.color = Blue;
-            
-
-
         }
     }
 }

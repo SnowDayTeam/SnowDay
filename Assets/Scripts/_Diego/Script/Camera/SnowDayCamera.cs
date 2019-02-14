@@ -41,7 +41,7 @@ public class SnowDayCamera : MonoBehaviour
 
     public void Initialize()
     {
-        cam = Camera.main;
+        cam = GetComponentInChildren<Camera>();
         thetaStep = (2f * Mathf.PI) / Resolution;
 
         CameraDistance();

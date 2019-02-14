@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using SnowDay.Diego.Singleton;
@@ -8,6 +9,7 @@ namespace SnowDay.Diego.GameMode
 {
     class GameModeController : Singleton<GameModeController>
     {
+        //why does this even exist?
         //why is this a struct
         GameModeSettings gameMode;
 
@@ -31,7 +33,7 @@ namespace SnowDay.Diego.GameMode
         {
             return gameMode.GetActivePlayers();
         }
-
+        
         private void MoveActivePlayerToScene(LevelData selectedLevel)
         {
             Scene scene = SceneManager.GetSceneByName(selectedLevel.sceneName);
@@ -41,20 +43,25 @@ namespace SnowDay.Diego.GameMode
             }
         }
 
-        public void LoadGameMode(LevelData selectedLevel)
+       public IEnumerator LoadGameMode(LevelData selectedLevel)
         {
+            Debug.Log("loading");
             Scene LevelSelectScene = SceneManager.GetActiveScene();
 
-            SceneManager.LoadSceneAsync(selectedLevel.sceneName, LoadSceneMode.Additive);
-
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(selectedLevel.sceneName, LoadSceneMode.Additive);
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(selectedLevel.sceneName));
             MoveActivePlayerToScene(selectedLevel);
 
             UnloadScene(LevelSelectScene);
-
         }
 
         private void UnloadScene(Scene scene)
         {
+            //this is pointless as unloading a scene does this anyways
             GameObject[] gameObjects = scene.GetRootGameObjects();
             foreach (var item in gameObjects)
             {
