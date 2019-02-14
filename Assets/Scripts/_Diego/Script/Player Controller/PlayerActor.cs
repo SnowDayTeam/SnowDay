@@ -9,19 +9,26 @@ using RootMotion.Dynamics;
 /// </summary>
 public class PlayerActor : MonoBehaviour
 {
-    TDMManager manager;
+    //TDMManager manager;
+
+    DeathmatchGamemodeManager manager = null;
+
     public int Health = 3;
 
     public int TeamID;
     public bool isAlive = true;
+
     public void TakeDamage(int damage)
     {
         Health -= damage;
     }
-    public void Start()
+
+    public void Start() 
     {
-        manager = FindObjectOfType<TDMManager>();
+        //manager = FindObjectOfType<TDMManager>();
+        this.manager = FindObjectOfType<DeathmatchGamemodeManager> ();
     }
+
     public void DecreaseHealth(int amout, int oppTeamID)
     {
         if (isAlive)
@@ -29,15 +36,15 @@ public class PlayerActor : MonoBehaviour
             Health -= amout;
             if (Health <= 0)
             {
-               //int oppTeamID = TeamID == 1 ? 0 : 1;
-                manager.IncreaseTeamScore(1, oppTeamID);
-                manager.playerDeadReport(TeamID);
+                //int oppTeamID = TeamID == 1 ? 0 : 1;
+                this.manager.OnPlayerDied(this.TeamID, oppTeamID);
+                //manager.IncreaseTeamScore(1, oppTeamID);
+                //manager.playerDeadReport(TeamID);
                 //Destroy(gameObject);
                 GetComponentInParent<PlayerController>().gameObject.GetComponentInChildren<PuppetMaster>().Kill();
                 isAlive = false;
             }
         }
-        
     }
     private void Update()
     {

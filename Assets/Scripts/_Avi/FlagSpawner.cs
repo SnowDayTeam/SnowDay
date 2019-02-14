@@ -6,8 +6,9 @@ using UnityEngine;
 public class FlagSpawner : MonoBehaviour {
 
     //Actor references
-    [SerializeField]
-    CTFGameManager GM;
+    //[SerializeField]
+    //CTFGameManager GM;
+    [SerializeField] CaptureTheFlagGamemodeManager FlagGamemodeManager = null;
     
     public bool alreadySpawned=false;
     [SerializeField]
@@ -23,8 +24,6 @@ public class FlagSpawner : MonoBehaviour {
     public float currentspawnTimer;
     float Timestarted;
     bool TimeSet=false;
-
-
 
     public Color gizmoColor = Color.green;
     public void OnDrawGizmos()
@@ -46,7 +45,7 @@ public class FlagSpawner : MonoBehaviour {
             SetSpawnTimer();
         }
      
-        if (alreadySpawned==false && GM.currentFlags < GM.MaxFlags)
+        if (alreadySpawned==false && FlagGamemodeManager.CurrentFlags < FlagGamemodeManager.MaxFlags)
         {
            // Debug.Log("CheckingTime");
             if (Time.time - Timestarted > currentspawnTimer)
@@ -78,7 +77,7 @@ public class FlagSpawner : MonoBehaviour {
         flagspawned= Instantiate(Flag, new Vector3(transform.position.x + Random.Range(xSpawnRange*-1,xSpawnRange), transform.position.y+ 1.34f, transform.position.z+ Random.Range(zSpawnRange*-1,zSpawnRange)), Quaternion.identity);
         flagspawned.GetComponent<FlagPickup>().spawner = gameObject.GetComponent<FlagSpawner>();
         //Set variables so spawner can be good to go later on
-        GM.currentFlags++;
+        FlagGamemodeManager.CurrentFlags++;
         alreadySpawned = true;
         TimeSet = false;
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4186003, g: 0.44708288, b: 0.46455622, a: 1}
+  m_IndirectSpecularColor: {r: 0.4186007, g: 0.44708306, b: 0.46455687, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -313,6 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1037197324}
   - component: {fileID: 1037197323}
+  - component: {fileID: 1037197325}
   m_Layer: 0
   m_Name: Team Deathmatch Manager
   m_TagString: Untagged
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1037197322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95f5830549e0be8419aa6f1aa14b420e, type: 3}
   m_Name: 
@@ -368,6 +369,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1037197325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1037197322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f973ffe0e285ff4ea0229673b9566e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelSpecificScriptsPrefab: {fileID: 1000937391617244, guid: 32c12238b3d97e34d972cad849cff5df,
+    type: 2}
+  SnowDayCam: {fileID: 318813462}
+  PostGameDuration: 5
+  Teams:
+  - Players: []
+    SpawnLocations:
+    - {fileID: 1178228037}
+    - {fileID: 1178228035}
+    - {fileID: 1178228033}
+    - {fileID: 1178228031}
+    Score: 0
+    TeamColor: {r: 1, g: 0, b: 0, a: 0}
+    PlayersAlive: 0
+  - Players: []
+    SpawnLocations:
+    - {fileID: 1178228029}
+    - {fileID: 1178228027}
+    - {fileID: 1178228025}
+    - {fileID: 1178228023}
+    Score: 0
+    TeamColor: {r: 0, g: 0, b: 1, a: 0}
+    PlayersAlive: 0
 --- !u!1001 &1178228020
 Prefab:
   m_ObjectHideFlags: 0
@@ -737,6 +772,18 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 1037197322}
+    ActiveGameObject: {fileID: 1037197322}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 1178228022}
     - {fileID: 1178228024}
     - {fileID: 1178228026}
@@ -825,18 +872,6 @@ MonoBehaviour:
     list:
     - {fileID: 1178228026}
     ActiveGameObject: {fileID: 1178228026}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1037197322}
-    ActiveGameObject: {fileID: 1037197322}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []

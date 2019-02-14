@@ -11,7 +11,6 @@ public class CTFGameManager : ModeManager
     public float RedTeamScore;
     [HideInInspector]
     public float BlueTeamScore;
-    
  
     [System.Serializable]
     public class team : BaseTeam
@@ -27,8 +26,8 @@ public class CTFGameManager : ModeManager
         return Teams;
     }
     //for flag spawning
-    public int MaxFlags=2;
-    public int currentFlags=1;
+    public int MaxFlags = 2;
+    public int currentFlags = 1;
 
     // Use this for initialization
     public override void Start()

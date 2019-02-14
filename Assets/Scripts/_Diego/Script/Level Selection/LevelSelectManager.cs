@@ -37,7 +37,7 @@ namespace SnowDay.Diego.LevelSelect
         public List<LevelData> Levels;
 
         private LevelSelectPlayerActivator playerActivator;
-      
+        bool once = true; //dirty hack 
         // Use this for initialization
         //TODO: Make Random level select
         private void Start()
@@ -83,10 +83,11 @@ namespace SnowDay.Diego.LevelSelect
                 if (TimeLeft <= 0)
                 {
                     LevelData selectedLevel = NextLevelSelect();
-                    if (selectedLevel)
+                    if (selectedLevel && once)
                     {
+                        once = false;
                         SaveActivePlayers();
-                        GameModeController.GetInstance().LoadGameMode(selectedLevel);
+                        StartCoroutine(GameModeController.GetInstance().LoadGameMode(selectedLevel)) ;
                         EnableTimer = false;
                     }
                     return;
