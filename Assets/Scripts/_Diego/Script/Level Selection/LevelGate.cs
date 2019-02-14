@@ -60,6 +60,12 @@ public class LevelGate : MonoBehaviour {
 
         var position = transform.position;
         Instantiate(portalData.ObjectPrefab, new Vector3(position.x, position.y, position.z), Quaternion.identity, transform);
+        TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();
+
+        if (textMesh)
+        {
+            textMesh.text = portalData.sceneName;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
