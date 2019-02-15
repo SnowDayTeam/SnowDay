@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarDriving : MonoBehaviour {
+public class Car : MonoBehaviour {
+
     private Rigidbody rb;
     public float carSpeed;
     //makes the car drive towards the camera
@@ -16,9 +17,9 @@ public class CarDriving : MonoBehaviour {
     private float prevTime;
     private float currentTime;
 
-    private bool newDelay=true;
+    private bool newDelay = true;
     [HideInInspector]
-    public bool driveMode=false;
+    public bool driveMode = false;
 
     public GameObject LeftLight;
     public GameObject RightLight;
@@ -34,18 +35,20 @@ public class CarDriving : MonoBehaviour {
 
 
 
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
-	}
-	
-	
-	void Update () {
+    }
+
+
+    void Update()
+    {
         //handles the various states of the care
         if (driveMode == true)
         {
             drive();
         }
-       
+
         //if drive mode isn't active set up the delay then track it
         else
         {
@@ -59,11 +62,11 @@ public class CarDriving : MonoBehaviour {
                 CheckForDriveTime();
             }
         }
-  
 
 
 
-     
+
+
     }
 
 
@@ -81,7 +84,7 @@ public class CarDriving : MonoBehaviour {
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (driveTowards == false)
         {
-            if(rb!= null)
+            if (rb != null)
             {
                 rb.AddForce(new Vector3(LaunchX, LaunchY, 0));
 
@@ -96,7 +99,7 @@ public class CarDriving : MonoBehaviour {
 
             }
         }
-      
+
     }
 
 
@@ -105,15 +108,15 @@ public class CarDriving : MonoBehaviour {
     {
         LeftLight.gameObject.SetActive(true);
         RightLight.gameObject.SetActive(true);
-        
+
         if (driveTowards == false)
         {
-            rb.velocity = new Vector3(0, 0, carSpeed);
+            rb.velocity = new Vector3(carSpeed, 0, 0);
         }
 
         else
         {
-            rb.velocity = new Vector3(0, 0, carSpeed * -1);
+            rb.velocity = new Vector3(carSpeed * -1, 0, 0);
         }
     }
 
@@ -130,11 +133,11 @@ public class CarDriving : MonoBehaviour {
 
 
     }
-    
+
     //checks to see if delay time is up
     public void CheckForDriveTime()
     {
-        
+
         if (Time.time - prevTime >= currentDelay)
         {
             driveMode = true;
