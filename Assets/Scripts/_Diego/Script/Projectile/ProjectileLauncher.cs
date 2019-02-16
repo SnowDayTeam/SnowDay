@@ -1,5 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System.Collections;
+
+using SnowDay.Diego.CharacterController;
+using SnowDay.Diego.GameMode;
 
 /// <summary>
 /// Projectile Attributes
@@ -66,6 +70,8 @@ public class ProjectileLauncher : MonoBehaviour
     //player ammo variables
     public int playerAmmo = 5;
 
+    //auto aim angle
+    public float autoAimAngle = 15.0f;
 
     /// <summary>
     /// Launch Projectile
@@ -80,28 +86,40 @@ public class ProjectileLauncher : MonoBehaviour
             playerAmmo--;
 
             //get reference to all players
-            foreach (GameObject eachGameObject in GameObject.FindGameObjectsWithTag("player"))
+            var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+            for (int i = 0; i < AllPlayers.Count; i++)
             {
-                
+            if (AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == actor.TeamID)
+                {
+                    //Debug.Log("check enemies");
+                    float angleBetweenPlayers = Vector3.Angle(actor.transform.forward, AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position);
+                    Debug.Log("Angle Between players: " + angleBetweenPlayers);
+                    if(angleBetweenPlayers < autoAimAngle)
+                    {
+                        DefaultShot.angle = angleBetweenPlayers; 
+                        Debug.Log("aim corrected"); 
+                    }
+                else
+                    {
+                        Debug.Log("standard aim");
+                    }
+                }
             }
-            //GetComponentInParent<PlayerController>().gameObject.GetComponentInChildren<PuppetMaster>().Kill();
-
-            //check to see if enemy player
-            //calculate angle
-            //adjust or do not adjust
 
             proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
 
             projectileSpeedValue = DefaultShot.speed;
             projectileAngleValue = DefaultShot.angle;
-        }else
-        {
-            //force reloading animation
-
-            //when loading animation complete:
-            //playerAmmo = 5;
-
+        }else{
+            StartCoroutine(reload());
         }
+    }
+
+    private IEnumerator reload()
+    {
+        playerAmmo = 0; 
+          yield return new WaitForSeconds(3);
+        playerAmmo = 5;
     }
 
     /// <summary>
