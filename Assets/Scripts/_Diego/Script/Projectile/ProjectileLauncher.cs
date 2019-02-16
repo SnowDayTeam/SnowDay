@@ -63,6 +63,9 @@ public class ProjectileLauncher : MonoBehaviour
 
     private const float renderLineOffset = 0.2f;
 
+    //player ammo variables
+    public int playerAmmo = 5;
+
 
     /// <summary>
     /// Launch Projectile
@@ -70,11 +73,35 @@ public class ProjectileLauncher : MonoBehaviour
     /// <param name="attribs">Projectile Attributes</param>
     public void LaunchProjectile(PlayerActor actor)
     {
-        ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
-        proj.playerActor = actor;
-        proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
-        projectileSpeedValue = DefaultShot.speed;
-        projectileAngleValue = DefaultShot.angle;
+        if (playerAmmo > 0)
+        {
+            ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
+            proj.playerActor = actor;
+            playerAmmo--;
+
+            //get reference to all players
+            foreach (GameObject eachGameObject in GameObject.FindGameObjectsWithTag("player"))
+            {
+                
+            }
+            //GetComponentInParent<PlayerController>().gameObject.GetComponentInChildren<PuppetMaster>().Kill();
+
+            //check to see if enemy player
+            //calculate angle
+            //adjust or do not adjust
+
+            proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
+
+            projectileSpeedValue = DefaultShot.speed;
+            projectileAngleValue = DefaultShot.angle;
+        }else
+        {
+            //force reloading animation
+
+            //when loading animation complete:
+            //playerAmmo = 5;
+
+        }
     }
 
     /// <summary>
