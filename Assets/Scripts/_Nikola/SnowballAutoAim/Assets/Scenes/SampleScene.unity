@@ -268,8 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed376631aca7964fb2cdf874a875423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snowballDistance: 2
+  ballThrowForce: 5
   projectile: {fileID: 535422376}
-  cameraRelative: {x: 0, y: 0, z: 0}
   speedH: 2
   speedV: 2
 --- !u!1 &535422376
@@ -352,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 535422376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 2.49, z: -0.62}
+  m_LocalPosition: {x: 0.10986018, y: 2.11, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -386,7 +387,7 @@ GameObject:
   - component: {fileID: 1029074176}
   - component: {fileID: 1029074180}
   m_Layer: 0
-  m_Name: TestCube
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +454,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1029074175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.45485, z: -0.35881}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
