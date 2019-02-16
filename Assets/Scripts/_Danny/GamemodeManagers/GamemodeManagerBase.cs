@@ -91,7 +91,9 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             foreach(PlayerController player in team.Players) 
             {
-                player.GetComponentInChildren<SkinnedMeshRenderer> ().materials[0].color = team.TeamColor;
+                player.GetComponentInChildren<SkinnedMeshRenderer> ().materials[0].SetColor("_TeamColor", team.TeamColor) ;
+
+
             }
         }
     }
