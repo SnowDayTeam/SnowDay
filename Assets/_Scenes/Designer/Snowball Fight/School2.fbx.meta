@@ -6,9 +6,16 @@ ModelImporter:
     100000: Box009
     100002: //RootNode
     100004: Sun
+    100006: Camera
+    100008: Cube
+    100010: Lamp
     400000: Box009
     400002: //RootNode
     400004: Sun
+    400006: Camera
+    400008: Cube
+    400010: Lamp
+    2000000: Camera
     2100000: base
     2100002: Window Frame
     2100004: window
@@ -16,15 +23,59 @@ ModelImporter:
     2100008: Door
     2100010: roof
     2300000: Box009
+    2300002: Cube
     3300000: Box009
+    3300002: Cube
     4300000: Box009
+    4300002: Cube
     10800000: Sun
-  externalObjects: {}
+    10800002: Lamp
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: 0b45a72d38fb19b4392f2c825941fdd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: a47ebb4528737694e8d392ad69021b3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillars
+    second: {fileID: 2100000, guid: d5630b920f655db4fa8f0ce521734096, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window Frame
+    second: {fileID: 2100000, guid: e7cb95c694c6f1440b49ea1ec80cfd1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: base
+    second: {fileID: 2100000, guid: cb87927b3dde549488a9d41fe4a1cf21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: 938c931db19b2534aa5fb3d126122eab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trim
+    second: {fileID: 2100000, guid: b87fed44833b9bd45affa24992ce0909, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window
+    second: {fileID: 2100000, guid: 7db59598fc0ba814bb7f104ee082c8ff, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
