@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KeepObjectOut : MonoBehaviour {
+
     public float BackAmount;
     public bool AwayFromCamera;
 

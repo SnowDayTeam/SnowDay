@@ -9,11 +9,7 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
 
     [SerializeField] ShovelWarTeam[] Teams = null;
 
-    [Header("Game Time")]
-    [Tooltip("The time in seconds until the game is over.")]
-    [Range(10.0f, 60.0f*5.0f)] [SerializeField] float GameDuration = 10.0f;
-
-    const float MaxSnowPlanePixels =  65536;
+    const float MaxSnowPlanePixels = 65536;
 
     [System.Serializable]
     public class ShovelWarTeam : TeamBase
@@ -41,21 +37,12 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
 
         this.UpdateTeamScores();
         this.CheckGameEndConditions();
-        this.UpdateGameDuration();
         base.Update();
     }
 
     protected override TeamBase[] GetTeams() 
     {
         return this.Teams;
-    }
-
-    protected override void CheckGameEndConditions() 
-    {
-        if(this.GameDuration <= 0) 
-        {
-            base.EndGame();
-        }
     }
     
     protected override void CheckGameWinnerAndDisplayResults()
@@ -68,15 +55,8 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
             base.GuiManager.ShowEndGameWindow("Tie Game!");
     }
 
-    void UpdateGameDuration() 
-    {
-        this.GameDuration -= Time.deltaTime;
-        base.GuiManager.UpdateGameTimeText(this.GameDuration);
-    }
-
     void UpdateTeamScores() {
 
-        //this game mode will only ever have two teams in this order
         this.Teams[0].Score = Mathf.RoundToInt(this.TeamOneSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100);
         this.Teams[1].Score = Mathf.RoundToInt(this.TeamTwoSnowPlane.RedPixelCounter / MaxSnowPlanePixels * 100);
     }
