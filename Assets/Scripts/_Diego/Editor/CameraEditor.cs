@@ -14,7 +14,7 @@ public class CameraEditor : Editor
     private SerializedProperty XZMultiplier;
     private SerializedProperty YMultiplier;
     private SerializedProperty EdgeBorderBuffer;
-
+    private SerializedProperty CameraYOffset;
     private void OnEnable()
     {
         cameraScript = (SnowDayCamera)target;
@@ -24,6 +24,7 @@ public class CameraEditor : Editor
         CameraRotResolution = Target.FindProperty("Resolution");
         CameraRotStep = Target.FindProperty("CurrentStep");
         SmoothTime = Target.FindProperty("SmoothTime");
+        CameraYOffset = Target.FindProperty("CameraYOffset");
         XZMultiplier = Target.FindProperty("XZMultiplier");
         YMultiplier = Target.FindProperty("YMultiplier");
         EdgeBorderBuffer = Target.FindProperty("EdgeBorderBuffer");
@@ -39,6 +40,8 @@ public class CameraEditor : Editor
         EditorGUILayout.IntSlider(CameraRotResolution, 1, 45 , new GUIContent("", ""));
         EditorGUILayout.IntSlider(CameraRotStep, 1, CameraRotResolution.intValue, new GUIContent("Step", "Camera Rotation Step"));
         EditorGUILayout.PropertyField(SmoothTime);
+        //EditorGUILayout.PropertyField(CameraYOffset);
+
         EditorGUILayout.PropertyField(XZMultiplier);
         EditorGUILayout.PropertyField(YMultiplier);
         EditorGUILayout.PropertyField(EdgeBorderBuffer);

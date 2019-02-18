@@ -9,6 +9,7 @@ namespace SnowDay.Diego.CharacterController
     [RequireComponent(typeof(Animator))]
     public class SnowDayCharacter : MonoBehaviour
     {
+        public bool RunEnabled = true;
         public LayerMask groundLayers;
         public float m_MovingTurnSpeed = 360;
         public float m_StationaryTurnSpeed = 180;
@@ -56,10 +57,13 @@ namespace SnowDay.Diego.CharacterController
             m_OrigGroundCheckDistance = m_GroundCheckDistance;
         }
 
-
-        public void Move(Vector3 move, bool crouch, bool jump)
+        public void Move(Vector3 move, bool crouch, bool jump, bool run)
         {
 
+        }
+        public void Move(Vector3 move, bool crouch, bool jump)
+        {
+            
             // convert the world relative moveInput vector into a local-relative
             // turn amount and forward amount required to head in the desired
             // direction.

@@ -18,7 +18,7 @@ namespace SnowDay.Diego.CharacterController
         public PierInputManager.ButtonName VerticalAxis = PierInputManager.ButtonName.Left_Vertical;
         public PierInputManager.ButtonName CrouchKey = PierInputManager.ButtonName.Left_Bumper;
         public PierInputManager.ButtonName JumpKey = PierInputManager.ButtonName.A;
-        public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.B;
+        //public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.B;
 
 
         private PierInputManager playerInputController;
@@ -35,6 +35,7 @@ namespace SnowDay.Diego.CharacterController
         private bool crouch;
         private float horizontalAxis;
         private float verticalAxis;
+        public float RunBoostMultiplier = 1.5f;
 
         private bool activeSelf = false;
         public bool CharacterEnabled//bad design hides intent 
@@ -73,7 +74,7 @@ namespace SnowDay.Diego.CharacterController
         {
             puppetMaster.mode = PuppetMaster.Mode.Disabled ;
             playerCharacter.transform.position = position;
-         //   Debug.Log("puppet disabled");
+        //   Debug.Log("puppet disabled");
             Invoke("ActivatePuppet", 5);
         }
 
@@ -208,7 +209,7 @@ namespace SnowDay.Diego.CharacterController
 
 #if !MOBILE_INPUT
                 // walk speed multiplier
-                if (playerInputController.GetButton(RunKey)) m_Move *= 0.5f;
+              //  if (playerInputController.GetButton(RunKey)) m_Move *= RunBoostMultiplier;
 #endif
 
                 playerCharacter.Move(m_Move, crouch, m_Jump);
