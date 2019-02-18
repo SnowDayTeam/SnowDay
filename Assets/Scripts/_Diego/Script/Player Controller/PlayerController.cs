@@ -26,7 +26,7 @@ namespace SnowDay.Diego.CharacterController
 
         [Header("Debug")]
         public int currentPrefab = 0;
-
+        public Transform playerIndicator;
       //  public GameObject[] PlayerPrefab;
 
         private Transform m_Cam;
@@ -57,7 +57,7 @@ namespace SnowDay.Diego.CharacterController
         private void Start()
         {
             playerInputController = gameObject.GetComponent<PierInputManager>();
-
+            playerIndicator.gameObject.SetActive(false);
             if (Camera.main != null)
             {
                 m_Cam = Camera.main.transform;
@@ -133,6 +133,7 @@ namespace SnowDay.Diego.CharacterController
         {
             Vector3 characterPosition;
             Quaternion characterRotation;
+            playerIndicator.gameObject.SetActive(true);
 
             if (SnowDayCharacterGameObject != null && playerCharacter != null)// explicitly check for null 
             {
@@ -153,6 +154,10 @@ namespace SnowDay.Diego.CharacterController
 
             Debug.Log(puppetMaster.gameObject);
             puppetMaster.mode = PuppetMaster.Mode.Kinematic;
+
+            playerIndicator.GetComponentInChildren<SpriteRenderer>().color= SnowDayCharacterGameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_TeamColor");
+            playerIndicator.GetComponentInChildren<TextMesh>().text = playerInputController.playerNumber.ToString();
+            playerIndicator.SetAsLastSibling();// hack to change 
             return playerCharacter;
         }
 
@@ -184,6 +189,7 @@ namespace SnowDay.Diego.CharacterController
 
             if (SnowDayCharacterGameObject)
             {
+                playerIndicator.transform.position = playerCharacter.transform.position +Vector3.up *2.5f;
                 if (!m_Jump)
                 {
                     m_Jump = playerInputController.GetButtonDown(JumpKey);
