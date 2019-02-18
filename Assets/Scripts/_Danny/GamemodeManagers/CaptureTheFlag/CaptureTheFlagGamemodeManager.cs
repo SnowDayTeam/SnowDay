@@ -5,10 +5,6 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
 
     [SerializeField] TeamBase[] Teams = null; 
 
-    [Header("Time")]
-    [Tooltip("The time in seconds until the game is over.")]
-    [Range(10.0f, 60.0f*5.0f)] [SerializeField] float GameDuration = 10.0f;
-
     //Either Flag spawning should happen here or this 
     //should be moved to flag spawner
     [Header("Flag Variables")]

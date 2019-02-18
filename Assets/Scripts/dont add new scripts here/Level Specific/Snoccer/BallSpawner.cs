@@ -44,22 +44,16 @@ public class BallSpawner : MonoBehaviour {
             IK.solver.rightHandEffector.target = ReachPoint;
             IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 1.0f, t);
 
-			if(IK.solver.rightHandEffector.positionWeight==1)
+			if(IK.solver.rightHandEffector.positionWeight == 1)
 
 			{
 				DoneReaching = true;
 				IsReaching = false;
-
-				
-
 			}
-
 		}
-
 
 		if(DoneReaching==true)
 		{
-		
 			currentLerpTime = 0f;
 			currentLerpTime += Time.deltaTime;
             if (currentLerpTime > lerpTime)
@@ -71,57 +65,36 @@ public class BallSpawner : MonoBehaviour {
             
             IK.solver.rightHandEffector.positionWeight = Mathf.Lerp(IK.solver.rightHandEffector.positionWeight, 0f, t);
 
-
-
-
             if (IK.solver.rightHandEffector.positionWeight <= 0.1)
 			{
 				
 				IK.solver.rightHandEffector.target = null;
 				BallPickedUp = true;
 				DoneReaching = false;
-
-				
 			}
 		}
-
         
 		if (Input.GetButtonDown(inputName))
         {
 			
 			if(!BallPickedUp)
 			{
-				
 				PickUpBall();
 			}
 			//spawns in ball at spawn point and launches ball in faced direction
 			else
 			{
-				
 				ThrowBall();
 			}
 
             timeFired = Time.time;
-          //  print(inputName);
-            
-            
-        }
-
-
-
-
-        
+          //  print(inputName);   
+        }   
     }
-    
-
 
 	private void PickUpBall()
 	{
-
 		IsReaching = true;
-
-
-
 	}
 
 	private void ThrowBall()
@@ -130,7 +103,4 @@ public class BallSpawner : MonoBehaviour {
         throwBall.GetComponent<Rigidbody>().velocity = transform.forward * LaunchVelocity;
 		BallPickedUp = false;
 	}
-
-
-
 }

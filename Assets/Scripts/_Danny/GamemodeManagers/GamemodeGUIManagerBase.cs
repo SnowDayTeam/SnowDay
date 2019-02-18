@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GamemodeGUIManagerBase : MonoBehaviour {
+public class GamemodeGUIManagerBase : MonoBehaviour 
+{
 
 	[SerializeField] protected Text[] TeamsScore = null;
 
@@ -10,11 +11,15 @@ public class GamemodeGUIManagerBase : MonoBehaviour {
     [SerializeField] GameObject EndGameWindow = null;
     [SerializeField] Text EndGameWindowText = null;
 
-    public virtual void UpdateScoreTextAtIndex(int Index, int Score) {
+    public virtual void UpdateScoreTextAtIndex(int Index, int Score) 
+    {
         this.TeamsScore[Index].text = Score.ToString();
     }
 
-    public virtual void UpdateGameTimeText(float SecondsLeftInRound) {
+    public virtual void UpdateGameTimeText(float SecondsLeftInRound) 
+    {
+        if(!this.GameTimeText)
+            return;
 
         //To ensure time doesnt get displayed if it is negative
         SecondsLeftInRound = Mathf.Max(0, SecondsLeftInRound);
@@ -25,9 +30,15 @@ public class GamemodeGUIManagerBase : MonoBehaviour {
         this.GameTimeText.text = minutes + ":" + seconds;
     }
 
-    public void ShowEndGameWindow(string EndGameText) {
-
+    public void ShowEndGameWindow(string EndGameText) 
+    {
         this.EndGameWindow.gameObject.SetActive(true);
         this.EndGameWindowText.text = EndGameText;
     }
+
+    public void DestroyGameTimer() 
+    {
+        Destroy(this.GameTimeText);
+    }
+
 }

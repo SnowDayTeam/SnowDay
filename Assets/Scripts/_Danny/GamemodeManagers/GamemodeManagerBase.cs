@@ -4,10 +4,12 @@ using SnowDay.Diego.CharacterController;
 using System.Collections.Generic;
 using System.Collections;
 
-// Note: if all gamemodes have a timer move time to this class
+/// <summary>
+/// Manager base for all gamemodes.  This component should start off as it will 
+/// be turned on by the loading screen.
+/// </summary>
 abstract public class GamemodeManagerBase : MonoBehaviour 
 {
-
     [Header("GUI")]
     [Tooltip("The GUI manager for this gamemode, controls text only. Attached to canvas")]
 	[SerializeField] protected GamemodeGUIManagerBase GuiManager = null;
@@ -20,9 +22,20 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     [Tooltip("The time in seconds before the level select is loaded again.")]
     [SerializeField] float PostGameDuration = 1.0f;
 
+    [Header("Game Time")]
+    [Tooltip("The time in seconds until the game is over. 0 means infinite game duration")]
+    [SerializeField] protected float GameDuration = 1.0f;
+
+    /// <summary>
+    /// Instance of this class, WARNING this is not a singleton class, 
+    /// however there should only be one instance of this class
+    /// </summary>
+    static public GamemodeManagerBase Instance = null;
+
     List<PlayerController> Players = null;
 
     protected bool DidGameEnd = false;
+    protected bool IsInfiniteGameDuration = false;
 
     [System.Serializable]
     public class TeamBase 
@@ -42,13 +55,17 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     /// Display results / win screen.
     /// </summary>
     abstract protected void CheckGameWinnerAndDisplayResults();
-    /// <summary>
-    /// This is abstract simply to streamline derrived classes.
-    /// </summary>
-    abstract protected void CheckGameEndConditions();
+
+    void Awake() {
+        GamemodeManagerBase.Instance = this;
+        this.IsInfiniteGameDuration = this.GameDuration == 0;
+    }
 
     protected virtual void Start() 
     {
+        if(this.IsInfiniteGameDuration)
+            this.GuiManager.DestroyGameTimer();
+
         this.Players = GameModeController.GetInstance().GetActivePlayers();
 
         this.SetupSnowDayCamera();
@@ -62,7 +79,13 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     }
 
     protected virtual void Update() {
+
+        if(this.DidGameEnd)
+            return;
+
         this.UpdateGUIScores();
+        this.UpdateGameDuration();
+        this.CheckGameEndConditions();
     }
 
     /// <summary>
@@ -96,6 +119,15 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         }
     }
 
+    protected virtual void CheckGameEndConditions() 
+    {
+        if(this.IsInfiniteGameDuration)
+            return;
+
+        if(this.GameDuration <= 0.0f)
+            this.EndGame();
+    }
+
     /// <summary>
     /// Start corountine to load level select, display results.
     /// </summary>
@@ -119,6 +151,9 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     /// </summary>
     private void CreateLevelScriptsPrefabs() 
     {
+        if(!this.LevelSpecificScriptsPrefab)
+            return;
+
         foreach(PlayerController player in this.Players)
         {
             Debug.Log(player.gameObject.name);
@@ -145,5 +180,18 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             this.GuiManager.UpdateScoreTextAtIndex(i, Teams[i].Score);
         }
+    }
+
+    void UpdateGameDuration() 
+    {
+        if(this.IsInfiniteGameDuration || this.GameDuration <= 0.0f)
+            return;
+
+        this.GameDuration -= Time.deltaTime;
+        
+        if(!this.GuiManager)
+            return;
+
+        this.GuiManager.UpdateGameTimeText(this.GameDuration);
     }
 }
