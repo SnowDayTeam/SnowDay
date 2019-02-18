@@ -17,10 +17,12 @@ public class ModeManager : MonoBehaviour
         public int score;
         public Color teamColor;
     }
+
     public virtual BaseTeam[] getTeam()
     {
         return null;
     }
+
     public virtual void Start()
     {
         AllPlayers = GameModeController.GetInstance().GetActivePlayers();

@@ -71,7 +71,7 @@ public class ProjectileLauncher : MonoBehaviour
     public int playerAmmo = 5;
 
     //auto aim angle
-    public float autoAimAngle = 15.0f;
+    public float autoAimAngle = 25.0f;
 
     /// <summary>
     /// Launch Projectile
@@ -82,8 +82,8 @@ public class ProjectileLauncher : MonoBehaviour
         if (playerAmmo > 0)
         {
             ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
-            proj.playerActor = actor;
-            playerAmmo--;
+            proj.playerActor = actor; 
+             playerAmmo--;
 
             //get reference to all players
             var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
@@ -92,10 +92,12 @@ public class ProjectileLauncher : MonoBehaviour
             if (AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == actor.TeamID)
                 {
                     //Debug.Log("check enemies");
-                    float angleBetweenPlayers = Vector3.Angle(actor.transform.forward, AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position);
-                    Debug.Log("Angle Between players: " + angleBetweenPlayers);
+                    float angleBetweenPlayers = Vector3.Angle(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position, actor.transform.forward);
+
+                 //   Debug.Log("Angle Between players: " + angleBetweenPlayers);
                     if(angleBetweenPlayers < autoAimAngle)
                     {
+
                         DefaultShot.angle = angleBetweenPlayers; 
                         Debug.Log("aim corrected"); 
                     }
@@ -245,7 +247,7 @@ public class ProjectileLauncher : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         if (EditorApplication.isPlaying)
         {
             gismoStartPos = transform.position;

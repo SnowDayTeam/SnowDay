@@ -7,15 +7,6 @@ public class GoalZone : MonoBehaviour
 {
     public float Team;
     public Color color;
- 
-
-
-
-
-
-
-
-
 
     // Use this for initialization
     void Start () {
@@ -41,7 +32,4 @@ public class GoalZone : MonoBehaviour
             GetComponent<MeshRenderer>().material.color = Color.blue;
         }
     }
-
-
-
 }
