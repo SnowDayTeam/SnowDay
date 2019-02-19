@@ -8,7 +8,8 @@ public class FlagSpawner : MonoBehaviour {
     //Actor references
     //[SerializeField]
     //CTFGameManager GM;
-    [SerializeField] CaptureTheFlagGamemodeManager FlagGamemodeManager = null;
+    [SerializeField]
+    CaptureTheFlagGamemodeManager FlagGamemodeManager = null;
     
     public bool alreadySpawned=false;
     [SerializeField]
@@ -33,12 +34,15 @@ public class FlagSpawner : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+       // FlagGamemodeManager = GameObject.FindObjectOfType<CaptureTheFlagGamemodeManager>();
+
+    }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (TimeSet == false && alreadySpawned==false)
         {
             //Debug.Log("Set Timer");

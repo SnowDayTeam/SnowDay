@@ -40,7 +40,7 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
         base.Update();
     }
 
-    protected override TeamBase[] GetTeams() 
+    public override TeamBase[] GetTeams() 
     {
         return this.Teams;
     }

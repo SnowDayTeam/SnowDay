@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using SnowDay.Diego.CharacterController;
 
-public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
+public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
+{
 
     [SerializeField] TeamBase[] Teams = null; 
 
@@ -15,17 +16,26 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
     [HideInInspector] public float RedTeamScore;
     [HideInInspector] public float BlueTeamScore;
 
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
 
         this.SetPlayerTeamIDs();
+        GoalZone[] zones = GameObject.FindObjectsOfType<GoalZone>();
+        foreach(GoalZone g in zones)
+        {
+            g.Setup();
+        }
     }
 
-    protected override void Update() {
-        
-        if(base.DidGameEnd)
+    protected override void Update()
+    {
+
+        if (base.DidGameEnd)
+        {
             return;
-        
+        }
+
         this.UpdateTeamScores();
         this.CheckGameEndConditions();
         this.UpdateGameDuration();
@@ -33,7 +43,7 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
         base.Update();
     }
 
-    protected override TeamBase[] GetTeams() 
+    public override TeamBase[] GetTeams() 
     {
         return this.Teams;
     }
@@ -49,11 +59,17 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
     protected override void CheckGameWinnerAndDisplayResults() 
     {
         if(this.RedTeamScore > this.BlueTeamScore)
+        {
             base.GuiManager.ShowEndGameWindow("Red Team Wins!");
-        else if(this.RedTeamScore < this.BlueTeamScore) 
+        }
+        else if(this.RedTeamScore < this.BlueTeamScore)
+        {
             base.GuiManager.ShowEndGameWindow("Blue Team Wins!");
-        else 
+        }
+        else
+        {
             base.GuiManager.ShowEndGameWindow("Tie Game!");
+        }
     }
 
     private void SetPlayerTeamIDs() 
@@ -73,8 +89,8 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase {
         base.GuiManager.UpdateGameTimeText(this.GameDuration);
     }
 
-    private void UpdateTeamScores() {
-
+    private void UpdateTeamScores()
+    {
         this.Teams[0].Score = (int)this.RedTeamScore;
         this.Teams[1].Score = (int)this.BlueTeamScore;
     }

@@ -59,7 +59,21 @@ namespace SnowDay.Diego.CharacterController
 
         public void Move(Vector3 move, bool crouch, bool jump, bool run)
         {
+            if(RunEnabled)
+            {
+                if (run)
+                {
+                    m_MoveSpeedMultiplier = 1.5f;
 
+                }
+                else
+                {
+                    m_MoveSpeedMultiplier = 1;
+
+                }
+            }
+            
+            Move(move, crouch, jump);
         }
         public void Move(Vector3 move, bool crouch, bool jump)
         {

@@ -30,7 +30,7 @@ public class SnoccerGamemodeManager : GamemodeManagerBase
         this.CheckGameEndConditions();
     }
 
-    protected override TeamBase[] GetTeams() 
+    public override TeamBase[] GetTeams() 
     {
         return this.Teams;
     }

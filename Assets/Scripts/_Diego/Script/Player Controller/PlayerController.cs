@@ -18,7 +18,8 @@ namespace SnowDay.Diego.CharacterController
         public PierInputManager.ButtonName VerticalAxis = PierInputManager.ButtonName.Left_Vertical;
         public PierInputManager.ButtonName CrouchKey = PierInputManager.ButtonName.Left_Bumper;
         public PierInputManager.ButtonName JumpKey = PierInputManager.ButtonName.A;
-        //public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.B;
+        public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.Right_Trigger;
+        public PierInputManager.ButtonName AltRunKey = PierInputManager.ButtonName.Left_Trigger;
 
 
         private PierInputManager playerInputController;
@@ -209,10 +210,14 @@ namespace SnowDay.Diego.CharacterController
 
 #if !MOBILE_INPUT
                 // walk speed multiplier
-              //  if (playerInputController.GetButton(RunKey)) m_Move *= RunBoostMultiplier;
+                playerCharacter.Move(m_Move, crouch, m_Jump, playerInputController.GetButton(RunKey) || playerInputController.GetButton(AltRunKey) );
+
+                
+              
+               // m_Move *= RunBoostMultiplier;
 #endif
 
-                playerCharacter.Move(m_Move, crouch, m_Jump);
+              //  playerCharacter.Move(m_Move, crouch, m_Jump);
 
                 m_Jump = false;
             }

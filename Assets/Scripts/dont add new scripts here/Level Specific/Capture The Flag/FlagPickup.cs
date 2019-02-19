@@ -31,7 +31,10 @@ public class FlagPickup : MonoBehaviour
         //GM=FindObjectOfType<CTFGameManager>();
         //to check if object refernce will actually work
         Debug.Log("The GM is " + this.FlagGamemodeManager);
-
+        foreach (MeshRenderer material in meshRenderer)
+        {
+            material.material.color = Color.green;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -128,20 +131,17 @@ public class FlagPickup : MonoBehaviour
 
         }
 
-        if (TeamNum == 1)
+        
+        
+        foreach (MeshRenderer material in meshRenderer)
         {
-            foreach (MeshRenderer material in meshRenderer)
-                material.material.color = Color.red;
- 
+            material.material.color = FlagGamemodeManager.GetTeams()[TeamNum].TeamColor;
+
         }
 
-        else
-        {
-            foreach (MeshRenderer material in meshRenderer)
-                material.material.color = Color.blue;
 
-           
-        }
+
+
 
         whoIsHolding = TeamNum;
         gameObject.transform.parent = PlayerT;
@@ -175,7 +175,7 @@ public class FlagPickup : MonoBehaviour
         {
             if (hit.collider.gameObject.GetComponent<GoalZone>())
             {
-                if (hit.collider.gameObject.GetComponent<GoalZone>().Team == 1)
+                if (hit.collider.gameObject.GetComponent<GoalZone>().Team == 0)
                 {
                     //set all variables and add to red team score
                     Debug.Log("RED GETS A POINT");
@@ -188,7 +188,6 @@ public class FlagPickup : MonoBehaviour
                         material.material.color = Color.red;
                     }
                 }
-
                 else
                 {
                     //set all variables and add to blue team score

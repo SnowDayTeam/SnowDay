@@ -37,7 +37,7 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
         this.SetPlayerTeamIDs();
     }
 
-    protected override TeamBase[] GetTeams() 
+    public override TeamBase[] GetTeams() 
     {
         return this.Teams;
     }

@@ -32,7 +32,7 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject projectilePrefab = null;
 
     [Header("Bullet Modes")]
-    public ProjectileAttribs DefaultShot = new ProjectileAttribs(20f, 30f);
+    public ProjectileAttribs DefaultShot = new ProjectileAttribs(20f, 100f);
 
     public ProjectileAttribs ChargeShot = new ProjectileAttribs(10f, 45f);
 
@@ -86,33 +86,35 @@ public class ProjectileLauncher : MonoBehaviour
              playerAmmo--;
 
             //get reference to all players
-            var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
-            for (int i = 0; i < AllPlayers.Count; i++)
-            {
-            if (AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == actor.TeamID)
-                {
-                    //Debug.Log("check enemies");
-                    float angleBetweenPlayers = Vector3.Angle(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position, actor.transform.forward);
+            //var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+            //for (int i = 0; i < AllPlayers.Count; i++)
+            //{
+            //    if (AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == actor.TeamID)
+            //    {
+            //        //Debug.Log("check enemies");
+            //        float angleBetweenPlayers = Vector3.Angle(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position, actor.transform.forward);
 
-                 //   Debug.Log("Angle Between players: " + angleBetweenPlayers);
-                    if(angleBetweenPlayers < autoAimAngle)
-                    {
+            //     //   Debug.Log("Angle Between players: " + angleBetweenPlayers);
+            //        if(angleBetweenPlayers < autoAimAngle)
+            //        {
 
-                        DefaultShot.angle = angleBetweenPlayers; 
-                        Debug.Log("aim corrected"); 
-                    }
-                else
-                    {
-                        Debug.Log("standard aim");
-                    }
-                }
-            }
+            //           // DefaultShot.angle = angleBetweenPlayers; 
+            //            Debug.Log("aim corrected"); 
+            //        }
+            //    else
+            //        {
+            //            Debug.Log("standard aim");
+            //        }
+            //    }
+            //}
 
             proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
 
             projectileSpeedValue = DefaultShot.speed;
             projectileAngleValue = DefaultShot.angle;
-        }else{
+        }
+        else
+        {
             StartCoroutine(reload());
         }
     }

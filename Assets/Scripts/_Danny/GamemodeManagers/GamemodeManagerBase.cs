@@ -50,21 +50,24 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         public Color TeamColor = Color.black;
     }
 
-    abstract protected TeamBase[] GetTeams();
+    abstract public TeamBase[] GetTeams();
     /// <summary>
     /// Display results / win screen.
     /// </summary>
     abstract protected void CheckGameWinnerAndDisplayResults();
 
-    void Awake() {
+    void Awake()
+    {
         GamemodeManagerBase.Instance = this;
         this.IsInfiniteGameDuration = this.GameDuration == 0;
     }
 
     protected virtual void Start() 
     {
-        if(this.IsInfiniteGameDuration)
+        if (this.IsInfiniteGameDuration)
+        {
             this.GuiManager.DestroyGameTimer();
+        }
 
         this.Players = GameModeController.GetInstance().GetActivePlayers();
 
@@ -78,10 +81,13 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         this.SetPlayerColors(teams);
     }
 
-    protected virtual void Update() {
+    protected virtual void Update()
+    {
 
-        if(this.DidGameEnd)
+        if (this.DidGameEnd)
+        {
             return;
+        }
 
         this.UpdateGUIScores();
         this.UpdateGameDuration();
@@ -93,14 +99,16 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     /// </summary>
     protected void AssignPlayersToTeams(TeamBase[] Teams) 
     {
-        for(int i = 0; i < this.Players.Count; i++) {
+        for(int i = 0; i < this.Players.Count; i++)
+        {
             Teams[i % Teams.Length].Players.Add(this.Players[i]);
         }
     }
 
     protected void MovePlayersToSpawnLocations(TeamBase[] Teams) 
     {
-        foreach(TeamBase team in Teams) {
+        foreach(TeamBase team in Teams)
+        {
             for(int i = 0 ; i < team.Players.Count; i++) 
             {
                 team.Players[i].MoveCharacter(team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
@@ -115,25 +123,30 @@ abstract public class GamemodeManagerBase : MonoBehaviour
             foreach(PlayerController player in team.Players) 
             {
                 player.GetComponentInChildren<SkinnedMeshRenderer> ().materials[0].SetColor("_TeamColor", team.TeamColor) ;
-
-
             }
         }
     }
 
     protected virtual void CheckGameEndConditions() 
     {
-        if(this.IsInfiniteGameDuration)
+        if (this.IsInfiniteGameDuration)
+        {
             return;
+        }
+          
 
         if(this.GameDuration <= 0.0f)
+        {
             this.EndGame();
+        }
+            
     }
 
     /// <summary>
     /// Start corountine to load level select, display results.
     /// </summary>
-    protected void EndGame() {
+    protected void EndGame()
+    {
         this.DidGameEnd = true;
         this.CheckGameWinnerAndDisplayResults();
         this.StartCoroutine(this.LoadLevelSelect());
@@ -141,8 +154,10 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
     private void SetupSnowDayCamera() 
     {
-        if(!this.SnowDayCam)
+        if (!this.SnowDayCam)
+        {
             return;
+        }
 
         this.SnowDayCam.SetTargetPlayers(GameModeController.GetInstance().GetActivePlayers());
         this.SnowDayCam.Initialize();
@@ -153,8 +168,11 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     /// </summary>
     private void CreateLevelScriptsPrefabs() 
     {
-        if(!this.LevelSpecificScriptsPrefab)
+        if (!this.LevelSpecificScriptsPrefab)
+        {
             return;
+        }
+       
 
         foreach(PlayerController player in this.Players)
         {
@@ -173,8 +191,11 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
     private void UpdateGUIScores() 
     {
-        if(!this.GuiManager)
+        if (!this.GuiManager)
+        {
             return;
+        }
+            
 
         TeamBase[] Teams = this.GetTeams();
 
@@ -187,12 +208,18 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     void UpdateGameDuration() 
     {
         if(this.IsInfiniteGameDuration || this.GameDuration <= 0.0f)
+        {
             return;
+        }
+           
 
         this.GameDuration -= Time.deltaTime;
-        
-        if(!this.GuiManager)
+
+        if (!this.GuiManager)
+        {
             return;
+        }
+        
 
         this.GuiManager.UpdateGameTimeText(this.GameDuration);
     }

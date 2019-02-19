@@ -23,7 +23,7 @@ public class MoveModifier : MonoBehaviour {
     void Start () {
     
         Player = GetComponentInParent<SnowDayCharacter>();
-        
+        Player.RunEnabled = false;
         //get charecter original move stats on start
         OriginalMoveSpeed = Player.m_MoveSpeedMultiplier;
         OriginalTurnSpeed = Player.m_MovingTurnSpeed;

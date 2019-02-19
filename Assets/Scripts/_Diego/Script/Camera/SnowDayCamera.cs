@@ -54,12 +54,15 @@ public class SnowDayCamera : MonoBehaviour
     {
         CameraDistance();
         FindNextCameraPosition();
-
-        if (Vector3.Distance(cam.transform.position , nextCameraPos) > 0.1f && !CameraShaking)
+        if(cam != null)
         {
-         //   Debug.Log("Moved Camera");
-            MoveCamera();
+            if (Vector3.Distance(cam.transform.position, nextCameraPos) > 0.1f && !CameraShaking)
+            {
+                //   Debug.Log("Moved Camera");
+                MoveCamera();
+            }
         }
+       
     }
 
     public IEnumerator CameraShake(float duration, float magnitude)
@@ -153,7 +156,7 @@ public class SnowDayCamera : MonoBehaviour
     /// <returns>Center Position between the players</returns>
     private Vector3 FindAveragePosition()
     {
-        if (Players == null)
+        if (Players == null )
             return Vector3.zero;
 
         Vector3 averagePosition = new Vector3();
@@ -173,6 +176,10 @@ public class SnowDayCamera : MonoBehaviour
 
             averagePosition += NPOtoTrack[i].transform.position;
             numofPlayers++;
+        }
+        if( numofPlayers == 0)
+        {
+            return Vector3.zero;
         }
         averagePosition = averagePosition / numofPlayers;
         averagePosition.y = transform.position.y;

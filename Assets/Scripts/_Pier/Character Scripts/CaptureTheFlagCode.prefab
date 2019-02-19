@@ -11,6 +11,22 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1652687647373624}
   m_IsPrefabAsset: 1
+--- !u!1 &1121365602688240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4024574190563614}
+  - component: {fileID: 114795509818888490}
+  m_Layer: 16
+  m_Name: Throw Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1579980918368428
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4298398590201888}
   - component: {fileID: 114207006261996030}
+  - component: {fileID: 114574013248446420}
   m_Layer: 0
   m_Name: CaptureTheFlagCode
   m_TagString: Untagged
@@ -42,6 +59,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4024574190563614
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121365602688240}
+  m_LocalRotation: {x: -0, y: 0.6154675, z: -0, w: 0.78816235}
+  m_LocalPosition: {x: 0.5044918, y: 1.2940698, z: 0.12604773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4298398590201888}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4298398590201888
 Transform:
   m_ObjectHideFlags: 1
@@ -53,6 +83,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4479904225489770}
+  - {fileID: 4024574190563614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -88,4 +119,43 @@ MonoBehaviour:
   center: {x: 0.25, y: 1.31, z: 0}
   PickUpFlag: 11
   ThrowButton: 13
+  numberOfFlagsHeld: 0
   FlagHoldPostion: {fileID: 4479904225489770}
+--- !u!114 &114574013248446420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652687647373624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1056f82fa0acd854f8158d4737826b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileLauncher: {fileID: 114795509818888490}
+  mySelf: {fileID: 0}
+  ShootButton: 12
+--- !u!114 &114795509818888490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121365602688240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a925277df7ddd459331bb0ed69f0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1512562867516068, guid: 9cadedd6b185eb34fb30f49845e2bd53,
+    type: 2}
+  DefaultShot:
+    speed: 15
+    angle: 8
+  ChargeShot:
+    speed: 10
+    angle: 45
+  chargeSpeed: 5
+  maxChargeSpeed: 10
+  AimAssistRadius: 0.5
+  playerAmmo: 5
+  autoAimAngle: 25

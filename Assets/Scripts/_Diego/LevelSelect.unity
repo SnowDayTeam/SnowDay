@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4186003, g: 0.44708288, b: 0.46455622, a: 1}
+  m_IndirectSpecularColor: {r: 0.4186007, g: 0.44708306, b: 0.46455687, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -148,9 +148,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 686416870}
+  RunBoostMultiplier: 1.5
 --- !u!114 &28465238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,11 +666,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac386b415cae8324d92697b32ffe2548, type: 2}
   - {fileID: 11400000, guid: 1fadec4e17ddbc74cb12185043445177, type: 2}
   - {fileID: 11400000, guid: 63fd4940f7210fa49b4e37638bc0d7e3, type: 2}
---- !u!1 &384973854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1022184674044924, guid: ca00ec4b1d7b68e40bc98ace0eede303,
-    type: 2}
-  m_PrefabInternal: {fileID: 1501323336}
 --- !u!4 &384973855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4537429858510870, guid: ca00ec4b1d7b68e40bc98ace0eede303,
@@ -868,11 +865,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4419621743818968, guid: 204563370abee2f45a9a2ebf468e3e74,
     type: 2}
   m_PrefabInternal: {fileID: 809498344}
---- !u!1 &457314560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1022184674044924, guid: ca00ec4b1d7b68e40bc98ace0eede303,
-    type: 2}
-  m_PrefabInternal: {fileID: 1276632826}
 --- !u!1 &480713548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,9 +1016,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 1878920556}
+  RunBoostMultiplier: 1.5
 --- !u!114 &648849427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,9 +2353,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 448488801}
+  RunBoostMultiplier: 1.5
 --- !u!114 &898904098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2424,9 +2420,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 945572745}
+  RunBoostMultiplier: 1.5
 --- !u!114 &926545366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2546,9 +2544,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 118319269}
+  RunBoostMultiplier: 1.5
 --- !u!114 &929643840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,9 +2887,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 1318059091}
+  RunBoostMultiplier: 1.5
 --- !u!114 &1034611892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3324,6 +3326,54 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 0}
+    ActiveGameObject: {fileID: 0}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1576812982}
+    ActiveGameObject: {fileID: 1576812982}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 360738762}
+    ActiveGameObject: {fileID: 360738762}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1847735407}
+    ActiveGameObject: {fileID: 1847735407}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 356016729}
     - {fileID: 1773302212}
     - {fileID: 2023844721}
@@ -3415,18 +3465,6 @@ MonoBehaviour:
     list:
     - {fileID: 1813020029}
     ActiveGameObject: {fileID: 1813020029}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1847735407}
-    ActiveGameObject: {fileID: 1847735407}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -3583,42 +3621,6 @@ MonoBehaviour:
     list:
     - {fileID: 945572744}
     ActiveGameObject: {fileID: 945572744}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 369591252}
-    ActiveGameObject: {fileID: 369591252}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 384973854}
-    ActiveGameObject: {fileID: 384973854}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 457314560}
-    ActiveGameObject: {fileID: 457314560}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -4322,9 +4324,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 688719549}
+  RunBoostMultiplier: 1.5
 --- !u!114 &1584466173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,9 +4852,11 @@ MonoBehaviour:
   VerticalAxis: 1
   CrouchKey: 4
   JumpKey: 10
-  RunKey: 11
+  RunKey: 7
+  AltRunKey: 5
   currentPrefab: 0
   playerIndicator: {fileID: 1979151284}
+  RunBoostMultiplier: 1.5
 --- !u!114 &1847735410
 MonoBehaviour:
   m_ObjectHideFlags: 0

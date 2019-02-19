@@ -2,34 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class GoalZone : MonoBehaviour
 {
-    public float Team;
-    public Color color;
+    public int Team;
+    // public Color color;
 
-    // Use this for initialization
-    void Start () {
-
-
-     //   GetComponent<MeshRenderer>().material.color = color;
-    }
-    public void Setup(Color _color)
+    // Use this for initialization called from CaptureTheFlagGamemodeManager
+    public void Setup ()
     {
-        color = _color;
-        GetComponent<MeshRenderer>().material.color = color;
 
+        GetComponent<MeshRenderer>().material.color = FindObjectOfType<CaptureTheFlagGamemodeManager>().GetTeams()[Team].TeamColor;
+
+        //   GetComponent<MeshRenderer>().material.color = color;
     }
+  
     // Update is called once per frame
-    void Update () {
+    //void Update () {
         
-        if (Team == 1)
-        {
-            GetComponent<MeshRenderer>().material.color = Color.red;
-        }
-        else
-        {
-            GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
-    }
+    //    if (Team == 1)
+    //    {
+    //        GetComponent<MeshRenderer>().material.color = Color.red;
+    //    }
+    //    else
+    //    {
+    //        GetComponent<MeshRenderer>().material.color = Color.blue;
+    //    }
+    //}
 }
