@@ -220,7 +220,7 @@ public class ShovelController : MonoBehaviour
 
     }
 
-    void Dropsnow()
+    public void Dropsnow()
     {
         currentsSnowVolume = 0.0f;
        

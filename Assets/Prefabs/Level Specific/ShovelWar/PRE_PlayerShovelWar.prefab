@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 114018785467037230}
   - component: {fileID: 114921119596448804}
   - component: {fileID: 114675710977377422}
+  - component: {fileID: 114607357951622394}
   m_Layer: 0
   m_Name: PlayerHUD
   m_TagString: Untagged
@@ -404,6 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4d65b5df1d6d74892a88268b755d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpeedOffset: 0.3
+  TurnSpeedOffset: 0.045
 --- !u!114 &114219524369688072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,7 +419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1019455541164874, guid: b028c853c3bc54d37835414c73440c8f, type: 2}
-  spawnPoint: {fileID: 1881169420811214}
   LaunchVelocity: 20
   throwDelay: 0.5
   inputName: FireP1
@@ -438,15 +440,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tackScript: {fileID: 114454856528925466}
-  PlayerRB: {fileID: 0}
   isInSnowArea: 0
   currentsSnowVolume: 0
   maxSnowVolume: 100
   snowWeight: 3
   snowAcumulationRate: 0.5
-  IK: {fileID: 0}
-  VolumeText: {fileID: 0}
-  WeightText: {fileID: 0}
   SpawnPoint: {fileID: 4649452280224902}
   LaunchVelocity: 15
   ShovelPoint: {fileID: 4683498819475978}
@@ -456,6 +454,8 @@ MonoBehaviour:
     m_Bits: 16
   drawShader: {fileID: 4800000, guid: 9cda8c7025a35154c909dbd52f8c0d61, type: 3}
   dirtyFrameSkip: 0.1
+  ShovelButton: 11
+  ThrowButton: 13
 --- !u!114 &114454856528925466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a141e96df7bc1cb4884880e1ceb3ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeam: {fileID: 0}
+  mySnowPlane: {fileID: 0}
   snowTracks:
   - transform: {fileID: 0}
     _brushSize: 2.5
@@ -484,6 +484,17 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 16
+--- !u!114 &114607357951622394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539625428503770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157b1bfb45b36f8478dfa7f6f2339bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114633203141040276
 MonoBehaviour:
   m_ObjectHideFlags: 1

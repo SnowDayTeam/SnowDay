@@ -8,21 +8,29 @@ public class ShovelProjectile : MonoBehaviour
     public LayerMask Mask;
     public Shader drawShader;
     static private Material drawMaterial;
-    [Range(0, 8)]
+    [Range(0, 12)]
     public float _brushSize;
     public float brushSizeMaximum=8;
     [Range(-1, 1)]
     public float _brushStrength = -1;
     public int TimesToCheck = 4;
+    float spawnTime;
+    float LifeTime=3f;
 
 
     // Use this for initialization
     void Start () {
         drawMaterial = new Material(drawShader);
+        spawnTime = Time.time;
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Time.time - spawnTime > LifeTime)
+        {
+            Destroy(gameObject);
+        }
 		
 	}
     public void OnCollisionEnter(Collision collision)
@@ -34,8 +42,8 @@ public class ShovelProjectile : MonoBehaviour
         //}
 
         //else { }
-
-
+  
+    
 
         for (int i = 0; i < TimesToCheck; i++)
         {
@@ -64,7 +72,12 @@ public class ShovelProjectile : MonoBehaviour
                 {
                     Destroy(gameObject);
                 }
+
+
+                
             }
+
+            
             
         }
 

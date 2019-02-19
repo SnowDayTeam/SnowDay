@@ -14,6 +14,7 @@ public class MoveModifier : MonoBehaviour {
     private float OriginalTurnSpeed;
     private float OriginalStationTurn;
     public float SpeedOffset = 0.3f;
+    public float TurnSpeedOffset=.045f;
     //refrences
     private SnowDayCharacter Player;
     
@@ -39,6 +40,11 @@ public class MoveModifier : MonoBehaviour {
             case MoveModes.Slow:
                 //subtracts movement speed based on the percent the shovel is filled
                 Player.m_MoveSpeedMultiplier = OriginalMoveSpeed-((WeightPercent - SpeedOffset) * OriginalMoveSpeed);
+               
+                //TurnSpeedModification
+                Player.m_MovingTurnSpeed = OriginalTurnSpeed - ((WeightPercent - TurnSpeedOffset) * OriginalTurnSpeed);
+                Player.m_StationaryTurnSpeed= OriginalStationTurn - ((WeightPercent - TurnSpeedOffset) * OriginalStationTurn);
+                
 
                 break;
 
