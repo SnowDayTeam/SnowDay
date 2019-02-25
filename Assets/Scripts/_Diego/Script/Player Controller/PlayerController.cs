@@ -156,8 +156,14 @@ namespace SnowDay.Diego.CharacterController
 
             Debug.Log(puppetMaster.gameObject);
             puppetMaster.mode = PuppetMaster.Mode.Kinematic;
+            Color c = SnowDayCharacterGameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_TeamColor");
+            playerIndicator.GetComponentInChildren<SpriteRenderer>().color = c;
+            Projector p = GetComponentInChildren<Projector>();
+            if(p!= null)
+            {
+                p.material.SetColor("_Color", c);
 
-            playerIndicator.GetComponentInChildren<SpriteRenderer>().color= SnowDayCharacterGameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_TeamColor");
+            }
             playerIndicator.GetComponentInChildren<TextMesh>().text = playerInputController.playerNumber.ToString();
             playerIndicator.SetAsLastSibling();// hack to change 
             return playerCharacter;

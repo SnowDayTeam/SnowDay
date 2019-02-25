@@ -120,9 +120,10 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     {
         foreach(TeamBase team in Teams) 
         {
-            foreach(PlayerController player in team.Players) 
+            foreach (PlayerController player in team.Players)
             {
-                player.GetComponentInChildren<SkinnedMeshRenderer> ().materials[0].SetColor("_TeamColor", team.TeamColor) ;
+              //  player.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_TeamColor", team.TeamColor);
+                player.GetComponentInChildren<Projector>().material.SetColor("_Color", team.TeamColor);
             }
         }
     }

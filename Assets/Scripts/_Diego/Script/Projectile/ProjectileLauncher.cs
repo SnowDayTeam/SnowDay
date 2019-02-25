@@ -13,7 +13,7 @@ using SnowDay.Diego.GameMode;
 [System.Serializable]
 public struct ProjectileAttribs
 {
-    [Range(1, 40)]
+    //[Range(1, 600)]
     public float speed;
 
     [Range(1, 90)]
