@@ -32,7 +32,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     /// </summary>
     static public GamemodeManagerBase Instance = null;
 
-    List<PlayerController> Players = null;
+    public List<PlayerController> Players = null;
 
     protected bool DidGameEnd = false;
     protected bool IsInfiniteGameDuration = false;
