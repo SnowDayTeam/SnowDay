@@ -12,7 +12,13 @@ namespace SnowDay.Diego.GameMode
         //why does this even exist?
         //why is this a struct
         GameModeSettings gameMode;
+        private bool isLoading = false;
 
+        public bool GetLoadingStatus()
+        {
+
+            return isLoading;
+        }
         private void Awake()
         {
             DestroyOnLoad = false;
@@ -49,10 +55,13 @@ namespace SnowDay.Diego.GameMode
             Scene LevelSelectScene = SceneManager.GetActiveScene();
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(selectedLevel.sceneName, LoadSceneMode.Additive);
+            isLoading = true;
             while (!asyncLoad.isDone)
             {
+                
                 yield return null;
             }
+            isLoading = false;
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(selectedLevel.sceneName));
             MoveActivePlayerToScene(selectedLevel);
 
@@ -62,11 +71,11 @@ namespace SnowDay.Diego.GameMode
         private void UnloadScene(Scene scene)
         {
             //this is pointless as unloading a scene does this anyways
-            GameObject[] gameObjects = scene.GetRootGameObjects();
-            foreach (var item in gameObjects)
-            {
-                Destroy(item);
-            }
+            //GameObject[] gameObjects = scene.GetRootGameObjects();
+            //foreach (var item in gameObjects)
+            //{
+            //    Destroy(item);
+            //}
 
             SceneManager.UnloadSceneAsync(scene);
         }

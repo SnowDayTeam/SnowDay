@@ -195,7 +195,7 @@ namespace SnowDay.Diego.CharacterController
 
           
 
-            if (SnowDayCharacterGameObject)
+            if (SnowDayCharacterGameObject && playerCharacter)
             {
                 playerIndicator.transform.position = playerCharacter.transform.position +Vector3.up *2.5f;
                 if (!m_Jump)
