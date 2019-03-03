@@ -27,7 +27,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     [SerializeField] protected float GameDuration = 1.0f;
 
     /// <summary>
-    /// Instance of this class, WARNING this is not a singleton class, 
+    /// Current instance of this class, WARNING this is NOT a singleton class, 
     /// however there should only be one instance of this class
     /// </summary>
     static public GamemodeManagerBase Instance = null;
@@ -48,18 +48,18 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         public int Score = 0;
         /// The color of this team
         public Color TeamColor = Color.black;
+        [Tooltip("The name of the team, used to display winner during endgame.")]
+        public string TeamName = "NAME ERROR";
     }
 
     abstract public TeamBase[] GetTeams();
-    /// <summary>
-    /// Display results / win screen.
-    /// </summary>
-    abstract protected void CheckGameWinnerAndDisplayResults();
 
-    void Awake()
+    protected virtual void Awake()
     {
         GamemodeManagerBase.Instance = this;
         this.IsInfiniteGameDuration = this.GameDuration == 0;
+        //just in case this is left on in the inspector
+        //this.enabled = false;
     }
 
     protected virtual void Start() 
@@ -128,13 +128,43 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Display results / win screen.
+    /// </summary>
+    protected virtual void CheckGameWinnerAndDisplayResults() 
+    {
+        List<TeamBase> WinningTeams = new List<TeamBase> ();
+        int HighestScore = 0;
+        foreach(TeamBase Team in this.GetTeams()) 
+        {
+            if(Team.Score > HighestScore) 
+            {
+                WinningTeams.Clear();
+                WinningTeams.Add(Team);
+                HighestScore = Team.Score;
+            }
+            else if (Team.Score == HighestScore) 
+            {
+                WinningTeams.Add(Team);
+            }
+        }
+        //winner decided
+        if(WinningTeams.Count == 1) 
+        {
+            this.GuiManager.ShowEndGameWindow(WinningTeams[0].TeamName + " Wins!");
+        }
+        else 
+        {
+            this.GuiManager.ShowEndGameWindow("Tie Game!");
+        }
+    }
+
     protected virtual void CheckGameEndConditions() 
     {
         if (this.IsInfiniteGameDuration)
         {
             return;
         }
-          
 
         if(this.GameDuration <= 0.0f)
         {
@@ -173,7 +203,6 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             return;
         }
-       
 
         foreach(PlayerController player in this.Players)
         {
