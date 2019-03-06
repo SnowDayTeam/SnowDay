@@ -22,6 +22,7 @@ public class TobogganManager : ModeManager
         }
 
         AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+
         if (cam != null)
         {
             cam.SetTargetPlayers(AllPlayers);
