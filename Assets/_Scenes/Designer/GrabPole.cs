@@ -12,14 +12,28 @@ public class GrabPole : MonoBehaviour {
     public Transform pole;
     Transform grabPointL;
     Transform grabPointR;
+    public Transform elbowTargetL;
+    public Transform elbowTargetR;
+
     Transform offsetter;
     float weight = 0;
+    public bool isShovelWar;
 
 
     // Use this for initialization
     void Start () {
         IK = GetComponent<FullBodyBipedIK>();
-	}
+        if (isShovelWar == true)
+        {
+
+            elbowTargetL = pole.transform.parent.Find("Elbow Direction L");
+            elbowTargetR = pole.transform.parent.Find("Elbow Direction R");
+            IK.solver.leftArmChain.bendConstraint.bendGoal = elbowTargetL;
+            IK.solver.leftArmChain.bendConstraint.weight = 1;
+            IK.solver.rightArmChain.bendConstraint.bendGoal = elbowTargetR;
+            IK.solver.rightArmChain.bendConstraint.weight = 1;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,9 +48,13 @@ public class GrabPole : MonoBehaviour {
             IK.solver.rightHandEffector.target = grabPointR;
 
             //have the offseter match player direction
-            offsetter.forward = IK.transform.forward;
+            if (isShovelWar == false)
+            {
+                offsetter.forward = IK.transform.forward;
+            }
+           
 
-            if(weight < 1)
+            if (weight < 1)
             {
                 weight += Time.deltaTime * grabSpeed;
             }

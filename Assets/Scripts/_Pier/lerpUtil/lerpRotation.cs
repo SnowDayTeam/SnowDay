@@ -10,8 +10,8 @@ public class lerpRotation : baseLerper
     public LerpUtility.lerpMode lerpMode;
     public Vector3 Rotation;
 
-    private Quaternion endRotation;
-    private Quaternion startRotation;
+    public Quaternion endRotation;
+    public Quaternion startRotation;
     // Use this for initialization
     private bool lerpingdown = false;
     public float currentLerpTime;
