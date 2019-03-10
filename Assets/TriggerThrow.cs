@@ -30,8 +30,6 @@ public class TriggerThrow : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            IK.solver.leftHandEffector.target = pickUpPoint;
-            IK.solver.rightHandEffector.target = pickUpPoint;
 
             pickingUp = true;
 
@@ -50,36 +48,47 @@ public class TriggerThrow : MonoBehaviour {
 
     void PickUp()
     {
+            IK.solver.leftHandEffector.target = pickUpPoint;
+            IK.solver.rightHandEffector.target = pickUpPoint;
+        IK.solver.leftHandEffector.positionWeight = weight;
+        IK.solver.rightHandEffector.positionWeight = weight;
+        //IK.solver.leftShoulderEffector.positionWeight = weight / 10;
+        //IK.solver.rightShoulderEffector.positionWeight = weight / 10;
+
+
         if (weight < 1 && reachBack == false)
         {
             weight += Time.deltaTime * reachTime;
+            print("picking up");
         }
 
         if (weight >= 1 && reachBack == false)
         {
+            print("Waiting");
+
             delayTime += Time.deltaTime;
             if(delayTime >= downTime)
             {
                 reachBack = true;
             }
 
-            if (reachBack == true)
-            {
-                weight -= Time.deltaTime * reachTime;
-                if(weight <= 0)
-                {
-                    delayTime = 0;
-                    weight = 0;
-                    IK.solver.leftHandEffector.target = null;
-                    IK.solver.rightHandEffector.target = null;
-                    reachBack = false;
-                    pickingUp = false;
-                }
-            }
         }
 
-        IK.solver.leftHandEffector.positionWeight = weight;
-        IK.solver.leftHandEffector.positionWeight = weight;
+        if (reachBack == true)
+        {
+            print("Reaching Back");
 
+            weight -= Time.deltaTime * reachTime;
+            if(weight <= 0)
+            {
+                delayTime = 0;
+                weight = 0;
+                IK.solver.leftHandEffector.target = null;
+                IK.solver.rightHandEffector.target = null;
+                reachBack = false;
+                pickingUp = false;
+                print("Done");
+            }
+        }
     }
 }
