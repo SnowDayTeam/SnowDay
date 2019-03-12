@@ -23,8 +23,9 @@ public class LightningPower : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") {
+            Debug.Log("HIT");
             pushTimer = 0;
-            FindObjectOfType<AudioManager>().Play("lightning");
+           // FindObjectOfType<AudioManager>().Play("lightning");
             triggerPlayer = other.gameObject;
             centerPos = transform.position;
             isActivated = true;
