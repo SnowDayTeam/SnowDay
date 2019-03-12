@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class TobDisplay : MonoBehaviour
 {
     [System.Serializable]
+
+
    public struct checkPointsCheck{
         public float distanceToNextCheckPoint;
         public Transform gate;
