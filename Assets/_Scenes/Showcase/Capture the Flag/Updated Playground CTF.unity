@@ -1099,7 +1099,6 @@ GameObject:
   m_Component:
   - component: {fileID: 116713846}
   - component: {fileID: 116713847}
-  - component: {fileID: 116713848}
   m_Layer: 0
   m_Name: CaptureGameManager
   m_TagString: Untagged
@@ -1126,7 +1125,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 116713844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426f335baf9ced146a7177224242ecf0, type: 3}
   m_Name: 
@@ -1137,6 +1136,7 @@ MonoBehaviour:
   SnowDayCam: {fileID: 565893242}
   PostGameDuration: 2
   GameDuration: 120
+  Players: []
   Teams:
   - Players: []
     SpawnLocations:
@@ -1146,6 +1146,8 @@ MonoBehaviour:
     - {fileID: 1762284913}
     Score: 0
     TeamColor: {r: 1, g: 0, b: 0, a: 0}
+    TeamName: Red Team
+    Goal: {fileID: 1330632799}
   - Players: []
     SpawnLocations:
     - {fileID: 1621148484}
@@ -1154,23 +1156,8 @@ MonoBehaviour:
     - {fileID: 1886333330}
     Score: 0
     TeamColor: {r: 0.088113785, g: 0, b: 1, a: 0}
-  MaxFlags: 3
-  CurrentFlags: 0
-  RedTeamScore: 0
-  BlueTeamScore: 0
---- !u!114 &116713848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 116713844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 216ab7a5da90ff84b8099472f17b3f22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingScreenParentGameobject: {fileID: 1269911876}
-  LoadScreenDelay: 8
+    TeamName: Blue Team
+    Goal: {fileID: 406380812}
 --- !u!1 &118432136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,46 +1702,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214217882}
-  - component: {fileID: 214217881}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (6)
+  m_Name: Flag Spawn Point 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &214217881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 214217880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &214217882
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214217880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.52, y: 5.39, z: 33.73}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.91996, y: -11.891716, z: 20.001049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219802679
 GameObject:
@@ -4732,7 +4698,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ebadbb7609195458930d43aac61452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team: 1
+  OwningTeam:
+    Players: []
+    SpawnLocations: []
+    Score: 0
+    TeamColor: {r: 0, g: 0, b: 0, a: 1}
+    TeamName: NAME ERROR
+    Goal: {fileID: 0}
 --- !u!65 &406380813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5308,6 +5280,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4465788917465060, guid: ee0e4147e6f30db499440f8f95ef6cdb,
     type: 2}
   m_PrefabInternal: {fileID: 532400201}
+--- !u!1 &535882043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1841848769365332, guid: b2963146ae519b94e84267efa2244e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430680245}
 --- !u!4 &541671998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4069382282882928, guid: a93825ae733e94866a77d552f6f086b1,
@@ -5903,7 +5880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651674001
 GameObject:
@@ -6517,46 +6494,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 789495692}
-  - component: {fileID: 789495691}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner
+  m_Name: Flag Spawn Point 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &789495691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 789495690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &789495692
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 789495690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.59, y: 5.39, z: 21.51}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.01004, y: -11.891716, z: 7.7810497}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &799743833
 GameObject:
@@ -7385,46 +7341,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985643798}
-  - component: {fileID: 985643797}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (3)
+  m_Name: Flag Spawn Point 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &985643797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 985643796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &985643798
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 985643796}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.4, y: 5.39, z: 39.98}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.799961, y: -11.891716, z: 26.251049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988161205
 GameObject:
@@ -7916,7 +7851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 11.931641, y: -7.254425}
+  m_AnchoredPosition: {x: 11.931641, y: -7.2544556}
   m_SizeDelta: {x: 1463, y: 786}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1040347786
@@ -8823,46 +8758,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114275450}
-  - component: {fileID: 1114275449}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (4)
+  m_Name: Flag Spawn Point 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1114275449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1114275448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &1114275450
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1114275448}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.38, y: 5.39, z: 26.7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.7799606, y: -11.891716, z: 12.97105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1118680051
 GameObject:
@@ -8967,46 +8881,83 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1122826054}
-  - component: {fileID: 1122826053}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (1)
+  m_Name: Flag Spawn Point 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1122826053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1122826052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &1122826054
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1122826052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.55, y: 5.39, z: 21.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.949959, y: -11.891716, z: 7.63105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1130396285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130396287}
+  - component: {fileID: 1130396286}
+  m_Layer: 0
+  m_Name: FlagSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1130396286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130396285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxNumberFlags: 3
+  CurrentNumberFlags: 0
+  FlagPrefab: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
+  SpawnPoints:
+  - {fileID: 1114275450}
+  - {fileID: 1752960039}
+  - {fileID: 214217882}
+  ExtraSpawnDistance: 3.5
+  FlagSpawnDelay: 1
+  GizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  GizmoSize: 1
+--- !u!4 &1130396287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130396285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 35.60004, y: 17.281715, z: 13.7289505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 789495692}
+  - {fileID: 1122826054}
+  - {fileID: 1862310893}
+  - {fileID: 985643798}
+  - {fileID: 1114275450}
+  - {fileID: 1752960039}
+  - {fileID: 214217882}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1142903384
 GameObject:
@@ -9226,7 +9177,7 @@ RectTransform:
   - {fileID: 118432137}
   - {fileID: 1269911877}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9409,6 +9360,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1196064474}
   m_CullTransparentMesh: 0
+--- !u!1 &1199998089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1207179232562858, guid: b2963146ae519b94e84267efa2244e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430680245}
 --- !u!1 &1217464940
 GameObject:
   m_ObjectHideFlags: 0
@@ -9525,7 +9481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1269911877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9972,7 +9928,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ebadbb7609195458930d43aac61452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team: 0
+  OwningTeam:
+    Players: []
+    SpawnLocations: []
+    Score: 0
+    TeamColor: {r: 0, g: 0, b: 0, a: 1}
+    TeamName: NAME ERROR
+    Goal: {fileID: 0}
 --- !u!65 &1330632800
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10361,6 +10323,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411217077}
   m_Mesh: {fileID: 4300004, guid: b1a28c697347e204b858ecae7cc095da, type: 3}
+--- !u!1 &1414978690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1271560775319922, guid: b2963146ae519b94e84267efa2244e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430680245}
 --- !u!1001 &1416349926
 Prefab:
   m_ObjectHideFlags: 0
@@ -10804,56 +10771,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 565893241}
-    ActiveGameObject: {fileID: 565893241}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1330632798}
-    ActiveGameObject: {fileID: 1330632798}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 692345798}
-    ActiveGameObject: {fileID: 692345798}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 406380811}
-    ActiveGameObject: {fileID: 406380811}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1430680246}
-    ActiveGameObject: {fileID: 1430680246}
+    - {fileID: 1130396285}
+    ActiveGameObject: {fileID: 1130396285}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10876,8 +10795,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1118680051}
-    ActiveGameObject: {fileID: 1118680051}
+    - {fileID: 214217880}
+    ActiveGameObject: {fileID: 214217880}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10888,8 +10807,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 245586604}
-    ActiveGameObject: {fileID: 245586604}
+    - {fileID: 1752960037}
+    ActiveGameObject: {fileID: 1752960037}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10900,8 +10819,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 799743833}
-    ActiveGameObject: {fileID: 799743833}
+    - {fileID: 1114275448}
+    ActiveGameObject: {fileID: 1114275448}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10912,8 +10831,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 140724833}
-    ActiveGameObject: {fileID: 140724833}
+    - {fileID: 985643796}
+    ActiveGameObject: {fileID: 985643796}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10924,8 +10843,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 51888753}
-    ActiveGameObject: {fileID: 51888753}
+    - {fileID: 1862310891}
+    ActiveGameObject: {fileID: 1862310891}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10936,8 +10855,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1724882955}
-    ActiveGameObject: {fileID: 1724882955}
+    - {fileID: 1122826052}
+    ActiveGameObject: {fileID: 1122826052}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10948,8 +10867,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 505428162}
-    ActiveGameObject: {fileID: 505428162}
+    - {fileID: 789495690}
+    ActiveGameObject: {fileID: 789495690}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10960,8 +10879,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 965078851}
-    ActiveGameObject: {fileID: 965078851}
+    - {fileID: 1330632798}
+    ActiveGameObject: {fileID: 1330632798}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10972,8 +10891,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1813593067}
-    ActiveGameObject: {fileID: 1813593067}
+    - {fileID: 1070355715}
+    ActiveGameObject: {fileID: 1070355715}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10984,8 +10903,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1542990547}
-    ActiveGameObject: {fileID: 1542990547}
+    - {fileID: 406380811}
+    ActiveGameObject: {fileID: 406380811}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10996,8 +10915,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 48860937}
-    ActiveGameObject: {fileID: 48860937}
+    - {fileID: 565893241}
+    ActiveGameObject: {fileID: 565893241}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11008,8 +10927,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 2033730404}
-    ActiveGameObject: {fileID: 2033730404}
+    - {fileID: 1199998089}
+    ActiveGameObject: {fileID: 1199998089}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11020,8 +10939,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1670139938}
-    ActiveGameObject: {fileID: 1670139938}
+    - {fileID: 1519376635}
+    ActiveGameObject: {fileID: 1519376635}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11032,8 +10951,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 895424057}
-    ActiveGameObject: {fileID: 895424057}
+    - {fileID: 535882043}
+    ActiveGameObject: {fileID: 535882043}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11044,8 +10963,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1551613710}
-    ActiveGameObject: {fileID: 1551613710}
+    - {fileID: 1414978690}
+    ActiveGameObject: {fileID: 1414978690}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11056,8 +10975,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 2013672013}
-    ActiveGameObject: {fileID: 2013672013}
+    - {fileID: 1891274483}
+    ActiveGameObject: {fileID: 1891274483}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11068,8 +10987,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 2038722956}
-    ActiveGameObject: {fileID: 2038722956}
+    - {fileID: 1430680246}
+    ActiveGameObject: {fileID: 1430680246}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11080,8 +10999,56 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 1724729276}
-    ActiveGameObject: {fileID: 1724729276}
+    - {fileID: 1143192657}
+    ActiveGameObject: {fileID: 1143192657}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 626731939}
+    ActiveGameObject: {fileID: 626731939}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1269911876}
+    ActiveGameObject: {fileID: 1269911876}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 118432136}
+    ActiveGameObject: {fileID: 118432136}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 2120073399}
+    ActiveGameObject: {fileID: 2120073399}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -11209,6 +11176,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1472050159}
   m_Mesh: {fileID: 4300000, guid: b1a28c697347e204b858ecae7cc095da, type: 3}
+--- !u!1 &1519376635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1675786650409664, guid: b2963146ae519b94e84267efa2244e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430680245}
 --- !u!1 &1535764646
 GameObject:
   m_ObjectHideFlags: 0
@@ -12665,46 +12637,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752960039}
-  - component: {fileID: 1752960038}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (5)
+  m_Name: Flag Spawn Point 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1752960038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752960037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &1752960039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1752960037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.27, y: 5.39, z: 33.68}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.66996, y: -11.891716, z: 19.95105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1761336584
 GameObject:
@@ -13480,46 +13431,25 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862310893}
-  - component: {fileID: 1862310892}
   m_Layer: 0
-  m_Name: Pre_FlagSpawner (2)
+  m_Name: Flag Spawn Point 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1862310892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862310891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2649380a8da3feb42b128ef1d5dc7c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FlagGamemodeManager: {fileID: 116713847}
-  alreadySpawned: 0
-  Flag: {fileID: 1620719504972686, guid: fc0d675d971cceb4c81236c54bf0ec1a, type: 2}
-  xSpawnRange: 2
-  zSpawnRange: 2
-  spawnTimeMax: 7
-  SpawnTimeMin: 5
-  currentspawnTimer: 0
-  gizmoColor: {r: 1, g: 0, b: 0.88953495, a: 0.39607844}
 --- !u!4 &1862310893
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1862310891}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.2, y: 5.39, z: 41.9}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.40004, y: -11.891716, z: 28.171051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1130396287}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1864301377
 GameObject:
@@ -13739,6 +13669,11 @@ Transform:
   m_Father: {fileID: 1070355716}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1891274483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1289068343143024, guid: b2963146ae519b94e84267efa2244e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430680245}
 --- !u!1 &1892360418
 GameObject:
   m_ObjectHideFlags: 0
