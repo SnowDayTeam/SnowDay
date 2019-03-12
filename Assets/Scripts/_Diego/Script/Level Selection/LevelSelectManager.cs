@@ -83,6 +83,10 @@ namespace SnowDay.Diego.LevelSelect
                 if (TimeLeft <= 0)
                 {
                     LevelData selectedLevel = NextLevelSelect();
+					
+					//Debug.LogWarning(selectedLevel.level);
+					selectedLevel.sceneName = "Deathmatch";
+					
                     if (selectedLevel && once)
                     {
                         once = false;
@@ -143,6 +147,7 @@ namespace SnowDay.Diego.LevelSelect
                 Debug.LogWarning("No Level Selected!");
                 return null;
             }
+			
 
             return currentHighestLevel.PortalInstanceData;
         }

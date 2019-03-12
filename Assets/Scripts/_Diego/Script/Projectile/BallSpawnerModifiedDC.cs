@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RootMotion.FinalIK;
+using System.Collections.Generic;
+using System.Collections;
 
 public class BallSpawnerModifiedDC : MonoBehaviour
 {
@@ -17,20 +19,21 @@ public class BallSpawnerModifiedDC : MonoBehaviour
     private PierInputManager playerInputController;
 
     //SnowPick Up
- //   private bool BallPickedUp;
-	//public FullBodyBipedIK IK;
-	//private bool IsReaching;
-	//public float lerpTime = 1f;
- //   float currentLerpTime;
-	//public Transform ReachPoint;
- //   private bool DoneReaching;
+    //   private bool BallPickedUp;
+    //public FullBodyBipedIK IK;
+    //private bool IsReaching;
+    //public float lerpTime = 1f;
+    //   float currentLerpTime;
+    //public Transform ReachPoint;
+    //   private bool DoneReaching;
+
+    //correct within x degrees
+    public float autoAimAngle = 25.0f;
 
 
-    
-    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
        // IK = gameObject.GetComponentInParent<FullBodyBipedIK>();
     }
@@ -121,6 +124,35 @@ public class BallSpawnerModifiedDC : MonoBehaviour
 
     private void ThrowBall()
     {
+
+        //get reference to all players
+        var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+        
+        Debug.Log(AllPlayers);
+
+        for (int i = 0; i < AllPlayers.count; i++)
+        {
+            if (AllPlayers[i].getcomponentinchildren<playeractor>().teamid == mySelf.teamid)
+            {
+                //debug.log("check enemies");
+
+                float angleBetweenPlayers = Vector3.Angle(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position, mySelf.transform.forward);
+
+                //   debug.log("angle between players: " + anglebetweenplayers);
+                if (angleBetweenPlayers < autoAimAngle)
+                {
+
+                    // defaultshot.angle = anglebetweenplayers; 
+                    Debug.Log("aim corrected");
+                    
+                }
+                else
+                {
+                    Debug.Log("standard aim");
+                }
+            }
+        }
+
         projectileLauncher.LaunchProjectile(mySelf);
        // BallPickedUp = false;
     }
