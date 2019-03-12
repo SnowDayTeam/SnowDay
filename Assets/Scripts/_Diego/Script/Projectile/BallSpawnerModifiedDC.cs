@@ -4,7 +4,7 @@ using UnityEngine;
 using RootMotion.FinalIK;
 using System.Collections.Generic;
 using System.Collections;
-
+using SnowDay.Diego.GameMode;
 public class BallSpawnerModifiedDC : MonoBehaviour
 {
     //private Vector3 offset = new Vector3(1, 0, 1);
@@ -130,9 +130,9 @@ public class BallSpawnerModifiedDC : MonoBehaviour
         
         Debug.Log(AllPlayers);
 
-        for (int i = 0; i < AllPlayers.count; i++)
+        for (int i = 0; i < AllPlayers.Count; i++)
         {
-            if (AllPlayers[i].getcomponentinchildren<playeractor>().teamid == mySelf.teamid)
+            if (AllPlayers[i].gameObject.getcomponentinchildren<playeractor>().teamid == mySelf.teamid)
             {
                 //debug.log("check enemies");
 

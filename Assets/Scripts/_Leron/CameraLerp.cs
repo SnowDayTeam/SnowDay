@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraLerp : MonoBehaviour {
-
+    public LerpUtility.lerpMode lerpMode;
     public Transform cameraPosition;
     public Transform[] cameraPositions;
     public int cameraPositionIndex = 0;
@@ -25,7 +25,15 @@ public class CameraLerp : MonoBehaviour {
             MoveCamera(cameraPositionIndex);
         }
         MoveCamera(cameraPositionIndex);
-
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            cameraPositionIndex++;
+            if(cameraPositionIndex >= cameraPositions.Length)
+            {
+                cameraPositionIndex = cameraPositions.Length - 1;
+            }
+            
+        }
     }
 
     public void MoveCamera(int cameraIndex)

@@ -5,6 +5,8 @@ Shader "Projector/MultiplyTint" {
 	Properties{
 		_Color("Color", Color) = (1, 1, 1, 1)
 		_ShadowTex("Cookie", 2D) = "gray" {}
+		_MaskTex("Mask", 2D) = "gray" {}
+
 		_FalloffTex("FallOff", 2D) = "white" {}
 	}
 		Subshader{
@@ -42,17 +44,23 @@ Shader "Projector/MultiplyTint" {
 				}
 
 				sampler2D _ShadowTex;
+				sampler2D _MaskTex;
 				sampler2D _FalloffTex;
 				fixed4 _Color;
 				fixed4 frag(v2f i) : SV_Target
 				{
 					fixed4 texS = tex2Dproj(_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
+					fixed4 texS2 = tex2Dproj(_MaskTex, UNITY_PROJ_COORD(i.uvShadow));
+
 					texS.a = 1.0 - texS.a;
 					
 					half amount = texS.r;
+					half amount2 = texS2.a;
 
 					fixed4 c = lerp(_Color, texS, amount);
-					texS.rgb = c.rgb;
+					fixed4 ca = lerp(c,texS2, amount2);
+
+					texS.rgb = ca.rgb;
 					fixed4 texF = tex2Dproj(_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
 					fixed4 res = lerp(fixed4(1,1,1,0), texS, texF.a);
 
