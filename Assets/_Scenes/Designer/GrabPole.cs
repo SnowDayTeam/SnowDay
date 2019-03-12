@@ -27,6 +27,7 @@ public class GrabPole : MonoBehaviour {
     Transform offsetter;
     float weight = 0;
     public bool isShovelWar;
+    bool gettingUp;
 
 
     // Use this for initialization
@@ -119,7 +120,17 @@ public class GrabPole : MonoBehaviour {
                     pole.transform.parent = transform.Find("Shovelling Prefab");
                     pole.transform.localPosition = Vector3.Lerp(pole.transform.localPosition, shovelStartPos, shovelReturnTime);
                     pole.transform.localRotation = Quaternion.Lerp(pole.transform.localRotation, shovelStartRot, shovelReturnTime);
-
+                    gettingUp = true;
+                }
+                //if we've stood up after a fall, reset the shovel position
+                if (puppet.state == BehaviourPuppet.State.Puppet)
+                {
+                   if(gettingUp == true)
+                    {
+                        pole.transform.localPosition = shovelStartPos;
+                        pole.transform.localRotation = shovelStartRot;
+                        gettingUp = false;
+                    }
                 }
             }
            
