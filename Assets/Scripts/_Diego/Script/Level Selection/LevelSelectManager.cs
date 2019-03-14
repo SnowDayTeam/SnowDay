@@ -113,8 +113,7 @@ namespace SnowDay.Diego.LevelSelect
 
             for (int x = 0; x < PortalSpawnPoints.Count; x++)
             {
-                playerVoted += PortalSpawnPoints[x].PlayersInBox;
-           
+                playerVoted += PortalSpawnPoints[x].NumberPlayersInBox;
             }
 
             return playerVoted;
@@ -130,7 +129,7 @@ namespace SnowDay.Diego.LevelSelect
 
             for (int x = 0; x < PortalSpawnPoints.Count; x++)
             {
-                var playerCount = PortalSpawnPoints[x].PlayersInBox;
+                var playerCount = PortalSpawnPoints[x].NumberPlayersInBox;
                 if (highestPlayerCount < playerCount)
                 {
                     highestPlayerCount = playerCount;
