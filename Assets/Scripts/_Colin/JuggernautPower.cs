@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using RootMotion.Dynamics;
 using RootMotion.FinalIK;
 using UnityEngine;
+using SnowDay.Diego.CharacterController;
 
 public class JuggernautPower : MonoBehaviour {
 
     [Range(1, 10)] public float maxInvulnDuration;
     private float invulnDuration;
     private bool isInvuln;
-    private PuppetMaster p1;
-    private FullBodyBipedIK playerIK;
+     PuppetMaster puppet;
+
+    //private FullBodyBipedIK playerIK;
 
     // Use this for initialization
     void Start () {
@@ -20,25 +22,30 @@ public class JuggernautPower : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //should do this part on the player controller probably, set player invuln on trigger enter
-        if (isInvuln) {
-            p1.mode = PuppetMaster.Mode.Kinematic;
+        if (isInvuln)
+        {
+            puppet.mode = PuppetMaster.Mode.Kinematic;
             invulnDuration -= Time.deltaTime;
-            if (invulnDuration <= 0) {
-                isInvuln = false;
-                Debug.Log(isInvuln);
+            if (invulnDuration <= 0)
+            {
+                //isInvuln = false;
+                Debug.Log("Juggernaut powerup End");
                 invulnDuration = maxInvulnDuration;
-                p1.mode = PuppetMaster.Mode.Active;
+                puppet.mode = PuppetMaster.Mode.Active;
+                Destroy(gameObject);
             }
         }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
-            playerIK = other.gameObject.GetComponentInParent<Transform>().GetComponentInChildren<FullBodyBipedIK>();
-           // p1 = other.gameObject.GetComponentInParent<Transform>().GetComponentInChildren<PuppetMaster>();
-            Debug.Log(p1);
-           // other.gameObject.GetComponent<PlayerController>().setInvuln = true;
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if (player != null && isInvuln == false)
+        {
+            puppet = player.GetComponentInChildren<PuppetMaster>();
+
+          //  puppet = other.gameObject.transform.parent.GetComponentInChildren<PuppetMaster>();
+            Debug.Log("Juggernaut powerup Start");
             isInvuln = true;
         }
     }

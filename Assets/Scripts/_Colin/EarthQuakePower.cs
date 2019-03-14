@@ -13,15 +13,17 @@ public class EarthQuakePower : MonoBehaviour {
     [Range(0.01f, 1)] public float duration;
     [Range(0.01f, 1)] public float magnitude;
     [Range(1, 10)] public float earthQuakeDelay;
-    public List<PuppetMaster> playerPuppets;
-    private RootMotion.Dynamics.PuppetMaster p1;
+    public PuppetMaster[] playerPuppets;
+    private PuppetMaster p1;
     private FullBodyBipedIK p1Ik;
     DeathmatchGamemodeManager dm;
 
 
     private void Start()
     {
-       dm = FindObjectOfType<DeathmatchGamemodeManager>();
+        playerPuppets = FindObjectsOfType<PuppetMaster>();
+
+        dm = FindObjectOfType<DeathmatchGamemodeManager>();
     }
 
     //every player except triggering player is knocked down
@@ -33,7 +35,7 @@ public class EarthQuakePower : MonoBehaviour {
             {
                 if (pm != p1)
                 {
-                    FindObjectOfType<AudioManager>().Play("quake");
+                   //FindObjectOfType<AudioManager>().Play("quake");
                    // StartCoroutine(cameraShake.ShakeCamera(duration, magnitude));
                     pm.state = PuppetMaster.State.Dead;
                 }
@@ -68,16 +70,18 @@ public class EarthQuakePower : MonoBehaviour {
         if (p1 != null) {
             print("puppermaster found");
         }
-        
+
         //will need to change from tag use
-     /*   if (other.gameObject.tag == "Player") {
-            p1 = other.gameObject.GetComponentInParent<RootMotion.Dynamics.PuppetMaster>();
+        PlayerController player = other.GetComponentInParent<PlayerController>();
+        if(player != null)
+        {
+            p1 = other.gameObject.GetComponentInParent<PuppetMaster>();
             if (p1 != null)
             {
                 StartCoroutine(EarthQuakeEffect());
             }
-        }*/
-     
+        }
+
     }
 
   

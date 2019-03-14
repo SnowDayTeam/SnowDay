@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4186007, g: 0.44708306, b: 0.46455687, a: 1}
+  m_IndirectSpecularColor: {r: 0.4186003, g: 0.44708288, b: 0.46455622, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -672,6 +672,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135906514a74d4e4a89daa8b52c5ca87, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &771245818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1849387532608298, guid: 4004a879ecbc19f419487f956d4c7f31,
+    type: 2}
+  m_PrefabInternal: {fileID: 2079399007}
 --- !u!1 &884667170 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1736222279058500, guid: 517bd6ade14049345b901dc88723dbf4,
@@ -970,8 +975,56 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 771245818}
+    ActiveGameObject: {fileID: 771245818}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 731239207}
+    ActiveGameObject: {fileID: 731239207}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1698035522}
+    ActiveGameObject: {fileID: 1698035522}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 1407038174}
     ActiveGameObject: {fileID: 1407038174}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 689117816}
+    ActiveGameObject: {fileID: 689117816}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -1162,44 +1215,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 689117816}
-    ActiveGameObject: {fileID: 689117816}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
     - {fileID: 360738762}
     ActiveGameObject: {fileID: 360738762}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1698035522}
-    ActiveGameObject: {fileID: 1698035522}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 731239207}
-    ActiveGameObject: {fileID: 731239207}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -1236,18 +1253,6 @@ MonoBehaviour:
     list:
     - {fileID: 1138390325}
     ActiveGameObject: {fileID: 1138390325}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1474029389}
-    ActiveGameObject: {fileID: 1474029389}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -1421,11 +1426,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1474029389 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1083396207820502, guid: 517bd6ade14049345b901dc88723dbf4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1093367880}
 --- !u!1 &1491339714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1607180551373582, guid: 517bd6ade14049345b901dc88723dbf4,
@@ -2041,15 +2041,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 15.09
+      value: 16.56
       objectReference: {fileID: 0}
     - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 18.17
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 23.73
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
       propertyPath: m_LocalRotation.x
