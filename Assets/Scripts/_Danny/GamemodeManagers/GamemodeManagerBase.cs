@@ -122,8 +122,10 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             foreach (PlayerController player in team.Players)
             {
-              //  player.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_TeamColor", team.TeamColor);
-                player.GetComponentInChildren<Projector>().material.SetColor("_Color", team.TeamColor);
+                //  player.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_TeamColor", team.TeamColor);
+                player.GetComponentInChildren<Projector>().material = Material.Instantiate(player.GetComponentInChildren<Projector>().material);
+            player.GetComponentInChildren<Projector>().material.SetColor("_Color", team.TeamColor);
+                Debug.Log("dsad "+ team.TeamColor);
             }
         }
     }
