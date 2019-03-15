@@ -9,7 +9,7 @@ public class CameraLerp : MonoBehaviour {
     public int cameraPositionIndex = 0;
     public bool didHitFirstGate = false;
 
-    public float speed = 1.0F;
+    public float speed = 0.2F;
     private float startTime;
     private float journeyLength;
 
@@ -43,7 +43,7 @@ public class CameraLerp : MonoBehaviour {
         float distCovered = (Time.time - startTime) * speed;
         float fracJourney = distCovered / journeyLength;
 
-        transform.position = Vector3.Lerp(cameraPosition.position, cameraPositions[cameraIndex].position, fracJourney);
-        transform.rotation = Quaternion.Lerp(cameraPosition.rotation, cameraPositions[cameraIndex].rotation, Time.time * fracJourney);
+        transform.position = Vector3.Lerp(cameraPosition.position, cameraPositions[cameraIndex].position, speed);
+        transform.rotation = Quaternion.Lerp(cameraPosition.rotation, cameraPositions[cameraIndex].rotation, Time.time * speed);
     }
 }
