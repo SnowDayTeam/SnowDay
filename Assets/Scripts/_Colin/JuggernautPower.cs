@@ -7,16 +7,21 @@ using SnowDay.Diego.CharacterController;
 
 public class JuggernautPower : MonoBehaviour {
 
-    [Range(1, 10)] public float maxInvulnDuration;
-    private float invulnDuration;
+    [Range(1, 20)] public float maxInvulnDuration;
+    private float invulnDuration = 12;
     private bool isInvuln;
-     PuppetMaster puppet;
+    PuppetMaster puppet;
+    public Transform juggernautPlayerSphere;
+    Transform playerPos;
+    PlayerController player;
+    bool getComp;
 
     //private FullBodyBipedIK playerIK;
 
     // Use this for initialization
     void Start () {
         invulnDuration = maxInvulnDuration;
+        juggernautPlayerSphere = transform.GetChild(0);
     }
 	
 	// Update is called once per frame
@@ -24,7 +29,18 @@ public class JuggernautPower : MonoBehaviour {
         //should do this part on the player controller probably, set player invuln on trigger enter
         if (isInvuln)
         {
-            puppet.mode = PuppetMaster.Mode.Kinematic;
+            if (getComp == false)
+            {
+                //Set the puppet invincible
+                puppet.mode = PuppetMaster.Mode.Kinematic;
+                playerPos = player.GetComponentInChildren<Animator>().transform;
+                juggernautPlayerSphere.localScale = playerPos.localScale;
+                getComp = true;
+            }
+            juggernautPlayerSphere.parent = player.GetComponentInChildren<Animator>().transform;
+            //juggernautPlayerSphere.position = player.GetComponentInChildren<Animator>().transform.position;
+            juggernautPlayerSphere.position = new Vector3(playerPos.position.x, playerPos.position.y + playerPos.localScale.y/2 + 0.2f, playerPos.position.z);
+
             invulnDuration -= Time.deltaTime;
             if (invulnDuration <= 0)
             {
@@ -33,13 +49,14 @@ public class JuggernautPower : MonoBehaviour {
                 invulnDuration = maxInvulnDuration;
                 puppet.mode = PuppetMaster.Mode.Active;
                 Destroy(gameObject);
+                Destroy(juggernautPlayerSphere.gameObject);
             }
         }
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController player = other.GetComponentInParent<PlayerController>();
+        player = other.GetComponentInParent<PlayerController>();
         if (player != null && isInvuln == false)
         {
             puppet = player.GetComponentInChildren<PuppetMaster>();
