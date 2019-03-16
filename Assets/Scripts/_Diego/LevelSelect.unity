@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 775406641}
-  LevelSelectCountDownTime: 10
+  LevelSelectCountDownTime: 2
   CountDownText: {fileID: 1056556861}
   PortalSpawnPoints:
   - {fileID: 1203723337}
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 480713549}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3412,6 +3412,18 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 480713548}
+    ActiveGameObject: {fileID: 480713548}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 1782705214}
     ActiveGameObject: {fileID: 1782705214}
     GUIDsList: []
@@ -3678,18 +3690,6 @@ MonoBehaviour:
     list:
     - {fileID: 587986721}
     ActiveGameObject: {fileID: 587986721}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1979151283}
-    ActiveGameObject: {fileID: 1979151283}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -5154,11 +5154,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970732123}
   m_CullTransparentMesh: 0
---- !u!1 &1979151283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1565772569308840, guid: 204563370abee2f45a9a2ebf468e3e74,
-    type: 2}
-  m_PrefabInternal: {fileID: 1087905732}
 --- !u!4 &1979151284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4419621743818968, guid: 204563370abee2f45a9a2ebf468e3e74,

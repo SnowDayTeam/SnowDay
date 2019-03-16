@@ -15,44 +15,58 @@ public class JuggernautPower : MonoBehaviour {
     Transform playerPos;
     PlayerController player;
     bool getComp;
+    Animator animator;
+    float waitTime = 1;
+    MeshRenderer mesh;
 
-    //private FullBodyBipedIK playerIK;
 
-    // Use this for initialization
     void Start () {
         invulnDuration = maxInvulnDuration;
         juggernautPlayerSphere = transform.GetChild(0);
+        animator = transform.GetChild(0).GetComponent<Animator>();
+        animator.speed = maxInvulnDuration/100f;
+        mesh = GetComponent<MeshRenderer>();
+        print("anim speed " + animator.speed);
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //should do this part on the player controller probably, set player invuln on trigger enter
+
+    void Update () {
+
+        //--------------Power Up The Player---------------//
         if (isInvuln)
         {
             if (getComp == false)
             {
+                animator.SetTrigger("Start");
                 //Set the puppet invincible
                 puppet.mode = PuppetMaster.Mode.Kinematic;
                 playerPos = player.GetComponentInChildren<Animator>().transform;
                 juggernautPlayerSphere.localScale = playerPos.localScale;
+
                 getComp = true;
             }
-            juggernautPlayerSphere.parent = player.GetComponentInChildren<Animator>().transform;
-            //juggernautPlayerSphere.position = player.GetComponentInChildren<Animator>().transform.position;
-            juggernautPlayerSphere.position = new Vector3(playerPos.position.x, playerPos.position.y + playerPos.localScale.y/2 + 0.2f, playerPos.position.z);
 
-            invulnDuration -= Time.deltaTime;
-            if (invulnDuration <= 0)
+            //Set sphere Position
+            if (juggernautPlayerSphere != null)
             {
-                //isInvuln = false;
-                Debug.Log("Juggernaut powerup End");
-                invulnDuration = maxInvulnDuration;
-                puppet.mode = PuppetMaster.Mode.Active;
-                Destroy(gameObject);
-                Destroy(juggernautPlayerSphere.gameObject);
+                juggernautPlayerSphere.parent = player.GetComponentInChildren<Animator>().transform;
+                juggernautPlayerSphere.position = new Vector3(playerPos.position.x, playerPos.position.y + playerPos.localScale.y / 2 + 0.2f, playerPos.position.z);
+                puppet.mode = PuppetMaster.Mode.Kinematic;
+
+
+                invulnDuration -= Time.deltaTime;
+                if (invulnDuration <= 0)
+                {
+                    //isInvuln = false;
+                    Debug.Log("Juggernaut powerup End");
+                    invulnDuration = maxInvulnDuration;
+                    Destroy(juggernautPlayerSphere.gameObject);
+                    Wait();
+                }
             }
         }
 	}
+    //--------------Powerup Triggered---------------//
 
     private void OnTriggerEnter(Collider other)
     {
@@ -60,10 +74,25 @@ public class JuggernautPower : MonoBehaviour {
         if (player != null && isInvuln == false)
         {
             puppet = player.GetComponentInChildren<PuppetMaster>();
+            puppet.mode = PuppetMaster.Mode.Kinematic;
 
-          //  puppet = other.gameObject.transform.parent.GetComponentInChildren<PuppetMaster>();
             Debug.Log("Juggernaut powerup Start");
+            mesh.enabled = false;
             isInvuln = true;
+        }
+    }
+
+    //--------------Wait and Restore Puppet---------------//
+
+    void Wait()
+    {
+        waitTime -= Time.deltaTime;
+        if (waitTime <= 0)
+        {
+            print("Reactivate puppet");
+            puppet.mode = PuppetMaster.Mode.Active;
+            PowerUpSpawn.activePowerUpCount--;
+            Destroy(gameObject);
         }
     }
 }
