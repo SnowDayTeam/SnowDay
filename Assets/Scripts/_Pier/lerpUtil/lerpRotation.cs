@@ -10,14 +10,14 @@ public class lerpRotation : baseLerper
     public LerpUtility.lerpMode lerpMode;
     public Vector3 Rotation;
 
-    private Quaternion endRotation;
-    private Quaternion startRotation;
+    public Quaternion endRotation;
+    public Quaternion startRotation;
     // Use this for initialization
     private bool lerpingdown = false;
     public float currentLerpTime;
     void Start()
     {
-        startRotation = transform.rotation;
+        startRotation = transform.localRotation;
         endRotation = Quaternion.Euler(Rotation);
     }
 
@@ -28,7 +28,7 @@ public class lerpRotation : baseLerper
         {
             currentLerpTime += Time.deltaTime;
 
-            transform.rotation = Quaternion.Lerp(startRotation, endRotation, LerpUtility.Lerp(currentLerpTime, lerpDuration, lerpMode));
+            transform.localRotation = Quaternion.Lerp(startRotation, endRotation, LerpUtility.Lerp(currentLerpTime, lerpDuration, lerpMode));
             if (currentLerpTime >= lerpDuration)
             {
                 if (pingPong == false)

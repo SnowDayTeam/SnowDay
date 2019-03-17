@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -366,6 +366,9 @@ GameObject:
   - component: {fileID: 127398121}
   - component: {fileID: 127398120}
   - component: {fileID: 127398119}
+  - component: {fileID: 127398122}
+  - component: {fileID: 127398124}
+  - component: {fileID: 127398123}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -427,12 +430,90 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127398118}
   m_LocalRotation: {x: -0.0004309973, y: 0.9578299, z: -0.28733218, w: -0.0014367414}
-  m_LocalPosition: {x: 42.48, y: 26.94, z: 77.22}
+  m_LocalPosition: {x: 42.459, y: 22.282, z: 70.155}
   m_LocalScale: {x: -0.84687674, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50.585003, y: 180.00002, z: 0}
+--- !u!114 &127398122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127398118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 74fb7680c17a6a048bb83b78b8cb39ee, type: 2}
+--- !u!65 &127398123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127398118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &127398124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127398118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tonemapper: 0
+  Exposure: 1
+  LinearWhitePoint: 11.2
+  ApplyDithering: 0
+  QualityLevel: 1
+  BlendAmount: 0
+  LutTexture: {fileID: 2800000, guid: 2d6a9c80173276b4a83cd556305ca09b, type: 3}
+  LutBlendTexture: {fileID: 2800000, guid: 5059551652c0f0c40b563a0c2aba4516, type: 3}
+  MaskTexture: {fileID: 0}
+  UseDepthMask: 0
+  DepthMaskCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  UseVolumes: 0
+  ExitVolumeBlendTime: 1
+  TriggerVolumeProxy: {fileID: 0}
+  VolumeCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  EffectFlags:
+    components: []
+  sharedInstanceID: 5770f631-879c-4d83-a22f-85b556bb3342
 --- !u!1 &133698252
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +777,30 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 127398118}
+    ActiveGameObject: {fileID: 127398118}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 389416706}
+    ActiveGameObject: {fileID: 389416706}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 1644302130}
     ActiveGameObject: {fileID: 1644302130}
     GUIDsList: []
@@ -818,18 +923,6 @@ MonoBehaviour:
     list:
     - {fileID: 548133003}
     ActiveGameObject: {fileID: 548133003}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 127398118}
-    ActiveGameObject: {fileID: 127398118}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -1014,21 +1107,6 @@ MonoBehaviour:
     InstanceID: 0
     wasInit: 0
     CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 336442298}
-    - {fileID: 462721535}
-    - {fileID: 1031171895}
-    - {fileID: 26708191}
-    ActiveGameObject: {fileID: 336442298}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
   Hash4: []
   Hash5: []
   Hash5_Fix2_0: []
@@ -1132,6 +1210,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 278803af228982c418583343e73058e1,
     type: 3}
   m_PrefabInternal: {fileID: 373258612}
+--- !u!1 &389416706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5bf286a1a4df9cf44bafaab9cd12b114,
+    type: 3}
+  m_PrefabInternal: {fileID: 1503296988}
 --- !u!1 &414377763
 GameObject:
   m_ObjectHideFlags: 0

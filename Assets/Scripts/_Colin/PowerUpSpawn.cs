@@ -39,6 +39,19 @@ public class PowerUpSpawn : MonoBehaviour {
     void SpawnPowerUp(int powerUpToSpawn) {
         int spawnLocation = Random.Range(0, spawnPoints.Length);
         print("random spawn #: " + spawnLocation);
+   /*     if (spawnLocation <= spawnPoints.Length-1) {
+            if (spawnPoints[spawnLocation].childCount <= 0)
+            {
+                Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
+                activePowerUpCount++;
+            }
+            else {
+                spawnLocation++;
+                if (spawnLocation >= spawnPoints.Length - 1) {
+                    spawnLocation = 0;
+                }
+            }
+        }*/
         switch (spawnLocation) {
             case 0:
                 if (spawnPoints[spawnLocation].childCount <= 0)

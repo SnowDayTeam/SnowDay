@@ -19,7 +19,8 @@ namespace SnowDay.Diego.CharacterController
         [SerializeField] public float m_MoveSpeedMultiplier = 1f;
         [SerializeField] public float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
-
+        public float maxSprintTime = 2f;
+        private float currentSprintTime = 0f;
         Rigidbody m_Rigidbody;
         Animator m_Animator;
         bool m_IsGrounded;
@@ -47,6 +48,7 @@ namespace SnowDay.Diego.CharacterController
 
         public void Initialize()
         {
+            currentSprintTime = maxSprintTime;
             m_Animator = GetComponent<Animator>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
@@ -59,15 +61,25 @@ namespace SnowDay.Diego.CharacterController
 
         public void Move(Vector3 move, bool crouch, bool jump, bool run)
         {
+
             if(RunEnabled)
             {
-                if (run)
+                if (run && currentSprintTime >0)
                 {
+                    
+                    currentSprintTime -= Time.deltaTime;
+                    
                     m_MoveSpeedMultiplier = 1.5f;
 
                 }
                 else
                 {
+                    currentSprintTime += Time.deltaTime/2f;
+                    if(currentSprintTime >= maxSprintTime)
+                    {
+                        currentSprintTime = maxSprintTime;
+                    }
+
                     m_MoveSpeedMultiplier = 1;
 
                 }

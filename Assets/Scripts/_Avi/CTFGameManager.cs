@@ -37,7 +37,7 @@ public class CTFGameManager : ModeManager
         {
             for (int j = 0; j < Teams[i].players.Count; j++)
             {
-                Teams[i].players[j].GetComponentInChildren<FlagController>().team = i;
+                //Teams[i].players[j].GetComponentInChildren<FlagController>().team = i;
                 Teams[i].players[j].GetComponentInChildren<SkinnedMeshRenderer>().materials[0].color = Teams[i].teamColor;
 
             }

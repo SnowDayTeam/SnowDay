@@ -9,11 +9,11 @@ public class lerpPosition : baseLerper
     public float lerpDuration = 1f;
     public LerpUtility.lerpMode lerpMode;
     public Vector3 endPosition;
-    private Vector3 startPositon;
+    public Vector3 startPositon;
     // Use this for initialization
     public bool local = false;
     private bool lerpingdown = false;
-    private float currentLerpTime;
+    public float currentLerpTime;
     void Start()
     {
         if (local)

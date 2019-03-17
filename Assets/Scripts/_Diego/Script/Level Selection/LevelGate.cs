@@ -13,7 +13,7 @@ public class LevelGate : MonoBehaviour {
     public string ObjectTag = "Player";
     [SerializeField]
     private int playersInBox;
-
+    public bool useFriendlyName = true;
     /// <summary>
     /// How many players are currently in the collider volume.
     /// </summary>
@@ -64,7 +64,14 @@ public class LevelGate : MonoBehaviour {
 
         if (textMesh)
         {
-            textMesh.text = portalData.sceneName;
+            if (useFriendlyName)
+            {
+                textMesh.text = portalData.displayName;
+            }
+            else
+            {
+                textMesh.text = portalData.sceneName;
+            }
         }
     }
 

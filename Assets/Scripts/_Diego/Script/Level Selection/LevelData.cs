@@ -15,6 +15,7 @@ public class LevelData : ScriptableObject
     /// </summary>
     public string sceneName;
 
+    public string displayName;
     /// <summary>
     /// the asset that should be instantiated to  represent the Gate
     /// </summary>

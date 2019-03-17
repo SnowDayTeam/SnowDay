@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using SnowDay.Diego.CharacterController;
 [RequireComponent(typeof(Rigidbody))]
 public class ProjectileComponent : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class ProjectileComponent : MonoBehaviour
 
     private float currentRadius = 0;
     private bool increaseRadius = true;
-
+    private bool canHurt = true;
     /// <summary>
     /// Launch Projectile
     /// </summary>
@@ -72,16 +72,22 @@ public class ProjectileComponent : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         increaseRadius = false;
-        PlayerActor act = collision.collider.GetComponentInChildren<PlayerActor>();
-        if (act != null)
+        PlayerController player = collision.collider.GetComponentInParent<PlayerController>();
+        if(canHurt == true &&  player != null )
         {
-            if (act != playerActor)
+            PlayerActor act = player.gameObject.GetComponentInChildren<PlayerActor>();
+            if (act != null)
             {
-                print("got hit");
-                Debug.Log(collision.gameObject.name);
-                act.DecreaseHealth(1, playerActor.TeamID);
+                if (act != playerActor)
+                {
+                    print("got hit");
+                    Debug.Log(collision.gameObject.name);
+                    act.DecreaseHealth(1, playerActor.TeamID);
+                    canHurt = false;
+                }
             }
         }
+       
         Destroy(gameObject, timeUntilDestroy);
     }
 

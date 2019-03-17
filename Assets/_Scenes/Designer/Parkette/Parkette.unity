@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.011258458, g: 0.103773594, b: 0.056107864, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.03
+  m_FogDensity: 0.04
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.7718939, g: 0.9245283, b: 0.80105364, a: 1}
@@ -1429,11 +1429,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100014, guid: 16a801d35fd424c67bf9034cf24e5cdd,
     type: 3}
   m_PrefabInternal: {fileID: 265603210}
---- !u!1 &365153131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100154, guid: 16a801d35fd424c67bf9034cf24e5cdd,
-    type: 3}
-  m_PrefabInternal: {fileID: 265603210}
 --- !u!1 &399930235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1669,18 @@ MonoBehaviour:
   Hash1_Fix2_0: []
   Hash2: []
   Hash3:
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1728931629}
+    ActiveGameObject: {fileID: 1728931629}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
   - FavParams: 0
     FavString: []
     list:
@@ -1943,18 +1950,6 @@ MonoBehaviour:
     list:
     - {fileID: 1732714177}
     ActiveGameObject: {fileID: 1732714177}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 365153131}
-    ActiveGameObject: {fileID: 365153131}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -2735,6 +2730,7 @@ GameObject:
   - component: {fileID: 1728931632}
   - component: {fileID: 1728931631}
   - component: {fileID: 1728931630}
+  - component: {fileID: 1728931633}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2802,6 +2798,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 56.361004, y: 152.397, z: 0}
+--- !u!114 &1728931633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728931629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tonemapper: 0
+  Exposure: 1
+  LinearWhitePoint: 11.2
+  ApplyDithering: 0
+  QualityLevel: 1
+  BlendAmount: 0.6
+  LutTexture: {fileID: 2800000, guid: 324aabbaaaeeb50478d29d9f3c159736, type: 3}
+  LutBlendTexture: {fileID: 2800000, guid: 5059551652c0f0c40b563a0c2aba4516, type: 3}
+  MaskTexture: {fileID: 0}
+  UseDepthMask: 0
+  DepthMaskCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  UseVolumes: 0
+  ExitVolumeBlendTime: 1
+  TriggerVolumeProxy: {fileID: 0}
+  VolumeCollisionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  EffectFlags:
+    components: []
+  sharedInstanceID: f93a7e4d-8f49-4677-9494-92a780bfe1a6
 --- !u!1 &1732714177
 GameObject:
   m_ObjectHideFlags: 0

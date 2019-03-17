@@ -22,7 +22,7 @@ public class BaseScript : MonoBehaviour {
             {
                 redTeamPoints += 1;
                 other.tag = "Untagged";
-                other.GetComponent<FlagPickup>().isAtBase = true;
+                //other.GetComponent<FlagPickup>().isAtBase = true;
                 redTeamPointsText.text = redTeamPoints.ToString();
                 other.transform.parent = gameObject.transform;
             }
@@ -34,7 +34,7 @@ public class BaseScript : MonoBehaviour {
             {
                 blueTeamPoints += 1;
                 other.tag = "Untagged";
-                other.GetComponent<FlagPickup>().isAtBase = true;
+                //other.GetComponent<FlagPickup>().isAtBase = true;
                 blueTeamPointsText.text = blueTeamPoints.ToString();           
                 other.transform.parent = gameObject.transform;
 
