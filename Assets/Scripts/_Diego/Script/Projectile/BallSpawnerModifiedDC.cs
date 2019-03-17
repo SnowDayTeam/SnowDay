@@ -4,7 +4,6 @@ using UnityEngine;
 using RootMotion.FinalIK;
 using System.Collections.Generic;
 using System.Collections;
-using SnowDay.Diego.GameMode;
 
 public class BallSpawnerModifiedDC : MonoBehaviour
 {
@@ -125,16 +124,15 @@ public class BallSpawnerModifiedDC : MonoBehaviour
 
     private void ThrowBall()
     {
-        
-        
+
         //get reference to all players
         var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
         
         Debug.Log(AllPlayers);
 
-        for (int i = 0; i < AllPlayers.Count; i++)
+        for (int i = 0; i < AllPlayers.count; i++)
         {
-            if(AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == mySelf.TeamID)
+            if (AllPlayers[i].getcomponentinchildren<playeractor>().teamid == mySelf.teamid)
             {
                 //debug.log("check enemies");
 
