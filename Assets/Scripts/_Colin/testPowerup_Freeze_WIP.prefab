@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1830889099264204}
+  m_RootGameObject: {fileID: 1859091500145322}
   m_IsPrefabAsset: 1
---- !u!1 &1830889099264204
+--- !u!1 &1859091500145322
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4902233474912318}
-  - component: {fileID: 33492110334417598}
-  - component: {fileID: 23196642350604888}
-  - component: {fileID: 135020564671031472}
-  - component: {fileID: 54692440448910586}
+  - component: {fileID: 4322830360998286}
+  - component: {fileID: 33591104398705548}
+  - component: {fileID: 23112970361381128}
+  - component: {fileID: 135237792448409314}
+  - component: {fileID: 114215185875653824}
   m_Layer: 0
-  m_Name: IceBall
+  m_Name: testPowerup_Freeze_WIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4902233474912318
+--- !u!4 &4322830360998286
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830889099264204}
+  m_GameObject: {fileID: 1859091500145322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.131464, y: 0.7172849, z: -2.505242}
-  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
+  m_LocalPosition: {x: 10.96, y: 0.57, z: 0.08}
+  m_LocalScale: {x: 2, y: 0.2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23196642350604888
+--- !u!23 &23112970361381128
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830889099264204}
+  m_GameObject: {fileID: 1859091500145322}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8a48025a09d93d64b8bcd94182fc9de7, type: 2}
+  - {fileID: 2100000, guid: b8509c26483513c4d98e5e11f72981ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,36 +78,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33492110334417598
+--- !u!33 &33591104398705548
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830889099264204}
+  m_GameObject: {fileID: 1859091500145322}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54692440448910586
-Rigidbody:
+--- !u!114 &114215185875653824
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830889099264204}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &135020564671031472
+  m_GameObject: {fileID: 1859091500145322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e680208d14cf644b5d05856baeff3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceBall: {fileID: 54692440448910586, guid: 3482c604188bccd4faf58718274760ce, type: 2}
+  puppetMasterIK: {fileID: 0}
+  pupperBehaviors: {fileID: 0}
+  maxFreezeTime: 5.01
+--- !u!135 &135237792448409314
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830889099264204}
+  m_GameObject: {fileID: 1859091500145322}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
