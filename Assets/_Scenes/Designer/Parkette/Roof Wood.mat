@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Roof Wood
   m_Shader: {fileID: 4800000, guid: 26ac6b86cbebf834fb2ac55c14c9bb16, type: 3}
-  m_ShaderKeywords: OUTLINE_BLENDING TCP2_ZSMOOTH_ON _ALPHABLEND_ON
+  m_ShaderKeywords: OUTLINE_BLENDING TCP2_OUTLINE_TEXTURED TCP2_ZSMOOTH_ON _ALPHABLEND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -69,7 +69,7 @@ Material:
     - _DstBlend: 10
     - _DstBlendOutline: 10
     - _EnableConstSizeOutline: 0
-    - _EnableTexturedOutline: 0
+    - _EnableTexturedOutline: 1
     - _EnableZSmooth: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -77,9 +77,9 @@ Material:
     - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1
-    - _Offset1: 0
-    - _Offset2: 0
-    - _Outline: 3.44
+    - _Offset1: 2.18
+    - _Offset2: 1.34
+    - _Outline: 1.81
     - _Parallax: 0.02
     - _RampSmooth: 0.84
     - _RampThreshold: 0.38
@@ -93,16 +93,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _SrcBlendOutline: 5
-    - _TexLod: 5
+    - _TexLod: 5.71
     - _UVSec: 0
-    - _ZSmooth: -0.5
+    - _ZSmooth: 0.19
     - _ZWrite: 0
     - __dummy__: 0
     - __outline_gui_dummy__: 0
     m_Colors:
     - _Color: {r: 0.46226418, g: 0.38690984, b: 0.25947848, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _HColor: {r: 0.785, g: 0.785, b: 0.785, a: 1}
+    - _HColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _OutlineColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _RimColor: {r: 0.102127075, g: 0.14150941, b: 0.11652223, a: 1}
     - _SColor: {r: 0.195, g: 0.195, b: 0.195, a: 1}
