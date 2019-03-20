@@ -4,8 +4,6 @@ using UnityEngine;
 using SnowDay.Input;
 using SnowDay.Diego.CharacterController;
 
-
-
 namespace SnowDay.Diego.LevelSelect
 {
     [RequireComponent(typeof(LevelInputManager))]
@@ -18,13 +16,25 @@ namespace SnowDay.Diego.LevelSelect
         public List<PlayerController> players = new List<PlayerController>(INPUT_CONSTANTS.Max_Players);
 
         private LevelInputManager inputController;
-        public characterPrefabData prefabs;
+
+        [SerializeField] characterPrefabData prefabs;
+
+        /// <summary>
+        /// Represents the list of character that have no yet been chosen
+        /// </summary>
+        [SerializeField] List<GameObject> TakenCharacters = new List<GameObject> ();
+        [SerializeField] int CharacterPrefabIndex = 0;
+        //[SerializeField] int NextSelectableCharacter = 0;
+        //[SerializeField] int PreviousSelectableCharacter = 0;
 
         // Use this for initialization
         void Start()
         {
             inputController = GetComponent<LevelInputManager>();
+            //this.NextSelectableCharacter = 0;
+            //this.PreviousSelectableCharacter = this.SelectableCharacters.Count -1;
         }
+
         public void ActivatePlayer(int playerNumber)
         {
             if (players[playerNumber] != null && players[playerNumber].CharacterEnabled == false)
@@ -32,7 +42,7 @@ namespace SnowDay.Diego.LevelSelect
                 Debug.Log("Controller Activated" + playerNumber);
                 players[playerNumber].CharacterEnabled = true;
 
-                ChangeCharacterModel(players[playerNumber], 1);
+                ChangeCharacterModel(players[playerNumber], false);
             }
         }
         // Update is called once per frame
@@ -44,7 +54,6 @@ namespace SnowDay.Diego.LevelSelect
                 if (keyPressed)
                 {
                     ActivatePlayer(i);
-                   
                 }
 
                 keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)RemoveButton);
@@ -53,39 +62,55 @@ namespace SnowDay.Diego.LevelSelect
                     Debug.Log("Controller Activated" + i);
                     if (players[i] != null)
                     {
+                        //enable the commented code when this actually removes the player from the game
                         players[i].CharacterEnabled = false;
+                        //remove character from taken list and set its prefab int to default value
+                        //this.TakenCharacters.Remove(this.prefabs.PrefabList[players[i].currentPrefab]);
+                        //players[i].currentPrefab = -1;
                     }
                 }
                 keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)MeshChangeUp);
                 if (keyPressed)
                 {
-                    ChangeCharacterModel(players[i],1);
+                    ChangeCharacterModel(players[i], false);
                 }
 
                 keyPressed = inputController.GetButtonDown((PlayerNumber)i, (ButtonName)MeshChangeDown);
                 if (keyPressed)
                 {
-                    ChangeCharacterModel(players[i] ,- 1);
+                    ChangeCharacterModel(players[i], true);
                 }
-               
             }
-
         }
+
         /// <summary>
         /// Change Character Model
         /// </summary>
         /// <param name="step"></param>
-        public void ChangeCharacterModel(PlayerController player, int step)
+        void ChangeCharacterModel(PlayerController player, bool WantsPreviousCharacter)
         {
-            player.currentPrefab += step;
+            //all characters are taken leave function
+            if(this.TakenCharacters.Count == this.prefabs.PrefabList.Length)
+                return;
 
-            player.currentPrefab = player.currentPrefab < 0 ? prefabs.PrefabList .Length - 1 : player.currentPrefab;
+            //add break case if all character are taken
+            while(this.TakenCharacters.Contains(this.prefabs.PrefabList[this.CharacterPrefabIndex])) 
+            {
+                if(WantsPreviousCharacter)
+                    this.CharacterPrefabIndex += this.prefabs.PrefabList.Length - 1;
+                else
+                    this.CharacterPrefabIndex++;
+                this.CharacterPrefabIndex %= this.prefabs.PrefabList.Length;
+            }
 
-            player.currentPrefab = player.currentPrefab > prefabs.PrefabList.Length - 1 ? 0 : player.currentPrefab;
+            if(player.SnowDayCharacterGameObject) 
+                this.TakenCharacters.Remove(this.prefabs.PrefabList[player.currentPrefab]);
 
-            player.SetSnowDayCharacter(prefabs.PrefabList[player.currentPrefab]);
+            player.SetSnowDayCharacter(prefabs.PrefabList[this.CharacterPrefabIndex]);
 
-            //Debug.Log(currentPrefab);
+            this.TakenCharacters.Add(this.prefabs.PrefabList[this.CharacterPrefabIndex]);
+
+            player.currentPrefab = this.CharacterPrefabIndex;
         }
         /// <summary>
         /// Gets a list of the active players in the scene
