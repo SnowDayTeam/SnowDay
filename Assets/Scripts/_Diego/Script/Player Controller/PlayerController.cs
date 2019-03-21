@@ -21,12 +21,11 @@ namespace SnowDay.Diego.CharacterController
         public PierInputManager.ButtonName RunKey = PierInputManager.ButtonName.Right_Trigger;
         public PierInputManager.ButtonName AltRunKey = PierInputManager.ButtonName.Left_Trigger;
 
-
         private PierInputManager playerInputController;
         private SnowDayCharacter playerCharacter;
 
         [Header("Debug")]
-        public int currentPrefab = 0;
+        public int currentPrefab = -1;
         public Transform playerIndicator;
       //  public GameObject[] PlayerPrefab;
 
@@ -39,7 +38,7 @@ namespace SnowDay.Diego.CharacterController
         public float RunBoostMultiplier = 1.5f;
 
         private bool activeSelf = false;
-        public bool CharacterEnabled//bad design hides intent 
+        public bool CharacterEnabled//bad design hides intent
         {
             get
             {
@@ -195,7 +194,7 @@ namespace SnowDay.Diego.CharacterController
 
           
 
-            if (SnowDayCharacterGameObject)
+            if (SnowDayCharacterGameObject && playerCharacter)
             {
                 playerIndicator.transform.position = playerCharacter.transform.position +Vector3.up *2.5f;
                 if (!m_Jump)
