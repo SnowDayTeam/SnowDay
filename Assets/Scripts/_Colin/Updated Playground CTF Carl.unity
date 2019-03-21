@@ -9601,7 +9601,7 @@ Prefab:
     - target: {fileID: 114153270271246552, guid: 135906514a74d4e4a89daa8b52c5ca87,
         type: 2}
       propertyPath: powerUps.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4417319736033318, guid: 135906514a74d4e4a89daa8b52c5ca87, type: 2}
       propertyPath: m_LocalPosition.x
@@ -9676,7 +9676,7 @@ Prefab:
         type: 2}
       propertyPath: powerUps.Array.data[2]
       value: 
-      objectReference: {fileID: 1307948270}
+      objectReference: {fileID: 1786649577}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135906514a74d4e4a89daa8b52c5ca87, type: 2}
   m_IsPrefabAsset: 0
@@ -11420,6 +11420,30 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 1786649577}
+    ActiveGameObject: {fileID: 1786649577}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1170824303}
+    ActiveGameObject: {fileID: 1170824303}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 493408211}
     ActiveGameObject: {fileID: 493408211}
     GUIDsList: []
@@ -11668,30 +11692,6 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 1792847444}
     ActiveGameObject: {fileID: 0}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1792847444}
-    ActiveGameObject: {fileID: 1792847444}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1170824303}
-    ActiveGameObject: {fileID: 1170824303}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -13528,6 +13528,67 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767850031}
   m_Mesh: {fileID: 4300004, guid: b1a28c697347e204b858ecae7cc095da, type: 3}
+--- !u!1001 &1786649576
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 31.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.6168575
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 25.805714
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402891273079780, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849387532608298, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+      propertyPath: m_Name
+      value: test_Powerup_EarthQuake_WIP (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458440309054730, guid: 4004a879ecbc19f419487f956d4c7f31,
+        type: 2}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458440309054730, guid: 4004a879ecbc19f419487f956d4c7f31,
+        type: 2}
+      propertyPath: magnitude
+      value: 0.975
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4004a879ecbc19f419487f956d4c7f31, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &1786649577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1849387532608298, guid: 4004a879ecbc19f419487f956d4c7f31,
+    type: 2}
+  m_PrefabInternal: {fileID: 1786649576}
 --- !u!1 &1792847444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1047367997659332, guid: bb6abd2368d72064fbe1da31a357283f,

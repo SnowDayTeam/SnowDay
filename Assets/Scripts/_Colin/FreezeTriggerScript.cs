@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using RootMotion.Dynamics;
 using UnityEngine;
+using SnowDay.Diego.CharacterController;
 
 public class FreezeTriggerScript : MonoBehaviour {
 
     public Rigidbody iceBall;
     private GameObject frozenPlayer;
-    public GameObject puppetMasterIK;
-    public GameObject pupperBehaviors;
+    private PlayerController frozenPlayerController;
+    private PuppetMaster puppet;
+    private BehaviourPuppet puppetBehaviours;
     private GameObject spawnParent;
     [Range(1, 10)] public float maxFreezeTime;
     private float freezeTimer;
-    private GameObject playerRoot;
+    private Animator frozenPlayerAnimator;
+    private Vector3 unfrozenTransform;
+    private Transform playerRoot;
 
     private bool isFrozen;
     private bool canFreeze;
@@ -29,6 +33,7 @@ public class FreezeTriggerScript : MonoBehaviour {
         if (isFrozen) {
             freezeTimer -= Time.deltaTime;
             if (freezeTimer <= 0) {
+                print("unfreeze");
                 UnFreeze();
             }
         }
@@ -37,36 +42,38 @@ public class FreezeTriggerScript : MonoBehaviour {
     //restore players disabled components and reset parent to spawn node, destroy ice ball
     private void UnFreeze() {
         isFrozen = false;
-        iceBallClone.transform.DetachChildren();
-        frozenPlayer.transform.SetParent(spawnParent.transform);
-        frozenPlayer.transform.rotation = new Quaternion(0, 1, 0, 0);
-        frozenPlayer.GetComponent<Rigidbody>().detectCollisions = true;
-        frozenPlayer.GetComponent<Rigidbody>().isKinematic = false;
-        frozenPlayer.GetComponent<Animator>().enabled = true;
-        pupperBehaviors.SetActive(true);
-        puppetMasterIK.SetActive(true);
-        //currently needed to set up on an individual player basis while using unity standard assets player controller.
-        frozenPlayer.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
-        Destroy(iceBallClone.gameObject);
-    }
-    private void OnTriggerExit(Collider other)
-    {
         canFreeze = false;
+        iceBallClone.transform.DetachChildren();
+
+        //setting parent back to root causes transform to be incorrect, tried to manual correct but still wrong
+        frozenPlayerAnimator.transform.SetParent(frozenPlayerController.GetComponentInChildren<Transform>(), true);
+        // frozenPlayerAnimator.transform.position = new Vector3(frozenPlayerController.GetComponentInChildren<Transform>().transform.position.x * -1, frozenPlayerController.GetComponentInChildren<Transform>().transform.position.y, frozenPlayerController.GetComponentInChildren<Transform>().transform.position.z *-1);
+
+        frozenPlayerAnimator.transform.rotation = new Quaternion(0, 1, 0, 0);
+        frozenPlayerAnimator.GetComponent<Rigidbody>().detectCollisions = true;
+        frozenPlayerAnimator.GetComponent<Rigidbody>().isKinematic = false;
+        frozenPlayerAnimator.GetComponent<Animator>().enabled = true;
+        frozenPlayerController.enabled = true;
+        puppet.enabled = true;
+        puppetBehaviours.enabled = true;
+        
+        Destroy(iceBallClone.gameObject);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //if gameobject is player...
         if (other.gameObject.tag == "Player") {
-            Debug.Log("Freeze123");
-            this.gameObject.GetComponent<SphereCollider>().enabled = false;
-            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            frozenPlayerController = other.GetComponentInParent<PlayerController>();
+            puppet = frozenPlayerController.GetComponentInChildren<PuppetMaster>();
+            puppetBehaviours = frozenPlayerController.GetComponentInChildren<BehaviourPuppet>();
+            frozenPlayerAnimator = frozenPlayerController.GetComponentInChildren<Animator>();
+            playerRoot = frozenPlayerAnimator.GetComponentInParent<Transform>();
             if (!canFreeze)
             {
-               frozenPlayer = other.gameObject;
-               playerRoot = frozenPlayer.transform.parent.gameObject;
-               spawnParent = playerRoot;
-               // puppetMasterIK = other.gameObject.GetComponentInParent<Transform>().GetComponentInChildren<RootMotion.Dynamics.PuppetMaster>();
                freezeTimer = maxFreezeTime;
                canFreeze = true;
                FreezePlayer();
@@ -77,23 +84,26 @@ public class FreezeTriggerScript : MonoBehaviour {
     private void FreezePlayer() {
         isFrozen = true;
         //disable collision between rigidbodies of player and iceball
-        frozenPlayer.GetComponent<Rigidbody>().detectCollisions = false;
-
+        frozenPlayerController.GetComponentInChildren<Rigidbody>().detectCollisions = false;
         //set player to kinematic to lock in place inside ball
-        frozenPlayer.GetComponent<Rigidbody>().isKinematic = true;
+        frozenPlayerController.GetComponentInChildren<Rigidbody>().isKinematic = true;
+    
 
-        //disable puppetmaster animations to prevent weird animation stretching, disabling animator prevents ducking, otherwise character ducks when encased in ice.
-        // puppetMasterIK.state = PuppetMaster.State.Frozen;
-        puppetMasterIK.SetActive(false);
-        pupperBehaviors.SetActive(false);
-        frozenPlayer.GetComponent<Animator>().enabled = false;
-        //need to update to proper movement script
-        frozenPlayer.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+        //disable puppetmaster animations to prevent weird animation stretching, disabling animator prevents ducking, otherwise character ducks when encased in ice
+        puppet.mode = PuppetMaster.Mode.Kinematic;
+        frozenPlayerController.GetComponentInChildren<Animator>().enabled = false;
+        frozenPlayerController.enabled = false;
+        puppet.enabled = false;
+        puppetBehaviours.enabled = false;
 
         //create ice ball at the players position + a height offset, parent the player to the iceball so it will move and rotate with it.
-        iceBallClone = Instantiate(iceBall, frozenPlayer.GetComponent<Transform>().transform.position + new Vector3(0, 1.0f, 0), frozenPlayer.GetComponent<Transform>().transform.rotation);
-        iceBallClone.mass = iceBallClone.mass + frozenPlayer.GetComponent<Rigidbody>().mass; //combine mass of ice and player if players are to have differrent weights.
-        frozenPlayer.GetComponent<Transform>().transform.SetParent(iceBallClone.transform);
+        //current bug where iceball can spawn infront of player by small amount, no idea why, needs fixing
+        iceBallClone = Instantiate(iceBall, frozenPlayerAnimator.transform.position + new Vector3(0, 1, 0), frozenPlayerAnimator.transform.rotation);
+        iceBallClone.mass = iceBallClone.mass + frozenPlayerController.GetComponentInChildren<Rigidbody>().mass; //combine mass of ice and player if players are to have differrent weights.
+        frozenPlayerAnimator.transform.SetParent(iceBallClone.transform);
+       
         Debug.Log("Freeze");
     }
+
+  
 }
