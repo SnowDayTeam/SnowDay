@@ -83,6 +83,10 @@ namespace SnowDay.Diego.LevelSelect
                 if (TimeLeft <= 0)
                 {
                     LevelData selectedLevel = NextLevelSelect();
+					
+					Debug.LogWarning(selectedLevel.sceneName);
+					//selectedLevel.sceneName = "Deathmatch";
+					
                     if (selectedLevel && once)
                     {
                         once = false;
@@ -113,8 +117,7 @@ namespace SnowDay.Diego.LevelSelect
 
             for (int x = 0; x < PortalSpawnPoints.Count; x++)
             {
-                playerVoted += PortalSpawnPoints[x].PlayersInBox;
-           
+                playerVoted += PortalSpawnPoints[x].NumberPlayersInBox;
             }
 
             return playerVoted;
@@ -130,7 +133,7 @@ namespace SnowDay.Diego.LevelSelect
 
             for (int x = 0; x < PortalSpawnPoints.Count; x++)
             {
-                var playerCount = PortalSpawnPoints[x].PlayersInBox;
+                var playerCount = PortalSpawnPoints[x].NumberPlayersInBox;
                 if (highestPlayerCount < playerCount)
                 {
                     highestPlayerCount = playerCount;
@@ -143,6 +146,7 @@ namespace SnowDay.Diego.LevelSelect
                 Debug.LogWarning("No Level Selected!");
                 return null;
             }
+			
 
             return currentHighestLevel.PortalInstanceData;
         }

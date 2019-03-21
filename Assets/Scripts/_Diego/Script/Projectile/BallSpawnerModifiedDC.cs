@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RootMotion.FinalIK;
+using System.Collections.Generic;
+using System.Collections;
+using SnowDay.Diego.GameMode;
 
 public class BallSpawnerModifiedDC : MonoBehaviour
 {
@@ -17,20 +20,21 @@ public class BallSpawnerModifiedDC : MonoBehaviour
     private PierInputManager playerInputController;
 
     //SnowPick Up
- //   private bool BallPickedUp;
-	//public FullBodyBipedIK IK;
-	//private bool IsReaching;
-	//public float lerpTime = 1f;
- //   float currentLerpTime;
-	//public Transform ReachPoint;
- //   private bool DoneReaching;
+    //   private bool BallPickedUp;
+    //public FullBodyBipedIK IK;
+    //private bool IsReaching;
+    //public float lerpTime = 1f;
+    //   float currentLerpTime;
+    //public Transform ReachPoint;
+    //   private bool DoneReaching;
+
+    //correct within x degrees
+    public float autoAimAngle = 25.0f;
 
 
-    
-    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
        // IK = gameObject.GetComponentInParent<FullBodyBipedIK>();
     }
@@ -118,9 +122,65 @@ public class BallSpawnerModifiedDC : MonoBehaviour
     //{
     //	IsReaching = true;
     //}
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Vector3 tempPos = transform.position;
+        tempPos += Vector3.up;
+        Gizmos.DrawLine(tempPos, tempPos + transform.forward * 5);
 
+        Gizmos.DrawLine(tempPos, (tempPos + (Quaternion.AngleAxis(autoAimAngle, Vector3.up) * transform.forward) * 5));
+        Gizmos.DrawLine(tempPos,  (tempPos + (Quaternion.AngleAxis(-autoAimAngle, Vector3.up) *transform.forward )* 5));
+
+        
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(projectileLauncher.transform.position, projectileLauncher.transform.position + projectileLauncher.transform.forward * 5);
+
+    }
     private void ThrowBall()
     {
+        
+        
+        //get reference to all players
+        var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+        
+        //Debug.Log(AllPlayers);
+
+        for (int i = 0; i < AllPlayers.Count; i++)
+        {
+            if(AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID != mySelf.TeamID)
+            {
+                //debug.log("check enemies");
+                float angleBetweenPlayers = Vector3.Angle((AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position) - mySelf.transform.position, mySelf.transform.forward);
+                //Debug.Log(AllPlayers[i].name);
+
+                //   debug.log("angle between players: " + anglebetweenplayers);
+                if (angleBetweenPlayers < autoAimAngle)
+                {
+
+                    // defaultshot.angle = anglebetweenplayers; 
+                    Debug.Log("aim corrected " + angleBetweenPlayers);
+                    Vector3 temp = mySelf.transform.InverseTransformPoint(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position);
+                    if(temp.x > 0)
+                    {
+                        projectileLauncher.transform.localRotation = Quaternion.Euler(0, angleBetweenPlayers, 0);
+
+                    }
+                    else
+                    {
+                        projectileLauncher.transform.localRotation = Quaternion.Euler(0, -angleBetweenPlayers, 0);
+
+                    }
+                }
+                else
+                {
+                    projectileLauncher.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    Debug.Log("standard aim " + angleBetweenPlayers);
+                }
+            }
+        }
+
         projectileLauncher.LaunchProjectile(mySelf);
        // BallPickedUp = false;
     }

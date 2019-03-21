@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpSpawn : MonoBehaviour
-{
+public class PowerUpSpawn : MonoBehaviour {
 
     public Transform[] spawnPoints;
     public GameObject[] powerUps;
 
     public static int activePowerUpCount = 0;
-    [Range(1, 99)] public int maxActivePowerUps = 2;
-    [Range(1, 99)] public float minSpawnTimer = 1;
-    [Range(1, 99)] public float maxSpawnTimer = 10;
+    [Range(1, 99)] public int maxActivePowerUps;
+    [Range(1, 99)] public float minSpawnTimer;
+    [Range(1, 99)] public float maxSpawnTimer;
     public float spawnTimer;
 
     // Use this for initialization
-    void Start ()
-    {
+    void Start () {
         spawnTimer = Random.Range(minSpawnTimer, maxSpawnTimer);
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
         int randomPowerUp = Random.Range(0, powerUps.Length);
        
-        if (activePowerUpCount < maxActivePowerUps)
-        {
+        if (activePowerUpCount < maxActivePowerUps) {
             spawnTimer -= Time.deltaTime;
             if (spawnTimer <= 0) {
                 SpawnPowerUp(randomPowerUp);
@@ -43,66 +39,60 @@ public class PowerUpSpawn : MonoBehaviour
     void SpawnPowerUp(int powerUpToSpawn) {
         int spawnLocation = Random.Range(0, spawnPoints.Length);
         print("random spawn #: " + spawnLocation);
-
-        while (spawnLocation < spawnPoints.Length)
-        {
+   /*     if (spawnLocation <= spawnPoints.Length-1) {
             if (spawnPoints[spawnLocation].childCount <= 0)
             {
                 Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
                 activePowerUpCount++;
-                return;
             }
-            else
-            {
+            else {
                 spawnLocation++;
-
+                if (spawnLocation >= spawnPoints.Length - 1) {
+                    spawnLocation = 0;
+                }
             }
+        }*/
+        switch (spawnLocation) {
+            case 0:
+                if (spawnPoints[spawnLocation].childCount <= 0)
+                {
+                    Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
+                    activePowerUpCount++;
+                }
+                else
+                    spawnLocation++;
+                break;
+            case 1:
+                if (spawnPoints[spawnLocation].childCount <= 0)
+                {
+                    Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
+                    activePowerUpCount++;
+                }
+                else
+                    spawnLocation++;
+                break;
+            case 2:
+                if (spawnPoints[spawnLocation].childCount <= 0)
+                {
+                    Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
+                    activePowerUpCount++;
+                }
+                else
+                    spawnLocation++;
+                break;
+            case 3:
+                if (spawnPoints[spawnLocation].childCount <= 0)
+                {
+                    Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
+                    activePowerUpCount++;
+                }
+                else
+                    spawnLocation++;
+                break;
+            default:
+                spawnLocation = 0;
+                break;
+
         }
-      
-        //switch (spawnLocation) {
-        //    case 0:
-        //        if (spawnPoints[spawnLocation].childCount <= 0)
-        //        {
-        //            Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
-        //            activePowerUpCount++;
-        //        }
-        //        else
-        //        {
-        //            spawnLocation++;
-
-        //        }
-        //        break;
-        //    case 1:
-        //        if (spawnPoints[spawnLocation].childCount <= 0)
-        //        {
-        //            Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
-        //            activePowerUpCount++;
-        //        }
-        //        else
-        //            spawnLocation++;
-        //        break;
-        //    case 2:
-        //        if (spawnPoints[spawnLocation].childCount <= 0)
-        //        {
-        //            Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
-        //            activePowerUpCount++;
-        //        }
-        //        else
-        //            spawnLocation++;
-        //        break;
-        //    case 3:
-        //        if (spawnPoints[spawnLocation].childCount <= 0)
-        //        {
-        //            Instantiate(powerUps[powerUpToSpawn], spawnPoints[spawnLocation].transform.position, Quaternion.identity, spawnPoints[spawnLocation].transform);
-        //            activePowerUpCount++;
-        //        }
-        //        else
-        //            spawnLocation++;
-        //        break;
-        //    default:
-        //        spawnLocation = 0;
-        //        break;
-
-        //}
     }
 }
