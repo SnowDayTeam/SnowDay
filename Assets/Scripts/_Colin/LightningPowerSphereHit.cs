@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using RootMotion.Dynamics;
+using SnowDay.Diego.CharacterController;
 
 public class LightningPowerSphereHit : MonoBehaviour {
 
@@ -30,6 +31,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
     public float sunDownSpeed = 1f;
     public bool lightsOut;
     GameObject sunObject;
+    Vector3 opponentTarget;
 
     private void Start()
     {
@@ -59,6 +61,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
                 isActivated = true;
                 mesh.enabled = false;
                 isTriggered = true;
+                opponentTarget = GetRandomOpponentPos();
                 // transform.GetChild(1)
             }
         }
@@ -95,7 +98,24 @@ public class LightningPowerSphereHit : MonoBehaviour {
             LightningStrike();
         }
     }
+    public Vector3 GetRandomOpponentPos()
+    {
+        GamemodeManagerBase joe = FindObjectOfType<GamemodeManagerBase>();
+        int playerTeam = joe.GetTeamIndex(playerPuppet.GetComponentInParent<PlayerController>());
+        PlayerController target;
+        if (playerTeam == 0)
+        {
+            target =     joe.GetRandomPlayerFromTeam(1);
 
+        }
+        else
+        {
+            target =            joe.GetRandomPlayerFromTeam(0);
+
+        }
+        Vector3 pos = target.GetCharacterPosition();
+        return pos;
+    }
     //--------------Lightning Strike---------------//
 
     private void LightningStrike()
@@ -151,6 +171,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
     private void Wait()
     {
         timer -= Time.deltaTime;
+        transform.position = opponentTarget;
         if (timer <= 0)
         {
             playerPuppet = triggerPlayer.transform.parent.GetComponentInChildren<PuppetMaster>();

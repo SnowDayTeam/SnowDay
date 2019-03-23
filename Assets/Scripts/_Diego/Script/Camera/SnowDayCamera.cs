@@ -137,8 +137,11 @@ public class SnowDayCamera : MonoBehaviour
     /// </summary>
     void PopCamera()
     {
-        cam.transform.position = nextCameraPos;
-        cam.transform.LookAt(transform.position, Vector3.up);
+        if (cam != null)
+        {
+            cam.transform.position = nextCameraPos;
+            cam.transform.LookAt(transform.position, Vector3.up);
+        }
     }
 
     /// <summary>
