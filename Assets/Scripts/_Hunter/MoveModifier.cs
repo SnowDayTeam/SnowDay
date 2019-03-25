@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityStandardAssets.Characters.ThirdPerson;
-
 using SnowDay.Diego.CharacterController;
 
-
-
-public class MoveModifier : MonoBehaviour {
+public class MoveModifier : MonoBehaviour
+{
 
     public enum MoveModes { Slow, Stop, Reset };
     private float OriginalMoveSpeed;
@@ -20,16 +18,14 @@ public class MoveModifier : MonoBehaviour {
     
 
     // Use this for initialization
-    void Start () {
-    
+    void Start ()
+    {
         Player = GetComponentInParent<SnowDayCharacter>();
         Player.RunEnabled = false;
         //get charecter original move stats on start
         OriginalMoveSpeed = Player.m_MoveSpeedMultiplier;
-        OriginalTurnSpeed = Player.m_MovingTurnSpeed;
-        OriginalStationTurn = Player.m_StationaryTurnSpeed;
-
-
+        OriginalTurnSpeed = GlobalSettingsManager.s.MovingTurnSpeed;
+        OriginalStationTurn = GlobalSettingsManager.s.StationaryTurnSpeed;
     }
 	
 
