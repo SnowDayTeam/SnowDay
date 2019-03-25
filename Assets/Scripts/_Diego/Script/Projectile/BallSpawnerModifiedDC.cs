@@ -122,7 +122,22 @@ public class BallSpawnerModifiedDC : MonoBehaviour
     //{
     //	IsReaching = true;
     //}
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Vector3 tempPos = transform.position;
+        tempPos += Vector3.up;
+        Gizmos.DrawLine(tempPos, tempPos + transform.forward * 5);
 
+        Gizmos.DrawLine(tempPos, (tempPos + (Quaternion.AngleAxis(autoAimAngle, Vector3.up) * transform.forward) * 5));
+        Gizmos.DrawLine(tempPos,  (tempPos + (Quaternion.AngleAxis(-autoAimAngle, Vector3.up) *transform.forward )* 5));
+
+        
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(projectileLauncher.transform.position, projectileLauncher.transform.position + projectileLauncher.transform.forward * 5);
+
+    }
     private void ThrowBall()
     {
         
@@ -130,27 +145,38 @@ public class BallSpawnerModifiedDC : MonoBehaviour
         //get reference to all players
         var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
         
-        Debug.Log(AllPlayers);
+        //Debug.Log(AllPlayers);
 
         for (int i = 0; i < AllPlayers.Count; i++)
         {
-            if(AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID == mySelf.TeamID)
+            if(AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID != mySelf.TeamID)
             {
                 //debug.log("check enemies");
-
-                float angleBetweenPlayers = Vector3.Angle(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position, mySelf.transform.forward);
+                float angleBetweenPlayers = Vector3.Angle((AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position) - mySelf.transform.position, mySelf.transform.forward);
+                //Debug.Log(AllPlayers[i].name);
 
                 //   debug.log("angle between players: " + anglebetweenplayers);
                 if (angleBetweenPlayers < autoAimAngle)
                 {
 
                     // defaultshot.angle = anglebetweenplayers; 
-                    Debug.Log("aim corrected");
-                    
+                    Debug.Log("aim corrected " + angleBetweenPlayers);
+                    Vector3 temp = mySelf.transform.InverseTransformPoint(AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position);
+                    if(temp.x > 0)
+                    {
+                        projectileLauncher.transform.localRotation = Quaternion.Euler(0, angleBetweenPlayers, 0);
+
+                    }
+                    else
+                    {
+                        projectileLauncher.transform.localRotation = Quaternion.Euler(0, -angleBetweenPlayers, 0);
+
+                    }
                 }
                 else
                 {
-                    Debug.Log("standard aim");
+                    projectileLauncher.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    Debug.Log("standard aim " + angleBetweenPlayers);
                 }
             }
         }
