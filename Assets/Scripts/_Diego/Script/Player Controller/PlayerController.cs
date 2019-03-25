@@ -35,7 +35,7 @@ namespace SnowDay.Diego.CharacterController
         private bool crouch;
         private float horizontalAxis;
         private float verticalAxis;
-        public float RunBoostMultiplier = 1.5f;
+      //  public float RunBoostMultiplier = 1.5f;
 
         private bool activeSelf = false;
         public bool CharacterEnabled//bad design hides intent
