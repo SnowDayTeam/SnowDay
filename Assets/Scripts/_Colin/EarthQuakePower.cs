@@ -9,45 +9,85 @@ using SnowDay.Diego.CharacterController;
 
 public class EarthQuakePower : MonoBehaviour {
 
-    public CameraShake cameraShake;
+    private CameraShake cameraShake;
+    private Camera gameCamera;
     [Range(0.01f, 1)] public float duration;
     [Range(0.01f, 1)] public float magnitude;
     [Range(1, 10)] public float earthQuakeDelay;
     public PuppetMaster[] playerPuppets;
     private PuppetMaster p1;
-    private FullBodyBipedIK p1Ik;
-    DeathmatchGamemodeManager dm;
+    private PlayerController player;
+  //  DeathmatchGamemodeManager dm;
+ //   int playerIndex = 0;
 
 
     private void Start()
     {
+        //set default values
+        duration = 0.5f;
+        magnitude = 1.0f;
+
+        //need reference to all players in game mode to get access to their puppetmaster
         playerPuppets = FindObjectsOfType<PuppetMaster>();
 
-        dm = FindObjectOfType<DeathmatchGamemodeManager>();
+        //camera reference for camera shake
+        gameCamera = FindObjectOfType<Camera>();
+        cameraShake = gameCamera.GetComponent<CameraShake>();
+
+        //dependant on game mode, would need to get current game mode manager
+    /*    dm = FindObjectOfType<DeathmatchGamemodeManager>();
+        foreach (PlayerController playerCont in dm.Players) {
+            playerPuppets[playerIndex] = GetComponentInChildren<PuppetMaster>();
+            playerIndex++;
+            print(playerIndex);
+        }*/
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            player = other.GetComponentInParent<PlayerController>();
+
+            if (player != null)
+            {
+                p1 = player.GetComponentInChildren<PuppetMaster>();
+                if (p1 != null)
+                {
+                    print("PuppetMaster found");
+                    StartCoroutine(EarthQuakeEffect());
+                }
+            }
+        }
+
+    }
+    
     //every player except triggering player is knocked down
     IEnumerator EarthQuakeEffect() {
-        print("DIE");
+      
         if (p1 != null)
         {
             foreach (PuppetMaster pm in playerPuppets)
             {
                 if (pm != p1)
                 {
-                   //FindObjectOfType<AudioManager>().Play("quake");
-                   // StartCoroutine(cameraShake.ShakeCamera(duration, magnitude));
-                    pm.state = PuppetMaster.State.Dead;
+                    if (pm.mode != PuppetMaster.Mode.Kinematic)
+                    {
+                        pm.state = PuppetMaster.State.Dead;
+                    }
                 }
             }
-             //disable trigger and mesh for power up, once delay is over, delete it
-            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            FindObjectOfType<AudioManager>().Play("quake");
+            StartCoroutine(cameraShake.ShakeCamera(duration, magnitude));
+
+            //disable trigger and mesh for power up, once delay is over, delete it
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
             Invoke("Kill", earthQuakeDelay+1);
         }
      
         yield return new WaitForSeconds(earthQuakeDelay);
-        print("live");
+      
      
         foreach (PuppetMaster pm in playerPuppets)
         {
@@ -64,25 +104,5 @@ public class EarthQuakePower : MonoBehaviour {
         Destroy(gameObject);
     }
   
-    private void OnTriggerEnter(Collider other)
-    {
-        p1 = other.gameObject.GetComponentInParent<PlayerController>().GetComponentInChildren<RootMotion.Dynamics.PuppetMaster>();
-        if (p1 != null) {
-            print("puppermaster found");
-        }
-
-        //will need to change from tag use
-        PlayerController player = other.GetComponentInParent<PlayerController>();
-        if(player != null)
-        {
-            p1 = other.gameObject.GetComponentInParent<PuppetMaster>();
-            if (p1 != null)
-            {
-                StartCoroutine(EarthQuakeEffect());
-            }
-        }
-
-    }
-
   
 }
