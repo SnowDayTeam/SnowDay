@@ -43,7 +43,11 @@ public class LerpController : MonoBehaviour {
         {
             if (!onetime)
             {
-                audioManager.Play("UPGRADE");
+                if(audioManager != null)
+                {
+                    audioManager.Play("UPGRADE");
+
+                }
                 startLerp();
 
                 onetime = true;

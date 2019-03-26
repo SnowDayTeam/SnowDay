@@ -23,7 +23,7 @@ public class ShovelHUD : MonoBehaviour
     [SerializeField]
     Color yellow;
     [SerializeField]
-    GameObject ShovelMaster;
+    ShovelController ShovelMaster;
     
    
 
@@ -47,7 +47,7 @@ public class ShovelHUD : MonoBehaviour
     
     void GetSnowAmount()
     {
-        float MeterPercent = ShovelMaster.GetComponent<ShovelController>().currentsSnowVolume / 100;
+        float MeterPercent = ShovelMaster.currentsSnowVolume / 100;
         SnowMeter.fillAmount = MeterPercent;
 
         if (MeterPercent < .4)

@@ -43,8 +43,7 @@ public class ShovelController : MonoBehaviour
     public PierInputManager.ButtonName ThrowButton = PierInputManager.ButtonName.Y;
 
     private PierInputManager playerInputController;
-
-
+    private ShovelLerpController shovelLerp;
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "SnowArea")
@@ -63,7 +62,7 @@ public class ShovelController : MonoBehaviour
     void Start()
     {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
-
+        shovelLerp = GetComponentInChildren<ShovelLerpController>();
         PlayerRB = GetComponent<Rigidbody>();
         snowScript = GetComponentInChildren<SnowSize>();
         drawMaterial = new Material(drawShader);
@@ -109,13 +108,22 @@ public class ShovelController : MonoBehaviour
             tackScript.toggleSnowTrack(2, true);
             LastPosition = ShovelPoint.transform.position;
             Debug.Log("Shoveling mode");
-          
+            if (shovelLerp)
+            {
+                shovelLerp.shovelling = true;
+                shovelLerp.throwing = false ;
+
+            }
         }
 
         if (playerInputController.GetButtonUp(ShovelButton))
         {
             tackScript.toggleSnowTrack(2, false);
             GetComponent<MoveModifier>().ModifyMovement(MoveModifier.MoveModes.Reset, currentsSnowVolume / maxSnowVolume);
+            if (shovelLerp)
+            {
+                shovelLerp.shovelling = false;
+            }
         }
 
         if (playerInputController.GetButton(ShovelButton) && currentsSnowVolume != maxSnowVolume)
@@ -242,11 +250,14 @@ public class ShovelController : MonoBehaviour
             ShovelPro.GetComponent<ShovelProjectile>().SetBrushSize(currentsSnowVolume / maxSnowVolume);
             ShovelPro.transform.position = SpawnPoint.position;
             ShovelPro.GetComponent<Rigidbody>().velocity = transform.forward * LaunchVelocity;
-            
-
-          //Set object variables to snow weight as well as it's scale here
 
 
+            //Set object variables to snow weight as well as it's scale here
+
+            if (shovelLerp)
+            {
+                shovelLerp.throwing = true;
+            }
             Dropsnow();
            
             
