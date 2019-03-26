@@ -53,7 +53,25 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     }
 
     abstract public TeamBase[] GetTeams();
+    public int GetTeamIndex(PlayerController player)
+    {
+        TeamBase[] team = GetTeams();
+        for (int i = 0; i < team.Length; i++)
+        {
+            if (team[i].Players.Contains(player))
+        {
+                return i;
+            }
+        }
+        return 0;
+    }
+    public PlayerController GetRandomPlayerFromTeam(int teamNum)
+    {
+        TeamBase[] team = GetTeams();
+        int randIndex = Random.Range(0, team[teamNum].Players.Count);
 
+        return team[teamNum].Players[randIndex];
+    }
     protected virtual void Awake()
     {
         GamemodeManagerBase.Instance = this;
