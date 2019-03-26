@@ -42,12 +42,9 @@ public class FlagSpawner : MonoBehaviour
         this.CanSpawnFlag = false;
         yield return new WaitForSeconds(this.FlagSpawnDelay);
 
-        Vector3 RandomPosition = new Vector3(Random.Range(0.0f, this.ExtraSpawnDistance),
-                                        FlagYHeight, Random.Range(0.0f, this.ExtraSpawnDistance));
+        Vector3 RandomPosition = new Vector3(Random.Range(0.0f, this.ExtraSpawnDistance), FlagYHeight, Random.Range(0.0f, this.ExtraSpawnDistance));
 
-        Instantiate(this.FlagPrefab, 
-            this.SpawnPoints[Random.Range(0, this.SpawnPoints.Length)].position 
-                                            + RandomPosition, Quaternion.identity);
+        Instantiate(this.FlagPrefab, this.SpawnPoints[Random.Range(0, this.SpawnPoints.Length)].position + RandomPosition, Quaternion.identity);
 
         this.CurrentNumberFlags++;
         this.CanSpawnFlag = true;
