@@ -236,7 +236,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels
         //should be done in one place only and this has many disadvantages
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(GlobalSettingsManager.s.levelSelectScene);
     }
 
     private void UpdateGUIScores() 

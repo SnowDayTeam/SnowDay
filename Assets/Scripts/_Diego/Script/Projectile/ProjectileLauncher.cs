@@ -254,16 +254,16 @@ public class ProjectileLauncher : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        if (EditorApplication.isPlaying)
-        {
-            gismoStartPos = transform.position;
-            gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
-            for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
-            {
-                Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
-            }
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(AimAssistLandingPos, AimAssistRadius);
-        }
+        //if (EditorApplication.isPlaying)
+        //{
+        //    gismoStartPos = transform.position;
+        //    gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
+        //    for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
+        //    {
+        //        Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
+        //    }
+        //    Gizmos.color = Color.cyan;
+        //    Gizmos.DrawWireSphere(AimAssistLandingPos, AimAssistRadius);
+        //}
     }
 }
