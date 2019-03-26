@@ -17,7 +17,7 @@ public class LoadingScreen : MonoBehaviour
 	void Awake() 
     {
         this.StartCoroutine(this.PregameLoadingScreenTimer());
-        Destroy(this.gameObject, this.LoadScreenDelay);
+     //   Destroy(this.gameObject, this.LoadScreenDelay);
     }
 
     /// <summary>

@@ -11,15 +11,14 @@ namespace SnowDay.Diego.CharacterController
     {
         public bool RunEnabled = true;
         public LayerMask groundLayers;
-        public float m_MovingTurnSpeed = 360;
-        public float m_StationaryTurnSpeed = 180;
         [SerializeField] float m_JumpPower = 12f;
         [Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
         [SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
         [SerializeField] public float m_MoveSpeedMultiplier = 1f;
+        [SerializeField] public float m_MoveSpeedBonus = 0f;
+
         [SerializeField] public float m_AnimSpeedMultiplier = 1f;
         [SerializeField] float m_GroundCheckDistance = 0.1f;
-        public float maxSprintTime = 2f;
         private float currentSprintTime = 0f;
         Rigidbody m_Rigidbody;
         Animator m_Animator;
@@ -33,7 +32,11 @@ namespace SnowDay.Diego.CharacterController
         Vector3 m_CapsuleCenter;
         CapsuleCollider m_Capsule;
         bool m_Crouching;
+        [HideInInspector]
+        public float m_MovingTurnSpeed;
+        [HideInInspector]
 
+        public float m_StationaryTurnSpeed;
         public bool Active
         {
             get
@@ -48,7 +51,10 @@ namespace SnowDay.Diego.CharacterController
 
         public void Initialize()
         {
-            currentSprintTime = maxSprintTime;
+            currentSprintTime = GlobalSettingsManager.s.MaxSprintTime;
+            m_MovingTurnSpeed = GlobalSettingsManager.s.MovingTurnSpeed;
+            m_StationaryTurnSpeed = GlobalSettingsManager.s.StationaryTurnSpeed;
+
             m_Animator = GetComponent<Animator>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
@@ -69,18 +75,19 @@ namespace SnowDay.Diego.CharacterController
                     
                     currentSprintTime -= Time.deltaTime;
                     
-                    m_MoveSpeedMultiplier = 1.5f;
+                   // m_MoveSpeedMultiplier = 1.5f;
+                    m_MoveSpeedMultiplier = GlobalSettingsManager.s.BaseRunSpeedMultiplier + m_MoveSpeedBonus;
 
                 }
                 else
                 {
-                    currentSprintTime += Time.deltaTime/2f;
-                    if(currentSprintTime >= maxSprintTime)
+                    currentSprintTime += GlobalSettingsManager.s.SprintRechargeRate * Time.deltaTime;
+                    if(currentSprintTime >= GlobalSettingsManager.s.MaxSprintTime)
                     {
-                        currentSprintTime = maxSprintTime;
+                        currentSprintTime = GlobalSettingsManager.s.MaxSprintTime;
                     }
 
-                    m_MoveSpeedMultiplier = 1;
+                    m_MoveSpeedMultiplier = GlobalSettingsManager.s.BaseMoveSpeedMultiplier + m_MoveSpeedBonus;
 
                 }
             }
