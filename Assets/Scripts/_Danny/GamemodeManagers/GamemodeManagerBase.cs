@@ -130,6 +130,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
             for(int i = 0 ; i < team.Players.Count; i++) 
             {
                 team.Players[i].MoveCharacter(team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
+                Debug.Log("moved0 " + team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
             }
         }
     }
