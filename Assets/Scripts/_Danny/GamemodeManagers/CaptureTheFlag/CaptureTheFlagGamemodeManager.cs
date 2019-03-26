@@ -17,8 +17,8 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
         return this.Teams;
     }
 
-    protected override void Awake() {
-        base.Awake();
+    protected override void Start() {
+        base.Start();
 
         this.SetupGoalZones();
     }

@@ -11,8 +11,8 @@ public class FlagController : MonoBehaviour {
     [SerializeField] PierInputManager.ButtonName PickupFlagButton = PierInputManager.ButtonName.B;
 
     [Header("Flag Pickup Radius Variables")]
-    [Tooltip("The size of the pick up sphere.")]
-    [SerializeField] float PickupRadius = 1;
+   // [Tooltip("The size of the pick up sphere.")]
+  //  [SerializeField] float PickupRadius = 1;
     [Tooltip("The offset of the pickup sphere.")]
     [SerializeField] Vector3 PickupOffset = Vector3.zero;
 
@@ -63,7 +63,7 @@ public class FlagController : MonoBehaviour {
 
     void OnDrawGizmos() {
         Gizmos.color = this.PickupSphereGizmoColor;
-        Gizmos.DrawWireSphere(this.transform.position + this.PickupOffset, this.PickupRadius);
+        Gizmos.DrawWireSphere(this.transform.position + this.PickupOffset, GlobalSettingsManager.s.FlagPickUpRadius);
     }
 
     void OnLoseBalance() 
@@ -85,7 +85,7 @@ public class FlagController : MonoBehaviour {
     {
         List<Type> MatchingObjects = new List<Type> ();
         foreach(Collider OverlappingCollider in Physics.OverlapSphere
-            (this.transform.position + this.PickupOffset, this.PickupRadius)) 
+            (this.transform.position + this.PickupOffset, GlobalSettingsManager.s.FlagPickUpRadius)) 
         {
             Type Object = OverlappingCollider.GetComponent<Type>();
             if(Object != null)
