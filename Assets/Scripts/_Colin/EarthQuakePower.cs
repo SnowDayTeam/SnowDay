@@ -78,7 +78,11 @@ public class EarthQuakePower : MonoBehaviour {
                 }
             }
             FindObjectOfType<AudioManager>().Play("quake");
-            StartCoroutine(cameraShake.ShakeCamera(duration, magnitude));
+            if(cameraShake != null)
+            {
+                StartCoroutine(cameraShake.ShakeCamera(duration, magnitude));
+
+            }
 
             //disable trigger and mesh for power up, once delay is over, delete it
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
