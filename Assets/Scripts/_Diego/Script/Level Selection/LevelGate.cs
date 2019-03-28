@@ -20,7 +20,7 @@ public class LevelGate : MonoBehaviour {
     public int NumberPlayersInBox {
         get{ return PlayersInBox.Count; }
     }
-
+    [SerializeField]
     private List<PlayerController> PlayersInBox = new List<PlayerController> ();
 
     /// <summary>
@@ -68,17 +68,29 @@ public class LevelGate : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        SnowDayCharacter character = other.GetComponent<SnowDayCharacter>();
         PlayerController Player = other.GetComponentInParent<PlayerController> ();
-        if(!Player || this.PlayersInBox.Contains(Player))
+
+        if (character == null || !Player || this.PlayersInBox.Contains(Player))
+        {
             return;
+        }
+            
 
         this.PlayersInBox.Add(Player);
+        
     }
-
+    private void Update()
+    {
+        if(PlayersInBox != null)
+            playersInBox = PlayersInBox.Count;
+    }
     private void OnTriggerExit(Collider other)
     {
+        SnowDayCharacter character = other.GetComponent<SnowDayCharacter>();
+
         PlayerController Player = other.GetComponentInParent<PlayerController> ();
-        if(!Player)
+        if(character == null || !Player)
             return;
 
         this.PlayersInBox.Remove(Player);

@@ -1,0 +1,1428 @@
+fileFormatVersion: 2
+guid: 928945d951bae2d4aa355ff7f501be19
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: LoseWalk:COG_CTRL
+    100004: LoseWalk:FK_Head_JNT_CTRL
+    100006: LoseWalk:FK_Head_JNT_ROT
+    100008: LoseWalk:FK_Head_JNT_SDK
+    100010: LoseWalk:FK_L_Ankle_CTRL
+    100012: LoseWalk:FK_L_Ankle_ROT
+    100014: LoseWalk:FK_L_Ankle_SDK
+    100016: LoseWalk:FK_L_Ball_CTRL
+    100018: LoseWalk:FK_L_Ball_ROT
+    100020: LoseWalk:FK_L_Ball_SDK
+    100022: LoseWalk:FK_L_Clavicle_JNT_CTRL
+    100024: LoseWalk:FK_L_Clavicle_JNT_ROT
+    100026: LoseWalk:FK_L_Clavicle_JNT_SDK
+    100028: LoseWalk:FK_L_Elbow_CTRL
+    100030: LoseWalk:FK_L_Elbow_ROT
+    100032: LoseWalk:FK_L_Elbow_SDK
+    100034: LoseWalk:FK_L_Finger1_CTRL
+    100036: LoseWalk:FK_L_Finger1_ROT
+    100038: LoseWalk:FK_L_Finger1_SDK
+    100040: LoseWalk:FK_L_Finger2_CTRL
+    100042: LoseWalk:FK_L_Finger2_ROT
+    100044: LoseWalk:FK_L_Finger2_SDK
+    100046: LoseWalk:FK_L_Finger3_CTRL
+    100048: LoseWalk:FK_L_Finger3_ROT
+    100050: LoseWalk:FK_L_Finger3_SDK
+    100052: LoseWalk:FK_L_Hip_CTRL
+    100054: LoseWalk:FK_L_Hip_ROT
+    100056: LoseWalk:FK_L_Hip_SDK
+    100058: LoseWalk:FK_L_Knee_CTRL
+    100060: LoseWalk:FK_L_Knee_ROT
+    100062: LoseWalk:FK_L_Knee_SDK
+    100064: LoseWalk:FK_L_Shoulder_CTRL
+    100066: LoseWalk:FK_L_Shoulder_ROT
+    100068: LoseWalk:FK_L_Shoulder_SDK
+    100070: LoseWalk:FK_L_Thumb1_CTRL
+    100072: LoseWalk:FK_L_Thumb1_ROT
+    100074: LoseWalk:FK_L_Thumb1_SDK
+    100076: LoseWalk:FK_L_Thumb2_CTRL
+    100078: LoseWalk:FK_L_Thumb2_ROT
+    100080: LoseWalk:FK_L_Thumb2_SDK
+    100082: LoseWalk:FK_L_Wrist_CTRL
+    100084: LoseWalk:FK_L_Wrist_ROT
+    100086: LoseWalk:FK_L_Wrist_SDK
+    100088: LoseWalk:FK_Neck1_JNT_CTRL
+    100090: LoseWalk:FK_Neck1_JNT_ROT
+    100092: LoseWalk:FK_Neck1_JNT_SDK
+    100094: LoseWalk:FK_Neck2_JNT_CTRL
+    100096: LoseWalk:FK_Neck2_JNT_ROT
+    100098: LoseWalk:FK_Neck2_JNT_SDK
+    100100: LoseWalk:FK_Pelvis_CTRL
+    100102: LoseWalk:FK_Pelvis_ROT
+    100104: LoseWalk:FK_Pelvis_SDK
+    100106: LoseWalk:FK_R_Ankle_CTRL
+    100108: LoseWalk:FK_R_Ankle_ROT
+    100110: LoseWalk:FK_R_Ankle_SDK
+    100112: LoseWalk:FK_R_Ball_CTRL
+    100114: LoseWalk:FK_R_Ball_ROT
+    100116: LoseWalk:FK_R_Ball_SDK
+    100118: LoseWalk:FK_R_Clavicle_JNT_CTRL
+    100120: LoseWalk:FK_R_Clavicle_JNT_ROT
+    100122: LoseWalk:FK_R_Clavicle_JNT_SDK
+    100124: LoseWalk:FK_R_Elbow_CTRL
+    100126: LoseWalk:FK_R_Elbow_ROT
+    100128: LoseWalk:FK_R_Elbow_SDK
+    100130: LoseWalk:FK_R_Finger1_CTRL
+    100132: LoseWalk:FK_R_Finger1_ROT
+    100134: LoseWalk:FK_R_Finger1_SDK
+    100136: LoseWalk:FK_R_Finger2_CTRL
+    100138: LoseWalk:FK_R_Finger2_ROT
+    100140: LoseWalk:FK_R_Finger2_SDK
+    100142: LoseWalk:FK_R_Finger3_CTRL
+    100144: LoseWalk:FK_R_Finger3_ROT
+    100146: LoseWalk:FK_R_Finger3_SDK
+    100148: LoseWalk:FK_R_Hip_CTRL
+    100150: LoseWalk:FK_R_Hip_ROT
+    100152: LoseWalk:FK_R_Hip_SDK
+    100154: LoseWalk:FK_R_Knee_CTRL
+    100156: LoseWalk:FK_R_Knee_ROT
+    100158: LoseWalk:FK_R_Knee_SDK
+    100160: LoseWalk:FK_R_Shoulder_CTRL
+    100162: LoseWalk:FK_R_Shoulder_ROT
+    100164: LoseWalk:FK_R_Shoulder_SDK
+    100166: LoseWalk:FK_R_Thumb1_CTRL
+    100168: LoseWalk:FK_R_Thumb1_ROT
+    100170: LoseWalk:FK_R_Thumb1_SDK
+    100172: LoseWalk:FK_R_Thumb2_CTRL
+    100174: LoseWalk:FK_R_Thumb2_ROT
+    100176: LoseWalk:FK_R_Thumb2_SDK
+    100178: LoseWalk:FK_R_Wrist_CTRL
+    100180: LoseWalk:FK_R_Wrist_ROT
+    100182: LoseWalk:FK_R_Wrist_SDK
+    100184: LoseWalk:FK_Spine1_CTRL
+    100186: LoseWalk:FK_Spine1_ROT
+    100188: LoseWalk:FK_Spine1_SDK
+    100190: LoseWalk:FK_Spine2_CTRL
+    100192: LoseWalk:FK_Spine2_ROT
+    100194: LoseWalk:FK_Spine2_SDK
+    100196: LoseWalk:FK_Spine3_CTRL
+    100198: LoseWalk:FK_Spine3_ROT
+    100200: LoseWalk:FK_Spine3_SDK
+    100202: LoseWalk:FK_SpineRoot_CTRL
+    100204: LoseWalk:FK_SpineRoot_ROT
+    100206: LoseWalk:FK_SpineRoot_SDK
+    100208: LoseWalk:FKIK_Switch_GRP
+    100210: LoseWalk:Head_GRP
+    100212: LoseWalk:IK_Hips_CTRL
+    100214: LoseWalk:IK_Hips_ROT
+    100216: LoseWalk:IK_Hips_SDK
+    100218: LoseWalk:IK_L_BALL_ROLL_SDK
+    100220: LoseWalk:IK_L_HEEL_ROLL_SDK
+    100222: LoseWalk:IK_L_INNER_TILT_SDK
+    100224: LoseWalk:IK_L_Leg_CTRL
+    100226: LoseWalk:IK_L_OUTER_TILT_SDK
+    100228: LoseWalk:IK_L_TOE_ROLL_SDK
+    100230: LoseWalk:IK_L_TOE_TAP_SDK
+    100232: LoseWalk:IK_L_Wrist_CTRL
+    100234: LoseWalk:IK_L_Wrist_ROT
+    100236: LoseWalk:IK_L_Wrist_SDK
+    100238: LoseWalk:IK_R_BALL_ROLL_SDK
+    100240: LoseWalk:IK_R_HEEL_ROLL_SDK
+    100242: LoseWalk:IK_R_INNER_TILT_SDK
+    100244: LoseWalk:IK_R_Leg_CTRL
+    100246: LoseWalk:IK_R_OUTER_TILT_SDK
+    100248: LoseWalk:IK_R_TOE_ROLL_SDK
+    100250: LoseWalk:IK_R_TOE_TAP_SDK
+    100252: LoseWalk:IK_R_Wrist_CTRL
+    100254: LoseWalk:IK_R_Wrist_ROT
+    100256: LoseWalk:IK_R_Wrist_SDK
+    100258: LoseWalk:IK_Shoulders_CTRL
+    100260: LoseWalk:IK_Shoulders_ROT
+    100262: LoseWalk:IK_Shoulders_SDK
+    100264: LoseWalk:L_Ankle_HDL
+    100266: LoseWalk:L_Arm_FK_GRP
+    100268: LoseWalk:L_Arm_FKIK_Switch_CTRL
+    100270: LoseWalk:L_Arm_GRP
+    100272: LoseWalk:L_Arm_HDL
+    100274: LoseWalk:L_Arm_PV
+    100276: LoseWalk:L_Arm_PVDisplay_ANN
+    100278: LoseWalk:L_Arm_PVDisplay_LOC
+    100280: LoseWalk:L_Ball_HDL
+    100282: LoseWalk:L_Hand_CTRL
+    100284: LoseWalk:L_Leg_FKIK_Switch_CTRL
+    100286: LoseWalk:L_Leg_PV
+    100288: LoseWalk:L_Leg_PV_GRP
+    100290: LoseWalk:L_Leg_PVDisplay_ANN
+    100292: LoseWalk:L_Leg_PVDisplay_LOC
+    100294: LoseWalk:L_Toe_HDL
+    100296: LoseWalk:Master_CTRL
+    100298: LoseWalk:R_Ankle_HDL
+    100300: LoseWalk:R_Arm_FK_GRP
+    100302: LoseWalk:R_Arm_FKIK_Switch_CTRL
+    100304: LoseWalk:R_Arm_GRP
+    100306: LoseWalk:R_Arm_HDL
+    100308: LoseWalk:R_Arm_PV
+    100310: LoseWalk:R_Arm_PVDisplay_ANN
+    100312: LoseWalk:R_Arm_PVDisplay_LOC
+    100314: LoseWalk:R_Ball_HDL
+    100316: LoseWalk:R_Hand_CTRL
+    100318: LoseWalk:R_Leg_FKIK_Switch_CTRL
+    100320: LoseWalk:R_Leg_PV
+    100322: LoseWalk:R_Leg_PV_GRP
+    100324: LoseWalk:R_Leg_PVDisplay_ANN
+    100326: LoseWalk:R_Leg_PVDisplay_LOC
+    100328: LoseWalk:R_Toe_HDL
+    100330: LoseWalk:Spine_FKIK_Switch_CTRL
+    100332: LoseWalk:ART_MOD_A_Rigged_Character_001
+    400000: //RootNode
+    400002: LoseWalk:COG_CTRL
+    400004: LoseWalk:FK_Head_JNT_CTRL
+    400006: LoseWalk:FK_Head_JNT_ROT
+    400008: LoseWalk:FK_Head_JNT_SDK
+    400010: LoseWalk:FK_L_Ankle_CTRL
+    400012: LoseWalk:FK_L_Ankle_ROT
+    400014: LoseWalk:FK_L_Ankle_SDK
+    400016: LoseWalk:FK_L_Ball_CTRL
+    400018: LoseWalk:FK_L_Ball_ROT
+    400020: LoseWalk:FK_L_Ball_SDK
+    400022: LoseWalk:FK_L_Clavicle_JNT_CTRL
+    400024: LoseWalk:FK_L_Clavicle_JNT_ROT
+    400026: LoseWalk:FK_L_Clavicle_JNT_SDK
+    400028: LoseWalk:FK_L_Elbow_CTRL
+    400030: LoseWalk:FK_L_Elbow_ROT
+    400032: LoseWalk:FK_L_Elbow_SDK
+    400034: LoseWalk:FK_L_Finger1_CTRL
+    400036: LoseWalk:FK_L_Finger1_ROT
+    400038: LoseWalk:FK_L_Finger1_SDK
+    400040: LoseWalk:FK_L_Finger2_CTRL
+    400042: LoseWalk:FK_L_Finger2_ROT
+    400044: LoseWalk:FK_L_Finger2_SDK
+    400046: LoseWalk:FK_L_Finger3_CTRL
+    400048: LoseWalk:FK_L_Finger3_ROT
+    400050: LoseWalk:FK_L_Finger3_SDK
+    400052: LoseWalk:FK_L_Hip_CTRL
+    400054: LoseWalk:FK_L_Hip_ROT
+    400056: LoseWalk:FK_L_Hip_SDK
+    400058: LoseWalk:FK_L_Knee_CTRL
+    400060: LoseWalk:FK_L_Knee_ROT
+    400062: LoseWalk:FK_L_Knee_SDK
+    400064: LoseWalk:FK_L_Shoulder_CTRL
+    400066: LoseWalk:FK_L_Shoulder_ROT
+    400068: LoseWalk:FK_L_Shoulder_SDK
+    400070: LoseWalk:FK_L_Thumb1_CTRL
+    400072: LoseWalk:FK_L_Thumb1_ROT
+    400074: LoseWalk:FK_L_Thumb1_SDK
+    400076: LoseWalk:FK_L_Thumb2_CTRL
+    400078: LoseWalk:FK_L_Thumb2_ROT
+    400080: LoseWalk:FK_L_Thumb2_SDK
+    400082: LoseWalk:FK_L_Wrist_CTRL
+    400084: LoseWalk:FK_L_Wrist_ROT
+    400086: LoseWalk:FK_L_Wrist_SDK
+    400088: LoseWalk:FK_Neck1_JNT_CTRL
+    400090: LoseWalk:FK_Neck1_JNT_ROT
+    400092: LoseWalk:FK_Neck1_JNT_SDK
+    400094: LoseWalk:FK_Neck2_JNT_CTRL
+    400096: LoseWalk:FK_Neck2_JNT_ROT
+    400098: LoseWalk:FK_Neck2_JNT_SDK
+    400100: LoseWalk:FK_Pelvis_CTRL
+    400102: LoseWalk:FK_Pelvis_ROT
+    400104: LoseWalk:FK_Pelvis_SDK
+    400106: LoseWalk:FK_R_Ankle_CTRL
+    400108: LoseWalk:FK_R_Ankle_ROT
+    400110: LoseWalk:FK_R_Ankle_SDK
+    400112: LoseWalk:FK_R_Ball_CTRL
+    400114: LoseWalk:FK_R_Ball_ROT
+    400116: LoseWalk:FK_R_Ball_SDK
+    400118: LoseWalk:FK_R_Clavicle_JNT_CTRL
+    400120: LoseWalk:FK_R_Clavicle_JNT_ROT
+    400122: LoseWalk:FK_R_Clavicle_JNT_SDK
+    400124: LoseWalk:FK_R_Elbow_CTRL
+    400126: LoseWalk:FK_R_Elbow_ROT
+    400128: LoseWalk:FK_R_Elbow_SDK
+    400130: LoseWalk:FK_R_Finger1_CTRL
+    400132: LoseWalk:FK_R_Finger1_ROT
+    400134: LoseWalk:FK_R_Finger1_SDK
+    400136: LoseWalk:FK_R_Finger2_CTRL
+    400138: LoseWalk:FK_R_Finger2_ROT
+    400140: LoseWalk:FK_R_Finger2_SDK
+    400142: LoseWalk:FK_R_Finger3_CTRL
+    400144: LoseWalk:FK_R_Finger3_ROT
+    400146: LoseWalk:FK_R_Finger3_SDK
+    400148: LoseWalk:FK_R_Hip_CTRL
+    400150: LoseWalk:FK_R_Hip_ROT
+    400152: LoseWalk:FK_R_Hip_SDK
+    400154: LoseWalk:FK_R_Knee_CTRL
+    400156: LoseWalk:FK_R_Knee_ROT
+    400158: LoseWalk:FK_R_Knee_SDK
+    400160: LoseWalk:FK_R_Shoulder_CTRL
+    400162: LoseWalk:FK_R_Shoulder_ROT
+    400164: LoseWalk:FK_R_Shoulder_SDK
+    400166: LoseWalk:FK_R_Thumb1_CTRL
+    400168: LoseWalk:FK_R_Thumb1_ROT
+    400170: LoseWalk:FK_R_Thumb1_SDK
+    400172: LoseWalk:FK_R_Thumb2_CTRL
+    400174: LoseWalk:FK_R_Thumb2_ROT
+    400176: LoseWalk:FK_R_Thumb2_SDK
+    400178: LoseWalk:FK_R_Wrist_CTRL
+    400180: LoseWalk:FK_R_Wrist_ROT
+    400182: LoseWalk:FK_R_Wrist_SDK
+    400184: LoseWalk:FK_Spine1_CTRL
+    400186: LoseWalk:FK_Spine1_ROT
+    400188: LoseWalk:FK_Spine1_SDK
+    400190: LoseWalk:FK_Spine2_CTRL
+    400192: LoseWalk:FK_Spine2_ROT
+    400194: LoseWalk:FK_Spine2_SDK
+    400196: LoseWalk:FK_Spine3_CTRL
+    400198: LoseWalk:FK_Spine3_ROT
+    400200: LoseWalk:FK_Spine3_SDK
+    400202: LoseWalk:FK_SpineRoot_CTRL
+    400204: LoseWalk:FK_SpineRoot_ROT
+    400206: LoseWalk:FK_SpineRoot_SDK
+    400208: LoseWalk:FKIK_Switch_GRP
+    400210: LoseWalk:Head_GRP
+    400212: LoseWalk:IK_Hips_CTRL
+    400214: LoseWalk:IK_Hips_ROT
+    400216: LoseWalk:IK_Hips_SDK
+    400218: LoseWalk:IK_L_BALL_ROLL_SDK
+    400220: LoseWalk:IK_L_HEEL_ROLL_SDK
+    400222: LoseWalk:IK_L_INNER_TILT_SDK
+    400224: LoseWalk:IK_L_Leg_CTRL
+    400226: LoseWalk:IK_L_OUTER_TILT_SDK
+    400228: LoseWalk:IK_L_TOE_ROLL_SDK
+    400230: LoseWalk:IK_L_TOE_TAP_SDK
+    400232: LoseWalk:IK_L_Wrist_CTRL
+    400234: LoseWalk:IK_L_Wrist_ROT
+    400236: LoseWalk:IK_L_Wrist_SDK
+    400238: LoseWalk:IK_R_BALL_ROLL_SDK
+    400240: LoseWalk:IK_R_HEEL_ROLL_SDK
+    400242: LoseWalk:IK_R_INNER_TILT_SDK
+    400244: LoseWalk:IK_R_Leg_CTRL
+    400246: LoseWalk:IK_R_OUTER_TILT_SDK
+    400248: LoseWalk:IK_R_TOE_ROLL_SDK
+    400250: LoseWalk:IK_R_TOE_TAP_SDK
+    400252: LoseWalk:IK_R_Wrist_CTRL
+    400254: LoseWalk:IK_R_Wrist_ROT
+    400256: LoseWalk:IK_R_Wrist_SDK
+    400258: LoseWalk:IK_Shoulders_CTRL
+    400260: LoseWalk:IK_Shoulders_ROT
+    400262: LoseWalk:IK_Shoulders_SDK
+    400264: LoseWalk:L_Ankle_HDL
+    400266: LoseWalk:L_Arm_FK_GRP
+    400268: LoseWalk:L_Arm_FKIK_Switch_CTRL
+    400270: LoseWalk:L_Arm_GRP
+    400272: LoseWalk:L_Arm_HDL
+    400274: LoseWalk:L_Arm_PV
+    400276: LoseWalk:L_Arm_PVDisplay_ANN
+    400278: LoseWalk:L_Arm_PVDisplay_LOC
+    400280: LoseWalk:L_Ball_HDL
+    400282: LoseWalk:L_Hand_CTRL
+    400284: LoseWalk:L_Leg_FKIK_Switch_CTRL
+    400286: LoseWalk:L_Leg_PV
+    400288: LoseWalk:L_Leg_PV_GRP
+    400290: LoseWalk:L_Leg_PVDisplay_ANN
+    400292: LoseWalk:L_Leg_PVDisplay_LOC
+    400294: LoseWalk:L_Toe_HDL
+    400296: LoseWalk:Master_CTRL
+    400298: LoseWalk:R_Ankle_HDL
+    400300: LoseWalk:R_Arm_FK_GRP
+    400302: LoseWalk:R_Arm_FKIK_Switch_CTRL
+    400304: LoseWalk:R_Arm_GRP
+    400306: LoseWalk:R_Arm_HDL
+    400308: LoseWalk:R_Arm_PV
+    400310: LoseWalk:R_Arm_PVDisplay_ANN
+    400312: LoseWalk:R_Arm_PVDisplay_LOC
+    400314: LoseWalk:R_Ball_HDL
+    400316: LoseWalk:R_Hand_CTRL
+    400318: LoseWalk:R_Leg_FKIK_Switch_CTRL
+    400320: LoseWalk:R_Leg_PV
+    400322: LoseWalk:R_Leg_PV_GRP
+    400324: LoseWalk:R_Leg_PVDisplay_ANN
+    400326: LoseWalk:R_Leg_PVDisplay_LOC
+    400328: LoseWalk:R_Toe_HDL
+    400330: LoseWalk:Spine_FKIK_Switch_CTRL
+    400332: LoseWalk:ART_MOD_A_Rigged_Character_001
+    7400000: Take 001
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperArm' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human:
+    - boneName: LoseWalk:Master_CTRL
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_L_Leg_CTRL
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_R_Leg_CTRL
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_L_OUTER_TILT_SDK
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_R_OUTER_TILT_SDK
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_L_HEEL_ROLL_SDK
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_R_HEEL_ROLL_SDK
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:COG_CTRL
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_SpineRoot_CTRL
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_Spine1_SDK
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_L_Clavicle_JNT_ROT
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:R_Arm_GRP
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_R_Clavicle_JNT_SDK
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:R_Arm_FK_GRP
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_R_Shoulder_SDK
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_L_TOE_ROLL_SDK
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:IK_R_TOE_ROLL_SDK
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_Spine2_ROT
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_R_Elbow_ROT
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_R_Elbow_SDK
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LoseWalk:FK_R_Elbow_CTRL
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: ART-ANM-A-GENERAL-LOSE-WALK-001(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:ART_MOD_A_Rigged_Character_001
+      parentName: ART-ANM-A-GENERAL-LOSE-WALK-001(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:Master_CTRL
+      parentName: LoseWalk:ART_MOD_A_Rigged_Character_001
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:COG_CTRL
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0, y: 0.7395815, z: -0.013683219}
+      rotation: {x: 0.05471062, y: 0.1079827, z: -0.018035326, w: 0.99248236}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FKIK_Switch_GRP
+      parentName: LoseWalk:COG_CTRL
+      position: {x: -0, y: -0.78142256, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Leg_FKIK_Switch_CTRL
+      parentName: LoseWalk:FKIK_Switch_GRP
+      position: {x: -0.26, y: 0.68, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Leg_FKIK_Switch_CTRL
+      parentName: LoseWalk:FKIK_Switch_GRP
+      position: {x: 0.26, y: 0.68, z: -3.1840816e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:Spine_FKIK_Switch_CTRL
+      parentName: LoseWalk:FKIK_Switch_GRP
+      position: {x: -0.29999998, y: 0.841809, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Hips_ROT
+      parentName: LoseWalk:COG_CTRL
+      position: {x: 8.947619e-18, y: 0.060386423, z: -0.0157679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Hips_SDK
+      parentName: LoseWalk:IK_Hips_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Hips_CTRL
+      parentName: LoseWalk:IK_Hips_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Shoulders_ROT
+      parentName: LoseWalk:COG_CTRL
+      position: {x: 5.180199e-18, y: 0.42725876, z: -0.0157679}
+      rotation: {x: 0.007307762, y: -0, z: -0, w: 0.9999733}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Shoulders_SDK
+      parentName: LoseWalk:IK_Shoulders_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_Shoulders_CTRL
+      parentName: LoseWalk:IK_Shoulders_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Pelvis_ROT
+      parentName: LoseWalk:COG_CTRL
+      position: {x: 8.712195e-18, y: 0.000000023095703, z: -0.0157679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Pelvis_SDK
+      parentName: LoseWalk:FK_Pelvis_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Pelvis_CTRL
+      parentName: LoseWalk:FK_Pelvis_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.03305491, w: 0.99945354}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Hip_ROT
+      parentName: LoseWalk:FK_Pelvis_CTRL
+      position: {x: 0.11880999, y: -0.0049576, z: -0.0020728998}
+      rotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Hip_SDK
+      parentName: LoseWalk:FK_R_Hip_ROT
+      position: {x: -0, y: 0, z: -2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Hip_CTRL
+      parentName: LoseWalk:FK_R_Hip_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Knee_ROT
+      parentName: LoseWalk:FK_R_Hip_CTRL
+      position: {x: 0.0000004345889, y: -0.28192222, z: 0.000000048697636}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Knee_SDK
+      parentName: LoseWalk:FK_R_Knee_ROT
+      position: {x: -0, y: 0, z: -2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Knee_CTRL
+      parentName: LoseWalk:FK_R_Knee_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ankle_ROT
+      parentName: LoseWalk:FK_R_Knee_CTRL
+      position: {x: -0.0000005191645, y: -0.39890346, z: -0.00000003473655}
+      rotation: {x: 0.5003928, y: -0.00844883, z: -0.0023057577, w: 0.86575425}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ankle_SDK
+      parentName: LoseWalk:FK_R_Ankle_ROT
+      position: {x: -0, y: 8.881784e-18, z: 8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ankle_CTRL
+      parentName: LoseWalk:FK_R_Ankle_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ball_ROT
+      parentName: LoseWalk:FK_R_Ankle_CTRL
+      position: {x: 0.00000035461508, y: -0.12759739, z: -0.0000001428597}
+      rotation: {x: 0.25903466, y: 0.006472822, z: -0.0019859998, w: 0.9658443}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ball_SDK
+      parentName: LoseWalk:FK_R_Ball_ROT
+      position: {x: -1.7763568e-17, y: -3.5527136e-17, z: -4.4408918e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Ball_CTRL
+      parentName: LoseWalk:FK_R_Ball_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Hip_ROT
+      parentName: LoseWalk:FK_Pelvis_CTRL
+      position: {x: -0.11880989, y: -0.0049577164, z: -0.0020728796}
+      rotation: {x: 0, y: 0, z: 1, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Hip_SDK
+      parentName: LoseWalk:FK_L_Hip_ROT
+      position: {x: 1.7763568e-17, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Hip_CTRL
+      parentName: LoseWalk:FK_L_Hip_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Knee_ROT
+      parentName: LoseWalk:FK_L_Hip_CTRL
+      position: {x: -1.4311023e-16, y: 0.28192177, z: -3.0642155e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Knee_SDK
+      parentName: LoseWalk:FK_L_Knee_ROT
+      position: {x: 1.7763568e-17, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Knee_CTRL
+      parentName: LoseWalk:FK_L_Knee_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ankle_ROT
+      parentName: LoseWalk:FK_L_Knee_CTRL
+      position: {x: -3.0733608e-16, y: 0.39890376, z: 7.105427e-17}
+      rotation: {x: 0.5003928, y: -0.008449658, z: -0.0023062357, w: 0.86575425}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ankle_SDK
+      parentName: LoseWalk:FK_L_Ankle_ROT
+      position: {x: 1.7763568e-17, y: 1.7763568e-17, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ankle_CTRL
+      parentName: LoseWalk:FK_L_Ankle_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ball_ROT
+      parentName: LoseWalk:FK_L_Ankle_CTRL
+      position: {x: -6.2510866e-17, y: 0.12759711, z: 7.228619e-18}
+      rotation: {x: 0.25903466, y: 0.0064732824, z: -0.0019858761, w: 0.9658443}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ball_SDK
+      parentName: LoseWalk:FK_L_Ball_ROT
+      position: {x: -0, y: -1.7763568e-17, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Ball_CTRL
+      parentName: LoseWalk:FK_L_Ball_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_SpineRoot_ROT
+      parentName: LoseWalk:COG_CTRL
+      position: {x: 8.947619e-18, y: 0.060386423, z: -0.0157679}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_SpineRoot_SDK
+      parentName: LoseWalk:FK_SpineRoot_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_SpineRoot_CTRL
+      parentName: LoseWalk:FK_SpineRoot_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.006233637, y: 0, z: -0, w: 0.99998057}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine1_ROT
+      parentName: LoseWalk:FK_SpineRoot_CTRL
+      position: {x: -2.3546376e-18, y: 0.12154996, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine1_SDK
+      parentName: LoseWalk:FK_Spine1_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine1_CTRL
+      parentName: LoseWalk:FK_Spine1_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.016588522, y: -0.000556112, z: 0.012830586, w: 0.99977994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine2_ROT
+      parentName: LoseWalk:FK_Spine1_CTRL
+      position: {x: -8.241232e-18, y: 0.1318457, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine2_SDK
+      parentName: LoseWalk:FK_Spine2_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine2_CTRL
+      parentName: LoseWalk:FK_Spine2_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.16529936, y: -0.020292155, z: 0.034236804, w: 0.9854401}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine3_ROT
+      parentName: LoseWalk:FK_Spine2_CTRL
+      position: {x: 6.828449e-18, y: 0.11347669, z: 6.661338e-18}
+      rotation: {x: 0.007307762, y: -0, z: -0, w: 0.9999733}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine3_SDK
+      parentName: LoseWalk:FK_Spine3_ROT
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Spine3_CTRL
+      parentName: LoseWalk:FK_Spine3_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.12717704, y: -0.021697015, z: 0.031225147, w: 0.991151}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:Head_GRP
+      parentName: LoseWalk:COG_CTRL
+      position: {x: -0.041579284, y: 0.5561216, z: 0.11765246}
+      rotation: {x: 0.2996532, y: -0.040086895, z: 0.07524058, w: 0.9502315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck1_JNT_ROT
+      parentName: LoseWalk:Head_GRP
+      position: {x: -4.3483887e-28, y: 0.000000028898327, z: -2.6095984e-10}
+      rotation: {x: 0.00000021678414, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck1_JNT_SDK
+      parentName: LoseWalk:FK_Neck1_JNT_ROT
+      position: {x: -0, y: 0, z: 2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck1_JNT_CTRL
+      parentName: LoseWalk:FK_Neck1_JNT_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck2_JNT_ROT
+      parentName: LoseWalk:FK_Neck1_JNT_CTRL
+      position: {x: 2.845469e-17, y: 0.08979103, z: -1.3988847e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck2_JNT_SDK
+      parentName: LoseWalk:FK_Neck2_JNT_ROT
+      position: {x: -0, y: -2.842171e-16, z: 2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Neck2_JNT_CTRL
+      parentName: LoseWalk:FK_Neck2_JNT_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.06266849, y: -0.028711135, z: -0.0018035762, w: 0.99761975}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Head_JNT_ROT
+      parentName: LoseWalk:FK_Neck2_JNT_CTRL
+      position: {x: 3.365614e-17, y: 0.106195115, z: -0.00000008497338}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Head_JNT_SDK
+      parentName: LoseWalk:FK_Head_JNT_ROT
+      position: {x: -0, y: 0, z: 2.220446e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_Head_JNT_CTRL
+      parentName: LoseWalk:FK_Head_JNT_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.060020518, y: 0, z: -0, w: 0.99819714}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_GRP
+      parentName: LoseWalk:COG_CTRL
+      position: {x: -0.07886714, y: 0.49531943, z: 0.07742897}
+      rotation: {x: 0.2996532, y: -0.040086895, z: 0.07524058, w: 0.9502315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Clavicle_JNT_ROT
+      parentName: LoseWalk:L_Arm_GRP
+      position: {x: 0.0000000018877653, y: -6.2877363e-16, z: -1.5212842e-17}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Clavicle_JNT_SDK
+      parentName: LoseWalk:FK_L_Clavicle_JNT_ROT
+      position: {x: -0, y: 6.217249e-17, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Clavicle_JNT_CTRL
+      parentName: LoseWalk:FK_L_Clavicle_JNT_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.08635132, y: 0.13712202, z: -0.04275054, w: 0.9858567}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_FK_GRP
+      parentName: LoseWalk:FK_L_Clavicle_JNT_CTRL
+      position: {x: -1.3160281, y: -0.048857454, z: 0.009958534}
+      rotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Shoulder_ROT
+      parentName: LoseWalk:L_Arm_FK_GRP
+      position: {x: -0.1510493, y: 1.3160281, z: -0.009958534}
+      rotation: {x: -0.00000011025853, y: -0.00000011025853, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Shoulder_SDK
+      parentName: LoseWalk:FK_L_Shoulder_ROT
+      position: {x: -0, y: -2.664535e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Shoulder_CTRL
+      parentName: LoseWalk:FK_L_Shoulder_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.032174718, y: 0.019441778, z: 0.51200664, w: 0.8581585}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Elbow_ROT
+      parentName: LoseWalk:FK_L_Shoulder_CTRL
+      position: {x: -1.1783445e-15, y: 0.2225354, z: -3.1419313e-16}
+      rotation: {x: 0.00000031154062, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Elbow_SDK
+      parentName: LoseWalk:FK_L_Elbow_ROT
+      position: {x: 2.842171e-16, y: -1.4210854e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Elbow_CTRL
+      parentName: LoseWalk:FK_L_Elbow_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.03483872, y: -0.012447059, z: 0.2089511, w: 0.9772261}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Wrist_ROT
+      parentName: LoseWalk:FK_L_Elbow_CTRL
+      position: {x: -2.1557086e-16, y: 0.22387259, z: 2.4091835e-16}
+      rotation: {x: -0.00000013530236, y: -0.000000010536712, z: -1.425642e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Wrist_SDK
+      parentName: LoseWalk:FK_L_Wrist_ROT
+      position: {x: -0, y: -2.842171e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Wrist_CTRL
+      parentName: LoseWalk:FK_L_Wrist_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_FKIK_Switch_CTRL
+      parentName: LoseWalk:L_Arm_GRP
+      position: {x: -0.21114254, y: 0.16397186, z: 0.009958534}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_GRP
+      parentName: LoseWalk:COG_CTRL
+      position: {x: 0.017427105, y: 0.50694585, z: 0.089280464}
+      rotation: {x: 0.2996532, y: -0.040086895, z: 0.07524058, w: 0.9502315}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Clavicle_JNT_ROT
+      parentName: LoseWalk:R_Arm_GRP
+      position: {x: 0.0000000018310572, y: 0.00000003173828, z: 6.8397496e-11}
+      rotation: {x: 0.7071068, y: -0.7071068, z: 2.8694645e-15, w: -2.8694645e-15}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Clavicle_JNT_SDK
+      parentName: LoseWalk:FK_R_Clavicle_JNT_ROT
+      position: {x: -0, y: 3.0198067e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Clavicle_JNT_CTRL
+      parentName: LoseWalk:FK_R_Clavicle_JNT_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.10523345, y: 0.42636788, z: 0.038596522, w: 0.89757824}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_FK_GRP
+      parentName: LoseWalk:FK_R_Clavicle_JNT_CTRL
+      position: {x: 1.3160299, y: 0.0488575, z: -0.00995853}
+      rotation: {x: 0.7071068, y: -0.7071068, z: -4.3297806e-17, w: 4.3297806e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Shoulder_ROT
+      parentName: LoseWalk:R_Arm_FK_GRP
+      position: {x: 0.151049, y: 1.3160299, z: -0.00995853}
+      rotation: {x: 0.70711523, y: -0.70709836, z: -0.0000057930033, w: -0.000005623732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Shoulder_SDK
+      parentName: LoseWalk:FK_R_Shoulder_ROT
+      position: {x: -0, y: -4.440892e-16, z: 3.330669e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Shoulder_CTRL
+      parentName: LoseWalk:FK_R_Shoulder_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.52054, w: 0.8538373}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Elbow_ROT
+      parentName: LoseWalk:FK_R_Shoulder_CTRL
+      position: {x: 0.00000430907, y: -0.22253582, z: 0.0000000014028999}
+      rotation: {x: 0.00000023938858, y: 0.00014585134, z: 0.000023759565, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Elbow_SDK
+      parentName: LoseWalk:FK_R_Elbow_ROT
+      position: {x: -0, y: -7.81597e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Elbow_CTRL
+      parentName: LoseWalk:FK_R_Elbow_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.05535506, y: 0.017916618, z: 0.19095309, w: 0.97987336}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Wrist_ROT
+      parentName: LoseWalk:FK_R_Elbow_CTRL
+      position: {x: -0.000006232841, y: -0.22387302, z: 0.0000000022629512}
+      rotation: {x: -0.000000103551976, y: -0.0001413484, z: -0.000000036826357, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Wrist_SDK
+      parentName: LoseWalk:FK_R_Wrist_ROT
+      position: {x: 2.842171e-16, y: 4.973799e-16, z: -6.661338e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Wrist_CTRL
+      parentName: LoseWalk:FK_R_Wrist_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.044997822, y: -0.010311819, z: -0.012080579, w: 0.99886084}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_FKIK_Switch_CTRL
+      parentName: LoseWalk:R_Arm_GRP
+      position: {x: 0.2111425, y: 0.16397002, z: 0.00995853}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_Leg_CTRL
+      parentName: LoseWalk:Master_CTRL
+      position: {x: 0.11881008, y: 0.09563934, z: -0.36534426}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_OUTER_TILT_SDK
+      parentName: LoseWalk:IK_R_Leg_CTRL
+      position: {x: 0.060123596, y: -0.09563934, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_INNER_TILT_SDK
+      parentName: LoseWalk:IK_R_OUTER_TILT_SDK
+      position: {x: -0.13795461, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_HEEL_ROLL_SDK
+      parentName: LoseWalk:IK_R_INNER_TILT_SDK
+      position: {x: 0.07783101, y: 0, z: -0.08}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_TOE_ROLL_SDK
+      parentName: LoseWalk:IK_R_HEEL_ROLL_SDK
+      position: {x: -0.0009609127, y: 0, z: 0.24857277}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_BALL_ROLL_SDK
+      parentName: LoseWalk:IK_R_TOE_ROLL_SDK
+      position: {x: 0.00039096831, y: 0.03192311, z: -0.0758649}
+      rotation: {x: 0.25375795, y: -0, z: -0, w: 0.96726775}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Ankle_HDL
+      parentName: LoseWalk:IK_R_BALL_ROLL_SDK
+      position: {x: 0.0005699444, y: 0.063716225, z: -0.110548675}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Ball_HDL
+      parentName: LoseWalk:IK_R_BALL_ROLL_SDK
+      position: {x: -0, y: 0.0000000023841857, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_TOE_TAP_SDK
+      parentName: LoseWalk:IK_R_TOE_ROLL_SDK
+      position: {x: 0.00039096831, y: 0.03192311, z: -0.0758649}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Toe_HDL
+      parentName: LoseWalk:IK_R_TOE_TAP_SDK
+      position: {x: -0.00039096831, y: 0.00009157896, z: 0.0758649}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_Leg_CTRL
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0.11880989, y: 0.09563934, z: 0.21353377}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_OUTER_TILT_SDK
+      parentName: LoseWalk:IK_L_Leg_CTRL
+      position: {x: -0.060123995, y: -0.09563934, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_INNER_TILT_SDK
+      parentName: LoseWalk:IK_L_OUTER_TILT_SDK
+      position: {x: 0.13795461, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_HEEL_ROLL_SDK
+      parentName: LoseWalk:IK_L_INNER_TILT_SDK
+      position: {x: -0.07783064, y: 0, z: -0.08}
+      rotation: {x: -0.094977066, y: 0, z: -0, w: 0.99547946}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_TOE_ROLL_SDK
+      parentName: LoseWalk:IK_L_HEEL_ROLL_SDK
+      position: {x: 0.0009602642, y: 0, z: 0.24858432}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_BALL_ROLL_SDK
+      parentName: LoseWalk:IK_L_TOE_ROLL_SDK
+      position: {x: -0.00039077757, y: 0.031942416, z: -0.07586563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Ankle_HDL
+      parentName: LoseWalk:IK_L_BALL_ROLL_SDK
+      position: {x: -0.00056946755, y: 0.06369693, z: -0.11055947}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Ball_HDL
+      parentName: LoseWalk:IK_L_BALL_ROLL_SDK
+      position: {x: -0, y: 0, z: 0.000000009536743}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_TOE_TAP_SDK
+      parentName: LoseWalk:IK_L_TOE_ROLL_SDK
+      position: {x: -0.00039077757, y: 0.031942416, z: -0.07586563}
+      rotation: {x: -0.047106452, y: 0, z: -0, w: 0.99888986}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Toe_HDL
+      parentName: LoseWalk:IK_L_TOE_TAP_SDK
+      position: {x: 0.00039076805, y: 0.00010481834, z: 0.07586563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_Wrist_ROT
+      parentName: LoseWalk:Master_CTRL
+      position: {x: 0.5974578, y: 1.3160319, z: -0.009958534}
+      rotation: {x: -0.7070984, y: 0.7071151, z: 0.0000025106187, w: 0.0000025379961}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_Wrist_SDK
+      parentName: LoseWalk:IK_R_Wrist_ROT
+      position: {x: 2.842171e-16, y: 4.973799e-16, z: -5.5511148e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_R_Wrist_CTRL
+      parentName: LoseWalk:IK_R_Wrist_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_HDL
+      parentName: LoseWalk:IK_R_Wrist_CTRL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7070984, y: 0.7071151, z: 0.0000025106187, w: -0.0000025379961}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_Wrist_ROT
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0.5974573, y: 1.3160281, z: -0.009958534}
+      rotation: {x: 0.00000002181133, y: 0.0000000069101667, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_Wrist_SDK
+      parentName: LoseWalk:IK_L_Wrist_ROT
+      position: {x: 2.842171e-16, y: -1.4210854e-16, z: -1.110223e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:IK_L_Wrist_CTRL
+      parentName: LoseWalk:IK_L_Wrist_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_HDL
+      parentName: LoseWalk:IK_L_Wrist_CTRL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.00000002181133, y: -0.0000000069101667, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_PV
+      parentName: LoseWalk:Master_CTRL
+      position: {x: 0.3735848, y: 1.3160256, z: -0.45995852}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_PVDisplay_LOC
+      parentName: LoseWalk:R_Arm_PV
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Arm_PVDisplay_ANN
+      parentName: LoseWalk:R_Arm_PVDisplay_LOC
+      position: {x: -0.123884596, y: -0.2892509, z: 0.6317585}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_PV
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0.3735847, y: 1.3160281, z: -0.45995852}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_PVDisplay_LOC
+      parentName: LoseWalk:L_Arm_PV
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Arm_PVDisplay_ANN
+      parentName: LoseWalk:L_Arm_PVDisplay_LOC
+      position: {x: 0.13823973, y: -0.29609683, z: 0.577061}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Hand_CTRL
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0.25695044, y: 0.81709814, z: 0.024848167}
+      rotation: {x: 0.27510396, y: -0.031037522, z: 0.6714036, w: 0.68743855}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger1_ROT
+      parentName: LoseWalk:L_Hand_CTRL
+      position: {x: -0.07691336, y: -4.2434344e-16, z: 0.0000000033989096}
+      rotation: {x: 0.01538557, y: 0.016656518, z: 0.7523246, w: 0.6584023}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger1_SDK
+      parentName: LoseWalk:FK_L_Finger1_ROT
+      position: {x: 2.842171e-16, y: -4.973799e-16, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger1_CTRL
+      parentName: LoseWalk:FK_L_Finger1_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger2_ROT
+      parentName: LoseWalk:FK_L_Finger1_CTRL
+      position: {x: 5.154619e-16, y: 0.03703269, z: -5.30118e-18}
+      rotation: {x: 0.0045745, y: 0.00045511578, z: 0.011144417, w: 0.99992734}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger2_SDK
+      parentName: LoseWalk:FK_L_Finger2_ROT
+      position: {x: -2.842171e-16, y: -1.4210854e-16, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger2_CTRL
+      parentName: LoseWalk:FK_L_Finger2_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger3_ROT
+      parentName: LoseWalk:FK_L_Finger2_CTRL
+      position: {x: 6.4370845e-17, y: 0.02601458, z: -1.1376692e-17}
+      rotation: {x: 0.010736, y: 0.0014776709, z: 0.026298186, w: 0.9995954}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger3_SDK
+      parentName: LoseWalk:FK_L_Finger3_ROT
+      position: {x: -0, y: 1.4210854e-16, z: 8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Finger3_CTRL
+      parentName: LoseWalk:FK_L_Finger3_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb1_ROT
+      parentName: LoseWalk:L_Hand_CTRL
+      position: {x: -0.017853234, y: 0.00079765206, z: 0.029512282}
+      rotation: {x: 0.259598, y: 0.3221693, z: 0.71040136, w: 0.569338}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb1_SDK
+      parentName: LoseWalk:FK_L_Thumb1_ROT
+      position: {x: -0, y: 4.973799e-16, z: -1.7763567e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb1_CTRL
+      parentName: LoseWalk:FK_L_Thumb1_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb2_ROT
+      parentName: LoseWalk:FK_L_Thumb1_CTRL
+      position: {x: 2.6159003e-16, y: 0.040481377, z: -2.1589235e-17}
+      rotation: {x: -0.00939346, y: 0.02056061, z: 0.018624501, w: 0.999571}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb2_SDK
+      parentName: LoseWalk:FK_L_Thumb2_ROT
+      position: {x: -0, y: 3.5527136e-17, z: -3.5527136e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_L_Thumb2_CTRL
+      parentName: LoseWalk:FK_L_Thumb2_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Hand_CTRL
+      parentName: LoseWalk:Master_CTRL
+      position: {x: 0.2528037, y: 0.8113115, z: 0.23249204}
+      rotation: {x: -0.033617344, y: -0.09664711, z: -0.6840051, w: 0.72226465}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger1_ROT
+      parentName: LoseWalk:R_Hand_CTRL
+      position: {x: 0.07691253, y: -0.0000037012592, z: -0.000000029757981}
+      rotation: {x: -0.6583934, y: 0.7523324, z: -0.01665402, w: 0.015387716}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger1_SDK
+      parentName: LoseWalk:FK_R_Finger1_ROT
+      position: {x: 5.684342e-16, y: 7.105427e-16, z: -9.325873e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger1_CTRL
+      parentName: LoseWalk:FK_R_Finger1_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger2_ROT
+      parentName: LoseWalk:FK_R_Finger1_CTRL
+      position: {x: -0.0000019911706, y: -0.037033085, z: -0.0000000052845683}
+      rotation: {x: 0.0045745, y: 0.00045511578, z: 0.011144417, w: 0.99992734}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger2_SDK
+      parentName: LoseWalk:FK_R_Finger2_ROT
+      position: {x: 2.842171e-16, y: 7.105427e-17, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger2_CTRL
+      parentName: LoseWalk:FK_R_Finger2_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger3_ROT
+      parentName: LoseWalk:FK_R_Finger2_CTRL
+      position: {x: 0.0000038833205, y: -0.026014611, z: 0.000000001051641}
+      rotation: {x: 0.010736, y: 0.0014776709, z: 0.026298186, w: 0.9995954}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger3_SDK
+      parentName: LoseWalk:FK_R_Finger3_ROT
+      position: {x: 5.684342e-16, y: 2.1316282e-16, z: -8.881784e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Finger3_CTRL
+      parentName: LoseWalk:FK_R_Finger3_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb1_ROT
+      parentName: LoseWalk:R_Hand_CTRL
+      position: {x: 0.017853027, y: 0.00080059975, z: 0.029512277}
+      rotation: {x: -0.5693287, y: 0.7104092, z: -0.32216984, w: 0.2595962}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb1_SDK
+      parentName: LoseWalk:FK_R_Thumb1_ROT
+      position: {x: -5.684342e-16, y: 1.7763567e-16, z: -7.105427e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb1_CTRL
+      parentName: LoseWalk:FK_R_Thumb1_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb2_ROT
+      parentName: LoseWalk:FK_R_Thumb1_CTRL
+      position: {x: 0.0000016856519, y: -0.040481865, z: 0.00000061270117}
+      rotation: {x: -0.00939346, y: 0.02056061, z: 0.018624501, w: 0.999571}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb2_SDK
+      parentName: LoseWalk:FK_R_Thumb2_ROT
+      position: {x: 2.842171e-16, y: 2.1316282e-16, z: -5.684342e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:FK_R_Thumb2_CTRL
+      parentName: LoseWalk:FK_R_Thumb2_SDK
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Leg_PV_GRP
+      parentName: LoseWalk:Master_CTRL
+      position: {x: 0.11880992, y: 0.4945428, z: -0.017771207}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Leg_PV
+      parentName: LoseWalk:R_Leg_PV_GRP
+      position: {x: -0.00000036239624, y: -0.000000038146972, z: 0.44993034}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Leg_PVDisplay_LOC
+      parentName: LoseWalk:R_Leg_PV
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:R_Leg_PVDisplay_ANN
+      parentName: LoseWalk:R_Leg_PVDisplay_LOC
+      position: {x: -0.003161172, y: -0.049631514, z: -0.5106461}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Leg_PV_GRP
+      parentName: LoseWalk:Master_CTRL
+      position: {x: -0.1188099, y: 0.49454394, z: -0.017154617}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Leg_PV
+      parentName: LoseWalk:L_Leg_PV_GRP
+      position: {x: 0.000000009536743, y: -0.0000008392334, z: 0.44931385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Leg_PVDisplay_LOC
+      parentName: LoseWalk:L_Leg_PV
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LoseWalk:L_Leg_PVDisplay_ANN
+      parentName: LoseWalk:L_Leg_PVDisplay_LOC
+      position: {x: -0.0004359851, y: 0.007819957, z: -0.29759213}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

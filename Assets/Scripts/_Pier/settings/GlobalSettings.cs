@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GlobalSettings : ScriptableObject
 {
+    public string levelSelectScene = "LevelSelect";
     [Header("Movement Related")]
 
     public float BaseMoveSpeedMultiplier = 1f;

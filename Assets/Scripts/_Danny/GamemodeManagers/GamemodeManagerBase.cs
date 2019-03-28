@@ -130,6 +130,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
             for(int i = 0 ; i < team.Players.Count; i++) 
             {
                 team.Players[i].MoveCharacter(team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
+                Debug.Log("moved0 " + team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
             }
         }
     }
@@ -236,7 +237,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels
         //should be done in one place only and this has many disadvantages
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(GlobalSettingsManager.s.levelSelectScene);
     }
 
     private void UpdateGUIScores() 
