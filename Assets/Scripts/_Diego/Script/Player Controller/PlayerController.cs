@@ -130,8 +130,9 @@ namespace SnowDay.Diego.CharacterController
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        public SnowDayCharacter SetSnowDayCharacter(GameObject character)
+        public SnowDayCharacter SetSnowDayCharacter(GameObject character, int prefab = -1)
         {
+            currentPrefab = prefab;
             Vector3 characterPosition;
             Quaternion characterRotation;
             playerIndicator.gameObject.SetActive(true);

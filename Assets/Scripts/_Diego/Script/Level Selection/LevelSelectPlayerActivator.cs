@@ -106,7 +106,7 @@ namespace SnowDay.Diego.LevelSelect
             if(player.SnowDayCharacterGameObject) 
                 this.TakenCharacters.Remove(this.prefabs.PrefabList[player.currentPrefab]);
 
-            player.SetSnowDayCharacter(prefabs.PrefabList[this.CharacterPrefabIndex]);
+            player.SetSnowDayCharacter(prefabs.PrefabList[this.CharacterPrefabIndex], this.CharacterPrefabIndex);
 
             this.TakenCharacters.Add(this.prefabs.PrefabList[this.CharacterPrefabIndex]);
 
