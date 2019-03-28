@@ -42,7 +42,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
         sun = sunObject.GetComponent<Light>();
         lightStartIntensity = sunObject.GetComponent<Sun>().startIntensity;
         godRay = transform.GetChild(2).GetComponent<Light>();
-        godRay.transform.parent = null;
+        //godRay.transform.parent = null;
     }
 
 
@@ -141,6 +141,8 @@ public class LightningPowerSphereHit : MonoBehaviour {
         lerpPosScript.endPosition = transform.position;
         lerpPosScript.isLerping = true;
         transform.position = opponentTarget.GetCharacterPosition();
+        lerpPosScript.startPositon = transform.GetChild(0).transform.position;
+
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
         {
