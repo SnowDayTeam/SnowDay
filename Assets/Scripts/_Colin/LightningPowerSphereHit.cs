@@ -136,9 +136,11 @@ public class LightningPowerSphereHit : MonoBehaviour {
 
     private void LightningStrike()
     {
+        //Debug.Break();
         //Lerp up the ball 
         lerpPosScript.endPosition = transform.position;
         lerpPosScript.isLerping = true;
+        transform.position = opponentTarget.GetCharacterPosition();
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
         {
