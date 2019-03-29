@@ -14,7 +14,7 @@ public class LoadingScreen : MonoBehaviour
     [Tooltip("The extra time added after displaying the loading screen, before entering gameplay")]
     [SerializeField] float LoadScreenDelay = 1.0f;
 
-	void Awake() 
+	void Start()
     {
         this.StartCoroutine(this.PregameLoadingScreenTimer());
      //   Destroy(this.gameObject, this.LoadScreenDelay);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,13 +228,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 234546374}
-  m_LocalRotation: {x: 0.17191441, y: 0.6889967, z: 0.64144, w: -0.29031688}
-  m_LocalPosition: {x: -3.4, y: 0.172, z: -0.76}
+  m_LocalRotation: {x: 0.5676551, y: 0.42665985, z: 0.31512263, w: -0.62962437}
+  m_LocalPosition: {x: -1.67, y: 0.1767, z: 3.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1202929627}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 259.647, y: 87.27599, z: -228.95801}
+  m_LocalEulerAnglesHint: {x: 259.647, y: 87.27599, z: -150.837}
 --- !u!1 &374684216
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374684216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.55, y: -0.75762, z: 0.383}
+  m_LocalPosition: {x: 1.661, y: -0.75762, z: 0.383}
   m_LocalScale: {x: 0.034021, y: 2.5437, z: 0.027637253}
   m_Children:
   - {fileID: 1202929627}
@@ -416,13 +416,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1082321547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3f792c1ec3cf64ea916548dab49708, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e954b94c6b37c948beb7b9e8456a1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puppet: {fileID: 0}
   grabSpeed: 3
   nearPole: 0
   grabPole: 0
+  isHolding: 0
   pole: {fileID: 374684220}
+  elbowTargetL: {fileID: 0}
+  elbowTargetR: {fileID: 0}
+  hasFallen: 0
+  leftHand: {fileID: 0}
+  isShovelWar: 0
 --- !u!1 &1202929626
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,44 +506,8 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 771623500}
-    ActiveGameObject: {fileID: 771623500}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1074192472}
-    ActiveGameObject: {fileID: 1074192472}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
     - {fileID: 1902400054}
     ActiveGameObject: {fileID: 1902400054}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 56556777}
-    ActiveGameObject: {fileID: 56556777}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -559,7 +530,18 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 56556777}
+    - {fileID: 374684216}
+    ActiveGameObject: {fileID: 374684216}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 234546374}
     ActiveGameObject: {fileID: 234546374}
     GUIDsList: []
@@ -572,8 +554,32 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
-    - {fileID: 374684216}
-    ActiveGameObject: {fileID: 374684216}
+    - {fileID: 56556777}
+    ActiveGameObject: {fileID: 56556777}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1074192472}
+    ActiveGameObject: {fileID: 1074192472}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 771623500}
+    ActiveGameObject: {fileID: 771623500}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -817,6 +823,11 @@ Prefab:
     - target: {fileID: 4763167805425194, guid: b243f772e379f0d42a16af522f774f2b, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 86.234
+      objectReference: {fileID: 0}
+    - target: {fileID: 54718738868883762, guid: b243f772e379f0d42a16af522f774f2b,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 1.79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b243f772e379f0d42a16af522f774f2b, type: 2}
