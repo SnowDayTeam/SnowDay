@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1481320928766368}
+  m_IsPrefabAsset: 1
+--- !u!1 &1481320928766368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4415105563302380}
+  - component: {fileID: 33062048106659670}
+  - component: {fileID: 23250564158204022}
+  - component: {fileID: 114467690214962410}
+  - component: {fileID: 114566396602663466}
+  m_Layer: 0
+  m_Name: ART-MOD-A-CAR-STATIONWAGON-ORANGE-001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4415105563302380
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481320928766368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.3691216, y: -5.2834725, z: 14.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23250564158204022
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481320928766368}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100002, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100004, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100006, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100008, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100010, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100012, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  - {fileID: 2100014, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33062048106659670
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481320928766368}
+  m_Mesh: {fileID: 4300000, guid: b716f05bfc3f75e47b7ce34a94d85c4c, type: 3}
+--- !u!114 &114467690214962410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481320928766368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ed1d8e6ac9a4949983819043957d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoint: {fileID: 0}
+  carPrefabs: []
+  maxActiveCars: 0
+  minSpawnTimer: 0
+  maxSpawnTimer: 0
+  spawnTimer: 0
+--- !u!114 &114566396602663466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481320928766368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495c3499395ab3e4d90fb34b8e41b228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowDistPerc: 0
+  stopDist: 0
+  slowRotPerc: 0
+  velocityMax: 0
+  rotationMax: 0
+  accelLinearInc: 0
+  accelAngularInc: 0
+  accelLinearMax: 0
+  accelAngularMax: 0
+  waypoints: []
+  reverseWaypoints: []
+  waypointsToExit: []
+  randomParkTime: 0
+  minParkedTime: 3.57
+  maxParkedTime: 10
