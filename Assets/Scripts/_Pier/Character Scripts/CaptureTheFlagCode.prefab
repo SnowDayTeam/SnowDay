@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 4298398590201888}
   - component: {fileID: 114207006261996030}
   - component: {fileID: 114574013248446420}
+  - component: {fileID: 114529797214533764}
   m_Layer: 0
   m_Name: CaptureTheFlagCode
   m_TagString: Untagged
@@ -115,6 +116,23 @@ MonoBehaviour:
   PickupOffset: {x: 0, y: 1, z: 0}
   PickupSphereGizmoColor: {r: 0, g: 0, b: 0, a: 1}
   flagPosition: {fileID: 4479904225489770}
+--- !u!114 &114529797214533764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652687647373624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e954b94c6b37c948beb7b9e8456a1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puppet: {fileID: 0}
+  grabSpeed: 3
+  nearPole: 0
+  grabPole: 0
+  isHolding: 0
+  pole: {fileID: 0}
 --- !u!114 &114574013248446420
 MonoBehaviour:
   m_ObjectHideFlags: 1

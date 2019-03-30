@@ -23,8 +23,10 @@ public class FlagController : MonoBehaviour {
     FlagPickup HeldFlag = null;
     bool CanPickupFlag = true;
     public Transform flagPosition;
+    private GrabPole2 ikAnimator;
     void Start() 
     {
+        ikAnimator = GetComponent<GrabPole2>();
         this.transform.parent.parent.GetComponentInChildren<BehaviourPuppet> ().
                             onLoseBalance.unityEvent.AddListener(this.OnLoseBalance);
 
@@ -103,7 +105,9 @@ public class FlagController : MonoBehaviour {
         {
             Flag.gameObject.transform.SetParent(flagPosition);
             Flag.gameObject.transform.localPosition = Vector3.zero;
-
+            ikAnimator.pole = Flag.gameObject.transform;
+            ikAnimator.nearPole = true;
+            ikAnimator.grabPole = true;
         }
         else
         {
@@ -115,6 +119,9 @@ public class FlagController : MonoBehaviour {
     {
         this.HeldFlag.transform.SetParent(null);
         this.HeldFlag.IsBeingHeld = false;
+        ikAnimator.pole = null;
+        ikAnimator.nearPole = false;
+        ikAnimator.grabPole = false;
 
         GoalZone[] Goal = this.CheckPickupAreaForObjectsOfType<GoalZone> ();
         if(Goal.Length > 0) 

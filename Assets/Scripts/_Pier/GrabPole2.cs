@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RootMotion.FinalIK;
 using RootMotion.Dynamics;
+using SnowDay.Diego.CharacterController;
 
 public class GrabPole2 : MonoBehaviour {
 
@@ -22,14 +23,16 @@ public class GrabPole2 : MonoBehaviour {
 
     Transform offsetter;
     float weight = 0;
-    public bool isShovelWar;
+   // public bool isShovelWar;
     bool gettingUp;
 
 
     // Use this for initialization
-    void Start () {
-        IK = GetComponent<FullBodyBipedIK>();
-        puppet = transform.parent.GetComponentInChildren<BehaviourPuppet>();
+    void Start ()
+    {
+        IK = GetComponentInParent<FullBodyBipedIK>();
+
+        puppet = transform.GetComponentInParent<PlayerController>().transform.GetComponentInChildren<BehaviourPuppet>();
 
 
        
@@ -37,7 +40,7 @@ public class GrabPole2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(puppet.state);
+        //Debug.Log(puppet.state);
 
         //if(leftHand == null)
         //{
