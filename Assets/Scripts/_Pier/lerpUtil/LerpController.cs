@@ -15,18 +15,55 @@ public class LerpController : MonoBehaviour {
     public baseLerper[] lerps;
     PierInputManager input;
     public PierInputManager.ButtonName ping = PierInputManager.ButtonName.Y;
-	// Use this for initialization
-	void Start () {
+
+    //-----------------------------
+    private AudioManager audioManager;
+    private bool onetime = false;
+
+    //-----------------------------
+
+
+
+    // Use this for initialization
+    void Start () {
+
         input = gameObject.GetComponentInParent<PierInputManager>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        //-----------------------------
+        audioManager = GameObject.FindObjectOfType<AudioManager>();
+        //-----------------------------
+
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
         if (input.GetButtonDown(ping))
         {
-            startLerp();
+            if (!onetime)
+            {
+                if(audioManager != null)
+                {
+                    audioManager.Play("UPGRADE");
+
+                }
+                startLerp();
+
+                onetime = true;
+            }      
         }
-	}
+
+        if (input.GetButtonUp(ping))
+        {
+           
+          onetime = false;
+           
+        }
+
+
+
+    }
     [ContextMenu("lerp")]
     public void startLerp()
     {

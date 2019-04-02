@@ -38,7 +38,7 @@ GameObject:
   m_Layer: 0
   m_Name: FlagPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 4298398590201888}
   - component: {fileID: 114207006261996030}
   - component: {fileID: 114574013248446420}
+  - component: {fileID: 114529797214533764}
   m_Layer: 0
   m_Name: CaptureTheFlagCode
   m_TagString: Untagged
@@ -78,7 +79,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1652687647373624}
-  m_LocalRotation: {x: -0, y: -0.6154675, z: -0, w: 0.78816235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -94,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579980918368428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.262, y: 1.174, z: -0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4298398590201888}
@@ -112,9 +113,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupFlagButton: 11
-  ThrowSnowButton: 13
-  PickupRadius: 1
   PickupOffset: {x: 0, y: 1, z: 0}
+  PickupSphereGizmoColor: {r: 0, g: 0, b: 0, a: 1}
+  flagPosition: {fileID: 4479904225489770}
+--- !u!114 &114529797214533764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652687647373624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e954b94c6b37c948beb7b9e8456a1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puppet: {fileID: 0}
+  grabSpeed: 3
+  nearPole: 0
+  grabPole: 0
+  isHolding: 0
+  pole: {fileID: 0}
 --- !u!114 &114574013248446420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +147,7 @@ MonoBehaviour:
   projectileLauncher: {fileID: 114795509818888490}
   mySelf: {fileID: 0}
   ShootButton: 12
+  autoAimAngle: 25
 --- !u!114 &114795509818888490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,14 +161,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1512562867516068, guid: 9cadedd6b185eb34fb30f49845e2bd53,
     type: 2}
-  DefaultShot:
-    speed: 15
-    angle: 8
   ChargeShot:
     speed: 10
     angle: 45
   chargeSpeed: 5
   maxChargeSpeed: 10
   AimAssistRadius: 0.5
-  playerAmmo: 5
+  CurrentplayerAmmo: 5
   autoAimAngle: 25

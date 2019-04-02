@@ -58,4 +58,8 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
             Team.Goal.OwningTeam = Team;
         }
     }
+    private void OnDisable()
+    {
+        Debug.Break();
+    }
 }

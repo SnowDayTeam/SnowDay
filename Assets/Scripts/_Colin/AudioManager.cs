@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour {
     {
        // Play("Music");
     }
+
     //call this to play an audio file
     public void Play(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -44,6 +45,29 @@ public class AudioManager : MonoBehaviour {
             return;
         }
             s.source.Play();
+
+            //----- Debug--------------
+            Debug.Log("Did Play " + name);
+
+            //-------------------
+
+    }
+    //call this to play an audio file
+    public void PlayOnce(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("AUDIO SOURCE: " + name + " NOT VALID");
+            return;
+        }
+        s.source.PlayOneShot(s.clip);
+
+        //----- Debug--------------
+        Debug.Log("Did Play " + name);
+
+        //-------------------
+
     }
     //call this to pause an audio file
     public void PauseAudio(string name) {

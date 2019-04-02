@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1718233331379622}
+  m_IsPrefabAsset: 1
+--- !u!1 &1718233331379622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4732442121267122}
+  - component: {fileID: 114139818341895326}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4732442121267122
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718233331379622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114139818341895326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718233331379622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f2af99b999e0b4db02aa5489a14d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BALLHIT-001
+    clip: {fileID: 8300000, guid: 5d4ff630084781641bf7732ce62bf0ff, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: DRIVING-001
+    clip: {fileID: 8300000, guid: cc404f1ec3c896a49b612da734932dba, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: DRIVING-002
+    clip: {fileID: 8300000, guid: ef9adaf7303880d4ca87b8e2fbb4a24e, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: DRIVING-003
+    clip: {fileID: 8300000, guid: d635fec0ab992ce4e9fe8b20958f8166, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: HORN-001
+    clip: {fileID: 8300000, guid: a3a4bd70974cbde42ab674cb4b5a85ce, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: HORN-002
+    clip: {fileID: 8300000, guid: 0470c459faec41443a2ffbc291116b6a, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: HORN-003
+    clip: {fileID: 8300000, guid: 7117bbcbc7752ea4081270f2f1cd8cbe, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SCOOP-001
+    clip: {fileID: 8300000, guid: 04e10415a936ed44fbebcab44d3f82fc, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SLAMMING-001
+    clip: {fileID: 8300000, guid: becee63fa66b3de4ab7c4ddf0cb3fc49, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SNOWBALLHIT-001
+    clip: {fileID: 8300000, guid: 521ff8a9d36d5f046848e7581a91f76d, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: UPGRADE
+    clip: {fileID: 8300000, guid: 414615d203136ce40be2612ab62de3a2, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: UPGRADE-002
+    clip: {fileID: 8300000, guid: 597bb1fc37bb9324a8486ff44a909cc5, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDHEAVY-001
+    clip: {fileID: 8300000, guid: d4c593f0ed484cf47a4d8f335d9652c1, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDHEAVY-002
+    clip: {fileID: 8300000, guid: d9afca9313f3c2649b286e1e472b1025, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDHEAVY-003
+    clip: {fileID: 8300000, guid: 705e22b9ea1d95644ab85bc3fa430d87, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDWHIST-001
+    clip: {fileID: 8300000, guid: 608def824c41b9a47b36701cc9e27576, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDWHIST-002
+    clip: {fileID: 8300000, guid: ea9e610d4d7655048a8d9f5c8147bca5, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDWHIST-003
+    clip: {fileID: 8300000, guid: efda581e62b1be840973bd7a645d9bdc, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SNOWBLOW-001
+    clip: {fileID: 8300000, guid: 3c7a465964b0f3f43889c262680a36db, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SNOWBLOW-002
+    clip: {fileID: 8300000, guid: f6bfc09254c5df34cbba75183903ee5d, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: SNOWBLOW-003
+    clip: {fileID: 8300000, guid: ddcb606b3501c04458e16a4c2cca43d7, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDLOW-001
+    clip: {fileID: 8300000, guid: 58359746beb9eb04dad20f0591f2bae6, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDLOW-002
+    clip: {fileID: 8300000, guid: 5026d0da1cf59764ebf8b23c90c5d108, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  - name: WINDLOW-003
+    clip: {fileID: 8300000, guid: 23de99e0053184949a39264e54a1b394, type: 3}
+    volume: 1
+    pitch: 0
+    looping: 0
+    source: {fileID: 0}
+  DontDestroy: 0

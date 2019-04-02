@@ -57,6 +57,8 @@ public class GrabPole : MonoBehaviour {
                   leftHand = child;
                 }
             }
+            weight = 1;
+
         }
     }
 	
@@ -99,15 +101,20 @@ public class GrabPole : MonoBehaviour {
 
                     if (hasFallen == false)
                     {
-                        pole.transform.parent = leftHand;
-                    }
+                       // pole.transform.parent = leftHand;
 
-                    hasFallen = true;
+                        hasFallen = true;
+                        //pole.GetComponent<ShovelLerpController>().enabled = false;
+                      //  pole.GetComponent<lerpPosition>().enabled = false;
+                      //  pole.GetComponent<lerpRotation>().enabled = false;
+                    }
+                    pole.position = leftHand.position;
+                    weight = 0;
                     if (hasFallen == true)
                     {
                         if (weight > 0)
                         {
-                            weight -= Time.deltaTime * grabSpeed;
+                           // weight -= Time.deltaTime * grabSpeed;
                         }
                     }
                 }
@@ -117,10 +124,11 @@ public class GrabPole : MonoBehaviour {
                     print("getting up");
 
                     hasFallen = false;
-                    pole.transform.parent = transform.Find("Shovelling Prefab");
-                    pole.transform.localPosition = Vector3.Lerp(pole.transform.localPosition, shovelStartPos, shovelReturnTime);
-                    pole.transform.localRotation = Quaternion.Lerp(pole.transform.localRotation, shovelStartRot, shovelReturnTime);
+                    //  pole.transform.parent = transform.Find("Shovelling Prefab");
+                    pole.transform.localPosition = shovelStartPos;//Vector3.Lerp(pole.transform.localPosition, shovelStartPos, shovelReturnTime);
+                  //  pole.transform.localRotation = Quaternion.Lerp(pole.transform.localRotation, shovelStartRot, shovelReturnTime);
                     gettingUp = true;
+                    weight = 1;
                 }
                 //if we've stood up after a fall, reset the shovel position
                 if (puppet.state == BehaviourPuppet.State.Puppet)
@@ -137,7 +145,7 @@ public class GrabPole : MonoBehaviour {
 
             if (weight < 1)
             {
-                weight += Time.deltaTime * grabSpeed;
+            //    weight += Time.deltaTime * grabSpeed;
             }
 
             
@@ -147,7 +155,7 @@ public class GrabPole : MonoBehaviour {
         {
             if (weight > 0)
             {
-                weight -= Time.deltaTime * grabSpeed;
+          //      weight -= Time.deltaTime * grabSpeed;
             }
         }
         IK.solver.leftHandEffector.positionWeight = weight; 
