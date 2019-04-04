@@ -112,6 +112,9 @@ public class ShovelController : MonoBehaviour
             {
                 shovelLerp.shovelling = true;
                 shovelLerp.throwing = false ;
+                shovelLerp.canGetStartPos = true;
+                shovelLerp.canGetStartPos2 = true;
+
 
             }
         }
