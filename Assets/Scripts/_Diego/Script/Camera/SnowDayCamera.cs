@@ -8,12 +8,13 @@ public class SnowDayCamera : MonoBehaviour
 {
     [Header("Players")]
     public List<PlayerController> Players;
+
     [Header("Non-Player Objects")]
     public List<GameObject> NPOtoTrack;
+
     [Header("Camera Horizontal Rotation")]
     public int Resolution = 20;
     public int CurrentStep = 1;
-
 
     public float CameraYOffset = 10;
     public float Radius = 10;
@@ -39,6 +40,10 @@ public class SnowDayCamera : MonoBehaviour
 
     public bool CameraShaking = false;
 
+    void Start() {
+        
+    }
+
     public void Initialize()
     {
         cam = GetComponentInChildren<Camera>();
@@ -52,13 +57,17 @@ public class SnowDayCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            this.StartCoroutine(this.CameraShake(0.25f, 0.15f));
+        }
+
         CameraDistance();
         FindNextCameraPosition();
         if(cam != null)
         {
             if (Vector3.Distance(cam.transform.position, nextCameraPos) > 0.1f && !CameraShaking)
             {
-                //   Debug.Log("Moved Camera");
+                //Debug.Log("Moved Camera");
                 MoveCamera();
             }
         }
@@ -196,7 +205,6 @@ public class SnowDayCamera : MonoBehaviour
         Gizmos.color = Color.red;
         theta = 0;
         float thetaStep = (2f * Mathf.PI) / Resolution;
-
     
         Gizmos.DrawWireSphere(AveragePosition.GetValueOrDefault(), 1);
         for (int i = 0; i < Resolution; i++)
