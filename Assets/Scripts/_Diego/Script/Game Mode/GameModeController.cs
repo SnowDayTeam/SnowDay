@@ -51,7 +51,7 @@ namespace SnowDay.Diego.GameMode
 
        public IEnumerator LoadGameMode(LevelData selectedLevel)
         {
-            Debug.Log("loading");
+//            Debug.Log("loading");
             Scene LevelSelectScene = SceneManager.GetActiveScene();
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(selectedLevel.sceneName, LoadSceneMode.Additive);

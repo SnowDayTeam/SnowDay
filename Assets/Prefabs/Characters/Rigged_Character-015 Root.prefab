@@ -1258,7 +1258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224295768210264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.728436, y: -0.08, z: 5.155408}
+  m_LocalPosition: {x: 60.585392, y: 14.83874, z: 30.75689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4121971690647696}
@@ -2348,11 +2348,11 @@ MonoBehaviour:
   unpinnedMuscleKnockout: 1
   dropProps: 0
   canGetUp: 1
-  getUpDelay: 3
+  getUpDelay: 0
   blendToAnimationTime: 0.3
   maxGetUpVelocity: 0.4
   minGetUpDuration: 1.5
-  getUpCollisionResistanceMlp: 2
+  getUpCollisionResistanceMlp: 10
   getUpRegainPinSpeedMlp: 1
   getUpKnockOutDistanceMlp: 1
   getUpOffsetProne: {x: 0, y: 0, z: 0}
@@ -3238,15 +3238,15 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 512
-  m_MovingTurnSpeed: 600
-  m_StationaryTurnSpeed: 400
   m_JumpPower: 6.9
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
+  m_MoveSpeedBonus: 0
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 1
-  maxSprintTime: 2
+  m_MovingTurnSpeed: 600
+  m_StationaryTurnSpeed: 400
 --- !u!136 &136052989217887192
 CapsuleCollider:
   m_ObjectHideFlags: 1

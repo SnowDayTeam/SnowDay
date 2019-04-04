@@ -32,6 +32,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
     public bool lightsOut;
     GameObject sunObject;
     PlayerController opponentTarget;
+    public GameObject explosion;
 
     private void Start()
     {
@@ -136,12 +137,12 @@ public class LightningPowerSphereHit : MonoBehaviour {
 
     private void LightningStrike()
     {
-        //Debug.Break();
         //Lerp up the ball 
         lerpPosScript.endPosition = transform.position;
         lerpPosScript.isLerping = true;
         transform.position = opponentTarget.GetCharacterPosition();
         lerpPosScript.startPositon = transform.GetChild(0).transform.position;
+        Instantiate(explosion, transform.position, Quaternion.identity, null);
 
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
