@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using RootMotion.Dynamics;
+using SnowDay.Diego.CharacterController;
 
 public class LightningPowerSphereHit : MonoBehaviour {
 
@@ -30,6 +31,10 @@ public class LightningPowerSphereHit : MonoBehaviour {
     public float sunDownSpeed = 1f;
     public bool lightsOut;
     GameObject sunObject;
+    GamemodeManagerBase gm;
+    List<PlayerController> players;
+    Transform playertoHit;
+
 
     private void Start()
     {
@@ -41,6 +46,14 @@ public class LightningPowerSphereHit : MonoBehaviour {
         lightStartIntensity = sunObject.GetComponent<Sun>().startIntensity;
         godRay = transform.GetChild(2).GetComponent<Light>();
         godRay.transform.parent = null;
+        gm = FindObjectOfType<GamemodeManagerBase>();
+        players = gm.Players;
+        print(gm);
+        playertoHit = players[Random.Range(0, players.Count)].transform;
+        for (int i = 0; i < players.Count; i++)
+        {
+            Debug.Log(players[i]);
+        }
     }
 
 
@@ -100,8 +113,10 @@ public class LightningPowerSphereHit : MonoBehaviour {
 
     private void LightningStrike()
     {
+        //randomize player to hit
+        print(playertoHit.position);
         //Lerp up the ball 
-        lerpPosScript.endPosition = transform.position;
+        lerpPosScript.endPosition = playertoHit.position;
         lerpPosScript.isLerping = true;
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
@@ -120,20 +135,20 @@ public class LightningPowerSphereHit : MonoBehaviour {
         //fade out sun
         if (sun.intensity > sunLowIntensity)
         {
-            print("sundown");
+           // print("sundown");
             sun.intensity -= Time.deltaTime * sunDownSpeed;
         }
         if (godRay != null)
         {
             if (godRay.intensity < 14)
             {
-                print("spotlight up");
+              //  print("spotlight up");
 
                 godRay.intensity += Time.deltaTime * sunDownSpeed;
             }
             if (godRay.spotAngle > 10)
             {
-                print("spotlight up");
+               // print("spotlight up");
 
                 godRay.spotAngle -= Time.deltaTime * sunDownSpeed * 20;
             }

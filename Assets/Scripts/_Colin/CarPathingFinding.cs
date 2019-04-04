@@ -137,8 +137,8 @@ public class CarPathingFinding : MonoBehaviour {
             rotation = Mathf.Clamp((rotation + accelAngular), 0.0F, rotationMax);
             accelAngular = Mathf.Clamp((accelAngular + accelAngularInc), 0.0F, accelAngularMax);
 
-          
-            if (distTo < stopDist && waypointIndex == reverseWaypoints.Length - 1) {
+            print("dist to: " + distTo + " stopDist:" + stopDist);
+            if (distTo < stopDist - 1.5f && waypointIndex == reverseWaypoints.Length - 1) {
                 isReversing = false;
                 waypointIndex = 0;
                 moveTarget = waypointsToExit[waypointIndex].transform.position;
