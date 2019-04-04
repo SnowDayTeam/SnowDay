@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SnowDay.Diego.CharacterController;
 
 public class SnoccerGamemodeManager : GamemodeManagerBase 
 {
@@ -18,8 +19,21 @@ public class SnoccerGamemodeManager : GamemodeManagerBase
         base.Start();
 
         this.SetupTeamGoals();
-    }
+        this.SetPlayerTeamIDs();
 
+    }
+    private void SetPlayerTeamIDs()
+    {
+        for (int i = 0; i < this.Teams.Length; i++)
+        {
+            //Teams[i].PlayersAlive = Teams[i].Players.Count;
+
+            foreach (PlayerController player_controller in this.Teams[i].Players)
+            {
+                player_controller.GetComponentInChildren<PlayerActor>().TeamID = i;
+            }
+        }
+    }
     /// <summary>
     /// Fake event called by SnoccerGoal
     /// </summary>

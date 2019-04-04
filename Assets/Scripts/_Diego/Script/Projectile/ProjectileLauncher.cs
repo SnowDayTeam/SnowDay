@@ -116,6 +116,12 @@ public class ProjectileLauncher : MonoBehaviour
             projectileSpeedValue = GlobalSettingsManager.s.DefaultShotSpeed;
             projectileAngleValue = GlobalSettingsManager.s.DefaultShotAngle;
             proj.transform.localScale = GlobalSettingsManager.s.BallScale;
+
+            if(CurrentplayerAmmo == 0)
+            {
+                StartCoroutine(reload());
+
+            }
         }
         else
         {

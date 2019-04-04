@@ -34,9 +34,13 @@ namespace SnowDay.Diego.CharacterController
         bool m_Crouching;
         [HideInInspector]
         public float m_MovingTurnSpeed;
+
         [HideInInspector]
 
         public float m_StationaryTurnSpeed;
+
+
+        private BallSpawnerModifiedDC realHackyShit;
         public bool Active
         {
             get
@@ -48,7 +52,18 @@ namespace SnowDay.Diego.CharacterController
                 gameObject.SetActive(value);
             }
         }
-
+        public void ThrowSnow()
+        {
+            if(realHackyShit == null)
+            {
+                realHackyShit = GetComponentInChildren<BallSpawnerModifiedDC>();
+            }
+            else
+            {
+                realHackyShit. ThrowBall();
+            }
+            Debug.Log("yooooo");
+        }
         public void Initialize()
         {
             currentSprintTime = GlobalSettingsManager.s.MaxSprintTime;

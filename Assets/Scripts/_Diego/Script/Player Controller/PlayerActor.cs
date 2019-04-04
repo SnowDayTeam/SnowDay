@@ -31,20 +31,24 @@ public class PlayerActor : MonoBehaviour
 
     public void DecreaseHealth(int amout, int oppTeamID)
     {
-        if (isAlive)
+        if(manager != null)
         {
-            Health -= amout;
-            if (Health <= 0)
+            if (isAlive)
             {
-                //int oppTeamID = TeamID == 1 ? 0 : 1;
-                this.manager.OnPlayerDied(this.TeamID, oppTeamID);
-                //manager.IncreaseTeamScore(1, oppTeamID);
-                //manager.playerDeadReport(TeamID);
-                //Destroy(gameObject);
-                GetComponentInParent<PlayerController>().gameObject.GetComponentInChildren<PuppetMaster>().Kill();
-                isAlive = false;
+                Health -= amout;
+                if (Health <= 0)
+                {
+                    //int oppTeamID = TeamID == 1 ? 0 : 1;
+                    this.manager.OnPlayerDied(this.TeamID, oppTeamID);
+                    //manager.IncreaseTeamScore(1, oppTeamID);
+                    //manager.playerDeadReport(TeamID);
+                    //Destroy(gameObject);
+                    GetComponentInParent<PlayerController>().gameObject.GetComponentInChildren<PuppetMaster>().Kill();
+                    isAlive = false;
+                }
             }
         }
+      
     }
     private void Update()
     {

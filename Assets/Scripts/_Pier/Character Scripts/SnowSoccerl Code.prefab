@@ -68,6 +68,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4720433112602714}
+  - component: {fileID: 114217053264591370}
+  - component: {fileID: 114392773511319480}
   m_Layer: 16
   m_Name: SnowSoccerl Code
   m_TagString: Untagged
@@ -102,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914477633944600}
-  - component: {fileID: 114208917376155640}
+  - component: {fileID: 114825774368823994}
   m_Layer: 16
   m_Name: Throw Spawn Point
   m_TagString: Untagged
@@ -174,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917727382029928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27500027, y: 1.428, z: 0.29999983}
+  m_LocalPosition: {x: 0, y: 1.2940698, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4720433112602714}
@@ -301,27 +303,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114208917376155640
+--- !u!114 &114217053264591370
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1917727382029928}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1285648504891624}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52488028109b4f3d95c0bff5fd755af, type: 3}
+  m_Script: {fileID: 11500000, guid: 1056f82fa0acd854f8158d4737826b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1019455541164874, guid: b028c853c3bc54d37835414c73440c8f, type: 2}
-  LaunchVelocity: 20
-  throwDelay: 0.5
-  inputName: FireP1
-  BallPickedUp: 0
-  IK: {fileID: 0}
-  IsReaching: 0
-  lerpTime: 1
-  ReachPoint: {fileID: 4719567093668292}
-  DoneReaching: 0
+  projectileLauncher: {fileID: 114825774368823994}
+  mySelf: {fileID: 114392773511319480}
+  ShootButton: 12
+  animator: {fileID: 0}
+  autoAimAngle: 25
 --- !u!114 &114315607615721456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,6 +334,41 @@ MonoBehaviour:
   lerpTime: 5
   isIn: 0
   ball: {fileID: 0}
+--- !u!114 &114392773511319480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1285648504891624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47382bc9c7cb4404da1cbbcd257d5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 33333
+  TeamID: 0
+  isAlive: 1
+--- !u!114 &114825774368823994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917727382029928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a925277df7ddd459331bb0ed69f0be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1512562867516068, guid: 9cadedd6b185eb34fb30f49845e2bd53,
+    type: 2}
+  ChargeShot:
+    speed: 10
+    angle: 45
+  chargeSpeed: 5
+  maxChargeSpeed: 10
+  AimAssistRadius: 0.5
+  CurrentplayerAmmo: 5
+  autoAimAngle: 25
 --- !u!114 &114974772323255202
 MonoBehaviour:
   m_ObjectHideFlags: 1

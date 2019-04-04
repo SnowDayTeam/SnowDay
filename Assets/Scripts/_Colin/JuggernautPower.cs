@@ -74,13 +74,17 @@ public class JuggernautPower : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        player = other.GetComponentInParent<PlayerController>();
+        if(player == null)
+        {
+            player = other.GetComponentInParent<PlayerController>();
+
+        }
         if (player != null && isInvuln == false)
         {
             puppet = player.GetComponentInChildren<PuppetMaster>();
             puppet.mode = PuppetMaster.Mode.Kinematic;
 
-            Debug.Log("Juggernaut powerup Start");
+            Debug.Log("Juggernaut powerup Start " +player.gameObject.name);
             mesh.enabled = false;
             isInvuln = true;
         }

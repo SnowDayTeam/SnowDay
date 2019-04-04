@@ -21,8 +21,21 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
         base.Start();
 
         this.SetupGoalZones();
-    }
+        this.SetPlayerTeamIDs();
 
+    }
+    private void SetPlayerTeamIDs()
+    {
+        for (int i = 0; i < this.Teams.Length; i++)
+        {
+            //Teams[i].PlayersAlive = Teams[i].Players.Count;
+
+            foreach (PlayerController player_controller in this.Teams[i].Players)
+            {
+                player_controller.GetComponentInChildren<PlayerActor>().TeamID = i;
+            }
+        }
+    }
     //protected override void Start()
     //{
     //    base.Start();

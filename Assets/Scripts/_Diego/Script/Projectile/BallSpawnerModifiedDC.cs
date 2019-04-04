@@ -18,7 +18,7 @@ public class BallSpawnerModifiedDC : MonoBehaviour
     private float timeFired;
     public PierInputManager.ButtonName ShootButton = PierInputManager.ButtonName.X;
     private PierInputManager playerInputController;
-
+    public Animator animator;
     //SnowPick Up
     //   private bool BallPickedUp;
     //public FullBodyBipedIK IK;
@@ -34,16 +34,25 @@ public class BallSpawnerModifiedDC : MonoBehaviour
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         playerInputController = gameObject.GetComponentInParent<PierInputManager>();
+        animator = GetComponentInParent<Animator>();
        // IK = gameObject.GetComponentInParent<FullBodyBipedIK>();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
         if (playerInputController.GetButtonDown(ShootButton))
         {
-            ThrowBall();
+            if(projectileLauncher.CurrentplayerAmmo > 0)
+            {
+                animator.SetTrigger("ThrowHigh");
+
+            }
+
+
 
             //if (!BallPickedUp)
             //{
@@ -54,11 +63,11 @@ public class BallSpawnerModifiedDC : MonoBehaviour
             //else
             //{
             //    print("Hit A Throwing");
-               
+
             //}
 
             //timeFired = Time.time;
-          
+
         }
 
   //      if (IsReaching==true)
@@ -138,20 +147,22 @@ public class BallSpawnerModifiedDC : MonoBehaviour
         Gizmos.DrawLine(projectileLauncher.transform.position, projectileLauncher.transform.position + projectileLauncher.transform.forward * 5);
 
     }
-    private void ThrowBall()
+    //now called from SnoDayCharacter.cs line 63
+    public void ThrowBall()
     {
-        
-        
+
+
         //get reference to all players
-        var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
-        
-        //Debug.Log(AllPlayers);
+        var AllPlayers = GamemodeManagerBase.Instance.Players;
+           
+
+        Debug.Log(AllPlayers.Count);
 
         for (int i = 0; i < AllPlayers.Count; i++)
         {
             if(AllPlayers[i].GetComponentInChildren<PlayerActor>().TeamID != mySelf.TeamID)
             {
-                //debug.log("check enemies");
+                Debug.Log("check enemies");
                 float angleBetweenPlayers = Vector3.Angle((AllPlayers[i].GetComponentInChildren<PlayerActor>().transform.position) - mySelf.transform.position, mySelf.transform.forward);
                 //Debug.Log(AllPlayers[i].name);
 
