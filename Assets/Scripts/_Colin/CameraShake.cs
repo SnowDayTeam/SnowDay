@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoBehaviour {    
+public class CameraShake : MonoBehaviour {
 
+    public void StartShake(float duration, float magnitude)
+    {
+        StartCoroutine(ShakeCamera(duration, magnitude));
+    }
     public IEnumerator ShakeCamera(float duration, float magnitude) {
         Vector3 startPos = transform.localPosition;
 

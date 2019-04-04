@@ -155,7 +155,7 @@ namespace SnowDay.Diego.CharacterController
             puppetMaster = null;// gameObject.GetComponentInChildren<PuppetMaster>();
             puppetMaster = SnowDayCharacterGameObject.GetComponentInChildren<PuppetMaster>();
 
-            Debug.Log(puppetMaster.gameObject);
+//            Debug.Log(puppetMaster.gameObject);
             puppetMaster.mode = PuppetMaster.Mode.Kinematic;
             Color c = SnowDayCharacterGameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].GetColor("_TeamColor");
             playerIndicator.GetComponentInChildren<SpriteRenderer>().color = c;
