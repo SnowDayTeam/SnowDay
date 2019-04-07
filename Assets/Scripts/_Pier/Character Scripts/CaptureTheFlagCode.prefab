@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 114207006261996030}
   - component: {fileID: 114574013248446420}
   - component: {fileID: 114529797214533764}
+  - component: {fileID: 114874301137932916}
   m_Layer: 0
   m_Name: CaptureTheFlagCode
   m_TagString: Untagged
@@ -145,8 +146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileLauncher: {fileID: 114795509818888490}
-  mySelf: {fileID: 0}
+  mySelf: {fileID: 114874301137932916}
   ShootButton: 12
+  animator: {fileID: 0}
   autoAimAngle: 25
 --- !u!114 &114795509818888490
 MonoBehaviour:
@@ -169,3 +171,17 @@ MonoBehaviour:
   AimAssistRadius: 0.5
   CurrentplayerAmmo: 5
   autoAimAngle: 25
+--- !u!114 &114874301137932916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652687647373624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47382bc9c7cb4404da1cbbcd257d5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 999
+  TeamID: 0
+  isAlive: 1

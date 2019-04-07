@@ -85,6 +85,8 @@ MonoBehaviour:
   projectileLauncher: {fileID: 114574300148058086}
   mySelf: {fileID: 114912820843240048}
   ShootButton: 12
+  animator: {fileID: 0}
+  autoAimAngle: 25
 --- !u!114 &114574300148058086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,16 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1512562867516068, guid: 9cadedd6b185eb34fb30f49845e2bd53,
     type: 2}
-  DefaultShot:
-    speed: 600
-    angle: 8
   ChargeShot:
     speed: 10
     angle: 45
   chargeSpeed: 5
   maxChargeSpeed: 10
   AimAssistRadius: 0.5
-  playerAmmo: 5
+  CurrentplayerAmmo: 0
   autoAimAngle: 25
 --- !u!114 &114912820843240048
 MonoBehaviour:
@@ -120,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47382bc9c7cb4404da1cbbcd257d5bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 6
+  Health: 3
   TeamID: 0
   isAlive: 1
