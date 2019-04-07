@@ -110,6 +110,12 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         this.UpdateGUIScores();
         this.UpdateGameDuration();
         this.CheckGameEndConditions();
+
+        if(Input.GetKey(KeyCode.Q)  && Input.GetKey(KeyCode.LeftControl))
+        {
+            this.StartCoroutine(this.LoadLevelSelect());
+
+        }
     }
 
     /// <summary>
