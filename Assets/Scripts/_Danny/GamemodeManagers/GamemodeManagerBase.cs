@@ -27,7 +27,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     [SerializeField] protected float GameDuration = 1.0f;
 
     /// <summary>
-    /// Instance of this class, WARNING this is not a singleton class, 
+    /// Current instance of this class, WARNING this is NOT a singleton class, 
     /// however there should only be one instance of this class
     /// </summary>
     static public GamemodeManagerBase Instance = null;
@@ -48,18 +48,36 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         public int Score = 0;
         /// The color of this team
         public Color TeamColor = Color.black;
+        [Tooltip("The name of the team, used to display winner during endgame.")]
+        public string TeamName = "NAME ERROR";
     }
 
     abstract public TeamBase[] GetTeams();
-    /// <summary>
-    /// Display results / win screen.
-    /// </summary>
-    abstract protected void CheckGameWinnerAndDisplayResults();
+    public int GetTeamIndex(PlayerController player)
+    {
+        TeamBase[] team = GetTeams();
+        for (int i = 0; i < team.Length; i++)
+        {
+            if (team[i].Players.Contains(player))
+        {
+                return i;
+            }
+        }
+        return 0;
+    }
+    public PlayerController GetRandomPlayerFromTeam(int teamNum)
+    {
+        TeamBase[] team = GetTeams();
+        int randIndex = Random.Range(0, team[teamNum].Players.Count);
 
-    void Awake()
+        return team[teamNum].Players[randIndex];
+    }
+    protected virtual void Awake()
     {
         GamemodeManagerBase.Instance = this;
         this.IsInfiniteGameDuration = this.GameDuration == 0;
+        //just in case this is left on in the inspector
+        //this.enabled = false;
     }
 
     protected virtual void Start() 
@@ -112,6 +130,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
             for(int i = 0 ; i < team.Players.Count; i++) 
             {
                 team.Players[i].MoveCharacter(team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
+                Debug.Log("moved0 " + team.SpawnLocations[i % team.SpawnLocations.Length].transform.position);
             }
         }
     }
@@ -122,9 +141,42 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             foreach (PlayerController player in team.Players)
             {
-              //  player.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_TeamColor", team.TeamColor);
-                player.GetComponentInChildren<Projector>().material.SetColor("_Color", team.TeamColor);
+                //  player.GetComponentInChildren<SkinnedMeshRenderer>().materials[0].SetColor("_TeamColor", team.TeamColor);
+                player.GetComponentInChildren<Projector>().material = Material.Instantiate(player.GetComponentInChildren<Projector>().material);
+            player.GetComponentInChildren<Projector>().material.SetColor("_Color", team.TeamColor);
+                Debug.Log("dsad "+ team.TeamColor);
             }
+        }
+    }
+
+    /// <summary>
+    /// Display results / win screen.
+    /// </summary>
+    protected virtual void CheckGameWinnerAndDisplayResults() 
+    {
+        List<TeamBase> WinningTeams = new List<TeamBase> ();
+        int HighestScore = 0;
+        foreach(TeamBase Team in this.GetTeams()) 
+        {
+            if(Team.Score > HighestScore) 
+            {
+                WinningTeams.Clear();
+                WinningTeams.Add(Team);
+                HighestScore = Team.Score;
+            }
+            else if (Team.Score == HighestScore) 
+            {
+                WinningTeams.Add(Team);
+            }
+        }
+        //winner decided
+        if(WinningTeams.Count == 1) 
+        {
+            this.GuiManager.ShowEndGameWindow(WinningTeams[0].TeamName + " Wins!");
+        }
+        else 
+        {
+            this.GuiManager.ShowEndGameWindow("Tie Game!");
         }
     }
 
@@ -134,7 +186,6 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             return;
         }
-          
 
         if(this.GameDuration <= 0.0f)
         {
@@ -173,7 +224,6 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             return;
         }
-       
 
         foreach(PlayerController player in this.Players)
         {
@@ -187,7 +237,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels
         //should be done in one place only and this has many disadvantages
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LevelSelect");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(GlobalSettingsManager.s.levelSelectScene);
     }
 
     private void UpdateGUIScores() 

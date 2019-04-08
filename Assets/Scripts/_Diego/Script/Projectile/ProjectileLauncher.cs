@@ -32,7 +32,7 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject projectilePrefab = null;
 
     [Header("Bullet Modes")]
-    public ProjectileAttribs DefaultShot = new ProjectileAttribs(20f, 100f);
+    //public ProjectileAttribs DefaultShot = new ProjectileAttribs(20f, 100f);
 
     public ProjectileAttribs ChargeShot = new ProjectileAttribs(10f, 45f);
 
@@ -68,22 +68,25 @@ public class ProjectileLauncher : MonoBehaviour
     private const float renderLineOffset = 0.2f;
 
     //player ammo variables
-    public int playerAmmo = 5;
+    public int CurrentplayerAmmo = 5;
 
     //auto aim angle
     public float autoAimAngle = 25.0f;
-
+    public void Start()
+    {
+        CurrentplayerAmmo = GlobalSettingsManager.s.MaxAmmo;
+    }
     /// <summary>
     /// Launch Projectile
     /// </summary>
     /// <param name="attribs">Projectile Attributes</param>
     public void LaunchProjectile(PlayerActor actor)
     {
-        if (playerAmmo > 0)
+        if (CurrentplayerAmmo > 0)
         {
             ProjectileComponent proj = Instantiate(projectilePrefab, transform.position, transform.rotation, null).GetComponent<ProjectileComponent>();
             proj.playerActor = actor; 
-             playerAmmo--;
+             CurrentplayerAmmo--;
 
             //get reference to all players
             //var AllPlayers = GameModeController.GetInstance().GetActivePlayers();
@@ -108,10 +111,11 @@ public class ProjectileLauncher : MonoBehaviour
             //    }
             //}
 
-            proj.LaunchProjectile(DefaultShot.speed, DefaultShot.angle, transform.forward);
-
-            projectileSpeedValue = DefaultShot.speed;
-            projectileAngleValue = DefaultShot.angle;
+            proj.LaunchProjectile(GlobalSettingsManager.s.DefaultShotSpeed, GlobalSettingsManager.s.DefaultShotAngle, transform.forward);
+            proj.GetComponent<Rigidbody>().mass = GlobalSettingsManager.s.BallWeight;
+            projectileSpeedValue = GlobalSettingsManager.s.DefaultShotSpeed;
+            projectileAngleValue = GlobalSettingsManager.s.DefaultShotAngle;
+            proj.transform.localScale = GlobalSettingsManager.s.BallScale;
         }
         else
         {
@@ -121,9 +125,9 @@ public class ProjectileLauncher : MonoBehaviour
 
     private IEnumerator reload()
     {
-        playerAmmo = 0; 
-          yield return new WaitForSeconds(3);
-        playerAmmo = 5;
+        CurrentplayerAmmo = 0; 
+          yield return new WaitForSeconds(GlobalSettingsManager.s.ReloadTime);
+        CurrentplayerAmmo = GlobalSettingsManager.s.MaxAmmo ;
     }
 
     /// <summary>
@@ -132,7 +136,7 @@ public class ProjectileLauncher : MonoBehaviour
     /// </summary>
     /// <param name="attribs"></param>
     /// <param name="pressed"></param>
-    public void LaunchChargeProjectile(bool pressed)
+    public void LaunchChargeProjectile(bool pressed)///do not use 
     {
         if (pressed && !charging)
         {
@@ -250,16 +254,16 @@ public class ProjectileLauncher : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        if (EditorApplication.isPlaying)
-        {
-            gismoStartPos = transform.position;
-            gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
-            for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
-            {
-                Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
-            }
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(AimAssistLandingPos, AimAssistRadius);
-        }
+        //if (EditorApplication.isPlaying)
+        //{
+        //    gismoStartPos = transform.position;
+        //    gizmosArcPositions = CalculatePositions(projectileSpeedValue, projectileAngleValue);
+        //    for (int i = 0; i < gizmosArcPositions.Length - 1; i++)
+        //    {
+        //        Gizmos.DrawLine(gizmosArcPositions[i], gizmosArcPositions[i + 1]);
+        //    }
+        //    Gizmos.color = Color.cyan;
+        //    Gizmos.DrawWireSphere(AimAssistLandingPos, AimAssistRadius);
+        //}
     }
 }

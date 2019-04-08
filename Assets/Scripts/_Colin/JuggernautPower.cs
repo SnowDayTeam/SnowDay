@@ -49,7 +49,11 @@ public class JuggernautPower : MonoBehaviour {
             //Set sphere Position
             if (juggernautPlayerSphere != null)
             {
-                juggernautPlayerSphere.parent = player.GetComponentInChildren<Animator>().transform;
+                if(player== null)
+                {
+                    Debug.LogError("PLAYRE IS NULL");
+                }
+               // juggernautPlayerSphere.parent = player.GetComponentInChildren<SnowDayCharacter>().transform ;
                 juggernautPlayerSphere.position = new Vector3(playerPos.position.x, playerPos.position.y + playerPos.localScale.y / 2 + 0.2f, playerPos.position.z);
                 puppet.mode = PuppetMaster.Mode.Kinematic;
 

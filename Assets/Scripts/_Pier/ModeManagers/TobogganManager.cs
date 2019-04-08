@@ -13,9 +13,16 @@ public class TobogganManager : ModeManager
     // Use this for initialization
     public BaseTeam[] Teams;
 
-    public override void Start ()
+    public new IEnumerator Start ()
     {
+        GameModeController controller = GameModeController.GetInstance();
+        while (controller.GetLoadingStatus() == true)
+        {
+            yield return null;
+        }
+
         AllPlayers = GameModeController.GetInstance().GetActivePlayers();
+
         if (cam != null)
         {
             cam.SetTargetPlayers(AllPlayers);
@@ -33,6 +40,9 @@ public class TobogganManager : ModeManager
 
             Transform boardVisual = Instantiate(boardVisualPrefab, this.transform.position, boardVisualPrefab.rotation);
             Transform board = Instantiate(ScriptsPrefab, this.transform.position, ScriptsPrefab.rotation);
+           // Debug.Log("---------");
+            //Debug.Log(boardVisual);
+            //Debug.Log("---------");
 
             board.SetParent(s.transform.parent);
             s.transform.SetParent(board);
@@ -50,19 +60,21 @@ public class TobogganManager : ModeManager
             Destroy(s);
             Destroy(r);
             puppet.mode = PuppetMaster.Mode.Disabled;
-
-            board.GetComponentInChildren<PuppetBoard>().target = boardVisual.GetComponentInChildren<ToboganVisual>().transform.GetComponent<Rigidbody>();
-
+            //Debug.Log(board.GetComponentInChildren<PuppetBoard>());
+            //board.GetComponentInChildren<PuppetBoard>().target = ;
+            board.GetComponentInChildren<PuppetBoard>().Setup(boardVisual.GetComponentInChildren<ToboganVisual>().transform.GetComponent<Rigidbody>());
+            //Debug.Log(board.GetComponentInChildren<PuppetBoard>().target);
         }
         // teamSplit(getTeam());
 
-        foreach(BaseTeam t in getTeam())
-        {
-            for(int i = 0; i < t.players.Count; i++)
-            {
 
-            }
-        }
+        //foreach(BaseTeam t in getTeam())
+        //{
+        //    for(int i = 0; i < t.players.Count; i++)
+        //    {
+
+        //    }
+        //}
         //  Time.timeScale = 0;
        
      //   Debug.Break();

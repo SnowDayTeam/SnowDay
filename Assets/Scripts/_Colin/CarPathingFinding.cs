@@ -43,7 +43,7 @@ public class CarPathingFinding : MonoBehaviour {
     [SerializeField] float randomParkTime;
     private float currentMaxVelocity;
     [Range(1, 10)] public float minParkedTime;
-    [Range(1, 10)] public float maxParkedTime;
+    [Range(1, 30)] public float maxParkedTime;
 
     void Start () {
         moveTarget = waypoints[waypointIndex].transform.position;

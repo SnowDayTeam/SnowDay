@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using SnowDay.Diego.CharacterController;
+using UnityEngine;
 using UnityEngine.Events;
-
+using System.Collections.Generic;
 
 /// <summary>
 /// Level Gate:
@@ -11,26 +12,16 @@ public class LevelGate : MonoBehaviour {
 
     [Header("Player Tag")]
     public string ObjectTag = "Player";
-    [SerializeField]
-    private int playersInBox;
+    [SerializeField] private int playersInBox;
     public bool useFriendlyName = true;
     /// <summary>
     /// How many players are currently in the collider volume.
     /// </summary>
-    public int PlayersInBox
-    {
-        get
-        {
-            return playersInBox;
-        }
-
-        set
-        {
-            playersInBox = value;
-        }
+    public int NumberPlayersInBox {
+        get{ return PlayersInBox.Count; }
     }
-    public UnityEvent OnPlayerEnterEvent;
-    public UnityEvent OnPlayerleaveEvent;
+    [SerializeField]
+    private List<PlayerController> PlayersInBox = new List<PlayerController> ();
 
     /// <summary>
     /// Portal Instance Data
@@ -50,9 +41,9 @@ public class LevelGate : MonoBehaviour {
             return;
         }
 
-        BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
-        boxCollider.enabled = true;
-        boxCollider.isTrigger = true;
+        //BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+        //boxCollider.enabled = true;
+        //boxCollider.isTrigger = true;
 
         PortalInstanceData = portalData;
 
@@ -77,18 +68,31 @@ public class LevelGate : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-       
-        if (other.CompareTag(ObjectTag))
-        {
-            PlayersInBox++;
-        }
-    }
+        SnowDayCharacter character = other.GetComponent<SnowDayCharacter>();
+        PlayerController Player = other.GetComponentInParent<PlayerController> ();
 
+        if (character == null || !Player || this.PlayersInBox.Contains(Player))
+        {
+            return;
+        }
+            
+
+        this.PlayersInBox.Add(Player);
+        
+    }
+    private void Update()
+    {
+        if(PlayersInBox != null)
+            playersInBox = PlayersInBox.Count;
+    }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(ObjectTag))
-        {
-            PlayersInBox--;
-        }
+        SnowDayCharacter character = other.GetComponent<SnowDayCharacter>();
+
+        PlayerController Player = other.GetComponentInParent<PlayerController> ();
+        if(character == null || !Player)
+            return;
+
+        this.PlayersInBox.Remove(Player);
     }
 }

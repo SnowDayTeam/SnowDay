@@ -21,7 +21,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
     Collider blastCollider;
     public PuppetMaster playerPuppet;
     bool isTriggered;
-    bool once;
+    bool once = false;
     float timer2 = 1f;
     MeshRenderer mesh;
     public Light sun;
@@ -31,10 +31,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
     public float sunDownSpeed = 1f;
     public bool lightsOut;
     GameObject sunObject;
-    GamemodeManagerBase gm;
-    List<PlayerController> players;
-    Transform playertoHit;
-
+    PlayerController opponentTarget;
 
     private void Start()
     {
@@ -45,15 +42,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
         sun = sunObject.GetComponent<Light>();
         lightStartIntensity = sunObject.GetComponent<Sun>().startIntensity;
         godRay = transform.GetChild(2).GetComponent<Light>();
-        godRay.transform.parent = null;
-        gm = FindObjectOfType<GamemodeManagerBase>();
-        players = gm.Players;
-        print(gm);
-        playertoHit = players[Random.Range(0, players.Count)].transform;
-        for (int i = 0; i < players.Count; i++)
-        {
-            Debug.Log(players[i]);
-        }
+        //godRay.transform.parent = null;
     }
 
 
@@ -64,14 +53,19 @@ public class LightningPowerSphereHit : MonoBehaviour {
             if (isTriggered == false)
             {
                 //lightStartIntensity = sun.gameObject.GetComponent<Sun>().startIntensity;
-                print("Timer starts");
+               // print("Timer starts");
                 //Debug.Log("HIT");
                 // FindObjectOfType<AudioManager>().Play("lightning");
                 triggerPlayer = other.gameObject;
+                playerPuppet = triggerPlayer.transform.parent.GetComponentInChildren<PuppetMaster>();
+
                 centerPos = transform.position;
                 isActivated = true;
                 mesh.enabled = false;
                 isTriggered = true;
+
+
+                opponentTarget = GetRandomOpponentPos();
                 // transform.GetChild(1)
             }
         }
@@ -103,21 +97,52 @@ public class LightningPowerSphereHit : MonoBehaviour {
         timer -= Time.deltaTime;
         //Lights Out
         LightsOut();
+        transform.position = opponentTarget.GetCharacterPosition() ;
+
         if (timer <= 0)
         {
             LightningStrike();
         }
     }
+    public PlayerController GetRandomOpponentPos()
+    {
+        GamemodeManagerBase GameManager = FindObjectOfType<GamemodeManagerBase>();
+        if(playerPuppet == null)
+        {
+            Debug.LogError("pUPPET IS NULL");
+            Debug.Break();
+        }
+        if (GameManager == null)
+        {
+            Debug.LogError("MANAGER IS NULL");
+            Debug.Break();
+        }
+        int playerTeam = GameManager.GetTeamIndex(playerPuppet.GetComponentInParent<PlayerController>());
+        PlayerController target;
+        if (playerTeam == 0)
+        {
+            target = GameManager.GetRandomPlayerFromTeam(1);
 
+        }
+        else
+        {
+            target = GameManager.GetRandomPlayerFromTeam(0);
+
+        }
+        Debug.Log(playerTeam);
+        return target;
+    }
     //--------------Lightning Strike---------------//
 
     private void LightningStrike()
     {
-        //randomize player to hit
-        print(playertoHit.position);
+        //Debug.Break();
         //Lerp up the ball 
-        lerpPosScript.endPosition = playertoHit.position;
+        lerpPosScript.endPosition = transform.position;
         lerpPosScript.isLerping = true;
+        transform.position = opponentTarget.GetCharacterPosition();
+        lerpPosScript.startPositon = transform.GetChild(0).transform.position;
+
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
         {
@@ -142,13 +167,13 @@ public class LightningPowerSphereHit : MonoBehaviour {
         {
             if (godRay.intensity < 14)
             {
-              //  print("spotlight up");
+             //   print("spotlight up");
 
                 godRay.intensity += Time.deltaTime * sunDownSpeed;
             }
             if (godRay.spotAngle > 10)
             {
-               // print("spotlight up");
+              //  print("spotlight up");
 
                 godRay.spotAngle -= Time.deltaTime * sunDownSpeed * 20;
             }
@@ -166,11 +191,12 @@ public class LightningPowerSphereHit : MonoBehaviour {
     private void Wait()
     {
         timer -= Time.deltaTime;
+        transform.position = opponentTarget.GetCharacterPosition(); ;
         if (timer <= 0)
         {
             playerPuppet = triggerPlayer.transform.parent.GetComponentInChildren<PuppetMaster>();
             playerPuppet.mode = PuppetMaster.Mode.Active;
-            print("Destroyed lightning");
+          //  print("Destroyed lightning");
             PowerUpSpawn.activePowerUpCount--;
             Destroy(gameObject);
         }
