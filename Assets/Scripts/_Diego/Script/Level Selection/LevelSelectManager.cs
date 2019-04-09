@@ -60,6 +60,8 @@ namespace SnowDay.Diego.LevelSelect
                 }
                 PortalSpawnPoints[x].Initialize(Levels[x]);
             }
+
+            
         }
 
         // Update is called once per frame
