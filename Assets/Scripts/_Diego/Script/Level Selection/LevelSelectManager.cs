@@ -98,7 +98,7 @@ namespace SnowDay.Diego.LevelSelect
                     }
                     return;
                 }
-                CountDownText.text = TimeLeft.ToString("0");
+                CountDownText.text = TimeLeft.ToString("0") + " seconds \n left to vote!";
             }
         }
 

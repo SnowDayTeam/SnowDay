@@ -16,6 +16,7 @@ public class KeepPlayersInBounds : MonoBehaviour
     {
         modeManager = FindObjectOfType<GamemodeManagerBase>();
         myCollider = gameObject.AddComponent<BoxCollider>();
+        gameObject.layer = 2;
     }
 	
 	// Update is called once per frame

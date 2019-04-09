@@ -6,6 +6,7 @@ public class FlagPickup : MonoBehaviour
 {
 
     public bool IsBeingHeld = false;
+    public GameObject flagParticles;
 
     /// <summary>
     /// Set the color of all renderers on this flag to the given color
@@ -22,6 +23,24 @@ public class FlagPickup : MonoBehaviour
     void OnDestroy() 
     {
         FlagSpawner.Instance.CurrentNumberFlags--;
+    }
+
+    private void Update()
+    {
+        if(IsBeingHeld == false)
+        {
+            if(flagParticles.activeSelf == false)
+            {
+                flagParticles.SetActive(true);
+            }
+        }
+        else
+        {
+            if (flagParticles.activeSelf == true)
+            {
+                flagParticles.SetActive(false);
+            }
+        }
     }
 
     //public Component[] meshRenderer;
@@ -75,11 +94,11 @@ public class FlagPickup : MonoBehaviour
 
     //    ////}
     //    //Debug.Log(other.GetComponentInChildren<FlagController>());
-      
+
     //    //// SWITCH TAG TO ENUM WHEN AVAILABLE
     //    //if (other.GetComponentInChildren<FlagController>())
     //    //{
-            
+
     //    //    if (other.GetComponentInChildren<FlagController>().TryingToPickUp)
     //    //    {
     //    //        other.GetComponentInChildren<FlagController>().FlagBeingHeld = gameObject;
@@ -137,7 +156,7 @@ public class FlagPickup : MonoBehaviour
 
     //public void PickUpFlag(Transform PlayerT, int TeamNum, Transform FlagPosition)
     //{
-        
+
     //    //if player is carrying this Tell them they are no longer holding
     //    if(transform.parent != null)
     //    {
@@ -150,8 +169,8 @@ public class FlagPickup : MonoBehaviour
 
     //    }
 
-        
-        
+
+
     //    foreach (MeshRenderer material in meshRenderer)
     //    {
     //        material.material.color = FlagGamemodeManager.GetTeams()[TeamNum].TeamColor;
@@ -165,7 +184,7 @@ public class FlagPickup : MonoBehaviour
     //    whoIsHolding = TeamNum;
     //    gameObject.transform.parent = PlayerT;
     //    gameObject.transform.position = new Vector3(FlagPosition.position.x,transform.position.y+DropOffset,FlagPosition.position.z);
-        
+
     //    IsBeingHeld = true;
 
     //}
@@ -173,12 +192,12 @@ public class FlagPickup : MonoBehaviour
 
     //public void DropFlag()
     //{
-        
+
     //    foreach (MeshRenderer material in meshRenderer)
     //    {
     //        material.material.color = Color.green;
     //    }
-          
+
 
     //    transform.parent = null;
 
@@ -230,7 +249,7 @@ public class FlagPickup : MonoBehaviour
 
     //public void TakeAway()
     //{
-        
+
     //}
 
 }

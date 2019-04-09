@@ -6,6 +6,15 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
 {
     [SerializeField] DeathMatchTeam[] Teams = null;
 
+    //Leron Added-----------------------------------------------
+    public GameObject[] teamPanels;
+    public GameObject img;
+     int[,] prefabValue;
+    int index = 0;
+    public Texture[] characterImages;
+
+    //----------------------------------------------------------
+
     [System.Serializable]
 	public class DeathMatchTeam : TeamBase
     {
@@ -35,6 +44,7 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
         base.Start();
 
         this.SetPlayerTeamIDs();
+
     }
 
     public override TeamBase[] GetTeams() 
@@ -64,13 +74,39 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
 
     private void SetPlayerTeamIDs() 
     {
-        for(int i = 0; i < this.Teams.Length; i++) 
+        prefabValue = new int[2, 8];
+
+        for (int i = 0; i < this.Teams.Length; i++) 
         {
             Teams[i].PlayersAlive = Teams[i].Players.Count;
+          //  teamPanels[i] = 
 
             foreach (PlayerController player_controller in this.Teams[i].Players) 
             {
+
                 player_controller.GetComponentInChildren<PlayerActor>().TeamID = i;
+
+
+                //Leron Added-----------------------------------------------
+
+                if (index < this.Teams[i].Players.Count)
+                {
+                    index++;
+                }
+
+                else
+                {
+                    index = 0; // makes sure index resets on team switch
+                }
+
+                prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
+
+                Debug.Log(prefabValue[i, index]); 
+
+                GameObject childObjects = Instantiate(img) as GameObject; // Instantiating raw image for ever character
+                childObjects.GetComponent<RawImage>().texture = characterImages[prefabValue[i, index]];
+                childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
+                //----------------------------------------------------------
             }
         }
     }
