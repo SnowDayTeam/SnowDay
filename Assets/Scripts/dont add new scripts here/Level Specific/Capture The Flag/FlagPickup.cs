@@ -7,6 +7,8 @@ public class FlagPickup : MonoBehaviour
 
     public bool IsBeingHeld = false;
     public GameObject flagParticles;
+    public GameObject flagParticles2;
+
 
     /// <summary>
     /// Set the color of all renderers on this flag to the given color
@@ -32,6 +34,7 @@ public class FlagPickup : MonoBehaviour
             if(flagParticles.activeSelf == false)
             {
                 flagParticles.SetActive(true);
+                flagParticles2.SetActive(true);
             }
         }
         else
@@ -39,6 +42,7 @@ public class FlagPickup : MonoBehaviour
             if (flagParticles.activeSelf == true)
             {
                 flagParticles.SetActive(false);
+                flagParticles2.SetActive(false);
             }
         }
     }

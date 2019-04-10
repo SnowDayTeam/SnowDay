@@ -1434,6 +1434,17 @@ MonoBehaviour:
   EffectFlags:
     components: []
   sharedInstanceID: 91ee9815-ba93-42fb-bc74-7314f27e85a6
+--- !u!114 &216328424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216328422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff2af7c5123a804bb3541196e6bc0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &229104194
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,6 +5375,18 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 216328422}
+    ActiveGameObject: {fileID: 216328422}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 1095724556}
     ActiveGameObject: {fileID: 1095724556}
     GUIDsList: []
@@ -5637,18 +5660,6 @@ MonoBehaviour:
     list:
     - {fileID: 1641002311}
     ActiveGameObject: {fileID: 1641002311}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 0}
-    ActiveGameObject: {fileID: 0}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -10598,6 +10609,9 @@ MonoBehaviour:
     TeamColor: {r: 0, g: 0, b: 1, a: 0}
     TeamName: NAME ERROR
     PlayersAlive: 0
+  teamPanels: []
+  img: {fileID: 0}
+  characterImages: []
 --- !u!114 &1254560708
 MonoBehaviour:
   m_ObjectHideFlags: 0
