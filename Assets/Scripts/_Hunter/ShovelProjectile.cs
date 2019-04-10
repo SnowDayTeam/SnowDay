@@ -53,6 +53,7 @@ public class ShovelProjectile : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 500, Mask))
             {
                 SnowPlane manager = hit.collider.gameObject.GetComponent<SnowPlane>();
+                GetComponent<AudioSource>().Play();
                 if(manager != null)
                 {
                     //Debug.Log(hit.collider.gameObject.name);

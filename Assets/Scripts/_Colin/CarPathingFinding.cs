@@ -44,6 +44,10 @@ public class CarPathingFinding : MonoBehaviour {
     private float currentMaxVelocity;
     [Range(1, 10)] public float minParkedTime;
     [Range(1, 30)] public float maxParkedTime;
+    [SerializeField]
+    AudioSource TireScreech;
+    [SerializeField]
+    AudioSource HornSound;
 
     //Reference To Spawner
     public GoodCarManager CarSpawner;
@@ -101,11 +105,16 @@ public class CarPathingFinding : MonoBehaviour {
             {
                 Debug.Log("Thingafter PArked");
                 // There is still waypoints to meet and it goes to the next waypoint
+                TireScreech.Play();
                 waypointIndex++;
                 if (waypointIndex == waypoints.Length)
                     waypointIndex = 0;
-                moveTarget = waypoints[waypointIndex].transform.position;
-                StartMoving();
+                if (waypoints[waypointIndex] != null)
+                {
+                    moveTarget = waypoints[waypointIndex].transform.position;
+                    StartMoving();
+                }
+               
             }
         }
 
@@ -231,4 +240,15 @@ public class CarPathingFinding : MonoBehaviour {
         CarSpawner.CarSpawned = false;
         CarSpawner.DelayStarted = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Rigidbody>())
+        {
+            HornSound.Play();
+        }
+    }
+   
+      
+    
 }

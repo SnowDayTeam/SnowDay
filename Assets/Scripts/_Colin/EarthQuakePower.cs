@@ -55,6 +55,7 @@ public class EarthQuakePower : MonoBehaviour
                 p1 = player.GetComponentInChildren<PuppetMaster>();
                 if (p1 != null)
                 {
+                    GetComponent<AudioSource>().Play();
                     print("PuppetMaster found");
                     StartCoroutine(EarthQuakeEffect());
                     Camera.main.GetComponent<CameraShake>().StartShake(2, 0.4f);

@@ -85,6 +85,7 @@ public class JuggernautPower : MonoBehaviour {
             puppet.mode = PuppetMaster.Mode.Kinematic;
 
             Debug.Log("Juggernaut powerup Start " +player.gameObject.name);
+            GetComponent<AudioSource>().Play();
             mesh.enabled = false;
             isInvuln = true;
         }
