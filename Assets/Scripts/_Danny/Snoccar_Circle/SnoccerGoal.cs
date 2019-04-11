@@ -16,6 +16,8 @@ public class SnoccerGoal : MonoBehaviour {
 
         //get instance of game mode manager and cast it to snoocer game mode manager
         ((SnoccerGamemodeManager)GamemodeManagerBase.Instance).OnTeamScore(this.OwningTeam);
+ 
         Ball.RespawnBall();
+        GetComponent<AudioSource>().Play();
     }
 }

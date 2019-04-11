@@ -24,6 +24,7 @@ public class GoalZone : MonoBehaviour
     public void Score() 
     {
         this.OwningTeam.Score ++;
+        GetComponent<AudioSource>().Play();
     }
 
     //public int Team;

@@ -34,7 +34,8 @@ public class AudioManager : MonoBehaviour {
     //can play music on start of level, will keep audio playing if using DontDestoryOnLoad, if different music for seperate game modes, cant use DDOL
     private void Start()
     {
-       // Play("Music");
+        // Play("Music");
+    
     }
 
     //call this to play an audio file

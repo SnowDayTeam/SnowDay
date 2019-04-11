@@ -15,9 +15,11 @@ public class FlagPickup : MonoBehaviour
     /// </summary>
     public void SetColor(Color color) 
     {
+        GetComponent<AudioSource>().Play();
         foreach(Renderer renderer in this.GetComponentsInChildren<Renderer>()) 
         {
             renderer.material.color = color;
+
         }
     }
 

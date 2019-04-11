@@ -64,6 +64,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
                 isActivated = true;
                 mesh.enabled = false;
                 isTriggered = true;
+                GetComponent<AudioSource>().Play();
 
 
                 opponentTarget = GetRandomOpponentPos();

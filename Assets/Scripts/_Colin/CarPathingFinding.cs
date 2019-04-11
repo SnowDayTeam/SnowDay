@@ -44,6 +44,13 @@ public class CarPathingFinding : MonoBehaviour {
     private float currentMaxVelocity;
     [Range(1, 10)] public float minParkedTime;
     [Range(1, 30)] public float maxParkedTime;
+    [SerializeField]
+    AudioSource TireScreech;
+    [SerializeField]
+    AudioSource HornSound;
+
+    //Reference To Spawner
+    public GoodCarManager CarSpawner;
 
     void Start () {
         moveTarget = waypoints[waypointIndex].transform.position;
@@ -77,7 +84,7 @@ public class CarPathingFinding : MonoBehaviour {
             if (distTo < stopDist && waypointIndex == waypoints.Length - 2)
             {
                 // last waypoint, slow car into parking space
-                currentMaxVelocity = currentMaxVelocity / distTo;
+              //  currentMaxVelocity = currentMaxVelocity / distTo;
                 print("slowdown");               
             }
             if (distTo < stopDist && waypointIndex == waypoints.Length - 1)
@@ -89,34 +96,44 @@ public class CarPathingFinding : MonoBehaviour {
                 waypointIndex = 0;
                 moveTarget = reverseWaypoints[waypointIndex].transform.position;
                 print(moveTarget);
-                isParking = false;
-                isParked = true;
+                //isParking = false;
+                //isParked = true;
+                isExiting = true;
 
             }
             else if (distTo < stopDist && waypointIndex != waypoints.Length - 1 && waypointIndex != waypoints.Length)
-            {       
+            {
+                Debug.Log("Thingafter PArked");
                 // There is still waypoints to meet and it goes to the next waypoint
+                TireScreech.Play();
                 waypointIndex++;
                 if (waypointIndex == waypoints.Length)
                     waypointIndex = 0;
-                moveTarget = waypoints[waypointIndex].transform.position;
-                StartMoving();
+                if (waypoints[waypointIndex] != null)
+                {
+                    moveTarget = waypoints[waypointIndex].transform.position;
+                    StartMoving();
+                }
+               
             }
         }
 
         //after random amount of time spend parked, exit parked state to reversing state
         if (isParked) {
+            Debug.Log("ParkedTrue");
             randomParkTime -= Time.deltaTime;
             if (randomParkTime <= 0)
             {
                 isParked = false;
                 waypointIndex = 0;
-                isReversing = true;         
+                //isReversing = true;
+                isExiting = true;
             }
         }
         
         // currerntly only able to reverse straight, reverse rotation causing bug where cars will not path to waypoint and drive off into the sunset
         if (isReversing) {
+            Debug.Log("ISREVERSING???");
             destVect = moveTarget - transform.position;
 
             distTo = destVect.magnitude;
@@ -157,7 +174,7 @@ public class CarPathingFinding : MonoBehaviour {
         }
         
         if (isExiting) {
-
+            Debug.Log("Exiting");
             destVect = moveTarget - transform.position;
 
             distTo = destVect.magnitude;
@@ -177,7 +194,8 @@ public class CarPathingFinding : MonoBehaviour {
             if (distTo < stopDist && waypointIndex == waypointsToExit.Length - 1)
             {
                 // All waypoints met, remove car from scene, reduce the number of active cars 
-                CarSpawnerScript.activeCarCount--;
+                //CarSpawnerScript.activeCarCount--;
+                RestartSpawner();
                 Destroy(gameObject);
 
             }
@@ -216,4 +234,21 @@ public class CarPathingFinding : MonoBehaviour {
     {
         return ((rotLeft >= slowRot) ? rotation : Mathf.Lerp(0.0F, rotation, rotLeft / slowRot));
     }
+
+    public void RestartSpawner()
+    {
+        CarSpawner.CarSpawned = false;
+        CarSpawner.DelayStarted = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Rigidbody>())
+        {
+            HornSound.Play();
+        }
+    }
+   
+      
+    
 }
