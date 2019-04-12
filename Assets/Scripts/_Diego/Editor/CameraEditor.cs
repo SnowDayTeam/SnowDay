@@ -15,6 +15,7 @@ public class CameraEditor : Editor
     private SerializedProperty YMultiplier;
     private SerializedProperty EdgeBorderBuffer;
     private SerializedProperty CameraYOffset;
+
     private void OnEnable()
     {
         cameraScript = (SnowDayCamera)target;
