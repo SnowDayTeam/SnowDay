@@ -16,6 +16,8 @@ using SnowDay.Diego.GameMode;
 /// </remarks>
 public class TDMManager : ModeManager
 {
+    [TextArea(1,21)]
+    public string README;
     private bool startCountDown;
     public float GameOverCountDown = 4;
     [Header("UI Text")]

@@ -89,23 +89,23 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
 
                 //Leron Added-----------------------------------------------
 
-                if (index < this.Teams[i].Players.Count)
-                {
-                    index++;
-                }
+                //if (index < this.Teams[i].Players.Count)
+                //{
+                //    index++;
+                //}
 
-                else
-                {
-                    index = 0; // makes sure index resets on team switch
-                }
+                //else
+                //{
+                //    index = 0; // makes sure index resets on team switch
+                //}
 
-                prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
+                //prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
 
-                Debug.Log(prefabValue[i, index]); 
+                //Debug.Log(prefabValue[i, index]); 
 
-                GameObject childObjects = Instantiate(img) as GameObject; // Instantiating raw image for ever character
-                childObjects.GetComponent<RawImage>().texture = characterImages[prefabValue[i, index]];
-                childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
+                //GameObject childObjects = Instantiate(img) as GameObject; // Instantiating raw image for ever character
+                //childObjects.GetComponent<RawImage>().texture = characterImages[prefabValue[i, index]];
+                //childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
                 //----------------------------------------------------------
             }
         }

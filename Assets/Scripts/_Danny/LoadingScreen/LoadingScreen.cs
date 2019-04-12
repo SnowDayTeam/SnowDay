@@ -15,7 +15,7 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] float LoadScreenDelay = 1.0f;
 
     public AudioSource music;
-	void Start()
+    public void LoadScreen()
     {
         this.StartCoroutine(this.PregameLoadingScreenTimer());
      //   Destroy(this.gameObject, this.LoadScreenDelay);

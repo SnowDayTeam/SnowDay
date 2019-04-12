@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 using SnowDay.Diego.GameMode;
 using SnowDay.Diego.CharacterController;
 using System.Collections.Generic;
@@ -25,6 +27,16 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     [Header("Game Time")]
     [Tooltip("The time in seconds until the game is over. 0 means infinite game duration")]
     [SerializeField] protected float GameDuration = 1.0f;
+
+
+    //Leron Added-----------------------------------------------
+    [SerializeField]
+    TeamDisplay teamDisplay;
+    //public GameObject img;
+    //int[,] prefabValue;
+   // int index = 0;
+  //  public Texture[] characterImages;
+
 
     /// <summary>
     /// Current instance of this class, WARNING this is NOT a singleton class, 
@@ -80,7 +92,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         //this.enabled = false;
     }
 
-    protected virtual void Start() 
+    protected virtual void Start()
     {
         if (this.IsInfiniteGameDuration)
         {
@@ -94,9 +106,26 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         this.CreateLevelScriptsPrefabs();
 
         TeamBase[] teams = this.GetTeams();
+        if (teamDisplay != null)
+        {
+            teamDisplay.Setup();
+
+        }
+        else
+        {
+            Debug.LogError("teamDisplay is null, fix it please");
+        }
         this.AssignPlayersToTeams(teams);
         this.MovePlayersToSpawnLocations(teams);
         this.SetPlayerColors(teams);
+        this.enabled = false;
+        LoadingScreen[] lsc = FindObjectsOfType<LoadingScreen>();
+        if (lsc.Length > 1)
+        {
+            Debug.LogError("Ouch more than 1 loading screen script, we are having a bad time ");
+
+        }
+        lsc[0].LoadScreen();
     }
 
     protected virtual void Update()
@@ -126,6 +155,21 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         for(int i = 0; i < this.Players.Count; i++)
         {
             Teams[i % Teams.Length].Players.Add(this.Players[i]);
+
+
+
+
+
+
+            GameObject childObjects = Instantiate(teamDisplay.ImagePrefab, teamDisplay.teamPanels[i % Teams.Length].transform) as GameObject;
+          // prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
+
+          //Debug.Log(prefabValue[i, index]);
+
+          // Instantiating raw image for ever character
+            childObjects.GetComponent<RawImage>().texture = teamDisplay.characterImages[Players[i].currentPrefab];
+            //childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
+                                                                     //----------------------------------------------------------
         }
     }
 
