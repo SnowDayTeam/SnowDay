@@ -69,6 +69,7 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
         foreach(CaptureTheFlagTeam Team in this.Teams) 
         {
             Team.Goal.OwningTeam = Team;
+            Team.Goal.Setup();
         }
     }
     private void OnDisable()

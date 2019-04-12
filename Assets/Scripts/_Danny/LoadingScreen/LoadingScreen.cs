@@ -14,6 +14,7 @@ public class LoadingScreen : MonoBehaviour
     [Tooltip("The extra time added after displaying the loading screen, before entering gameplay")]
     [SerializeField] float LoadScreenDelay = 1.0f;
 
+    public AudioSource music;
 	void Start()
     {
         this.StartCoroutine(this.PregameLoadingScreenTimer());
@@ -38,7 +39,10 @@ public class LoadingScreen : MonoBehaviour
         {
             Player.enabled = true;
         }
-
+        if(music != null)
+        {
+            music.Play();
+        }
         Destroy(this.LoadingScreenParentGameobject);
         GamemodeManagerBase.Instance.enabled = true;
     }

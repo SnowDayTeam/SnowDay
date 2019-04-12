@@ -10,7 +10,7 @@ public class GoalZone : MonoBehaviour
     /// </summary>
     [HideInInspector] public CaptureTheFlagGamemodeManager.CaptureTheFlagTeam OwningTeam = null;
 
-    void Start() 
+    public void Setup() 
     {
         foreach(Renderer renderer in this.GetComponentsInChildren<Renderer>()) 
         {

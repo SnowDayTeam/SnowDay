@@ -14,7 +14,7 @@ public class GoodCarManager : MonoBehaviour {
     }
 
     [SerializeField]
-     CarPathingArrays CarInfo;
+     CarPathingArrays[] CarInfo;
 
     public float[] DelayRange;
     float TimeWaitStarted;
@@ -46,18 +46,19 @@ public class GoodCarManager : MonoBehaviour {
             if (Time.time - TimeWaitStarted > CurrentDelay&& !CarSpawned)
             {
                 CarSpawned = true;
+                int Path = Random.Range(0,CarInfo.Length);
 
 
                 //Instantiate the car prefab and set up all it's variables
-                Transform ItemInstance= Instantiate(PrefabToSpawn, CarInfo.waypoints[0].transform);
+                Transform ItemInstance= Instantiate(PrefabToSpawn, CarInfo[Path].waypoints[0].transform);
                 //ItemInstance.position = CarInfo.waypoints[0].transform.position;
                 ItemInstance.position = transform.position;
 
                 //Set up all the cars variables
 
-                ItemInstance.GetComponent<CarPathingFinding>().waypoints = CarInfo.waypoints;
-                ItemInstance.GetComponent<CarPathingFinding>().reverseWaypoints = CarInfo.reverseWaypoints;
-                ItemInstance.GetComponent<CarPathingFinding>().waypointsToExit = CarInfo.waypointsToExit;
+                ItemInstance.GetComponent<CarPathingFinding>().waypoints = CarInfo[Path].waypoints;
+                ItemInstance.GetComponent<CarPathingFinding>().reverseWaypoints = CarInfo[Path].reverseWaypoints;
+                ItemInstance.GetComponent<CarPathingFinding>().waypointsToExit = CarInfo[Path].waypointsToExit;
                 ItemInstance.GetComponent<CarPathingFinding>().CarSpawner = this;
 
             }

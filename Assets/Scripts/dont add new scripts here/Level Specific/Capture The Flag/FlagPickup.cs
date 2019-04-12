@@ -7,7 +7,7 @@ public class FlagPickup : MonoBehaviour
 
     public bool IsBeingHeld = false;
     public GameObject flagParticles;
-    public GameObject flagParticles2;
+    //public GameObject flagParticles2;
 
 
     /// <summary>
@@ -36,7 +36,7 @@ public class FlagPickup : MonoBehaviour
             if(flagParticles.activeSelf == false)
             {
                 flagParticles.SetActive(true);
-                flagParticles2.SetActive(true);
+                //flagParticles2.SetActive(true);
             }
         }
         else
@@ -44,7 +44,7 @@ public class FlagPickup : MonoBehaviour
             if (flagParticles.activeSelf == true)
             {
                 flagParticles.SetActive(false);
-                flagParticles2.SetActive(false);
+                //flagParticles2.SetActive(false);
             }
         }
     }
