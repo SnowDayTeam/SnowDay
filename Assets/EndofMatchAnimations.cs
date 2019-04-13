@@ -26,7 +26,7 @@ public class EndofMatchAnimations : MonoBehaviour
             {
                 if (setRando == true)
                 {
-                    print("set random int");
+                   // print("set random int");
                     animNo = Random.Range(0, winAnims.Length);
                     setRando = false;
                 }

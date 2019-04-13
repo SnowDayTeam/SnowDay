@@ -63,7 +63,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         [Tooltip("The name of the team, used to display winner during endgame.")]
         public string TeamName = "NAME ERROR";
     }
-
+    protected bool Initialized = false;
     abstract public TeamBase[] GetTeams();
     public int GetTeamIndex(PlayerController player)
     {
@@ -92,7 +92,7 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         //this.enabled = false;
     }
 
-    protected virtual void Start()
+    public virtual void Setup()
     {
         if (this.IsInfiniteGameDuration)
         {
@@ -106,6 +106,12 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         this.CreateLevelScriptsPrefabs();
 
         TeamBase[] teams = this.GetTeams();
+       
+        this.AssignPlayersToTeams(teams);
+        this.MovePlayersToSpawnLocations(teams);
+        this.SetPlayerColors(teams);
+        this.enabled = false;
+
         if (teamDisplay != null)
         {
             teamDisplay.Setup();
@@ -115,10 +121,6 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             Debug.LogError("teamDisplay is null, fix it please");
         }
-        this.AssignPlayersToTeams(teams);
-        this.MovePlayersToSpawnLocations(teams);
-        this.SetPlayerColors(teams);
-        this.enabled = false;
         LoadingScreen[] lsc = FindObjectsOfType<LoadingScreen>();
         if (lsc.Length > 1)
         {
@@ -135,11 +137,14 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         {
             return;
         }
+        if (Initialized == true)
+        {
+            this.UpdateGUIScores();
+            this.UpdateGameDuration();
+            this.CheckGameEndConditions();
 
-        this.UpdateGUIScores();
-        this.UpdateGameDuration();
-        this.CheckGameEndConditions();
-
+        }
+      
         if(Input.GetKey(KeyCode.Q)  && Input.GetKey(KeyCode.LeftControl))
         {
             this.StartCoroutine(this.LoadLevelSelect());
@@ -284,6 +289,12 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
     private IEnumerator LoadLevelSelect() 
     {
+        TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
+        if(teamDisplay!= null)
+        {
+            teamDisplay.gameObject.SetActive(true);
+
+        }
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels
         //should be done in one place only and this has many disadvantages

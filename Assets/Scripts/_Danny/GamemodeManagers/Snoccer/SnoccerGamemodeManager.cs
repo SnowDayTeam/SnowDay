@@ -14,12 +14,13 @@ public class SnoccerGamemodeManager : GamemodeManagerBase
         public SnoccerGoal[] Goals = null;
     }
 
-    protected override void Start() 
+    public override void Setup() 
     {
-        base.Start();
+        base.Setup();
 
         this.SetupTeamGoals();
         this.SetPlayerTeamIDs();
+        Initialized = true;
 
     }
     private void SetPlayerTeamIDs()

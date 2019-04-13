@@ -17,9 +17,9 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
         public SnowPlane snowPlane = null;
     }
 
-    protected override void Start() 
+    public override void Setup() 
     {
-        base.Start();
+        base.Setup();
 
         foreach(ShovelWarTeam team in this.Teams) 
         {
@@ -28,6 +28,8 @@ public class ShovelWarGamemodeManager : GamemodeManagerBase
                 player.GetComponentInChildren<SnowTackScript> ().mySnowPlane = team.snowPlane;
             }
         }
+        Initialized = true;
+
     }
 
     protected override void Update() 

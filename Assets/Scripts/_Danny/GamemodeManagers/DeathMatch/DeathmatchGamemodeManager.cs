@@ -33,17 +33,19 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
     /// <param name="KillingPlayerTeamID"> The ID of the team who killed the player </param>
     public void OnPlayerDied(int DeadPlayerTeamID, int KillingPlayerTeamID) 
     {
+        Debug.Log("SOMEONE DIED");
         this.Teams[DeadPlayerTeamID].PlayersAlive--;
         this.Teams[KillingPlayerTeamID].Score ++;
 
         this.CheckGameEndConditions();
     }
 
-    protected override void Start() 
+    public override void Setup() 
     {
-        base.Start();
+        base.Setup();
 
         this.SetPlayerTeamIDs();
+        Initialized = true;
 
     }
 
@@ -61,6 +63,7 @@ public class DeathmatchGamemodeManager : GamemodeManagerBase
         {
             if (team.PlayersAlive <= 0) 
             {
+                Debug.Log("Match over");
                 base.EndGame();
                 return;
             }

@@ -17,11 +17,12 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
         return this.Teams;
     }
 
-    protected override void Start() {
-        base.Start();
+    public override void Setup() {
+        base.Setup();
 
         this.SetupGoalZones();
         this.SetPlayerTeamIDs();
+        Initialized = true;
 
     }
     private void SetPlayerTeamIDs()

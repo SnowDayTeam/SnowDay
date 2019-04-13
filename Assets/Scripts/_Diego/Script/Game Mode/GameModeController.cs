@@ -64,7 +64,16 @@ namespace SnowDay.Diego.GameMode
             isLoading = false;
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(selectedLevel.sceneName));
             MoveActivePlayerToScene(selectedLevel);
+            GamemodeManagerBase mode = FindObjectOfType<GamemodeManagerBase>();
 
+            if(mode != null)
+            {
+                mode.Setup();
+            }
+            else
+            {
+                Debug.LogError("mode manager needs to be enabled in the scene or we are going to have a bad time");
+            }
             UnloadScene(LevelSelectScene);
         }
 

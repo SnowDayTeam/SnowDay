@@ -45,5 +45,11 @@ public class LoadingScreen : MonoBehaviour
         }
         Destroy(this.LoadingScreenParentGameobject);
         GamemodeManagerBase.Instance.enabled = true;
+        TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
+        if (teamDisplay)
+        {
+            teamDisplay.gameObject.SetActive(false);
+
+        }
     }
 }
