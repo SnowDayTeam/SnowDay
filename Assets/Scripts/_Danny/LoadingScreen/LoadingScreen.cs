@@ -48,8 +48,11 @@ public class LoadingScreen : MonoBehaviour
         TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
         if (teamDisplay)
         {
-            teamDisplay.gameObject.SetActive(false);
-
+         //   teamDisplay.gameObject.SetActive(false);
+            for (int i = 0; i < teamDisplay.transform.childCount; i++)
+            {
+                teamDisplay.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 }

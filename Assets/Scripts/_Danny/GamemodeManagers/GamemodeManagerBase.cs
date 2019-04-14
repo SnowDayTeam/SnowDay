@@ -164,17 +164,20 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
 
 
+            if (teamDisplay != null)
+            {
+                GameObject childObjects = Instantiate(teamDisplay.ImagePrefab, teamDisplay.teamPanels[i % Teams.Length].transform) as GameObject;
+                // prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
+
+                //Debug.Log(prefabValue[i, index]);
+
+                // Instantiating raw image for ever character
+                childObjects.GetComponent<RawImage>().texture = teamDisplay.characterImages[Players[i].currentPrefab];
+                //childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
+            }
 
 
-            GameObject childObjects = Instantiate(teamDisplay.ImagePrefab, teamDisplay.teamPanels[i % Teams.Length].transform) as GameObject;
-          // prefabValue[i, index] = player_controller.currentPrefab; //2D array going through each character on each team and getting the prefab's associated number
-
-          //Debug.Log(prefabValue[i, index]);
-
-          // Instantiating raw image for ever character
-            childObjects.GetComponent<RawImage>().texture = teamDisplay.characterImages[Players[i].currentPrefab];
-            //childObjects.transform.parent = teamPanels[i].transform; //setting it as a child under corrisponding panel color.
-                                                                     //----------------------------------------------------------
+            //----------------------------------------------------------
         }
     }
 
@@ -290,10 +293,13 @@ abstract public class GamemodeManagerBase : MonoBehaviour
     private IEnumerator LoadLevelSelect() 
     {
         TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
-        if(teamDisplay!= null)
+        if (teamDisplay)
         {
-            teamDisplay.gameObject.SetActive(true);
-
+           // teamDisplay.gameObject.SetActive(false);
+            for (int i = 0; i < teamDisplay.transform.childCount; i++)
+            {
+                teamDisplay.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels

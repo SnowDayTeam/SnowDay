@@ -75,6 +75,6 @@ public class CaptureTheFlagGamemodeManager : GamemodeManagerBase
     }
     private void OnDisable()
     {
-        Debug.Break();
+      //  Debug.Break();
     }
 }

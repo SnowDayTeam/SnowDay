@@ -26,7 +26,7 @@ public class EndofMatchAnimations : MonoBehaviour
             {
                 if (setRando == true)
                 {
-                   // print("set random int");
+                   //  print("set random int");
                     animNo = Random.Range(0, winAnims.Length);
                     setRando = false;
                 }
@@ -34,16 +34,15 @@ public class EndofMatchAnimations : MonoBehaviour
             }
             else
             {
-                if (isWinner == false)
+                
+                if (setRando == true)
                 {
-                    if (setRando == true)
-                    {
-                        print("set random int");
-                        animNo = Random.Range(0, loseAnims.Length);
-                        setRando = false;
-                    }
-                    animator.Play(loseAnims[animNo].name);
+                   // print("set random int");
+                    animNo = Random.Range(0, loseAnims.Length);
+                    setRando = false;
                 }
+                animator.Play(loseAnims[animNo].name);
+                
             }
         }
         else
