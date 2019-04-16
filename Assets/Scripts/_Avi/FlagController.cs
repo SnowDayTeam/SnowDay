@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using RootMotion.Dynamics;
 using UnityEngine.Events;
+using SnowDay.Diego.CharacterController;
 
 public class FlagController : MonoBehaviour {
 
@@ -21,11 +22,13 @@ public class FlagController : MonoBehaviour {
 
     PierInputManager PlayerInputController = null;
     FlagPickup HeldFlag = null;
+    PlayerController myPlayer;
     bool CanPickupFlag = true;
     public Transform flagPosition;
     private GrabPole2 ikAnimator;
     void Start() 
     {
+        myPlayer = gameObject.GetComponentInParent<PlayerController>();
         ikAnimator = GetComponent<GrabPole2>();
         this.transform.parent.parent.GetComponentInChildren<BehaviourPuppet> ().
                             onLoseBalance.unityEvent.AddListener(this.OnLoseBalance);
@@ -113,12 +116,15 @@ public class FlagController : MonoBehaviour {
         {
             Flag.gameObject.transform.SetParent(this.transform.parent);
         }
+        GamemodeManagerBase mode = FindObjectOfType<GamemodeManagerBase>();
+        Flag.SetColor(mode.GetTeams()[ mode.GetTeamIndex(myPlayer)].TeamColor);
     }
 
     void DropFlag() 
     {
         this.HeldFlag.transform.SetParent(null);
         this.HeldFlag.IsBeingHeld = false;
+        HeldFlag.SetColor(Color.white);
         ikAnimator.pole = null;
         ikAnimator.nearPole = false;
         ikAnimator.grabPole = false;

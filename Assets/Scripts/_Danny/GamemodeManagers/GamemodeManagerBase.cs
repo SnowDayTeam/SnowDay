@@ -119,7 +119,8 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         }
         else
         {
-            Debug.LogError("teamDisplay is null, fix it please");
+            Debug.Log("Team display is null in inspector please link it,  if not in scene find it in the renderTexture folder");
+
         }
         LoadingScreen[] lsc = FindObjectsOfType<LoadingScreen>();
         if (lsc.Length > 1)
@@ -231,6 +232,22 @@ abstract public class GamemodeManagerBase : MonoBehaviour
         if(WinningTeams.Count == 1) 
         {
             this.GuiManager.ShowEndGameWindow(WinningTeams[0].TeamName + " Wins!");
+            if (teamDisplay != null)
+            {
+                TeamDivisionScript tt = teamDisplay.Test.GetComponent<TeamDivisionScript>();
+                foreach(EndofMatchAnimations e in tt.characters)
+                {
+                    e.isWinner = false;
+                }
+
+                foreach (TeamBase t in WinningTeams)
+                {
+                    foreach (PlayerController p in t.Players)
+                    {
+                        tt.characters[p.currentPrefab].isWinner = true;
+                    }
+                }
+            }
         }
         else 
         {
@@ -292,14 +309,21 @@ abstract public class GamemodeManagerBase : MonoBehaviour
 
     private IEnumerator LoadLevelSelect() 
     {
-        TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
-        if (teamDisplay)
+       // TeamDisplay teamDisplay = FindObjectOfType<TeamDisplay>();
+
+        
+        if (teamDisplay != null)
         {
+            
            // teamDisplay.gameObject.SetActive(false);
             for (int i = 0; i < teamDisplay.transform.childCount; i++)
             {
                 teamDisplay.transform.GetChild(i).gameObject.SetActive(true);
             }
+        }else
+        {
+
+            Debug.Log("Team display is null in inspector please link it,  if not in scene find it in the renderTexture folder");
         }
         yield return new WaitForSeconds(this.PostGameDuration);
         //we need to change this after rewriting the GameModeController class, loading levels

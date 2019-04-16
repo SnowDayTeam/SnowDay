@@ -10,6 +10,7 @@ public class EndofMatchAnimations : MonoBehaviour
     public AnimationClip[] loseAnims;
     public bool isWinner = true;
     public int animNo;
+    [SerializeField]
     bool setRando = true;
 
     void Start()
