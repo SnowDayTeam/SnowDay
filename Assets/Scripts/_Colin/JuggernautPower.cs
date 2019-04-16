@@ -55,17 +55,17 @@ public class JuggernautPower : MonoBehaviour {
                 }
                // juggernautPlayerSphere.parent = player.GetComponentInChildren<SnowDayCharacter>().transform ;
                 juggernautPlayerSphere.position = new Vector3(playerPos.position.x, playerPos.position.y + playerPos.localScale.y / 2 + 0.2f, playerPos.position.z);
-                puppet.mode = PuppetMaster.Mode.Kinematic;
+                //puppet.mode = PuppetMaster.Mode.Kinematic;
 
 
                 invulnDuration -= Time.deltaTime;
                 if (invulnDuration <= 0)
                 {
                     //isInvuln = false;
-                    Debug.Log("Juggernaut powerup End");
-                    invulnDuration = maxInvulnDuration;
-                    Destroy(juggernautPlayerSphere.gameObject);
                     Wait();
+                    Debug.Log("Juggernaut powerup End");
+                    //Destroy(juggernautPlayerSphere.gameObject);
+                    juggernautPlayerSphere.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 }
             }
         }
@@ -86,7 +86,9 @@ public class JuggernautPower : MonoBehaviour {
 
             Debug.Log("Juggernaut powerup Start " +player.gameObject.name);
             GetComponent<AudioSource>().Play();
-            mesh.enabled = false;
+            transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(1).gameObject.SetActive(false);
+
             isInvuln = true;
         }
     }
@@ -101,6 +103,7 @@ public class JuggernautPower : MonoBehaviour {
             print("Reactivate puppet");
             puppet.mode = PuppetMaster.Mode.Active;
             PowerUpSpawn.activePowerUpCount--;
+            invulnDuration = maxInvulnDuration;
             Destroy(gameObject);
         }
     }
