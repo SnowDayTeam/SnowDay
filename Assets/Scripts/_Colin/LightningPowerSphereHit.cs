@@ -22,7 +22,9 @@ public class LightningPowerSphereHit : MonoBehaviour {
     public PuppetMaster playerPuppet;
     bool isTriggered;
     bool once = false;
+    bool once2 = false;
     float timer2 = 1f;
+    float timer3 = 2f;
     MeshRenderer mesh;
     public Light sun;
     public Light godRay;
@@ -40,6 +42,7 @@ public class LightningPowerSphereHit : MonoBehaviour {
         blastCollider = transform.GetChild(0).GetComponent<SphereCollider>();
         mesh = transform.GetChild(1).GetComponent<MeshRenderer>();
         sunObject = GameObject.FindGameObjectWithTag("Sun");
+        print("sun " + sunObject.name);
         sun = sunObject.GetComponent<Light>();
         lightStartIntensity = sunObject.GetComponent<Sun>().startIntensity;
         godRay = transform.GetChild(2).GetComponent<Light>();
@@ -138,13 +141,16 @@ public class LightningPowerSphereHit : MonoBehaviour {
 
     private void LightningStrike()
     {
-        //Lerp up the ball 
-        lerpPosScript.endPosition = transform.position;
-        lerpPosScript.isLerping = true;
-        transform.position = opponentTarget.GetCharacterPosition();
-        lerpPosScript.startPositon = transform.GetChild(0).transform.position;
-        Instantiate(explosion, transform.position, Quaternion.identity, null);
-
+        if (once2 == false)
+        {
+            //Lerp up the ball 
+            lerpPosScript.endPosition = transform.position;
+            lerpPosScript.isLerping = true;
+            transform.position = opponentTarget.GetCharacterPosition();
+            lerpPosScript.startPositon = transform.GetChild(0).transform.position;
+            Instantiate(explosion, transform.position, Quaternion.identity, null);
+            once2 = true;
+        }
 
         if ((lerpPosScript != null && Vector3.Distance(lerpPosScript.transform.position, lerpPosScript.endPosition) < 0.1f))
         {
@@ -153,6 +159,17 @@ public class LightningPowerSphereHit : MonoBehaviour {
             LightsUp();
             isActivated = false;
             Wait();
+
+        } else {
+
+            timer3 -= Time.deltaTime;
+            if (timer3 <= 0)
+            {
+                Destroy(blastCollider.gameObject);
+                LightsUp();
+                isActivated = false;
+                Wait();
+            }
         }
     }
 
