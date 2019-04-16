@@ -2481,7 +2481,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &333103310
 RectTransform:
@@ -3036,11 +3036,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3f22e48ff909a4b82ad20982fed18c, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &362170953 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1115689791974412, guid: ec3f22e48ff909a4b82ad20982fed18c,
-    type: 2}
-  m_PrefabInternal: {fileID: 362170952}
 --- !u!4 &398945121
 Transform:
   m_ObjectHideFlags: 0
@@ -3126,6 +3121,11 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &405463107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1880333012919870, guid: 3cff3f992f9048945837ccff260b8ca7,
+    type: 2}
+  m_PrefabInternal: {fileID: 441705709}
 --- !u!1001 &423909183
 Prefab:
   m_ObjectHideFlags: 0
@@ -3394,21 +3394,6 @@ Prefab:
     - target: {fileID: 1193149261295934, guid: 3cff3f992f9048945837ccff260b8ca7, type: 2}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224108808350561606, guid: 3cff3f992f9048945837ccff260b8ca7,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115910278601208, guid: 3cff3f992f9048945837ccff260b8ca7,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115910278601208, guid: 3cff3f992f9048945837ccff260b8ca7,
-        type: 2}
-      propertyPath: m_Text
-      value: TEAM WIN ERROR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cff3f992f9048945837ccff260b8ca7, type: 2}
@@ -5647,7 +5632,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c099347c380e9554aba74144be182f2b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -6138,7 +6123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.98124135, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6146,9 +6131,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
-    m_FontStyle: 1
+    m_Font: {fileID: 12800000, guid: c099347c380e9554aba74144be182f2b, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
@@ -6177,7 +6162,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &851410068
@@ -7713,7 +7698,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c099347c380e9554aba74144be182f2b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -8010,7 +7995,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c099347c380e9554aba74144be182f2b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -8400,8 +8385,128 @@ MonoBehaviour:
   - FavParams: 0
     FavString: []
     list:
+    - {fileID: 498322806}
+    ActiveGameObject: {fileID: 498322806}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
     - {fileID: 333103306}
     ActiveGameObject: {fileID: 333103306}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 222881926}
+    ActiveGameObject: {fileID: 222881926}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 441705711}
+    ActiveGameObject: {fileID: 441705711}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 405463107}
+    ActiveGameObject: {fileID: 405463107}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 848713480}
+    ActiveGameObject: {fileID: 848713480}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1151097185}
+    ActiveGameObject: {fileID: 1151097185}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 791738446}
+    ActiveGameObject: {fileID: 791738446}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1480870977}
+    ActiveGameObject: {fileID: 1480870977}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1196575696}
+    ActiveGameObject: {fileID: 1196575696}
+    GUIDsList: []
+    GUIDsActiveGameObject: 
+    PATHsList: []
+    PATHsActiveGameObject: 
+    InstanceID: 0
+    wasInit: 0
+    CashedBool: 0
+  - FavParams: 0
+    FavString: []
+    list:
+    - {fileID: 1051377793}
+    ActiveGameObject: {fileID: 1051377793}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -8550,126 +8655,6 @@ MonoBehaviour:
     - {fileID: 1805963572}
     - {fileID: 1413419732}
     ActiveGameObject: {fileID: 321952010}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1413419732}
-    ActiveGameObject: {fileID: 1413419732}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 1777534961}
-    ActiveGameObject: {fileID: 1777534961}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 534455777}
-    ActiveGameObject: {fileID: 534455777}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 235184994}
-    ActiveGameObject: {fileID: 235184994}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 322829729}
-    ActiveGameObject: {fileID: 322829729}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 2087108919}
-    ActiveGameObject: {fileID: 2087108919}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 2035697239}
-    ActiveGameObject: {fileID: 2035697239}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 620182655}
-    ActiveGameObject: {fileID: 620182655}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 240429094}
-    ActiveGameObject: {fileID: 240429094}
-    GUIDsList: []
-    GUIDsActiveGameObject: 
-    PATHsList: []
-    PATHsActiveGameObject: 
-    InstanceID: 0
-    wasInit: 0
-    CashedBool: 0
-  - FavParams: 0
-    FavString: []
-    list:
-    - {fileID: 362170953}
-    ActiveGameObject: {fileID: 362170953}
     GUIDsList: []
     GUIDsActiveGameObject: 
     PATHsList: []
@@ -8862,7 +8847,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c099347c380e9554aba74144be182f2b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -10157,6 +10142,66 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224313495010977550, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224720947426480138, guid: 7720a8c472a31564394aa9185fd3c49f,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7720a8c472a31564394aa9185fd3c49f, type: 2}
@@ -11850,9 +11895,9 @@ MonoBehaviour:
     TeamColor: {r: 1, g: 0, b: 0, a: 0}
     TeamName: NAME ERROR
     Goals:
-    - {fileID: 643952397}
-    - {fileID: 977264312}
-    - {fileID: 967122545}
+    - {fileID: 1218034505}
+    - {fileID: 2059436703}
+    - {fileID: 1178038855}
   - Players: []
     SpawnLocations:
     - {fileID: 1353591661}
@@ -11863,9 +11908,9 @@ MonoBehaviour:
     TeamColor: {r: 0, g: 0, b: 1, a: 0}
     TeamName: NAME ERROR
     Goals:
-    - {fileID: 1218034505}
-    - {fileID: 2059436703}
-    - {fileID: 1178038855}
+    - {fileID: 643952397}
+    - {fileID: 977264312}
+    - {fileID: 967122545}
   GoalsToWin: 3
 --- !u!1 &1635927153
 GameObject:
@@ -12600,11 +12645,6 @@ Prefab:
 --- !u!4 &1777534960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4004699124683492, guid: aefde4f64c23ac841b93761b8b2598a0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1777534959}
---- !u!1 &1777534961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1522623448715084, guid: aefde4f64c23ac841b93761b8b2598a0,
     type: 2}
   m_PrefabInternal: {fileID: 1777534959}
 --- !u!1 &1805963572
